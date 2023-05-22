@@ -3,6 +3,8 @@ stages:
 
 build-elec:
   stage: build
-  image: sha256:3256043cb9d2112ba86327cb970b34d97d4529555ef044ed541857ff4a7ea18d
+  image:
+    name: sha256:3256043cb9d2112ba86327cb970b34d97d4529555ef044ed541857ff4a7ea18d
+    pull_policy: if-not-present
   script:
     - echo "hello world"
