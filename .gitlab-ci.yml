@@ -7,8 +7,12 @@ build-elec:
     name: kicad/kicad:nightly
     pull_policy: if-not-present
   script:
+    - mkdir -p build/src
+    - cp elec/layout/bike_light.kicad_pcb build/src/
+    - sed -i "s/"'{{GITHASH}}'"/$CI_COMMIT_SHORT_SHA/g" build/src/bike_light.kicad_pcb
     - mkdir -p build/gerbers
-    - kicad-cli pcb export gerbers -o build/gerbers/ elec/layout/bike_light.kicad_pcb
+    - kicad-cli pcb export gerbers -o build/gerbers/ build/src/bike_light.kicad_pcb
+    - zip "build/gerbers/gerbers-$CI_COMMIT_SHORT_SHA.zip" build/gerbers/*
   artifacts:
     paths:
       - build/
