@@ -1300,6 +1300,9 @@
     (stroke (width 0.2) (type solid)) (layer "Edge.Cuts") (tstamp d6aab0d7-f3a0-4d9c-ab3e-ee576d4849e5))
   (gr_line (start 103.5 100) (end 136.5 100)
     (stroke (width 0.2) (type solid)) (layer "Edge.Cuts") (tstamp effdfe2a-1e5f-4f39-a617-6b702d6ff69a))
+  (gr_text "{{GITHASH}}" (at 138.1 120.32 90) (layer "F.SilkS") (tstamp 312f6ef5-bbc2-49ff-b0d2-e0d6bd424f2b)
+    (effects (font (size 1.5 1.5) (thickness 0.3) bold) (justify bottom))
+  )
 
   (segment (start 110.8 125.75) (end 107.95 122.9) (width 0.25) (layer "F.Cu") (net 1) (tstamp 00c71b2e-f10d-467e-8e1b-cbea390b94ed))
   (segment (start 117.2 132.565) (end 117.2 129.5) (width 0.25) (layer "F.Cu") (net 1) (tstamp 1364d609-eaa8-47cb-b969-4055559b3622))
