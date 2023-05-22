@@ -4,7 +4,11 @@ stages:
 build-elec:
   stage: build
   image:
-    name: sha256:3256043cb9d2112ba86327cb970b34d97d4529555ef044ed541857ff4a7ea18d
+    name: kicad/kicad:nightly
     pull_policy: if-not-present
   script:
-    - echo "hello world"
+    - mkdir -p build/gerbers
+    - kicad-cli pcb export gerbers -o build/gerbers/ elec/layout/bike_light.kicad_pcb
+  artifacts:
+    paths:
+      - build/
