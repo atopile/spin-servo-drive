@@ -56,7 +56,17 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "annular_width|123110000|133702500|d35d724a-3b56-4fd5-8953-6dd1055375f0|00000000-0000-0000-0000-000000000000",
+        "annular_width|128890000|133702500|91d8a356-d59a-43f9-900f-f92e9638c8e9|00000000-0000-0000-0000-000000000000",
+        "clearance|123100000|133162500|d35d724a-3b56-4fd5-8953-6dd1055375f0|4503ea7c-e4d7-460d-b988-023cd5317e56",
+        "clearance|128900000|133162500|91d8a356-d59a-43f9-900f-f92e9638c8e9|10c50710-a5f4-4fb6-8f71-f4bafe0ee509",
+        "hole_clearance|123300000|133162500|d35d724a-3b56-4fd5-8953-6dd1055375f0|466feaad-1d8a-4d21-b0b5-671d146f0dfa",
+        "hole_clearance|128700000|133172500|91d8a356-d59a-43f9-900f-f92e9638c8e9|d8dc58d5-d9bf-4058-b631-9b3062f46cbd",
+        "silk_edge_clearance|121420000|140000000|951c016c-2c31-4b2a-972c-0183b9da94ed|8537dde3-33aa-4b56-95af-a8ed12f29f43",
+        "silk_edge_clearance|121420000|140012500|951c016c-2c31-4b2a-972c-0183b9da94ed|78c30ac1-fa3a-4b72-ad57-293bcd45b3b4",
+        "silk_edge_clearance|130570000|140000000|951c016c-2c31-4b2a-972c-0183b9da94ed|47764c71-0b15-42dd-b55e-06af0f503f01"
+      ],
       "meta": {
         "version": 2
       },
@@ -176,7 +186,7 @@
       ],
       "track_widths": [
         0.0,
-        0.0,
+        0.2,
         0.5
       ],
       "via_dimensions": [
@@ -265,6 +275,18 @@
       {
         "netclass": "HC",
         "pattern": "7"
+      },
+      {
+        "netclass": "HC",
+        "pattern": "9"
+      },
+      {
+        "netclass": "HC",
+        "pattern": "3"
+      },
+      {
+        "netclass": "HC",
+        "pattern": "11"
       }
     ]
   },
