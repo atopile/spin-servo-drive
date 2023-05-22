@@ -1,0 +1,9 @@
+stages:
+  - build
+
+build-elec:
+  stage: build
+  script:
+    - echo "Check the ruby version, then build some Ruby project files:"
+    - ruby -v
+    - rake
