@@ -5,7 +5,7 @@
 
 import Led from "XL-C3570P8S11-62C3C2.ato"
 import LedDriver from "LT3477.ato"
-import Usbc from "std/usbc.ato"
+import Usbc from "usbc.ato"
 import PinHeader2 from "pin_header_2.ato"
 
 module BikeLight:
