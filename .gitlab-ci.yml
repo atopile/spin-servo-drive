@@ -12,6 +12,7 @@ build-elec:
     - sed -i "s/"'{{GITHASH}}'"/$CI_COMMIT_SHORT_SHA/g" build/src/bike_light.kicad_pcb
     - mkdir -p build/gerbers
     - kicad-cli pcb export gerbers -o build/gerbers/ build/src/bike_light.kicad_pcb
+    - kicad-cli pcb export drill -o build/gerbers/ build/src/bike_light.kicad_pcb
     - zip "build/gerbers/gerbers-$CI_COMMIT_SHORT_SHA.zip" build/gerbers/*
   artifacts:
     paths:
