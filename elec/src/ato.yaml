@@ -1,0 +1,9 @@
+paths:
+  build: ../../build/
+build:
+  default:
+    root-file: bike_light.ato
+    root-node: bike_light.ato/BikeLight
+    targets:
+      - netlist
+      - ref-map
