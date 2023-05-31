@@ -1,42 +1,50 @@
-# We are goiing to build the first compiled atopile project
-# This will be an LED driver
+# This project is meant to be compiled with Atopile
+# The project describes a bike light
 # Components:
 # LED: https://www.mouser.com/ProductDetail/Cree-LED/XMLBWT-00-0000-0000U2051?qs=5YqktSXERiqXrROjAy0YHg%3D%3D
 
+# Import existing modules
 import Led from "XL-C3570P8S11-62C3C2.ato"
 import LedDriver from "LT3477.ato"
 import Usbc from "usbc.ato"
 import PinHeader2 from "pin_header_2.ato"
 
+# Instantiate the bike light
 module BikeLight:
 
+    # Define meaningfull signals
     signal vin
     signal gnd
 
-    #vin.visualizer.stub = True
+    # Define the location of the gnd signal on the module
     gnd.visualizer.location = "bottom"
 
-    # LED
+    # Instantiate some LEDs
     led1 = new Led
     led2 = new Led
     led3 = new Led
 
+    # Instantiate the LED driver
     led_driver = new LedDriver
 
+    # Connect LED driver inputs
     led_driver.gnd ~ gnd
     led_driver.vin ~ vin
 
+    # Connect the LED driver outputs and chain the LEDs in series
     led_driver.led_positive ~ led1.positive
     led1.negative ~ led2.positive
     led2.negative ~ led3.positive
     led3.negative ~ led_driver.led_negative
 
+    # Instantiate a USB-C connector and connect it
     usbc = new Usbc
 
     usbc.vbus ~ vin
     usbc.gnd ~ gnd
     usbc.shell ~ usbc.gnd
 
+    # Instantiate a 2 pin header and connect it
     pwm_header = new PinHeader2
 
     pwm_header.p1 ~ gnd
