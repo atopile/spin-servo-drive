@@ -6,6 +6,10 @@
   position:
     x: 1500
     y: 240
+108ff5f3-8f88-38b5-8635-84d4fd8b4416:
+  position:
+    x: 275
+    y: 695
 17e326cd-3949-899f-4d44-121bda22a761:
   position:
     x: 1500
@@ -34,6 +38,10 @@
   position:
     x: 835
     y: 635
+603ebb8f-0032-0658-70a2-bfa543ade5bc:
+  position:
+    x: 675
+    y: 265
 67c50d54-396c-60e2-9894-2e4c725bf5c3:
   position:
     x: 1060
@@ -74,6 +82,10 @@
   position:
     x: 900
     y: 210
+a84a8913-d9c3-a236-4610-3b2042e00b50:
+  position:
+    x: 290
+    y: 505
 abd046b8-8c0f-8392-e2c4-c0377ba8a921:
   position:
     x: 785
@@ -192,8 +204,8 @@ bike_light.ato/BikeLight/pwm_header:
     y: 615
 bike_light.ato/BikeLight/usbc:
   position:
-    x: 170
-    y: 350
+    x: 155
+    y: 415
 c9e2852e-af0b-5908-6fc8-249161c7f721:
   position:
     x: 785

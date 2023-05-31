@@ -8,8 +8,7 @@ import Nmos4Pin from "nmos.ato"
 import Nmos3Pin from "nmos.ato"
 import Vdiv from "vdiv.ato"
 
-component LT3477: # This comment needs to be fixed
-    #FIXME: need synthax highlighting for components
+component LT3477:
     # pin fucntion (QFN/TSSOP)
     signal vin ~ pin p3 # (Pin 3/Pin 1): input voltage
     signal rt ~ pin p4 # (Pin 4/Pin 2): Timing Resistor Pin
@@ -68,62 +67,16 @@ module LedDriver:
     led_positive.visualizer.location = "right"
     led_negative.visualizer.location = "right"
 
-    led_driver = new LT3477
 
+    # Input bypass capa
     c_bypass_input = new Capacitor
     c_bypass_input.value = "3.3uF"
 
-    c_bypass_output = new Capacitor
-    c_bypass_output.value = "10uF"
-
-    inductor = new Inductor # suggest inductor using IFSC1008ABER2R2M01
-    inductor.footprint = "bike_light_lib:IND-SMD_L2.5-W2.0_SLW252012P"
-    inductor.value = "2uH"  # FIXME: this was inductor = ... -> we need better behaviour on reassignment
-
-    c_soft_start = new Capacitor
-    c_soft_start.value = "33nF"
-
-    r_timing = new Resistor
-    r_timing.value = "6.81k" #FIXME: need synthax highlighting for numbers
-
-    # boost diode, suggest using C91072
-    diode_boost = new Diode
-    diode_boost.footprint = "Diode_SMD:D_SOD-123"
-
-    # pwm diode
-    diode_pwm = new Diode
-    diode_pwm.footprint = "Diode_SMD:D_SOD-123"
-
-    # Sense resistor
-    r_sens = new Resistor
-    r_sens.value = "0.33R"
-
-    # led nmos, suggest using: C145552
-    nmos_led = new Nmos4Pin
-    nmos_led.footprint = "bike_light_lib:SOT-223_L6.5-W3.5-P2.30-LS7.0-BR"
-
-    nmos_pwm = new Nmos3Pin
-    nmos_pwm.footprint = "bike_light_lib:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR"
-
-    r_comp = new Resistor
-    r_comp.value = "2.4k"
-
-    c_comp = new Capacitor
-    c_comp.value = "10nF"
-
-    # Resistance pwm input
-    r_pwm = new Resistor
-    r_pwm.value = "100k"
-
-    feedback_vdiv = new Vdiv
-    feedback_vdiv.r_top.value = "1M" #FIXME: sythax highlighting for single '' as well as ""
-    feedback_vdiv.r_bt.value = "75k"
-
-    # Connect stuff together
-
-    # Vin
     vin ~ c_bypass_input.p1
     gnd ~ c_bypass_input.p2
+
+    # Led driver
+    led_driver = new LT3477
 
     vin ~ led_driver.vin
     vin ~ led_driver.iadj1
@@ -133,15 +86,29 @@ module LedDriver:
     vin ~ led_driver.isp1
     vin ~ led_driver.isn1
 
-    vin ~ inductor.p1
+    led_driver.gnd ~ gnd
 
     # Boost
+    inductor = new Inductor # suggest inductor using IFSC1008ABER2R2M01
+    inductor.footprint = "bike_light_lib:IND-SMD_L2.5-W2.0_SLW252012P"
+    inductor.value = "2uH"  # FIXME: this was inductor = ... -> we need better behaviour on reassignment
+    vin ~ inductor.p1
     inductor.p2 ~ led_driver.sw
+
+    # boost diode, suggest using C91072
+    diode_boost = new Diode
+    diode_boost.footprint = "Diode_SMD:D_SOD-123"
 
     led_driver.sw ~ diode_boost.pp
     diode_boost.pn ~ out
 
     # Negative feedback
+
+    # Instantiate a voltage divider
+    feedback_vdiv = new Vdiv
+    feedback_vdiv.r_top.value = "1M" #FIXME: sythax highlighting for single '' as well as ""
+    feedback_vdiv.r_bt.value = "75k"
+
     out ~ feedback_vdiv.input
     led_driver.fbn ~ feedback_vdiv.output
     feedback_vdiv.gnd ~ gnd
@@ -149,40 +116,76 @@ module LedDriver:
     # Vref
     led_driver.fbp ~ led_driver.vref # This seems to be broken in the visualizer? -> due to connection in context of component
 
-    # LED
+    # Output bypass capacitor
+    c_bypass_output = new Capacitor
+    c_bypass_output.value = "10uF"
+
     c_bypass_output.p1 ~ out
     c_bypass_output.p2 ~ gnd
 
-    led_driver.isp2 ~ out
+    # Current sense
+    r_sens = new Resistor
+    r_sens.value = "0.33R"
 
+    led_driver.isp2 ~ out
     r_sens.p1 ~ out
     led_driver.isn2 ~ r_sens.p2
+
+    # Connect the outputs
+    
+    # led nmos, suggest using: C145552
+    nmos_led = new Nmos4Pin
+    nmos_led.footprint = "bike_light_lib:SOT-223_L6.5-W3.5-P2.30-LS7.0-BR"
 
     led_positive ~ r_sens.p2
     led_negative ~ nmos_led.drain
 
+    # Low side nmos
     nmos_led.source ~ gnd
-
     nmos_led.gate ~ pwm
+
+    # Pwm input
+    r_pwm = new Resistor
+    r_pwm.value = "100k"
 
     pwm ~ r_pwm.p1
     r_pwm.p2 ~ gnd
 
+    # Pwm control
+    diode_pwm = new Diode
+    diode_pwm.footprint = "Diode_SMD:D_SOD-123"
+
     led_driver.vc ~ diode_pwm.pp
     diode_pwm.pn ~ pwm
 
+    nmos_pwm = new Nmos3Pin
+    nmos_pwm.footprint = "bike_light_lib:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR"
+
     led_driver.vc ~ nmos_pwm.source
     pwm ~ nmos_pwm.gate
+
+    r_comp = new Resistor
+    r_comp.value = "2.4k"
+
+    c_comp = new Capacitor
+    c_comp.value = "10nF"
+
     r_comp.p1 ~ nmos_pwm.drain
     r_comp.p2 ~ c_comp.p1
     c_comp.p2 ~ gnd
 
+    # Soft start
+    c_soft_start = new Capacitor
+    c_soft_start.value = "33nF"
+
     c_soft_start.p1 ~ led_driver.ss
     c_soft_start.p2 ~ gnd
+
+    # Timing
+    r_timing = new Resistor
+    r_timing.value = "6.81k" #FIXME: need synthax highlighting for numbers
 
     r_timing.p1 ~ led_driver.rt
     r_timing.p2 ~ gnd
 
     r_timing ~ gnd
-
-    led_driver.gnd ~ gnd
