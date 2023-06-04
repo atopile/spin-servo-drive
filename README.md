@@ -1,11 +1,15 @@
-# bike light
+# servo drive
 
-A simple LED bike light
+An inexpensive servo driver for brushless motors, compilable with atopile.
 
-## Developer Guide
+## Developer guide
 
-### Electronics Source Changes
+### Adding components
 
-Visualise: `ato visualize elec/src/bike_light.ato bike_light.ato/BikeLight`
+For now, manufacturing is with JLCPCB.
 
-Build Netlist: `ato build --output build/bike_light.net elec/src/bike_light.ato bike_light.ato/BikeLight`
+[easyeda2kicad](https://github.com/uPesy/easyeda2kicad.py) is a great tool to pull from their footprint library.
+
+1. Install with with `pip install easyeda2kicad`
+2. `cd <here>`
+3. Add a component with: `easyeda2kicad --full --lcsc_id=C77540 --output elec/libs/servo_drive_lib`
