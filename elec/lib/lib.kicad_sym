@@ -20,7 +20,7 @@
     )
     (property
       "Footprint"
-      "servo_drive_lib:QFN-48_L6.0-W6.0-P0.40-BL-EP3.8"
+      "lib:QFN-48_L6.0-W6.0-P0.40-BL-EP3.8"
       (id 2)
       (at 0 -38.10 0)
       (effects (font (size 1.27 1.27) ) hide)
@@ -381,7 +381,7 @@
     )
     (property
       "Footprint"
-      "servo_drive_lib:SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL"
+      "lib:SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL"
       (id 2)
       (at 0 -11.43 0)
       (effects (font (size 1.27 1.27) ) hide)
@@ -496,7 +496,7 @@
     )
     (property
       "Footprint"
-      "servo_drive_lib:DFN-8_L5.9-W5.2-P1.27-LS6.2-BL"
+      "lib:DFN-8_L5.9-W5.2-P1.27-LS6.2-BL"
       (id 2)
       (at 0 -12.70 0)
       (effects (font (size 1.27 1.27) ) hide)
@@ -617,7 +617,7 @@
     )
     (property
       "Footprint"
-      "servo_drive_lib:SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL"
+      "lib:SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL"
       (id 2)
       (at 0 -11.43 0)
       (effects (font (size 1.27 1.27) ) hide)
@@ -732,7 +732,7 @@
     )
     (property
       "Footprint"
-      "servo_drive_lib:R1206"
+      "lib:R1206"
       (id 2)
       (at 0 -7.62 0)
       (effects (font (size 1.27 1.27) ) hide)
@@ -805,7 +805,7 @@
     )
     (property
       "Footprint"
-      "servo_drive_lib:VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL"
+      "lib:VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL"
       (id 2)
       (at 0 -11.43 0)
       (effects (font (size 1.27 1.27) ) hide)
@@ -920,7 +920,7 @@
     )
     (property
       "Footprint"
-      "servo_drive_lib:C0805"
+      "lib:C0805"
       (id 2)
       (at 0 -12.70 0)
       (effects (font (size 1.27 1.27) ) hide)
@@ -1015,7 +1015,7 @@
     )
     (property
       "Footprint"
-      "servo_drive_lib:CONN-TH_XT30PW-M"
+      "lib:CONN-TH_XT30PW-M"
       (id 2)
       (at 0 -13.97 0)
       (effects (font (size 1.27 1.27) ) hide)
