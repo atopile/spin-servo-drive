@@ -1,21 +1,39 @@
 import L6387ED from 'L6387ED.ato'
-import Nmos3Pin from 'nmos.ato'
+import BSC0901NS from 'BSC0901NS.ato'
+import Capacitor from 'std/capacitor.ato'
 
 module HalfBridge:
     signal vin
-    signal gnd
-    signal LS
     signal HS
+    signal LS
     signal out
+    signal gnd
 
     gate_driver = new L6387ED
-    hs_fet = new Nmos3Pin
-    ls_fet = new Nmos3Pin
+    hs_fet = new BSC0901NS
+    ls_fet = new BSC0901NS
 
     vin ~ gate_driver.vcc
     gnd ~ gate_driver.gnd
-    ls_fet.g ~ gate_driver.lvg
-    hs_fet.g ~ gate_driver.hvg
+    ls_fet.G ~ gate_driver.lvg
+    hs_fet.G ~ gate_driver.hvg
+
+    LS ~ gate_driver.lin
+    HS ~ gate_driver.hin
+
+    vin ~ hs_fet.D
+    out ~ hs_fet.S
+    out ~ ls_fet.D
+    gnd ~ ls_fet.S
+
+    vin.visualizer.location = "left"
+    gnd.visualizer.location = "left"
+    LS.visualizer.location = "left"
+    HS.visualizer.location = "left"
+    out.visualizer.location = "right"
+
 
     
+
+
 

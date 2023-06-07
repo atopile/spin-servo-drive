@@ -2,3 +2,23 @@ NRF52832.ato/NRF52832:
   position:
     x: 550
     y: 285
+b886beb0-16dc-409a-a4cf-bf9ce4c2fecc:
+  position:
+    x: 843
+    y: 208
+d88bcfe3-09fd-40a7-a128-f5e8b34520ef:
+  position:
+    x: 843
+    y: 158
+half_bridge.ato/HalfBridge/gate_driver:
+  position:
+    x: 845
+    y: 110
+half_bridge.ato/HalfBridge/hs_fet:
+  position:
+    x: 1040
+    y: 60
+half_bridge.ato/HalfBridge/ls_fet:
+  position:
+    x: 1040
+    y: 170
