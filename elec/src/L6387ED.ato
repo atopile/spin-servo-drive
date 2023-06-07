@@ -1,0 +1,15 @@
+# L6387ED
+# JLC C155554
+
+component L6387ED:
+    signal lin ~ pin p1 #low-side driver logic input 
+    signal hin ~ pin p2 #high-side driver logic input
+    signal vcc ~ pin p3 #supply voltage
+    signal gnd ~ pin p4 #ground
+    signal lvg ~ pin p5 #low-side driver output
+    signal out ~ pin p6 #high-side driver floating reference
+    signal hvg ~ pin p7 #high-side driver output
+    signal vboot ~ pin p8 #bootstrap supply voltage
+
+    footprint = "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL"
+    designator_prefix = "U"

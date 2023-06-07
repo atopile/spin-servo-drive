@@ -1,0 +1,21 @@
+import L6387ED from 'L6387ED.ato'
+import Nmos3Pin from 'nmos.ato'
+
+module HalfBridge:
+    signal vin
+    signal gnd
+    signal LS
+    signal HS
+    signal out
+
+    gate_driver = new L6387ED
+    hs_fet = new Nmos3Pin
+    ls_fet = new Nmos3Pin
+
+    vin ~ gate_driver.vcc
+    gnd ~ gate_driver.gnd
+    ls_fet.g ~ gate_driver.lvg
+    hs_fet.g ~ gate_driver.hvg
+
+    
+
