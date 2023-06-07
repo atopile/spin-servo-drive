@@ -1,0 +1,12 @@
+component BSC0901NS:
+    signal S ~ pin p1
+    S ~ pin p2
+    S ~ pin p3
+    signal G ~ pin p4
+    signal D ~ pin p5
+    signal D ~ pin p6
+    signal D ~ pin p7
+    signal D ~ pin p8
+
+    footprint = ""
+    designator_prefix = "U"
