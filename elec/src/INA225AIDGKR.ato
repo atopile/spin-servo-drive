@@ -1,0 +1,21 @@
+component INA225AIDGKR:
+    signal in_p ~ pin p1 # Connect to supply side of shunt resistor
+    signal gnd ~ pin p2 # Ground
+    signal vs ~ pin p3 # Power supply, 2.7 V to 36 V
+    signal out ~ pin p4 # Output voltage
+    signal in_n ~ pin p8 # Connect to load side of shunt resistor
+    signal ref ~ pin p7 # Reference voltage, 0 V to VS
+    signal gs1 ~ pin p6 # Gain select. Connect to VS or GND
+    signal gs0 ~ pin p5 # Gain select. Connect to VS or GND
+
+    # footprint = ""
+    designator_prefix = "U"
+
+    in_p.visualizer.location = "left"
+    gnd.visualizer.location = "left"
+    vs.visualizer.location = "left"
+    out.visualizer.location = "left"
+    gs0.visualizer.location = "right"
+    gs1.visualizer.location = "right"
+    ref.visualizer.location = "right"
+    in_n.visualizer.location = "right"

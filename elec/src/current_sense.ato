@@ -1,0 +1,36 @@
+import INA225AIDGKR from 'INA225AIDGKR.ato'
+import Resistor from 'std/resistor.ato'
+
+#todo: calculate gain settings
+
+module CurrentSensor:
+    signal i_out 
+    signal i_in
+    signal vcc
+    signal out
+    signal gnd
+
+    opamp = new INA225AIDGKR
+    opamp.vs ~ vcc
+    opamp.gnd ~ gnd
+    shunt = new Resistor
+    config1 = new Resistor
+    config2 = new Resistor
+    shunt.R = 0.003
+
+    opamp.in_p ~ shunt.p1
+    opamp.in_n ~ shunt.p2
+    opamp.out ~ out
+    i_in ~ shunt.p1
+    i_out ~ shunt.p2
+
+    shunt.p1.visualizer.location = "left"
+    shunt.p2.visualizer.location = "right"
+    i_out.visualizer.location = "right"
+    i_in.visualizer.location = "left"
+    vcc.visualizer.location = "left"
+    gnd.visualizer.location = "bottom"
+    out.visualizer.location = "left"
+
+
+    # shunt.footprint = "R1206"

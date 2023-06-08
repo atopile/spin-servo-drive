@@ -1,0 +1,14 @@
+import HalfBridge from 'half_bridge.ato'
+import CurrentSensor from 'current_sense.ato'
+
+module ServoDrive:
+    half_bridge_A = new HalfBridge
+    half_bridge_B = new HalfBridge
+    half_bridge_C = new HalfBridge
+    current_sensor_A = new CurrentSensor
+    current_sensor_B = new CurrentSensor
+    current_sensor_C = new CurrentSensor
+
+    half_bridge_A.out ~> current_sensor_A.i_in
+    half_bridge_B.out ~> current_sensor_B.i_in
+    half_bridge_C.out ~> current_sensor_C.i_in

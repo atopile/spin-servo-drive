@@ -1,3 +1,7 @@
+INA225AIDGKR.ato/INA225AIDGKR:
+  position:
+    x: 195
+    y: 135
 NRF52832.ato/NRF52832:
   position:
     x: 550
@@ -6,19 +10,115 @@ b886beb0-16dc-409a-a4cf-bf9ce4c2fecc:
   position:
     x: 843
     y: 208
+bc1dda76-244d-48f5-8171-a94e915d4783:
+  position:
+    x: 307
+    y: 285
+current_sense.ato/CurrentSensor/config1:
+  position:
+    x: 460
+    y: 585
+current_sense.ato/CurrentSensor/config2:
+  position:
+    x: 460
+    y: 650
+current_sense.ato/CurrentSensor/opamp:
+  position:
+    x: 350
+    y: 535
+current_sense.ato/CurrentSensor/shunt:
+  position:
+    x: 350
+    y: 440
 d88bcfe3-09fd-40a7-a128-f5e8b34520ef:
   position:
     x: 843
     y: 158
 half_bridge.ato/HalfBridge/gate_driver:
   position:
-    x: 845
-    y: 110
+    x: 280
+    y: 230
 half_bridge.ato/HalfBridge/hs_fet:
   position:
-    x: 1040
-    y: 60
+    x: 425
+    y: 200
 half_bridge.ato/HalfBridge/ls_fet:
   position:
     x: 1040
     y: 170
+servo_drive.ato/ServoDrive/current_sensor_A/config1:
+  position:
+    x: 910
+    y: 450
+servo_drive.ato/ServoDrive/current_sensor_A/config2:
+  position:
+    x: 655
+    y: 150
+servo_drive.ato/ServoDrive/current_sensor_A/opamp:
+  position:
+    x: 570
+    y: 55
+servo_drive.ato/ServoDrive/current_sensor_B/config1:
+  position:
+    x: 915
+    y: 885
+servo_drive.ato/ServoDrive/current_sensor_B/config2:
+  position:
+    x: 915
+    y: 815
+servo_drive.ato/ServoDrive/current_sensor_B/opamp:
+  position:
+    x: 560
+    y: 440
+servo_drive.ato/ServoDrive/current_sensor_B/shunt:
+  position:
+    x: 560
+    y: 345
+servo_drive.ato/ServoDrive/current_sensor_C/config1:
+  position:
+    x: 910
+    y: 1215
+servo_drive.ato/ServoDrive/current_sensor_C/config2:
+  position:
+    x: 915
+    y: 1155
+servo_drive.ato/ServoDrive/current_sensor_C/opamp:
+  position:
+    x: 565
+    y: 760
+servo_drive.ato/ServoDrive/half_bridge_A/gate_driver:
+  position:
+    x: 150
+    y: 100
+servo_drive.ato/ServoDrive/half_bridge_A/hs_fet:
+  position:
+    x: 295
+    y: 165
+servo_drive.ato/ServoDrive/half_bridge_A/ls_fet:
+  position:
+    x: 305
+    y: 50
+servo_drive.ato/ServoDrive/half_bridge_B/gate_driver:
+  position:
+    x: 150
+    y: 400
+servo_drive.ato/ServoDrive/half_bridge_B/hs_fet:
+  position:
+    x: 305
+    y: 355
+servo_drive.ato/ServoDrive/half_bridge_B/ls_fet:
+  position:
+    x: 305
+    y: 465
+servo_drive.ato/ServoDrive/half_bridge_C/gate_driver:
+  position:
+    x: 150
+    y: 695
+servo_drive.ato/ServoDrive/half_bridge_C/hs_fet:
+  position:
+    x: 315
+    y: 660
+servo_drive.ato/ServoDrive/half_bridge_C/ls_fet:
+  position:
+    x: 320
+    y: 755
