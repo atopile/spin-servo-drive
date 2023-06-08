@@ -94,5 +94,5 @@ component NRF52832:
     dcc.visualizer.location = "top"
     die_pad.visualizer.location = "bottom"
 
-    footprint = "QFN-48_L6.0-W6.0-P0.40-BL-EP3.8"
+    footprint = "lib:QFN-48_L6.0-W6.0-P0.40-BL-EP3.8"
     designator_prefix = "U"

@@ -22,7 +22,7 @@
 	(fp_arc (start 1.81 -0.75) (end 1.81 -0.90) (angle 90.00) (layer F.SilkS) (width 0.15))
 	(fp_arc (start -1.81 0.75) (end -1.96 0.75) (angle -90.00) (layer F.SilkS) (width 0.15))
 	(fp_arc (start -1.81 -0.75) (end -1.81 -0.90) (angle -90.00) (layer F.SilkS) (width 0.15))
-	(model "elec/libs/servo_drive_lib.3dshapes/C0805_L2.0-W1.3-H1.3.wrl"
+	(model "elec/libs/lib.3dshapes/C0805_L2.0-W1.3-H1.3.wrl"
 		(offset (xyz -1.410 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

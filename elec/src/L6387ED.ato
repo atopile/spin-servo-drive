@@ -11,7 +11,7 @@ component L6387ED:
     signal out ~ pin p6 #high-side driver floating reference
     signal vboot ~ pin p8 #bootstrap supply voltage
 
-    footprint = "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL"
+    footprint = "lib:SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL"
     designator_prefix = "U"
 
     lin.visualizer.location = "left"
