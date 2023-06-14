@@ -1,7 +1,8 @@
 import INA225AIDGKR from "INA225AIDGKR.ato"
 import LMV321IDBVR from "LMV321IDBVR.ato"
 import Resistor from "std/resistor.ato"
-import Vdiv from "vdiv.ato"
+import Capacitor from "std/capacitor.ato"
+import LowPass from "low_pass.ato"
 
 module CurrentSensor:
     signal vcc
@@ -28,6 +29,12 @@ module CurrentSensor:
     amp.in_n ~ shunt.p2
     amp.out ~ out
 
+    c_bypass = new Capacitor
+    c_bypass.value = "1uF"
+    c_bypass.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_bypass.p1 ~ amp.vs
+    c_bypass.p2 ~ amp.gnd
+
     # From the INA225 datasheet:
     #   GAIN SELECT
     # ================
@@ -47,25 +54,10 @@ module CurrentSensor:
     amp.gs0 ~ gnd
     amp.gs1 ~ vcc
 
-    # voltage reference should be half our supply
-    buffer = new LMV321IDBVR
-    buffer.vcc ~ vcc
-    buffer.gnd ~ gnd
-    buffer.out ~ zero_offset
-    buffer.out ~ buffer.in_n
-
-    buffer_ref = new Vdiv
-    buffer_ref.r1.value = "10kOhm"
-    buffer_ref.r2.value = "10kOhm"
-    buffer_ref.input ~ vcc
-    buffer_ref.output ~ buffer.in_p
-    buffer_ref.gnd ~ gnd
-
     # visualiser hints
     vcc.visualizer.location = "top"
     gnd.visualizer.location = "bottom"
     i_in.visualizer.location = "left"
+    zero_offset.visualizer.location = "left"
     i_out.visualizer.location = "right"
     out.visualizer.location = "right"
-    vcc.visualizer.stub = True
-    gnd.visualizer.stub = True
