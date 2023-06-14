@@ -7,7 +7,7 @@ module Vdiv:
     signal gnd
 
     input.visualizer.location = "top"
-    output.visualizer.location = "left"
+    output.visualizer.location = "right"
     gnd.visualizer.location = "bottom"
 
     r_top = new Resistor

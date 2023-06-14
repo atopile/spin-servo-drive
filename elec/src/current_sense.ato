@@ -1,36 +1,71 @@
-import INA225AIDGKR from 'INA225AIDGKR.ato'
-import Resistor from 'std/resistor.ato'
-
-#todo: calculate gain settings
+import INA225AIDGKR from "INA225AIDGKR.ato"
+import LMV321IDBVR from "LMV321IDBVR.ato"
+import Resistor from "std/resistor.ato"
+import Vdiv from "vdiv.ato"
 
 module CurrentSensor:
-    signal i_out 
-    signal i_in
     signal vcc
-    signal out
     signal gnd
+    signal i_in
+    signal i_out
+    signal zero_offset
+    signal out
 
-    opamp = new INA225AIDGKR
-    opamp.vs ~ vcc
-    opamp.gnd ~ gnd
+    # Use https://jlcpcb.com/partdetail/ta_iTech-RLP25JECR001/C393066
     shunt = new Resistor
-    config1 = new Resistor
-    config2 = new Resistor
-    shunt.R = 0.003
-
-    opamp.in_p ~ shunt.p1
-    opamp.in_n ~ shunt.p2
-    opamp.out ~ out
-    i_in ~ shunt.p1
-    i_out ~ shunt.p2
-
+    shunt.value = "1mOhm"
+    shunt.footprint = "Resistor_SMD:R_2512_6332Metric"
     shunt.p1.visualizer.location = "left"
     shunt.p2.visualizer.location = "right"
-    i_out.visualizer.location = "right"
-    i_in.visualizer.location = "left"
-    vcc.visualizer.location = "left"
+    i_in ~ shunt.p1
+    shunt.p2 ~ i_out
+
+    amp = new INA225AIDGKR
+    amp.vs ~ vcc
+    amp.gnd ~ gnd
+    amp.ref ~ zero_offset
+    amp.in_p ~ shunt.p1
+    amp.in_n ~ shunt.p2
+    amp.out ~ out
+
+    # From the INA225 datasheet:
+    #   GAIN SELECT
+    # ================
+    # GS0 | GS1 | GAIN
+    # ----------------
+    # GND | VS  | 25
+    # GND | GND | 50
+    # VS  | VS  | 100
+    # VS  | GND | 200
+    # ----------------
+    #
+    # The largest readily available 42mm-frame motors have a rated current of ~8A
+    # Burst current is ~3x rated, which means we want to ideally support ~24A
+    # We need bi-directional current measurment, so our "full-range" is 3.3V/2 = 1.65V
+    # 3mOhm * 24A = 72mV
+    # 72mV * 25 = 3.15V
+    amp.gs0 ~ gnd
+    amp.gs1 ~ vcc
+
+    # voltage reference should be half our supply
+    buffer = new LMV321IDBVR
+    buffer.vcc ~ vcc
+    buffer.gnd ~ gnd
+    buffer.out ~ zero_offset
+    buffer.out ~ buffer.in_n
+
+    buffer_ref = new Vdiv
+    buffer_ref.r1.value = "10kOhm"
+    buffer_ref.r2.value = "10kOhm"
+    buffer_ref.input ~ vcc
+    buffer_ref.output ~ buffer.in_p
+    buffer_ref.gnd ~ gnd
+
+    # visualiser hints
+    vcc.visualizer.location = "top"
     gnd.visualizer.location = "bottom"
-    out.visualizer.location = "left"
-
-
-    # shunt.footprint = "R1206"
+    i_in.visualizer.location = "left"
+    i_out.visualizer.location = "right"
+    out.visualizer.location = "right"
+    vcc.visualizer.stub = True
+    gnd.visualizer.stub = True

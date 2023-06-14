@@ -1,3 +1,35 @@
+2ab8b428-ad32-e271-6cc9-009d87c4e17c:
+  position:
+    x: 710
+    y: 575
+49a89586-84ac-4049-41d6-67f01d7ea886:
+  position:
+    x: 495
+    y: 885
+6a3a1abc-7fa1-18ed-e8d7-dd23375b9db8:
+  position:
+    x: 240
+    y: 835
+6d845515-8fbf-1436-f4e2-7441458acd1a:
+  position:
+    x: 275
+    y: 375
+73ae069a-1145-1264-bfb1-2bd238a94f54:
+  position:
+    x: 710
+    y: 815
+7b078bd9-dc98-05fc-9f33-6e1d15a90fca:
+  position:
+    x: 620
+    y: 760
+98cdc68d-776d-c0b5-071f-ad508728ab19:
+  position:
+    x: 240
+    y: 515
+9c772093-2a59-a84f-35ff-4cd82650f496:
+  position:
+    x: 415
+    y: 615
 INA225AIDGKR.ato/INA225AIDGKR:
   position:
     x: 195
@@ -6,6 +38,10 @@ NRF52832.ato/NRF52832:
   position:
     x: 550
     y: 285
+b4e3afe6-9947-81df-b1fa-b11c208ea4d1:
+  position:
+    x: 415
+    y: 785
 b886beb0-16dc-409a-a4cf-bf9ce4c2fecc:
   position:
     x: 843
@@ -14,6 +50,18 @@ bc1dda76-244d-48f5-8171-a94e915d4783:
   position:
     x: 307
     y: 285
+current_sense.ato/CurrentSensor/amp:
+  position:
+    x: 670
+    y: 625
+current_sense.ato/CurrentSensor/buffer:
+  position:
+    x: 375
+    y: 655
+current_sense.ato/CurrentSensor/buffer_ref/r_bt:
+  position:
+    x: 100
+    y: 190
 current_sense.ato/CurrentSensor/config1:
   position:
     x: 460
@@ -28,8 +76,12 @@ current_sense.ato/CurrentSensor/opamp:
     y: 535
 current_sense.ato/CurrentSensor/shunt:
   position:
-    x: 350
-    y: 440
+    x: 440
+    y: 450
+d4ef45a3-4567-9944-6bcc-1b2d2dc563be:
+  position:
+    x: 615
+    y: 730
 d88bcfe3-09fd-40a7-a128-f5e8b34520ef:
   position:
     x: 843
@@ -154,3 +206,7 @@ servo_drive.ato/ServoDrive/half_bridge_C/ls_fet:
   position:
     x: 320
     y: 755
+vdiv.ato/Vdiv/r_bt:
+  position:
+    x: 490
+    y: 265
