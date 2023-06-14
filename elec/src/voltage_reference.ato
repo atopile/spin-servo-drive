@@ -1,0 +1,44 @@
+import TL072CDT from "TL072CDT.ato"
+import Resistor from "std/resistor.ato"
+import Capacitor from "std/capacitor.ato"
+import Vdiv from "vdiv.ato"
+
+module VoltageReference:
+    signal vcc
+    signal gnd
+    signal v_ref
+    signal half_v_ref
+
+    # voltage reference should be half our supply
+    buffer = new TL072CDT
+    buffer.vcc ~ vcc
+    buffer.gnd ~ gnd
+    # set them up as unity gain buffers
+    buffer.out_a ~ buffer.in_n_a
+    buffer.out_b ~ buffer.in_n_b
+
+    # the main voltage reference should be a
+    # nice stabalised version of our supply
+    ref_bypass_cap = new Capacitor
+    ref_bypass_cap.value = "1uF"
+    ref_bypass_cap.footprint = "Resistor_SMD:R_0603_1608Metric"
+    vcc ~ ref_bypass_cap.p1
+    gnd ~ ref_bypass_cap.p2
+    ref_bypass_cap.p1 ~ buffer.in_p_a
+    buffer.out_a ~ v_ref
+
+    # the second reference is mid-rail (1/2) reference
+    half_ref = new Vdiv
+    half_ref.r1.value = "10kOhm"
+    half_ref.r2.value = "10kOhm"
+    half_ref.input ~ v_ref
+    half_ref.gnd ~ gnd
+
+    half_ref.output ~ buffer.in_p_b
+    buffer.out_b ~ half_v_ref
+
+    # visualiser hints
+    vcc.visualizer.location = "top"
+    gnd.visualizer.location = "bottom"
+    v_ref.visualizer.location = "right"
+    half_v_ref.visualizer.location = "right"

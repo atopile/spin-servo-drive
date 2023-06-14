@@ -1,3 +1,7 @@
+1f39cd1c-6a40-dd96-d9d7-fc15f74997f3:
+  position:
+    x: 165
+    y: 440
 2ab8b428-ad32-e271-6cc9-009d87c4e17c:
   position:
     x: 710
@@ -214,3 +218,19 @@ vdiv.ato/Vdiv/r_bt:
   position:
     x: 490
     y: 265
+voltage_reference.ato/VoltageReference/buffer:
+  position:
+    x: 390
+    y: 195
+voltage_reference.ato/VoltageReference/half_ref/r_bt:
+  position:
+    x: 145
+    y: 295
+voltage_reference.ato/VoltageReference/half_ref/r_top:
+  position:
+    x: 145
+    y: 215
+voltage_reference.ato/VoltageReference/ref_bypass_cap:
+  position:
+    x: 270
+    y: 65
