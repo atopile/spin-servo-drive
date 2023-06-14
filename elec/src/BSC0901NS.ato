@@ -1,17 +1,16 @@
 component BSC0901NS:
-    signal D ~ pin p5
-    D ~ pin p6
-    D ~ pin p7
-    D ~ pin p8
-    signal S ~ pin p1
-    S ~ pin p2
-    S ~ pin p3
-    signal G ~ pin p4
-    
+    signal drain ~ pin p5
+    drain ~ pin p6
+    drain ~ pin p7
+    drain ~ pin p8
+    signal source ~ pin p1
+    source ~ pin p2
+    source ~ pin p3
+    signal gate ~ pin p4
 
-    S.visualizer.location = "right"
-    G.visualizer.location = "left"
-    D.visualizer.location = "right"
+    drain.visualizer.location = "top"
+    source.visualizer.location = "bottom"
+    gate.visualizer.location = "left"
 
-    footprint = ""
+    footprint = "lib:DFN-8_L5.9-W5.2-P1.27-LS6.2-BL"
     designator_prefix = "Q"

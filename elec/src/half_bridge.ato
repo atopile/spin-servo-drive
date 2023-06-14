@@ -1,39 +1,83 @@
-import L6387ED from 'L6387ED.ato'
-import BSC0901NS from 'BSC0901NS.ato'
-import Capacitor from 'std/capacitor.ato'
+import L6387ED from "L6387ED.ato"
+import BSC0901NS from "BSC0901NS.ato"
+import Capacitor from "std/capacitor.ato"
+import Resistor from "std/resistor.ato"
 
 module HalfBridge:
-    signal vin
-    signal HS
-    signal LS
-    signal out
+    signal vcc
+    signal vdrive
     signal gnd
+    signal hin  # logic signals to switch FETs
+    signal lin  # logic signals to switch FETs
+    signal out
 
     gate_driver = new L6387ED
-    hs_fet = new BSC0901NS
-    ls_fet = new BSC0901NS
-
-    vin ~ gate_driver.vcc
+    vcc ~ gate_driver.vcc
     gnd ~ gate_driver.gnd
-    ls_fet.G ~ gate_driver.lvg
-    hs_fet.G ~ gate_driver.hvg
+    lin ~ gate_driver.lin
+    hin ~ gate_driver.hin
 
-    LS ~ gate_driver.lin
-    HS ~ gate_driver.hin
+    hs_fet = new BSC0901NS
+    vdrive ~ hs_fet.drain
+    out ~ hs_fet.source
 
-    vin ~ hs_fet.D
-    out ~ hs_fet.S
-    out ~ ls_fet.D
-    gnd ~ ls_fet.S
+    ls_fet = new BSC0901NS
+    out ~ ls_fet.drain
+    gnd ~ ls_fet.source
 
-    vin.visualizer.location = "left"
-    gnd.visualizer.location = "left"
-    LS.visualizer.location = "left"
-    HS.visualizer.location = "left"
+    # from STM DocID13990 Rev 4
+    # looking at the drive FET's gate as a cap (c_ext)
+    # c_ext = q_gate/v_gate = 44nC/10V = 4.4nF
+    # assuming a PWM frequency of 1-20kHz and
+    #   max duty cycle of 90%
+    #   -> max on time 45us-900us
+    #   -> min off time 5us-100us
+    # v_drop = c_ext / c_boot * v_gate - 100uA * T_on
+    #   -> v_drop = 4.4nF / c_boot * 10V - 100uA * 900us / c_boot < ~1V
+    # assuming c_boot = 1uF
+    #   -> 4.4nF / 1uF * 10V - 90nC / 1uF = 0.0944V
+    # this is a little round about, but
+    #   -> c_boot > ~0.1uF
+    c_boot = new Capacitor
+    c_boot.value = "0.1uF"
+    c_boot.p1 ~ gate_driver.vboot
+    c_boot.p2 ~ out
+
+    # gate drive current limiting resistors
+    # assuming max allowed current 400mA
+    # assuming max vcc 10V
+    #   -> 25ohm
+    hs_gate_ilim_r = new Resistor
+    hs_gate_ilim_r.value = "25ohm"
+    gate_driver.hvg ~ hs_gate_ilim_r.p1
+    hs_gate_ilim_r.p2 ~ hs_fet.gate
+
+    ls_gate_ilim_r = new Resistor
+    ls_gate_ilim_r.value = "25ohm"
+    gate_driver.lvg ~ ls_gate_ilim_r.p1
+    ls_gate_ilim_r.p2 ~ ls_fet.gate
+
+    # gate bleed resistors
+    # we're just going to assume 10kOhm from the G431CBU6 example
+    hs_gate_bleed_r = new Resistor
+    hs_gate_bleed_r.value = "10kOhm"
+    hs_fet.gate ~ hs_gate_bleed_r.p1
+    hs_gate_bleed_r.p2 ~ out
+
+    ls_gate_bleed_r = new Resistor
+    ls_gate_bleed_r.value = "10kOhm"
+    ls_fet.gate ~ ls_gate_bleed_r.p1
+    ls_gate_bleed_r.p2 ~ gnd
+
+    # visualiser info
+    vcc.visualizer.location = "top"
+    gnd.visualizer.location = "bottom"
+    vdrive.visualizer.location = "top"
+    hin.visualizer.location = "left"
+    lin.visualizer.location = "left"
     out.visualizer.location = "right"
 
-
-    
-
-
-
+    hs_gate_ilim_r.p1.visualizer.location = "left"
+    hs_gate_ilim_r.p2.visualizer.location = "right"
+    ls_gate_ilim_r.p1.visualizer.location = "left"
+    ls_gate_ilim_r.p2.visualizer.location = "right"

@@ -34,18 +34,50 @@ d88bcfe3-09fd-40a7-a128-f5e8b34520ef:
   position:
     x: 843
     y: 158
+half_bridge.ato/HalfBridge/c_boot:
+  position:
+    x: 265
+    y: 310
 half_bridge.ato/HalfBridge/gate_driver:
   position:
-    x: 280
-    y: 230
+    x: 155
+    y: 270
+half_bridge.ato/HalfBridge/hs_bleed_r:
+  position:
+    x: 455
+    y: 310
 half_bridge.ato/HalfBridge/hs_fet:
   position:
-    x: 425
-    y: 200
+    x: 535
+    y: 190
+half_bridge.ato/HalfBridge/hs_gate_bleed_r:
+  position:
+    x: 460
+    y: 275
+half_bridge.ato/HalfBridge/hs_gate_ilim_r:
+  position:
+    x: 380
+    y: 190
+half_bridge.ato/HalfBridge/ls_bleed_r:
+  position:
+    x: 510
+    y: 495
 half_bridge.ato/HalfBridge/ls_fet:
   position:
-    x: 1040
-    y: 170
+    x: 535
+    y: 350
+half_bridge.ato/HalfBridge/ls_gate_bleed_r:
+  position:
+    x: 460
+    y: 430
+half_bridge.ato/HalfBridge/ls_gate_ilim_r:
+  position:
+    x: 390
+    y: 350
+half_bridge.ato/HalfBridge/ls_gate_r:
+  position:
+    x: 440
+    y: 230
 servo_drive.ato/ServoDrive/current_sensor_A/config1:
   position:
     x: 910
