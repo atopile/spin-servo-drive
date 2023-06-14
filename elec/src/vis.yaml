@@ -60,8 +60,12 @@ current_sense.ato/CurrentSensor/buffer:
     y: 655
 current_sense.ato/CurrentSensor/buffer_ref/r_bt:
   position:
-    x: 100
-    y: 190
+    x: 200
+    y: 695
+current_sense.ato/CurrentSensor/buffer_ref/r_top:
+  position:
+    x: 200
+    y: 605
 current_sense.ato/CurrentSensor/config1:
   position:
     x: 460
