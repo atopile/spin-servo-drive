@@ -52,8 +52,8 @@ bc1dda76-244d-48f5-8171-a94e915d4783:
     y: 285
 current_sense.ato/CurrentSensor/amp:
   position:
-    x: 215
-    y: 150
+    x: 240
+    y: 155
 current_sense.ato/CurrentSensor/buffer:
   position:
     x: 375
@@ -66,6 +66,10 @@ current_sense.ato/CurrentSensor/buffer_ref/r_top:
   position:
     x: 200
     y: 605
+current_sense.ato/CurrentSensor/c_bypass:
+  position:
+    x: 355
+    y: 140
 current_sense.ato/CurrentSensor/config1:
   position:
     x: 460
@@ -80,8 +84,8 @@ current_sense.ato/CurrentSensor/opamp:
     y: 535
 current_sense.ato/CurrentSensor/shunt:
   position:
-    x: 75
-    y: 65
+    x: 100
+    y: 70
 d4ef45a3-4567-9944-6bcc-1b2d2dc563be:
   position:
     x: 615
