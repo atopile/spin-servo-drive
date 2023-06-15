@@ -1,0 +1,20 @@
+# this is a comment, it should be safely ignored
+import Resistor from "std/resistor.ato"
+import Capacitor from "std/capacitor.ato"
+
+module LowPass:
+    signal in
+    signal out
+    signal gnd
+
+    in.visualizer.location = "left"
+    out.visualizer.location = "right"
+    gnd.visualizer.location = "bottom"
+
+    r = new Resistor
+    c = new Capacitor
+
+    in ~ r.p1
+    r.p2 ~ c.p1
+    r.p2 ~ out
+    c.p2 ~ gnd
