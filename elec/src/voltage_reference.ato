@@ -2,6 +2,7 @@ import TL072CDT from "TL072CDT.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 import Vdiv from "vdiv.ato"
+import LowPass from "low_pass.ato"
 
 module VoltageReference:
     signal vcc
@@ -16,6 +17,12 @@ module VoltageReference:
     # set them up as unity gain buffers
     buffer.out_a ~ buffer.in_n_a
     buffer.out_b ~ buffer.in_n_b
+
+    # add low pass filter to Vref input 
+    filter = new LowPass
+    filter.in ~ vcc
+    filter.gnd ~ gnd
+    filter.out ~ buffer.in_p_a
 
     # the main voltage reference should be a
     # nice stabalised version of our supply
