@@ -2,7 +2,6 @@ import INA225AIDGKR from "INA225AIDGKR.ato"
 import LMV321IDBVR from "LMV321IDBVR.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
-import LowPass from "low_pass.ato"
 
 module CurrentSensor:
     signal vcc
@@ -25,8 +24,6 @@ module CurrentSensor:
     amp.vs ~ vcc
     amp.gnd ~ gnd
     amp.ref ~ zero_offset
-    amp.in_p ~ shunt.p1
-    amp.in_n ~ shunt.p2
     amp.out ~ out
 
     c_bypass = new Capacitor
@@ -54,6 +51,29 @@ module CurrentSensor:
     amp.gs0 ~ gnd
     amp.gs1 ~ vcc
 
+    # https://www.st.com/resource/en/application_note/an4304-how-to-filter-the-input-of-a-highside-current-sensing-stmicroelectronics.pdf
+    # input differential filtering
+    r_in_p = new Resistor
+    r_in_p.value = "10Ohm"
+    r_in_p.footprint = "Resistor_SMD:R_0805_2012Metric"
+    r_in_p.p2 ~ amp.in_p
+
+    r_in_n = new Resistor
+    r_in_n.value = "10Ohm"
+    r_in_n.footprint = "Resistor_SMD:R_0805_2012Metric"
+    r_in_n.p2 ~ amp.in_n
+
+    c_diff = new Capacitor
+    c_diff.value = "1uF"
+    c_diff.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_diff.p1 ~ r_in_p.p2
+    c_diff.p2 ~ r_in_n.p2
+
+    # connect shunt to input differential filter
+    r_in_p.p1 ~ shunt.p1
+    r_in_n.p1 ~ shunt.p2
+
+
     # visualiser hints
     vcc.visualizer.location = "top"
     gnd.visualizer.location = "bottom"
@@ -61,3 +81,7 @@ module CurrentSensor:
     zero_offset.visualizer.location = "left"
     i_out.visualizer.location = "right"
     out.visualizer.location = "right"
+    c_diff.p1.visualizer.location = "left"
+    c_diff.p2.visualizer.location = "right"
+
+    
