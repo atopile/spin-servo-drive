@@ -1,3 +1,7 @@
+0439dbbe-d6bf-4e15-948f-4308841950f2:
+  position:
+    x: 887
+    y: 220
 2ab8b428-ad32-e271-6cc9-009d87c4e17c:
   position:
     x: 710
@@ -38,6 +42,10 @@ NRF52832.ato/NRF52832:
   position:
     x: 550
     y: 285
+aad96d27-de4d-4c15-b87d-6289bbee50f1:
+  position:
+    x: 238
+    y: 270
 b4e3afe6-9947-81df-b1fa-b11c208ea4d1:
   position:
     x: 415
@@ -52,8 +60,8 @@ bc1dda76-244d-48f5-8171-a94e915d4783:
     y: 285
 current_sense.ato/CurrentSensor/amp:
   position:
-    x: 670
-    y: 625
+    x: 280
+    y: 310
 current_sense.ato/CurrentSensor/buffer:
   position:
     x: 375
@@ -66,6 +74,14 @@ current_sense.ato/CurrentSensor/buffer_ref/r_top:
   position:
     x: 200
     y: 605
+current_sense.ato/CurrentSensor/c_bypass:
+  position:
+    x: 395
+    y: 285
+current_sense.ato/CurrentSensor/c_diff:
+  position:
+    x: 140
+    y: 250
 current_sense.ato/CurrentSensor/config1:
   position:
     x: 460
@@ -78,10 +94,18 @@ current_sense.ato/CurrentSensor/opamp:
   position:
     x: 350
     y: 535
+current_sense.ato/CurrentSensor/r_in_n:
+  position:
+    x: 190
+    y: 190
+current_sense.ato/CurrentSensor/r_in_p:
+  position:
+    x: 55
+    y: 185
 current_sense.ato/CurrentSensor/shunt:
   position:
-    x: 440
-    y: 450
+    x: 140
+    y: 95
 d4ef45a3-4567-9944-6bcc-1b2d2dc563be:
   position:
     x: 615
