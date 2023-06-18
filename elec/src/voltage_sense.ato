@@ -1,0 +1,22 @@
+import Vdiv from "vdiv.ato"
+import Capacitor from "std/capacitor.ato"
+
+module VoltageSense:
+    signal in
+    signal gnd
+    signal out
+
+    vdiv = new Vdiv
+    vdiv.input ~ in
+    vdiv.output ~ out
+    vdiv.gnd ~ gnd
+
+    r_top.value = "10kOhm"
+    r_bt.value = "1kOhm"
+
+    # RC filter off the top resistor and this cap
+    # Fc = 1/(2*pi*r*c)
+    c_filter = new Capacitor
+    c_filter.p1 ~ vdiv.out
+    c_filter.p2 ~ vdiv.gnd
+    c_filter.value = "2nF"

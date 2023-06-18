@@ -1,0 +1,102 @@
+import HalfBridge from "half_bridge.ato"
+import CurrentSensor from "current_sense.ato"
+import NRF52832 from "NRF52832.ato"
+import VoltageReference from "voltage_reference.ato"
+
+module PowerStage:
+    # power
+    signal v_pwr
+    signal vcc_10v
+    signal vcc_3v3
+    signal gnd
+
+    # control inputs
+    signal high_in_a
+    signal low_in_a
+    signal high_in_b
+    signal low_in_b
+    signal high_in_c
+    signal low_in_c
+
+    # phase outputs
+    signal out_a
+    signal out_b
+    signal out_c
+
+    # feedback
+    signal v_ref
+    signal half_v_ref
+    signal v_fb_a
+    signal v_fb_b
+    signal v_fb_c
+    signal i_fb_a
+    signal i_fb_b
+    signal i_fb_c
+
+    # half bridges
+    half_bridge_a = new HalfBridge
+    half_bridge_b = new HalfBridge
+    half_bridge_c = new HalfBridge
+
+    half_bridge_a.v_pwr ~ v_pwr
+    half_bridge_b.v_pwr ~ v_pwr
+    half_bridge_c.v_pwr ~ v_pwr
+
+    half_bridge_a.vcc_10v ~ vcc_10v
+    half_bridge_b.vcc_10v ~ vcc_10v
+    half_bridge_c.vcc_10v ~ vcc_10v
+
+    half_bridge_a.gnd ~ gnd
+    half_bridge_b.gnd ~ gnd
+    half_bridge_c.gnd ~ gnd
+
+    half_bridge_a.high_in ~ high_in_a
+    half_bridge_a.low_in ~ low_in_a
+    half_bridge_b.high_in ~ high_in_b
+    half_bridge_b.low_in ~ low_in_b
+    half_bridge_c.high_in ~ high_in_c
+    half_bridge_c.low_in ~ low_in_c
+
+    # current sensors
+    ref = new VoltageReference
+    vcc_3v3 ~ ref.vcc
+    gnd ~ ref.gnd
+    ref.v_ref ~ v_ref
+    ref.half_v_ref ~ half_v_ref
+
+    current_sensor_a = new CurrentSensor
+    current_sensor_b = new CurrentSensor
+    current_sensor_c = new CurrentSensor
+
+    half_bridge_a.out ~ current_sensor_a.i_in
+    half_bridge_b.out ~ current_sensor_b.i_in
+    half_bridge_c.out ~ current_sensor_c.i_in
+
+    current_sensor_a.i_out ~ out_a
+    current_sensor_b.i_out ~ out_b
+    current_sensor_c.i_out ~ out_c
+
+    current_sensor_a.zero_offset ~ half_v_ref
+    current_sensor_b.zero_offset ~ half_v_ref
+    current_sensor_c.zero_offset ~ half_v_ref
+
+    current_sense_a.out ~ i_fb_a
+    current_sense_b.out ~ i_fb_b
+    current_sense_c.out ~ i_fb_c
+
+    # voltage sense
+    voltage_sense_a = new VoltageSense
+    voltage_sense_b = new VoltageSense
+    voltage_sense_c = new VoltageSense
+
+    voltage_sense_a.in ~ out_a
+    voltage_sense_b.in ~ out_b
+    voltage_sense_c.in ~ out_c
+
+    voltage_sense_a.out ~ v_fb_a
+    voltage_sense_b.out ~ v_fb_b
+    voltage_sense_c.out ~ v_fb_c
+
+    voltage_sense_a.gnd ~ gnd
+    voltage_sense_b.gnd ~ gnd
+    voltage_sense_c.gnd ~ gnd

@@ -1,0 +1,61 @@
+import PowerStage from "powerstage.ato"
+
+component PowerPad:
+    pin p1
+    footprint = "Connector_Wire:SolderWirePad_1x01_SMD_5x10mm"
+
+component SignalPad:
+    pin p1
+    footprint = "Connector_Wire:SolderWirePad_1x01_SMD_1x2mm"
+
+module PowerStageDebug:
+    power_stage = new PowerStage
+
+    v_pwr_pad = new PowerPad
+    vcc_10v_pad = new PowerPad
+    vcc_3v3_pad = new PowerPad
+    gnd_pad0 = new PowerPad
+    gnd_pad1 = new PowerPad
+    gnd_pad2 = new PowerPad
+
+    high_in_a_pad = new SignalPad
+    low_in_a_pad = new SignalPad
+    high_in_b_pad = new SignalPad
+    low_in_b_pad = new SignalPad
+    high_in_c_pad = new SignalPad
+    low_in_c_pad = new SignalPad
+
+    out_a_pad = new SignalPad
+    out_b_pad = new SignalPad
+    out_c_pad = new SignalPad
+
+    v_ref_pad = new SignalPad
+    half_v_ref_pad = new SignalPad
+    v_fb_a_pad = new SignalPad
+    v_fb_b_pad = new SignalPad
+    v_fb_c_pad = new SignalPad
+    i_fb_a_pad = new SignalPad
+    i_fb_b_pad = new SignalPad
+    i_fb_c_pad = new SignalPad
+
+    power_stage.v_pwr ~ v_pwr_pad
+    power_stage.vcc_10v ~ vcc_10v_pad
+    power_stage.vcc_3v3 ~ vcc_3v3_pad
+    power_stage.gnd ~ gnd_pad
+    power_stage.high_in_a ~ high_in_a_pad
+    power_stage.low_in_a ~ low_in_a_pad
+    power_stage.high_in_b ~ high_in_b_pad
+    power_stage.low_in_b ~ low_in_b_pad
+    power_stage.high_in_c ~ high_in_c_pad
+    power_stage.low_in_c ~ low_in_c_pad
+    power_stage.out_a ~ out_a_pad
+    power_stage.out_b ~ out_b_pad
+    power_stage.out_c ~ out_c_pad
+    power_stage.v_ref ~ v_ref_pad
+    power_stage.half_v_ref ~ half_v_ref_pad
+    power_stage.v_fb_a ~ v_fb_a_pad
+    power_stage.v_fb_b ~ v_fb_b_pad
+    power_stage.v_fb_c ~ v_fb_c_pad
+    power_stage.i_fb_a ~ i_fb_a_pad
+    power_stage.i_fb_b ~ i_fb_b_pad
+    power_stage.i_fb_c ~ i_fb_c_pad

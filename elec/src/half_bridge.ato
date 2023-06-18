@@ -4,21 +4,23 @@ import Capacitor from "std/capacitor.ato"
 import Resistor from "std/resistor.ato"
 
 module HalfBridge:
-    signal vcc
-    signal vdrive
+    signal v_pwr
+    signal vcc_10v
     signal gnd
-    signal hin  # logic signals to switch FETs
-    signal lin  # logic signals to switch FETs
+
+    signal high_in  # logic signals to switch FETs
+    signal low_in  # logic signals to switch FETs
+
     signal out
 
     gate_driver = new L6387ED
-    vcc ~ gate_driver.vcc
+    vcc_10v ~ gate_driver.vcc_10v
     gnd ~ gate_driver.gnd
-    lin ~ gate_driver.lin
-    hin ~ gate_driver.hin
+    low_in ~ gate_driver.low_in
+    high_in ~ gate_driver.high_in
 
     hs_fet = new BSC0901NS
-    vdrive ~ hs_fet.drain
+    v_pwr ~ hs_fet.drain
     out ~ hs_fet.source
 
     ls_fet = new BSC0901NS
@@ -45,7 +47,7 @@ module HalfBridge:
 
     # gate drive current limiting resistors
     # assuming max allowed current 400mA
-    # assuming max vcc 10V
+    # assuming max vcc_10v 10V
     #   -> 25ohm
     hs_gate_ilim_r = new Resistor
     hs_gate_ilim_r.value = "25ohm"
@@ -70,11 +72,11 @@ module HalfBridge:
     ls_gate_bleed_r.p2 ~ gnd
 
     # visualiser info
-    vcc.visualizer.location = "top"
+    vcc_10v.visualizer.location = "top"
     gnd.visualizer.location = "bottom"
-    vdrive.visualizer.location = "top"
-    hin.visualizer.location = "left"
-    lin.visualizer.location = "left"
+    v_pwr.visualizer.location = "top"
+    high_in.visualizer.location = "left"
+    low_in.visualizer.location = "left"
     out.visualizer.location = "right"
 
     hs_gate_ilim_r.p1.visualizer.location = "left"

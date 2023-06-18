@@ -18,21 +18,19 @@ module VoltageReference:
     buffer.out_a ~ buffer.in_n_a
     buffer.out_b ~ buffer.in_n_b
 
-    # add low pass filter to Vref input 
+    c_bypass = new Capacitor
+    c_bypass.value = "1uF"
+    c_bypass.footprint = "Capacitors_SMD:C_0603_1608Metric"
+    vcc ~ c_bypass.p1
+    gnd ~ c_bypass.p2
+
+    # add low pass filter to Vref input
     filter = new LowPass
     filter.in ~ vcc
     filter.gnd ~ gnd
     filter.out ~ buffer.in_p_a
-
-    # the main voltage reference should be a
-    # nice stabalised version of our supply
-    ref_bypass_cap = new Capacitor
-    ref_bypass_cap.value = "1uF"
-    ref_bypass_cap.footprint = "Resistor_SMD:R_0603_1608Metric"
-    vcc ~ ref_bypass_cap.p1
-    gnd ~ ref_bypass_cap.p2
-    ref_bypass_cap.p1 ~ buffer.in_p_a
-    buffer.out_a ~ v_ref
+    filter.r.value = "10kOhm"
+    filter.c.value = "1uF"
 
     # the second reference is mid-rail (1/2) reference
     half_ref = new Vdiv
