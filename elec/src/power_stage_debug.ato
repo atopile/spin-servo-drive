@@ -41,7 +41,10 @@ module PowerStageDebug:
     power_stage.v_pwr ~ v_pwr_pad
     power_stage.vcc_10v ~ vcc_10v_pad
     power_stage.vcc_3v3 ~ vcc_3v3_pad
-    power_stage.gnd ~ gnd_pad
+    power_stage.gnd ~ gnd_pad0
+    power_stage.gnd ~ gnd_pad1
+    power_stage.gnd ~ gnd_pad2
+
     power_stage.high_in_a ~ high_in_a_pad
     power_stage.low_in_a ~ low_in_a_pad
     power_stage.high_in_b ~ high_in_b_pad
