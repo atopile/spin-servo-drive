@@ -1,7 +1,14 @@
 builds:
   default:
-    # root-file: nmos.ato
-    # root-node: nmos.ato/Nmos3Pin
+    root-file: power_stage.ato
+    root-node: power_stage.ato/PowerStage
+    targets:
+      - designators
+      - netlist-kicad6
+      - bom-jlcpcb
+  debug:
+    root-file: power_stage_debug.ato
+    root-node: power_stage_debug.ato/PowerStageDebug
     targets:
       - designators
       - netlist-kicad6

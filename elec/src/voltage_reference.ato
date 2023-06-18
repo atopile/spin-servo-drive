@@ -20,7 +20,7 @@ module VoltageReference:
 
     c_bypass = new Capacitor
     c_bypass.value = "1uF"
-    c_bypass.footprint = "Capacitors_SMD:C_0603_1608Metric"
+    c_bypass.footprint = "Capacitor_SMD:C_0805_2012Metric"
     vcc ~ c_bypass.p1
     gnd ~ c_bypass.p2
 
@@ -30,12 +30,16 @@ module VoltageReference:
     filter.gnd ~ gnd
     filter.out ~ buffer.in_p_a
     filter.r.value = "10kOhm"
+    filter.r.footprint = "Resistor_SMD:R_0603_1608Metric"
     filter.c.value = "1uF"
+    filter.c.footprint = "Capacitor_SMD:C_0805_2012Metric"
 
     # the second reference is mid-rail (1/2) reference
     half_ref = new Vdiv
-    half_ref.r1.value = "10kOhm"
-    half_ref.r2.value = "10kOhm"
+    half_ref.r_top.value = "10kOhm"
+    half_ref.r_top.footprint = "Resistor_SMD:R_0603_1608Metric"
+    half_ref.r_bt.value = "10kOhm"
+    half_ref.r_bt.footprint = "Resistor_SMD:R_0603_1608Metric"
     half_ref.input ~ v_ref
     half_ref.gnd ~ gnd
 
