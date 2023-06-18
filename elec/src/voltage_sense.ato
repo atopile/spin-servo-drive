@@ -17,6 +17,10 @@ module VoltageSense:
     # RC filter off the top resistor and this cap
     # Fc = 1/(2*pi*r*c)
     c_filter = new Capacitor
-    c_filter.p1 ~ vdiv.out
+    c_filter.p1 ~ vdiv.output
     c_filter.p2 ~ vdiv.gnd
     c_filter.value = "2nF"
+
+    in.visualizer.location = "left"
+    gnd.visualizer.location = "bottom"
+    out.visualizer.location = "right"

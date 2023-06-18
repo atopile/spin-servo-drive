@@ -1,4 +1,4 @@
-import PowerStage from "powerstage.ato"
+import PowerStage from "power_stage.ato"
 
 component PowerPad:
     pin p1

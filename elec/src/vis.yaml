@@ -114,6 +114,10 @@ d88bcfe3-09fd-40a7-a128-f5e8b34520ef:
   position:
     x: 843
     y: 158
+dc5ebe54-e055-401e-8838-5ffc58603956:
+  position:
+    x: 140
+    y: -48
 half_bridge.ato/HalfBridge/c_boot:
   position:
     x: 265
@@ -158,6 +162,26 @@ half_bridge.ato/HalfBridge/ls_gate_r:
   position:
     x: 440
     y: 230
+power_stage.ato/PowerStage/half_bridge_a/hs_fet:
+  position:
+    x: 440
+    y: 200
+power_stage.ato/PowerStage/half_bridge_a/hs_gate_bleed_r:
+  position:
+    x: 545
+    y: 165
+power_stage.ato/PowerStage/half_bridge_a/ls_fet:
+  position:
+    x: 325
+    y: 270
+power_stage.ato/PowerStage/half_bridge_a/ls_gate_bleed_r:
+  position:
+    x: 505
+    y: 280
+power_stage.ato/PowerStage/half_bridge_a/ls_gate_ilim_r:
+  position:
+    x: 250
+    y: 190
 servo_drive.ato/ServoDrive/current_sensor_A/config1:
   position:
     x: 910
@@ -262,3 +286,11 @@ voltage_reference.ato/VoltageReference/ref_bypass_cap:
   position:
     x: 355
     y: 95
+voltage_sense.ato/VoltageSense/c_filter:
+  position:
+    x: 250
+    y: 255
+voltage_sense.ato/VoltageSense/vdiv/r_bt:
+  position:
+    x: 100
+    y: 170

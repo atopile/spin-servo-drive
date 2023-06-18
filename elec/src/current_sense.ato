@@ -3,7 +3,7 @@ import LMV321IDBVR from "LMV321IDBVR.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 
-module CurrentSensor:
+module CurrentSense:
     signal vcc
     signal gnd
     signal i_in
@@ -83,5 +83,3 @@ module CurrentSensor:
     out.visualizer.location = "right"
     c_diff.p1.visualizer.location = "left"
     c_diff.p2.visualizer.location = "right"
-
-    

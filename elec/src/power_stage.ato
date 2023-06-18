@@ -1,7 +1,8 @@
 import HalfBridge from "half_bridge.ato"
-import CurrentSensor from "current_sense.ato"
+import CurrentSense from "current_sense.ato"
 import NRF52832 from "NRF52832.ato"
 import VoltageReference from "voltage_reference.ato"
+import VoltageSense from "voltage_sense.ato"
 
 module PowerStage:
     # power
@@ -64,21 +65,21 @@ module PowerStage:
     ref.v_ref ~ v_ref
     ref.half_v_ref ~ half_v_ref
 
-    current_sensor_a = new CurrentSensor
-    current_sensor_b = new CurrentSensor
-    current_sensor_c = new CurrentSensor
+    current_sense_a = new CurrentSense
+    current_sense_b = new CurrentSense
+    current_sense_c = new CurrentSense
 
-    half_bridge_a.out ~ current_sensor_a.i_in
-    half_bridge_b.out ~ current_sensor_b.i_in
-    half_bridge_c.out ~ current_sensor_c.i_in
+    half_bridge_a.out ~ current_sense_a.i_in
+    half_bridge_b.out ~ current_sense_b.i_in
+    half_bridge_c.out ~ current_sense_c.i_in
 
-    current_sensor_a.i_out ~ out_a
-    current_sensor_b.i_out ~ out_b
-    current_sensor_c.i_out ~ out_c
+    current_sense_a.i_out ~ out_a
+    current_sense_b.i_out ~ out_b
+    current_sense_c.i_out ~ out_c
 
-    current_sensor_a.zero_offset ~ half_v_ref
-    current_sensor_b.zero_offset ~ half_v_ref
-    current_sensor_c.zero_offset ~ half_v_ref
+    current_sense_a.zero_offset ~ half_v_ref
+    current_sense_b.zero_offset ~ half_v_ref
+    current_sense_c.zero_offset ~ half_v_ref
 
     current_sense_a.out ~ i_fb_a
     current_sense_b.out ~ i_fb_b
@@ -100,3 +101,28 @@ module PowerStage:
     voltage_sense_a.gnd ~ gnd
     voltage_sense_b.gnd ~ gnd
     voltage_sense_c.gnd ~ gnd
+
+    v_pwr.visualizer.location = "top"
+    vcc_10v.visualizer.location = "top"
+    vcc_3v3.visualizer.location = "top"
+    gnd.visualizer.location = "bottom"
+
+    high_in_a.visualizer.location = "left"
+    low_in_a.visualizer.location = "left"
+    high_in_b.visualizer.location = "left"
+    low_in_b.visualizer.location = "left"
+    high_in_c.visualizer.location = "left"
+    low_in_c.visualizer.location = "left"
+
+    out_a.visualizer.location = "right"
+    out_b.visualizer.location = "right"
+    out_c.visualizer.location = "right"
+
+    v_ref.visualizer.location = "right"
+    half_v_ref.visualizer.location = "right"
+    v_fb_a.visualizer.location = "right"
+    v_fb_b.visualizer.location = "right"
+    v_fb_c.visualizer.location = "right"
+    i_fb_a.visualizer.location = "right"
+    i_fb_b.visualizer.location = "right"
+    i_fb_c.visualizer.location = "right"

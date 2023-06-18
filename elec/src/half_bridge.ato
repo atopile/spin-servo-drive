@@ -14,10 +14,10 @@ module HalfBridge:
     signal out
 
     gate_driver = new L6387ED
-    vcc_10v ~ gate_driver.vcc_10v
+    vcc_10v ~ gate_driver.vcc
     gnd ~ gate_driver.gnd
-    low_in ~ gate_driver.low_in
-    high_in ~ gate_driver.high_in
+    low_in ~ gate_driver.lin
+    high_in ~ gate_driver.hin
 
     hs_fet = new BSC0901NS
     v_pwr ~ hs_fet.drain
