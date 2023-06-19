@@ -1,4 +1,5 @@
 stages:
+  - check
   - build
 
 build-elec:
@@ -17,3 +18,13 @@ build-elec:
   artifacts:
     paths:
       - build/
+
+check-debug:
+  stage: check
+  image:
+    name: python:3.10
+    pull_policy: if-not-present
+  script:
+    - git clone https://gitlab.atopile.io/atopile/atopile.git
+    - pip install ./atopile
+    - ato check elec/src
