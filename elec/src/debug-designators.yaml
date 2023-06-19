@@ -54,4 +54,3 @@ power_stage_debug.ato/PowerStageDebug/power_stage/half_bridge_c/hs_gate_ilim_r: 
 power_stage_debug.ato/PowerStageDebug/power_stage/half_bridge_c/ls_gate_ilim_r: R28
 power_stage_debug.ato/PowerStageDebug/power_stage/half_bridge_c/hs_gate_bleed_r: R29
 power_stage_debug.ato/PowerStageDebug/power_stage/half_bridge_c/ls_gate_bleed_r: R30
-power_stage_debug.ato/PowerStageDebug/power_stage/ref/buffer: U30

@@ -16,5 +16,3 @@ builds:
 targets:
   bom-jlcpcb:
     jlcpcb-file: power-stage-bom-jlcpcb.yaml
-  designators:
-    designators-file: power-stage-designators.yaml
