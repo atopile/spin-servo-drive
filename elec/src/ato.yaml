@@ -13,3 +13,8 @@ builds:
       - designators
       - netlist-kicad6
       - bom-jlcpcb
+targets:
+  bom-jlcpcb:
+    jlcpcb-file: power-stage-bom-jlcpcb.yaml
+  designators:
+    designators-file: power-stage-designators.yaml
