@@ -11,10 +11,10 @@ component SignalPad:
 module PowerStageDebug:
     power_stage = new PowerStage
 
-    v_pwr_pad = new SignalPad
+    v_pwr_pad = new PowerPad
     vcc_10v_pad = new SignalPad
     vcc_3v3_pad = new SignalPad
-    gnd_pad0 = new SignalPad
+    gnd_pad0 = new PowerPad
     gnd_pad1 = new SignalPad
     gnd_pad2 = new SignalPad
 
@@ -25,9 +25,9 @@ module PowerStageDebug:
     high_in_c_pad = new SignalPad
     low_in_c_pad = new SignalPad
 
-    out_a_pad = new SignalPad
-    out_b_pad = new SignalPad
-    out_c_pad = new SignalPad
+    out_a_pad = new PowerPad
+    out_b_pad = new PowerPad
+    out_c_pad = new PowerPad
 
     v_ref_pad = new SignalPad
     half_v_ref_pad = new SignalPad
