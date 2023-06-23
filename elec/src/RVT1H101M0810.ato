@@ -1,0 +1,6 @@
+component RVT1H101M0810:
+    signal positive ~ pin p1
+    signal negative ~ pin p2
+    footprint = "lib:CAP-SMD_BD8.0-L8.3-W8.3-FD"
+    value = "100uF"
+    designator_prefix = "C"

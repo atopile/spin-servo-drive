@@ -78,3 +78,9 @@ power_stage_debug.ato/PowerStageDebug/i_fb_a_pad: U24
 power_stage_debug.ato/PowerStageDebug/i_fb_b_pad: U25
 power_stage_debug.ato/PowerStageDebug/i_fb_c_pad: U26
 power_stage_debug.ato/PowerStageDebug/power_stage/ref/buffer: U30
+power_stage_debug.ato/PowerStageDebug/power_stage/half_bridge_c/input_bypass: C15
+power_stage_debug.ato/PowerStageDebug/power_stage/half_bridge_a/input_bypass: C16
+power_stage_debug.ato/PowerStageDebug/power_stage/half_bridge_b/input_bypass: C17
+power_stage_debug.ato/PowerStageDebug/power_stage/c_in_1: C18
+power_stage_debug.ato/PowerStageDebug/power_stage/c_in_2: C19
+power_stage_debug.ato/PowerStageDebug/power_stage/c_in_3: C20

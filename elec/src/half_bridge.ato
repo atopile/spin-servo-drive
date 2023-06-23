@@ -13,6 +13,12 @@ module HalfBridge:
 
     signal out
 
+    input_bypass = new Capacitor
+    input_bypass.value = "4.7uF"
+    input_bypass.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    input_bypass.p1 ~ v_pwr
+    input_bypass.p2 ~ gnd
+
     gate_driver = new L6387ED
     vcc_10v ~ gate_driver.vcc
     gnd ~ gate_driver.gnd

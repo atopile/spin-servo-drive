@@ -3,6 +3,7 @@ import CurrentSense from "current_sense.ato"
 import NRF52832 from "NRF52832.ato"
 import VoltageReference from "voltage_reference.ato"
 import VoltageSense from "voltage_sense.ato"
+import RVT1H101M0810 from "RVT1H101M0810.ato"
 
 module PowerStage:
     # power
@@ -33,6 +34,12 @@ module PowerStage:
     signal i_fb_a
     signal i_fb_b
     signal i_fb_c
+
+    # input caps
+    c_in_1 = new RVT1H101M0810
+    c_in_1.positive ~ v_pwr
+    c_in_1.negative ~ gnd
+
 
     # half bridges
     half_bridge_a = new HalfBridge
