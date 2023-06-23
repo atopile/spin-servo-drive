@@ -50,3 +50,11 @@ by-spec:
   footprint: Resistor_SMD:R_0603_1608Metric
   value: 1kOhm
   jlcpcb: C136938
+- instance_of: std/capacitor.ato/Capacitor
+  footprint: Capacitor_SMD:C_0805_2012Metric
+  value: 4.7uF
+  jlcpcb: C162320
+- instance_of: RVT1H101M0810.ato/RVT1H101M0810
+  footprint: lib:CAP-SMD_BD8.0-L8.3-W8.3-FD
+  value: 100uF
+  jlcpcb: C3352
