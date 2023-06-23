@@ -3,6 +3,7 @@ component BSC0901NS:
     drain ~ pin p6
     drain ~ pin p7
     drain ~ pin p8
+    drain ~ pin p9
     signal source ~ pin p1
     source ~ pin p2
     source ~ pin p3
