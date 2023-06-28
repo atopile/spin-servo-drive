@@ -137,7 +137,7 @@ half_bridge.ato/HalfBridge/hs_fet:
 half_bridge.ato/HalfBridge/hs_gate_bleed_r:
   position:
     x: 645
-    y: 290
+    y: 270
 half_bridge.ato/HalfBridge/hs_gate_ilim_r:
   position:
     x: 535
@@ -156,8 +156,8 @@ half_bridge.ato/HalfBridge/ls_fet:
     y: 575
 half_bridge.ato/HalfBridge/ls_gate_bleed_r:
   position:
-    x: 620
-    y: 665
+    x: 625
+    y: 645
 half_bridge.ato/HalfBridge/ls_gate_ilim_r:
   position:
     x: 600

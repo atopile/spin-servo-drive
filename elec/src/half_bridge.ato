@@ -1,3 +1,5 @@
+# ato view --root-file half_bridge.ato --root-node half_bridge.ato/HalfBridge
+
 import L6387ED from "L6387ED.ato"
 import BSC0901NS from "BSC0901NS.ato"
 import Capacitor from "std/capacitor.ato"
@@ -24,6 +26,7 @@ module HalfBridge:
     gnd ~ gate_driver.gnd
     low_in ~ gate_driver.lin
     high_in ~ gate_driver.hin
+    out ~ gate_driver.out
 
     hs_fet = new BSC0901NS
     v_pwr ~ hs_fet.drain
