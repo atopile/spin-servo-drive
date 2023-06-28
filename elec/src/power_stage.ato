@@ -98,6 +98,11 @@ module PowerStage:
     current_sense_b.gnd ~ gnd
     current_sense_c.gnd ~ gnd
 
+    current_sense_a.vcc ~ v_pwr
+    current_sense_b.vcc ~ v_pwr
+    current_sense_c.vcc ~ v_pwr
+    
+
     # voltage sense
     voltage_sense_a = new VoltageSense
     voltage_sense_b = new VoltageSense

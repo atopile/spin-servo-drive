@@ -170,6 +170,10 @@ half_bridge.ato/HalfBridge/ls_gate_r:
   position:
     x: 440
     y: 230
+power_stage.ato/PowerStage/current_sense_a/amp:
+  position:
+    x: 910
+    y: 395
 power_stage.ato/PowerStage/current_sense_a/c_bypass:
   position:
     x: 895
@@ -186,6 +190,10 @@ power_stage.ato/PowerStage/current_sense_a/r_in_p:
   position:
     x: 975
     y: 270
+power_stage.ato/PowerStage/current_sense_a/shunt:
+  position:
+    x: 1045
+    y: 400
 power_stage.ato/PowerStage/half_bridge_a/hs_fet:
   position:
     x: 440
@@ -288,16 +296,20 @@ vdiv.ato/Vdiv/r_bt:
     y: 250
 voltage_reference.ato/VoltageReference/buffer:
   position:
-    x: 560
-    y: 190
+    x: 860
+    y: 295
 voltage_reference.ato/VoltageReference/filter/c:
   position:
-    x: 245
+    x: 620
     y: 200
 voltage_reference.ato/VoltageReference/filter/r:
   position:
-    x: 410
-    y: 175
+    x: 620
+    y: 120
+voltage_reference.ato/VoltageReference/half_ref/c_filter:
+  position:
+    x: 255
+    y: 405
 voltage_reference.ato/VoltageReference/half_ref/r_bt:
   position:
     x: 145
