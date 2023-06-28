@@ -2,6 +2,10 @@
   position:
     x: 887
     y: 220
+15cfddf2-7d93-4f88-8a2b-c23b976134b8:
+  position:
+    x: 1535
+    y: 790
 2ab8b428-ad32-e271-6cc9-009d87c4e17c:
   position:
     x: 710
@@ -166,6 +170,22 @@ half_bridge.ato/HalfBridge/ls_gate_r:
   position:
     x: 440
     y: 230
+power_stage.ato/PowerStage/current_sense_a/c_bypass:
+  position:
+    x: 895
+    y: 175
+power_stage.ato/PowerStage/current_sense_a/c_diff:
+  position:
+    x: 1060
+    y: 105
+power_stage.ato/PowerStage/current_sense_a/r_in_n:
+  position:
+    x: 1020
+    y: 190
+power_stage.ato/PowerStage/current_sense_a/r_in_p:
+  position:
+    x: 975
+    y: 270
 power_stage.ato/PowerStage/half_bridge_a/hs_fet:
   position:
     x: 440
