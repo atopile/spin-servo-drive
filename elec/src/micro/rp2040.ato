@@ -1,12 +1,12 @@
-import Oscillator from "oscillator.ato"
+import Oscillator from "micro/oscillator.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 # Switch
-import TS_1101_C_W from "TS_1101_C_W.ato"
+import TS_1101_C_W from "micro/TS_1101_C_W.ato"
 # Flash
-import W25Q128JV from "W25Q128JV.ato"
+import W25Q128JV from "micro/W25Q128JV.ato"
 
-import Vdiv from "vdiv.ato"
+import Vdiv from "micro/vdiv.ato"
 
 component RP2040:
     signal iovdd ~ pin p1
@@ -71,10 +71,10 @@ component RP2040:
     signal gpio23 ~ pin p35
     signal gpio24 ~ pin p36
     signal gpio25 ~ pin p37
-    signal gpio26 ~ pin p38
-    signal gpio27 ~ pin p39
-    signal gpio28 ~ pin p40
-    signal gpio29 ~ pin p41
+    signal gpio26_a0 ~ pin p38
+    signal gpio27_a1 ~ pin p39
+    signal gpio28_a2 ~ pin p40
+    signal gpio29_a3 ~ pin p41
 
     signal gnd ~ pin p0
 
@@ -131,16 +131,16 @@ component RP2040:
     gpio23.visualizer.location = "right"
     gpio24.visualizer.location = "right"
     gpio25.visualizer.location = "right"
-    gpio26.visualizer.location = "right"
-    gpio27.visualizer.location = "right"
-    gpio28.visualizer.location = "right"
-    gpio29.visualizer.location = "right"
+    gpio26_a1.visualizer.location = "right"
+    gpio27_a2.visualizer.location = "right"
+    gpio28_a3.visualizer.location = "right"
+    gpio29_a4.visualizer.location = "right"
 
     gnd.visualizer.location = "bottom"
 
     designator_prefix = "U"
 
-module Micro:
+module RP2040_kit:
     signal v_3_3
     signal v_1
     signal gnd

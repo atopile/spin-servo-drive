@@ -232,7 +232,7 @@
     "last_paths": {
       "gencad": "",
       "idf": "",
-      "netlist": "../src/build/power_stage_debug.net",
+      "netlist": "../src/build/power_stage.net",
       "specctra_dsn": "",
       "step": "",
       "vrml": ""
