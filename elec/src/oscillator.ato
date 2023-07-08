@@ -7,3 +7,7 @@ component Oscillator:
     footprint = "lib:OSC-SMD_4P-L3.2-W2.5-BL"
 
     designator_prefix = "U"
+
+    in.visualizer.location = "left"
+    out.visualizer.location = "right"
+    gnd.visualizer.location = "bottom"

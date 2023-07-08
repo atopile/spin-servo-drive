@@ -150,16 +150,7 @@ module Micro:
     # Microcontroller
     micro = new RP2040
 
-    # Oscillator
-    osc = new Oscillator
-
-    # Flash
-    flash = new W25Q128JV
-
     # Jelly
-    c_osc_1 = new Capacitor
-    c_osc_2 = new Capacitor
-    r_osc = new Resistor
     r_pullup_reset = new Resistor
 
     r_usb_d_plus = new Resistor
@@ -190,9 +181,33 @@ module Micro:
 
     micro.testen ~ gnd
 
+    # Oscillator
+    osc = new Oscillator
+
+    c_osc_1 = new Capacitor
+    c_osc_2 = new Capacitor
+    r_osc = new Resistor
+
     micro.xin ~ osc.in
-    micro.xout ~ osc.out
+    micro.xout ~ r_osc.p1
+    r_osc.p2 ~ osc.out
     osc.gnd ~ gnd
 
-    c_osc_1.p1 ~ gnd
-    c_osc_2.p1 ~ gnd
+    osc.in ~ c_osc_1.p1
+    osc.out ~ c_osc_2.p1
+
+    c_osc_1.p2 ~ gnd
+    c_osc_2.p2 ~ gnd
+
+    # Flash
+    flash = new W25Q128JV
+
+    flash.vcc ~ v_3_3
+    flash.clk ~ micro.qspi_sclk
+    flash.ncs ~ micro.qspi_ss_n
+    flash.di ~ micro.qspi_sd0
+    flash.do ~ micro.qspi_sd1
+    flash.io2 ~ micro.qspi_sd2
+    flash.io3 ~ micro.qspi_sd3
+    flash.gnd ~ gnd
+

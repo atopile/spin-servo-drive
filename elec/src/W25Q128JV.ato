@@ -5,9 +5,17 @@ component W25Q128JV:
     signal gnd ~ pin p4
     signal di ~ pin p5
     signal clk ~ pin p6
-    signal io ~ pin p7
+    signal io3 ~ pin p7
     signal vcc ~ pin p8
 
     designator_prefix = "U"
 
     footprint = "lib:SOIC-8_L5.3-W5.3-P1.27-LS8.0-BL"
+
+    do.visualizer.location = "right"
+    di.visualizer.location = "right"
+    io2.visualizer.location = "right"
+    io3.visualizer.location = "right"
+    ncs.visualizer.location = "left"
+    clk.visualizer.location = "left"
+    gnd.visualizer.location = "bottom"

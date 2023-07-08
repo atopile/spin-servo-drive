@@ -4,12 +4,20 @@
     y: 220
 1508be08-e85c-f7c2-ce10-b804ca10d0db:
   position:
-    x: 75
-    y: 65
+    x: 145
+    y: 590
 15cfddf2-7d93-4f88-8a2b-c23b976134b8:
   position:
     x: 1535
     y: 790
+1d607a8b-59c8-92c1-8cec-daf1ec5167d6:
+  position:
+    x: 985
+    y: 185
+2a223f8c-0b20-dffe-97e3-4043ffe5faae:
+  position:
+    x: 60
+    y: 700
 2ab8b428-ad32-e271-6cc9-009d87c4e17c:
   position:
     x: 710
@@ -30,6 +38,10 @@
   position:
     x: 445
     y: 170
+63f29521-2785-c6f0-019e-72734c5ef876:
+  position:
+    x: 220
+    y: 880
 6a3a1abc-7fa1-18ed-e8d7-dd23375b9db8:
   position:
     x: 240
@@ -74,6 +86,10 @@ aad96d27-de4d-4c15-b87d-6289bbee50f1:
   position:
     x: 238
     y: 270
+b4d8f915-6c6c-2906-1f07-2a1dfcb0ff82:
+  position:
+    x: 225
+    y: 700
 b4e3afe6-9947-81df-b1fa-b11c208ea4d1:
   position:
     x: 415
@@ -86,6 +102,14 @@ bc1dda76-244d-48f5-8171-a94e915d4783:
   position:
     x: 307
     y: 285
+c9f14677-1e41-ddfa-2ec5-e5d2679b8e23:
+  position:
+    x: 505
+    y: 195
+cb978a01-9efb-40a4-da92-33b5cc576b23:
+  position:
+    x: 260
+    y: 660
 current_sense.ato/CurrentSensor/amp:
   position:
     x: 280
@@ -146,6 +170,10 @@ dc5ebe54-e055-401e-8838-5ffc58603956:
   position:
     x: 140
     y: -48
+e874101d-c2e9-30aa-4662-ce93cec42c70:
+  position:
+    x: 195
+    y: 160
 ed63d897-2e4b-4c78-b958-289491654571:
   position:
     x: 195
@@ -280,24 +308,28 @@ rp2040.ato/Micro/c_bp_3v_1uf:
     y: 255
 rp2040.ato/Micro/c_osc_1:
   position:
-    x: 1045
-    y: 435
+    x: 10
+    y: 585
 rp2040.ato/Micro/c_osc_2:
   position:
-    x: 155
-    y: 295
+    x: 215
+    y: 555
 rp2040.ato/Micro/flash:
   position:
-    x: 670
-    y: 440
+    x: 165
+    y: 740
 rp2040.ato/Micro/micro:
   position:
-    x: 370
+    x: 390
     y: 265
+rp2040.ato/Micro/osc:
+  position:
+    x: 85
+    y: 475
 rp2040.ato/Micro/r_osc:
   position:
-    x: 820
-    y: 685
+    x: 215
+    y: 400
 rp2040.ato/Micro/r_pullup_reset:
   position:
     x: 705
