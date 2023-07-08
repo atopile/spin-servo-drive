@@ -11,24 +11,30 @@ BLDCDriver6PWM driver = BLDCDriver6PWM(5, 6, 9, 10, 11, 12);
 //Position Sensor
 MagneticSensorI2C sensor = MagneticSensorI2C(0x36, 12, 0x0E, 4);
 
-
 // instantiate the commander
 Commander command = Commander(Serial);
 void doTarget(char* cmd) { command.scalar(&motor.target, cmd); }
 
-void setup() { 
+void setup() {
+  Serial.begin(115200);
+  while (!Serial);
+  motor.useMonitoring(Serial);
+
+  Wire.setSCL(21);
+  Wire.setSDA(20);
 
   // driver config
   // power supply voltage [V]
   driver.voltage_power_supply = 10;
   driver.init();
+  sensor.init();
+
   // link driver
   motor.linkDriver(&driver);
-
   motor.linkSensor(&sensor);
 
   // aligning voltage
-  motor.voltage_sensor_align = 5;
+  motor.voltage_sensor_align = 1;
 
   // set motion control loop to be used
   motor.torque_controller = TorqueControlType::voltage;
@@ -38,19 +44,15 @@ void setup() {
   // motor.phase_resistance = 3.52 // [Ohm]
   // motor.current_limit = 2;   // [Amps] - if phase resistance defined
 
-  // use monitoring with serial 
-  Serial.begin(115200);
-  // comment out if not needed
-  motor.useMonitoring(Serial);
-
   // initialize motor
   motor.init();
+
   // align sensor and start FOC
-  motor.initFOC();
+  motor.initFOC(0, Direction::CW);
 
   // set the initial motor target
-  // motor.target = 0.2; // Amps - if phase resistance defined  
-  motor.target = 2; // Volts 
+  // motor.target = 0.2; // Amps - if phase resistance defined
+  motor.target = 1; // Volts
 
   // add target command T
   // command.add('T', doTarget, "target current"); // - if phase resistance defined
@@ -70,4 +72,7 @@ void loop() {
 
   // user communication
   command.run();
+
+  sensor.update();
+  // Serial.println(sensor.getAngle());
 }
