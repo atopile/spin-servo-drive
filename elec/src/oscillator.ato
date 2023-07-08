@@ -5,3 +5,5 @@ module Oscillator:
     gnd ~ pin p4
 
     footprint = "lib:OSC-SMD_4P-L3.2-W2.5-BL"
+
+    designator_prefix = "U"
