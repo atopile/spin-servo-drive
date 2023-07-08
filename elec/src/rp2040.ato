@@ -6,6 +6,8 @@ import TS_1101_C_W from "TS_1101_C_W.ato"
 # Flash
 import W25Q128JV from "W25Q128JV.ato"
 
+import Vdiv from "vdiv.ato"
+
 component RP2040:
     signal iovdd ~ pin p1
     iovdd ~ pin p10
@@ -143,43 +145,71 @@ module Micro:
     signal v_1
     signal gnd
 
+    signal usb_dp
+    signal usb_dm
+
     v_3_3.visualizer.stub = True
-    V_1.visualizer.stub = True
+    v_1.visualizer.stub = True
     gnd.visualizer.stub = True
+
+    usb_dp.visualizer.stub = True
+    usb_dm.visualizer.stub = True
 
     # Microcontroller
     micro = new RP2040
-
-    # Jelly
-    r_pullup_reset = new Resistor
-
-    r_usb_d_plus = new Resistor
-    r_usb_d_minus = new Resistor
-
-    # Switch
-    reset_sw = new TS_1101_C_W
-
-    c_bp_3v_100nf_1 = new Capacitor
-    c_bp_3v_100nf_2 = new Capacitor
-    c_bp_3v_100nf_3 = new Capacitor
-    c_bp_3v_100nf_4 = new Capacitor
-    c_bp_3v_100nf_5 = new Capacitor
-
-    c_bp_1v_100nf_1 = new Capacitor
-    c_bp_1v_100nf_2 = new Capacitor
-
-    c_bp_1v_1uf = new Capacitor
-    c_bp_3v_1uf = new Capacitor
 
     # Connect vcc
     micro.usb_vdd ~ v_3_3
     micro.adc_avdd ~ v_3_3
     micro.vreg_vin ~ v_3_3
 
+    micro.dvdd ~ v_1
+    micro.vreg_vout ~ micro.dvdd
+
     # Connect gnd
     micro.gnd ~ gnd
 
     micro.testen ~ gnd
+
+    # Bypass capacitors
+    c_bp_3v_100nf_1 = new Capacitor
+    c_bp_3v_100nf_2 = new Capacitor
+    c_bp_3v_100nf_3 = new Capacitor
+    c_bp_3v_100nf_4 = new Capacitor
+    c_bp_3v_100nf_5 = new Capacitor
+
+    c_bp_3v_1uf = new Capacitor
+
+    c_bp_3v_100nf_1.p1 ~ v_3_3
+    c_bp_3v_100nf_2.p1 ~ v_3_3
+    c_bp_3v_100nf_3.p1 ~ v_3_3
+    c_bp_3v_100nf_4.p1 ~ v_3_3
+    c_bp_3v_100nf_5.p1 ~ v_3_3
+
+    c_bp_3v_1uf.p1 ~ v_3_3
+
+    c_bp_3v_100nf_1.p2 ~ gnd
+    c_bp_3v_100nf_2.p2 ~ gnd
+    c_bp_3v_100nf_3.p2 ~ gnd
+    c_bp_3v_100nf_4.p2 ~ gnd
+    c_bp_3v_100nf_5.p2 ~ gnd
+
+    c_bp_3v_1uf.p2 ~ gnd
+
+    c_bp_1v_100nf_1 = new Capacitor
+    c_bp_1v_100nf_2 = new Capacitor
+
+    c_bp_1v_1uf = new Capacitor
+
+    c_bp_1v_100nf_1.p1 ~ v_1
+    c_bp_1v_100nf_2.p1 ~ v_1
+
+    c_bp_1v_1uf.p1 ~ v_1
+
+    c_bp_1v_100nf_1.p2 ~ gnd
+    c_bp_1v_100nf_2.p2 ~ gnd
+
+    c_bp_1v_1uf.p2 ~ gnd
 
     # Oscillator
     osc = new Oscillator
@@ -211,3 +241,34 @@ module Micro:
     flash.io3 ~ micro.qspi_sd3
     flash.gnd ~ gnd
 
+    # usb
+    r_usb_d_plus = new Resistor
+    r_usb_d_minus = new Resistor
+
+    micro.usb_dp ~ r_usb_d_plus.p1
+    usb_dp ~ r_usb_d_plus.p2
+    micro.usb_dm ~ r_usb_d_minus.p1
+    usb_dm ~ r_usb_d_minus.p2
+
+    # Reset
+    r_pullup_reset = new Resistor
+    reset_sw = new TS_1101_C_W
+
+    v_3_3 ~ r_pullup_reset.p1
+    micro.run ~ r_pullup_reset.p2
+    micro.run ~ reset_sw.p1
+    gnd ~ reset_sw.p2
+
+    # Boot
+    boot_sw = new TS_1101_C_W
+
+    boot_vdiv = new Vdiv
+    boot_vdiv.r_top.value = "10k"
+    boot_vdiv.r_bt.value = "1k"
+
+    v_3_3 ~ boot_vdiv.input
+    micro.qspi_ss_n ~ boot_vdiv.output
+    gnd ~ boot_vdiv.gnd
+
+    boot_sw.p1 ~ boot_vdiv.output
+    boot_sw.p2 ~ gnd

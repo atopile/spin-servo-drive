@@ -1,7 +1,7 @@
 import TL072CDT from "TL072CDT.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
-import Vdiv from "vdiv.ato"
+import Vdiv from "vdiv_filter.ato"
 import LowPass from "low_pass.ato"
 
 module VoltageReference:
