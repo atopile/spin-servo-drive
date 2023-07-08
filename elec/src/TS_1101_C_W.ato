@@ -1,0 +1,9 @@
+component TS_1101_C_W:
+    pin p1
+    pin p2
+
+    footprint = "lib:SW-SMD_L6.0-W3.3-LS8.0"
+
+    designator_prefix = "S"
+
+    p2.visualizer.location = "bottom"

@@ -1,4 +1,4 @@
-import Vdiv from "vdiv.ato"
+import Vdiv from "vdiv_filter.ato"
 import Capacitor from "std/capacitor.ato"
 
 module VoltageSense:
