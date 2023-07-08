@@ -1,4 +1,4 @@
-import oscillator from "oscillator.ato"
+import Oscillator from "oscillator.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 # Switch
@@ -143,6 +143,10 @@ module Micro:
     signal v_1
     signal gnd
 
+    v_3_3.visualizer.stub = True
+    V_1.visualizer.stub = True
+    gnd.visualizer.stub = True
+
     # Microcontroller
     micro = new RP2040
 
@@ -150,7 +154,7 @@ module Micro:
     osc = new Oscillator
 
     # Flash
-    flash = new Flash
+    flash = new W25Q128JV
 
     # Jelly
     c_osc_1 = new Capacitor
