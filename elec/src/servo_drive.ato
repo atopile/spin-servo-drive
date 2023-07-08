@@ -1,49 +1,7 @@
-import HalfBridge from 'half_bridge.ato'
-import CurrentSensor from 'current_sense.ato'
-import NRF52832 from 'NRF52832.ato'
-import VoltageReference from 'voltage_reference.ato'
+import PowerStage from "power_stage.ato"
+import RP2040_kit
 
 module ServoDrive:
-    signal vin 
-    signal vcc
-    signal gnd
-    signal phase_A
-    signal phase_B
-    signal phase_C
+    micro_kit = new RP2040_kit
 
-    # Half bridges
-    half_bridge_A = new HalfBridge
-    half_bridge_B = new HalfBridge
-    half_bridge_C = new HalfBridge
-
-    half_bridge_A.vin ~ vin
-    half_bridge_B.vin ~ vin
-    half_bridge_C.vin ~ vin
-
-    half_bridge_A.gnd ~ gnd
-    half_bridge_B.gnd ~ gnd
-    half_bridge_C.gnd ~ gnd
-
-    phase_A ~ half_bridge_A.out
-    phase_B ~ half_bridge_B.out
-    phase_C ~ half_bridge_C.out
-
-    #Current sense
-    current_sensor_A = new CurrentSensor
-    current_sensor_B = new CurrentSensor
-    current_sensor_C = new CurrentSensor
-
-    # Voltage reference
-    ref = new VoltageReference
-    ref.vcc = vcc
-
-    half_bridge_A.out ~> current_sensor_A.i_in
-    half_bridge_B.out ~> current_sensor_B.i_in
-    half_bridge_C.out ~> current_sensor_C.i_in
-
-    # Microcontroller
-    micro = new NRF52832
-
-    # Power supply 3v3
-
-    # Power supply gate driver
+    

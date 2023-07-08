@@ -140,7 +140,7 @@ component RP2040:
 
     designator_prefix = "U"
 
-module Micro:
+module RP2040_kit:
     signal v_3_3
     signal v_1
     signal gnd
