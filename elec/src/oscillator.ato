@@ -1,4 +1,4 @@
-module Oscillator:
+component Oscillator:
     signal in ~ pin p1
     signal out ~ pin p3
     signal gnd ~ pin p2
