@@ -16,8 +16,8 @@ component Usbc:
     signal dm ~ pin A7
     dm ~ pin B7
 
-    signal cc ~ pin A5
-    cc ~ pin B5
+    signal cc1 ~ pin A5
+    signal cc2 ~ pin B5
 
     signal sbu ~ pin A8
     sbu ~ pin B8

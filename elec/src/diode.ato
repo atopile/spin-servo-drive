@@ -1,0 +1,8 @@
+component Diode:
+    signal anode ~ pin p2
+    signal cathode ~ pin p1
+
+    designator_prefix = "D"
+
+    anode.visualizer.location = "top"
+    cathode.visualizer.location = "bottom"

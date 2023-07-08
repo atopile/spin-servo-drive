@@ -1,7 +1,35 @@
 import PowerStage from "power_stage.ato"
-import RP2040_kit
+import RP2040_kit from "rp2040.ato"
+
+import Diode from "diode.ato"
+
+import PinHeader10 from "pin_header.ato"
 
 module ServoDrive:
+    signal v_5
+
     micro_kit = new RP2040_kit
 
-    
+    # usbc
+    usb = new Usbc
+    usb_diode = new Diode
+    r_cc1 = new Resistor
+    r_cc2 = new Resistor
+
+    v_5 ~ usb_diode.cathode
+    usb_diode.anode ~ usb.vbus
+
+    usb.dp ~ micro_kit.micro.usb_dp
+    usb.dm ~ micro_kit.micro.usb_dm
+
+    usb.cc1 ~ r_cc1.p1
+    usb.cc2 ~ r_cc1.p2
+    r_cc1.p2 ~ gnd
+    r_cc2.p2 ~ gnd
+
+    usb.gnd ~ gnd
+
+    # swd
+    pin_header_swd = new PinHeader10
+    # Still need to connect that puppy
+

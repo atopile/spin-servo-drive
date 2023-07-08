@@ -1,0 +1,37 @@
+component PinHeader2:
+    pin p1
+    pin p2
+
+    designator_prefix = "J"
+
+    footprint = "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+
+    p1.visualizer.location = "right"
+    p2.visualizer.location = "right"
+
+component PinHeader10:
+    pin p1
+    pin p2
+    pin p3
+    pin p4
+    pin p5
+    pin p6
+    pin p7
+    pin p8
+    pin p9
+    pin p10
+
+    designator_prefix = "J"
+
+    footprint = "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+
+    p1.visualizer.location = "right"
+    p2.visualizer.location = "right"
+    p3.visualizer.location = "right"
+    p4.visualizer.location = "right"
+    p5.visualizer.location = "right"
+    p6.visualizer.location = "left"
+    p7.visualizer.location = "left"
+    p8.visualizer.location = "left"
+    p9.visualizer.location = "left"
+    p10.visualizer.location = "left"
