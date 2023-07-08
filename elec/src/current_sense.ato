@@ -46,8 +46,7 @@ module CurrentSense:
     # The largest readily available 42mm-frame motors have a rated current of ~8A
     # Burst current is ~3x rated, which means we want to ideally support ~24A
     # We need bi-directional current measurment, so our "full-range" is 3.3V/2 = 1.65V
-    # 3mOhm * 24A = 72mV
-    # 72mV * 25 = 3.15V
+    # TODO: update calculation for 1mOhm
     amp.gs0 ~ gnd
     amp.gs1 ~ vcc
 
