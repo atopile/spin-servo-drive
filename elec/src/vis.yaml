@@ -2,6 +2,10 @@
   position:
     x: 887
     y: 220
+1508be08-e85c-f7c2-ce10-b804ca10d0db:
+  position:
+    x: 75
+    y: 65
 15cfddf2-7d93-4f88-8a2b-c23b976134b8:
   position:
     x: 1535
@@ -10,10 +14,22 @@
   position:
     x: 710
     y: 575
+3195e289-6525-5b7b-3898-4cd9c99c1254:
+  position:
+    x: 1085
+    y: 385
+327db36f-5579-6fde-2454-3ed535c7966d:
+  position:
+    x: 320
+    y: 295
 49a89586-84ac-4049-41d6-67f01d7ea886:
   position:
     x: 495
     y: 885
+5a88937d-9db2-b473-0150-367a6e12a1f8:
+  position:
+    x: 445
+    y: 170
 6a3a1abc-7fa1-18ed-e8d7-dd23375b9db8:
   position:
     x: 240
@@ -38,6 +54,14 @@
   position:
     x: 415
     y: 615
+9d315788-0944-c359-3b81-34150c06418b:
+  position:
+    x: 465
+    y: 900
+9e8db9a4-09a2-3328-7c5a-5df72a188951:
+  position:
+    x: 305
+    y: 530
 INA225AIDGKR.ato/INA225AIDGKR:
   position:
     x: 195
@@ -122,6 +146,10 @@ dc5ebe54-e055-401e-8838-5ffc58603956:
   position:
     x: 140
     y: -48
+ed63d897-2e4b-4c78-b958-289491654571:
+  position:
+    x: 195
+    y: 235
 half_bridge.ato/HalfBridge/c_boot:
   position:
     x: 405
@@ -214,6 +242,78 @@ power_stage.ato/PowerStage/half_bridge_a/ls_gate_ilim_r:
   position:
     x: 250
     y: 190
+rp2040.ato/Micro/c_bp_1v_100nf_1:
+  position:
+    x: 625
+    y: 740
+rp2040.ato/Micro/c_bp_1v_100nf_2:
+  position:
+    x: 580
+    y: 130
+rp2040.ato/Micro/c_bp_1v_1uf:
+  position:
+    x: 850
+    y: 150
+rp2040.ato/Micro/c_bp_3v_100nf_1:
+  position:
+    x: 875
+    y: 620
+rp2040.ato/Micro/c_bp_3v_100nf_2:
+  position:
+    x: 800
+    y: 745
+rp2040.ato/Micro/c_bp_3v_100nf_3:
+  position:
+    x: 730
+    y: 840
+rp2040.ato/Micro/c_bp_3v_100nf_4:
+  position:
+    x: 850
+    y: 770
+rp2040.ato/Micro/c_bp_3v_100nf_5:
+  position:
+    x: 675
+    y: 650
+rp2040.ato/Micro/c_bp_3v_1uf:
+  position:
+    x: 870
+    y: 255
+rp2040.ato/Micro/c_osc_1:
+  position:
+    x: 1045
+    y: 435
+rp2040.ato/Micro/c_osc_2:
+  position:
+    x: 155
+    y: 295
+rp2040.ato/Micro/flash:
+  position:
+    x: 670
+    y: 440
+rp2040.ato/Micro/micro:
+  position:
+    x: 370
+    y: 265
+rp2040.ato/Micro/r_osc:
+  position:
+    x: 820
+    y: 685
+rp2040.ato/Micro/r_pullup_reset:
+  position:
+    x: 705
+    y: 555
+rp2040.ato/Micro/r_usb_d_minus:
+  position:
+    x: 1025
+    y: 535
+rp2040.ato/Micro/r_usb_d_plus:
+  position:
+    x: 1040
+    y: 820
+rp2040.ato/Micro/reset_sw:
+  position:
+    x: 995
+    y: 680
 servo_drive.ato/ServoDrive/current_sensor_A/config1:
   position:
     x: 910
