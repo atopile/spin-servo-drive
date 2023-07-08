@@ -1,0 +1,7 @@
+module Oscillator:
+    signal in ~ pin p1
+    signal out ~ pin p3
+    signal gnd ~ pin p2
+    gnd ~ pin p4
+
+    footprint = "lib:OSC-SMD_4P-L3.2-W2.5-BL"
