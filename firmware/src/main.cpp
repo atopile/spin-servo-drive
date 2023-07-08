@@ -6,7 +6,7 @@
 BLDCMotor motor = BLDCMotor(4);
 
 // BLDCDriver3PWM driver = BLDCDriver3PWM(pwmA, pwmB, pwmC, Enable(optional));
-BLDCDriver6PWM driver = BLDCDriver6PWM(5, 6, 9, 10, 11, 12);
+BLDCDriver6PWM driver = BLDCDriver6PWM(0,1,2,3,4,5);
 
 //Position Sensor
 MagneticSensorI2C sensor = MagneticSensorI2C(0x36, 12, 0x0E, 4);
@@ -35,10 +35,12 @@ void setup() {
 
   // aligning voltage
   motor.voltage_sensor_align = 1;
+  motor.voltage_limit = 2;   // [V] - if phase resistance not defined
+  motor.velocity_limit = 5; // [rad/s] cca 50rpm
 
   // set motion control loop to be used
   motor.torque_controller = TorqueControlType::voltage;
-  motor.controller = MotionControlType::torque;
+  motor.controller = MotionControlType::velocity_openloop;
 
   // add current limit
   // motor.phase_resistance = 3.52 // [Ohm]
@@ -48,7 +50,8 @@ void setup() {
   motor.init();
 
   // align sensor and start FOC
-  motor.initFOC(0, Direction::CW);
+  // motor.initFOC(0, Direction::CW);
+  motor.initFOC();
 
   // set the initial motor target
   // motor.target = 0.2; // Amps - if phase resistance defined
