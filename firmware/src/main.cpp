@@ -26,6 +26,7 @@ void setup() {
   // driver config
   // power supply voltage [V]
   driver.voltage_power_supply = 10;
+
   driver.init();
   sensor.init();
 
@@ -34,7 +35,7 @@ void setup() {
   motor.linkSensor(&sensor);
 
   // aligning voltage
-  motor.voltage_sensor_align = 1;
+  motor.voltage_sensor_align = 1.5;
   motor.voltage_limit = 2;   // [V] - if phase resistance not defined
   motor.velocity_limit = 5; // [rad/s] cca 50rpm
 
@@ -51,6 +52,7 @@ void setup() {
 
   // align sensor and start FOC
   // motor.initFOC(0, Direction::CW);
+  Serial.print("Aligning...");
   motor.initFOC();
 
   // set the initial motor target
