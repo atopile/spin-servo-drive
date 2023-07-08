@@ -50,6 +50,10 @@
   position:
     x: 1320
     y: 585
+2de20764-a3d2-9fa4-098d-79db65bd6056:
+  position:
+    x: 580
+    y: 195
 3195e289-6525-5b7b-3898-4cd9c99c1254:
   position:
     x: 1085
@@ -578,6 +582,14 @@ servo_drive.ato/ServoDrive/half_bridge_C/ls_fet:
   position:
     x: 320
     y: 755
+servo_drive.ato/ServoDrive/micro_kit/micro:
+  position:
+    x: 450
+    y: 250
+servo_drive.ato/ServoDrive/ps_inputs:
+  position:
+    x: 845
+    y: 450
 vdiv.ato/Vdiv/r_bt:
   position:
     x: 100

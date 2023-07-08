@@ -1,13 +1,21 @@
+import Resistor from "std/resistor.ato"
+
 import PowerStage from "power_stage.ato"
-import RP2040_kit from "rp2040.ato"
+import RP2040_kit from "micro/rp2040.ato"
 
 import Diode from "diode.ato"
 
 import PinHeader10 from "pin_header.ato"
+import PinHeader2 from "pin_header.ato"
+import PinHeader25 from "pin_header.ato"
+
+import Usbc from "usbc.ato"
 
 module ServoDrive:
     signal v_5
+    signal gnd
 
+    # Micro
     micro_kit = new RP2040_kit
 
     # usbc
@@ -32,4 +40,50 @@ module ServoDrive:
     # swd
     pin_header_swd = new PinHeader10
     # Still need to connect that puppy
+
+    power_stage = new PowerStage
+
+    power_input = new PinHeader2
+    power_input.footprint = "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical"
+
+    power_stage.v_pwr ~ power_input.p2
+    power_stage.gnd ~ power_input.p1
+
+    # power stage to micro
+    micro_kit.micro.gpio0 ~ power_stage.high_in_a
+    micro_kit.micro.gpio1 ~ power_stage.low_in_a
+    micro_kit.micro.gpio2 ~ power_stage.high_in_b
+    micro_kit.micro.gpio3 ~ power_stage.low_in_b
+    micro_kit.micro.gpio4 ~ power_stage.high_in_c
+    micro_kit.micro.gpio5 ~ power_stage.low_in_c
+
+    micro_kit.micro.gpio26_a0 ~ power_stage.i_fb_a
+    micro_kit.micro.gpio27_a1 ~ power_stage.i_fb_b
+    micro_kit.micro.gpio28_a2 ~ power_stage.i_fb_c
+
+    # breaked out inputs
+    ps_inputs = new PinHeader25
+
+    power_stage.v_pwr ~ ps_inputs.p1
+    power_stage.vcc_10v ~ ps_inputs.p2
+    power_stage.vcc_3v3 ~ ps_inputs.p3
+    power_stage.gnd ~ ps_inputs.p4
+
+    power_stage.high_in_a ~ ps_inputs.p5
+    power_stage.low_in_a ~ ps_inputs.p6
+    power_stage.high_in_b ~ ps_inputs.p7
+    power_stage.low_in_b ~ ps_inputs.p8
+    power_stage.high_in_c ~ ps_inputs.p9
+    power_stage.low_in_c ~ ps_inputs.p10
+    power_stage.out_a ~ ps_inputs.p11
+    power_stage.out_b ~ ps_inputs.p12
+    power_stage.out_c ~ ps_inputs.p13
+    power_stage.v_ref ~ ps_inputs.p14
+    power_stage.half_v_ref ~ ps_inputs.p15
+    power_stage.v_fb_a ~ ps_inputs.p16
+    power_stage.v_fb_b ~ ps_inputs.p17
+    power_stage.v_fb_c ~ ps_inputs.p18
+    power_stage.i_fb_a ~ ps_inputs.p19
+    power_stage.i_fb_b ~ ps_inputs.p20
+    power_stage.i_fb_c ~ ps_inputs.p21
 
