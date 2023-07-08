@@ -11,6 +11,8 @@ import PinHeader25 from "pin_header.ato"
 
 import Usbc from "usbc.ato"
 
+import VoltageSense from "voltage_sense.ato"
+
 module ServoDrive:
     signal v_5
     signal gnd
@@ -44,12 +46,12 @@ module ServoDrive:
     power_stage = new PowerStage
 
     power_input = new PinHeader2
-    power_input.footprint = "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical"
+    power_input.footprint = "Connector_AMASS:AMASS_XT30PW-M_1x02_P2.50mm_Horizontal"
 
     power_stage.v_pwr ~ power_input.p2
     power_stage.gnd ~ power_input.p1
 
-    # power stage to micro
+    # Power stage to micro
     micro_kit.micro.gpio0 ~ power_stage.high_in_a
     micro_kit.micro.gpio1 ~ power_stage.low_in_a
     micro_kit.micro.gpio2 ~ power_stage.high_in_b
@@ -60,6 +62,12 @@ module ServoDrive:
     micro_kit.micro.gpio26_a0 ~ power_stage.i_fb_a
     micro_kit.micro.gpio27_a1 ~ power_stage.i_fb_b
     micro_kit.micro.gpio28_a2 ~ power_stage.i_fb_c
+
+    # Voltage input monitoring
+    voltage_input_vdiv = new VoltageSense
+    voltage_input_vdiv.in ~ power_input.p2
+    voltage_input_vdiv.gnd ~ gnd
+    voltage_input_vdiv.out ~ micro_kit.micro.gpio29_a3
 
     # breaked out inputs
     ps_inputs = new PinHeader25
