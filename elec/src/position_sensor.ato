@@ -1,0 +1,58 @@
+import Resistor from "std/resistor.ato"
+import Capacitor from "std/capacitor.ato"
+import AS5600 from "as5600.ato"
+
+#ato view --root-file position_sensor.ato --root-node position_sensor.ato/PositionSensor
+
+
+module PositionSensor:
+
+    sensor = new AS5600
+    signal vin
+    signal gnd  
+    signal scl
+    signal sda
+
+    gnd ~ sensor.GND
+
+    # 5v and 3v3 are connected together in 3v3 operation
+    sensor.v_5 ~ sensor.v_3
+    vin ~ sensor.v_3
+
+    sensor.SDA ~ sda
+    sensor.SCL ~ scl
+
+    #PGO to gnd
+    sensor.PGO ~ gnd
+
+    sda_pullup = new Resistor
+    scl_pullup = new Resistor
+
+    sda_pullup.p1 ~ vin
+    sda_pullup.p2 ~ sda
+    scl_pullup.p1 ~ vin
+    scl_pullup.p2 ~ scl
+
+    sda_pullup.value = "10k"
+    scl_pullup.value = "10k"
+
+    3v3_cap = new Capacitor
+    5v_cap = new Capacitor
+
+    3v3_cap.p1 ~ vin
+    3v3_cap.p2 ~ gnd
+    5v_cap.p1 ~ vin
+    5v_cap.p2 ~ gnd
+
+    3v3_cap.value = "1uF"
+    5v_cap.value = "100nF"
+
+    footprint = "lib:SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL"
+
+    gnd.visualizer.stub = True
+
+    sda.visualizer.location = "right"
+    scl.visualizer.location = "right"
+    vin.visualizer.location = "left"
+    gnd.visualizer.location = "bottom"
+

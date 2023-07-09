@@ -30,6 +30,10 @@
   position:
     x: 985
     y: 185
+1f3cc5a5-8905-fc62-db5d-fdd83365affd:
+  position:
+    x: 715
+    y: 480
 21de211f-3d22-8763-fae6-0bc2c81a70c5:
   position:
     x: 1120
@@ -78,10 +82,18 @@
   position:
     x: 495
     y: 885
+4ac6ad43-cafe-111b-8531-83e303f40d62:
+  position:
+    x: 255
+    y: 520
 4fb8393b-8f61-b253-75de-1b5c65fbb4a9:
   position:
     x: 1350
     y: 455
+532f0495-9f38-f03e-26ad-13f00a4fefdd:
+  position:
+    x: 755
+    y: 210
 584c3e8c-5441-44a1-33a9-2beac067e9e2:
   position:
     x: 1060
@@ -90,6 +102,10 @@
   position:
     x: 445
     y: 170
+5ad84264-4e1b-31ef-2115-22814c408982:
+  position:
+    x: 365
+    y: 590
 5b7523c4-e19c-0318-3961-b703748e8aac:
   position:
     x: 1420
@@ -154,6 +170,10 @@
   position:
     x: 1075
     y: 585
+94247bcf-0512-d407-fd4d-0480773811e7:
+  position:
+    x: 165
+    y: 520
 961dc597-dde9-d3ca-1f32-fed982af53cb:
   position:
     x: 475
@@ -178,6 +198,10 @@ INA225AIDGKR.ato/INA225AIDGKR:
   position:
     x: 195
     y: 135
+MAX17504ATP.ato/MAX17504ATP:
+  position:
+    x: 100
+    y: 190
 NRF52832.ato/NRF52832:
   position:
     x: 550
@@ -186,6 +210,14 @@ aad96d27-de4d-4c15-b87d-6289bbee50f1:
   position:
     x: 238
     y: 270
+ac46ee0f-9a1f-013a-733c-02be5400059c:
+  position:
+    x: 810
+    y: 485
+b2f53774-7c6f-5740-87e1-39846c93afc1:
+  position:
+    x: 315
+    y: 515
 b4d8f915-6c6c-2906-1f07-2a1dfcb0ff82:
   position:
     x: 225
@@ -206,6 +238,54 @@ bde5d1f2-df5c-81f3-2018-78a0bf32ebcd:
   position:
     x: 1210
     y: 450
+buck.ato/buck/BST_cap:
+  position:
+    x: 390
+    y: 230
+buck.ato/buck/FB_resistor_1:
+  position:
+    x: 570
+    y: 385
+buck.ato/buck/FB_resistor_2:
+  position:
+    x: 570
+    y: 480
+buck.ato/buck/PGND_resistor:
+  position:
+    x: 365
+    y: 535
+buck.ato/buck/SS_cap:
+  position:
+    x: 265
+    y: 595
+buck.ato/buck/VCC_cap:
+  position:
+    x: 125
+    y: 360
+buck.ato/buck/VIN_cap_1:
+  position:
+    x: 175
+    y: 185
+buck.ato/buck/VIN_cap_2:
+  position:
+    x: 90
+    y: 185
+buck.ato/buck/VOUT_cap_1:
+  position:
+    x: 770
+    y: 385
+buck.ato/buck/VOUT_cap_2:
+  position:
+    x: 675
+    y: 385
+buck.ato/buck/buck_converter:
+  position:
+    x: 245
+    y: 300
+buck.ato/buck/inductor:
+  position:
+    x: 450
+    y: 330
 c1780593-6129-4932-6d36-64d93563c675:
   position:
     x: 910
@@ -218,6 +298,10 @@ c62d273f-2f41-c83f-ce02-d7d037ee64fb:
   position:
     x: 1085
     y: 90
+c8984af1-02bb-1236-2595-e2a4b41d8eec:
+  position:
+    x: 345
+    y: 495
 c9f14677-1e41-ddfa-2ec5-e5d2679b8e23:
   position:
     x: 505
@@ -318,6 +402,10 @@ ed63d897-2e4b-4c78-b958-289491654571:
   position:
     x: 195
     y: 235
+eeb58165-0f8c-cda2-574e-f499fd6811b0:
+  position:
+    x: 410
+    y: 490
 f094db1a-4e55-930b-d64c-9f67d794a891:
   position:
     x: 690
@@ -370,6 +458,26 @@ half_bridge.ato/HalfBridge/ls_gate_r:
   position:
     x: 440
     y: 230
+position_sensor.ato/PositionSensor/scl_pullup:
+  position:
+    x: 430
+    y: 270
+position_sensor.ato/PositionSensor/sda_pullup:
+  position:
+    x: 525
+    y: 270
+position_sensor.ato/PositionSensor/sensor:
+  position:
+    x: 330
+    y: 325
+position_sensor.ato/PositionSensor/v3_cap:
+  position:
+    x: 215
+    y: 440
+position_sensor.ato/PositionSensor/v_cap:
+  position:
+    x: 125
+    y: 440
 power_stage.ato/PowerStage/current_sense_a/amp:
   position:
     x: 910

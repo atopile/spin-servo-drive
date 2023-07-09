@@ -1,0 +1,45 @@
+#JLC PN: C516781
+#ato view --root-file MAX17504ATP.ato --root-node MAX17504ATP.ato/MAX17504ATP
+
+component MAX17504ATP:
+    signal EN ~ pin 4
+    signal VIN ~ pin 1
+    VIN ~ pin 2
+    VIN ~ pin 3
+    signal RT ~ pin 10
+    signal SYNC ~ pin 6
+    signal MODE ~ pin 11
+    signal VCC ~ pin 12
+    signal SGND ~ pin 13
+    signal CF ~ pin 8
+    signal SS ~ pin 7
+    signal PGND ~ pin 14
+    signal BST ~ pin 20
+    signal LX ~ pin 17
+    signal FB ~ pin 9
+    signal RESET ~ pin 5
+    PGND ~ pin 15
+    PGND ~ pin 16
+    LX ~ pin 18
+    LX ~ pin 19
+    # TODO: connect pad to SGND
+
+    VIN.visualizer.location = "top"
+    EN.visualizer.location = "top"
+    RESET.visualizer.location = "right"
+    SYNC.visualizer.location = "left"
+    SS.visualizer.location = "bottom"
+    CF.visualizer.location = "bottom"
+    FB.visualizer.location = "right"
+    RT.visualizer.location = "left"
+    MODE.visualizer.location = "left"
+    VCC.visualizer.location = "left"
+    SGND.visualizer.location = "left"
+    PGND.visualizer.location = "bottom"
+    LX.visualizer.location = "right"
+    BST.visualizer.location = "right"
+    footprint = "lib:QFN-48_L6.0-W6.0-P0.40-BL-EP3.8"
+
+
+
+
