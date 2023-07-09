@@ -104,4 +104,3 @@ module Buck:
 
     VOUT.visualizer.location = "right"
     VIN.visualizer.location = "left"
-
