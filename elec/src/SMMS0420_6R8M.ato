@@ -1,7 +1,7 @@
 #JLC PN: C133194
 
 component SMMS0420_6R8M
-    signal p1 ~ pin 1
-    signal p2 ~ pin 2
+    signal p2 ~ pin p2
+    signal p1 ~ pin p1
 
     footprint = "lib:IND-SMD_L4.5-W4.5_SMMS0420"
