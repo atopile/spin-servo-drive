@@ -2,26 +2,26 @@
 #ato view --root-file MAX17504ATP.ato --root-node MAX17504ATP.ato/MAX17504ATP
 
 component MAX17504ATP:
-    signal EN ~ pin 4
-    signal VIN ~ pin 1
-    VIN ~ pin 2
-    VIN ~ pin 3
-    signal RT ~ pin 10
-    signal SYNC ~ pin 6
-    signal MODE ~ pin 11
-    signal VCC ~ pin 12
-    signal SGND ~ pin 13
-    signal CF ~ pin 8
-    signal SS ~ pin 7
-    signal PGND ~ pin 14
-    signal BST ~ pin 20
-    signal LX ~ pin 17
-    signal FB ~ pin 9
-    signal RESET ~ pin 5
-    PGND ~ pin 15
-    PGND ~ pin 16
-    LX ~ pin 18
-    LX ~ pin 19
+    signal EN ~ pin p4
+    signal VIN ~ pin p1
+    VIN ~ pin p2
+    VIN ~ pin p3
+    signal RT ~ pin p10
+    signal SYNC ~ pin p6
+    signal MODE ~ pin p11
+    signal VCC ~ pin p12
+    signal SGND ~ pin p13
+    signal CF ~ pin p8
+    signal SS ~ pin p7
+    signal PGND ~ pin p14
+    signal BST ~ pin p20
+    signal LX ~ pin p17
+    signal FB ~ pin p9
+    signal RESET ~ pin p5
+    PGND ~ pin p15
+    PGND ~ pin p16
+    LX ~ pin p18
+    LX ~ pin p19
     # TODO: connect pad to SGND
 
     VIN.visualizer.location = "top"

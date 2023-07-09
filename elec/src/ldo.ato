@@ -2,12 +2,10 @@ import Capacitor from "std/capacitor.ato"
 import LP2985_33DBVR from "LP2985_33DBVR.ato"
 #ato view --root-file ldo.ato --root-node ldo.ato/LDO
 
-
 module LDO:
     signal vin
     signal vout
     signal gnd
-
 
     ldo_ic = new LP2985_33DBVR
     ldo_ic.vin ~ vin
