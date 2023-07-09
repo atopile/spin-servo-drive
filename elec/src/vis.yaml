@@ -202,6 +202,10 @@
   position:
     x: 475
     y: 210
+984ed06f-1994-db0b-42bc-da35bdf9a556:
+  position:
+    x: 485
+    y: 525
 98cdc68d-776d-c0b5-071f-ad508728ab19:
   position:
     x: 240
@@ -248,7 +252,7 @@ b235158a-ee97-ba7e-7c39-042177873ea8:
     y: 290
 b2f53774-7c6f-5740-87e1-39846c93afc1:
   position:
-    x: 315
+    x: 310
     y: 515
 b4d8f915-6c6c-2906-1f07-2a1dfcb0ff82:
   position:
@@ -514,6 +518,10 @@ half_bridge.ato/HalfBridge/ls_gate_r:
   position:
     x: 440
     y: 230
+position_sensor.ato/PositionSensor/pgo_resistor:
+  position:
+    x: 440
+    y: 450
 position_sensor.ato/PositionSensor/scl_pullup:
   position:
     x: 430
