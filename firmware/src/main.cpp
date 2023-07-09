@@ -3,10 +3,11 @@
 
 // BLDC motor & driver instance
 // BLDCMotor motor = BLDCMotor(pole pair number, phase resistance (optional) );
-BLDCMotor motor = BLDCMotor(4);
+// BLDCMotor motor = BLDCMotor(4);
+BLDCMotor motor = BLDCMotor(4, 2.0, 300.0);
 
 // BLDCDriver3PWM driver = BLDCDriver3PWM(pwmA, pwmB, pwmC, Enable(optional));
-BLDCDriver6PWM driver = BLDCDriver6PWM(0,1,2,3,6,7);
+BLDCDriver6PWM driver = BLDCDriver6PWM(0, 1, 2, 3, 6, 7);
 
 //Position Sensor
 MagneticSensorI2C sensor = MagneticSensorI2C(0x36, 12, 0x0E, 4);
@@ -39,8 +40,14 @@ void setup() {
 
   // aligning voltage
   motor.voltage_sensor_align = 1;
-  motor.voltage_limit = 2;   // [V] - if phase resistance not defined
-  motor.velocity_limit = 5; // [rad/s] cca 50rpm
+  motor.current_limit = 2;   // [V] - if phase resistance not defined
+  // motor.voltage_limit = 2;   // [V] - if phase resistance not defined
+  motor.velocity_limit = 50; // [rad/s] cca 50rpm
+
+  motor.PID_velocity.P = 0.05;
+  motor.PID_velocity.I = 1.0;
+  motor.PID_velocity.D = 0.0;
+  motor.LPF_velocity.Tf = 0.01;
 
   // current sense
   current_sense.init();
@@ -48,7 +55,8 @@ void setup() {
 
   // set motion control loop to be used
   motor.torque_controller = TorqueControlType::voltage;
-  motor.controller = MotionControlType::torque;
+  // motor.controller = MotionControlType::torque;
+  motor.controller = MotionControlType::velocity;
   // motor.controller = MotionControlType::velocity_openloop;
 
   // add current limit
@@ -57,14 +65,14 @@ void setup() {
 
   // monitoring
   motor.monitor_downsample = 100; // set downsampling can be even more > 100
-  motor.monitor_variables = _MON_CURR_Q | _MON_CURR_D; // set monitoring of d and q current
+  motor.monitor_variables = _MON_VEL; // set monitoring of d and q current
 
   // initialize motor
   motor.init();
 
   // align sensor and start FOC
   // motor.initFOC(0, Direction::CW);
-  // Serial.print("Aligning...");
+  Serial.print("Aligning...");
   motor.initFOC();
 
   // set the initial motor target
@@ -73,8 +81,8 @@ void setup() {
 
   // add target command T
   // command.add('T', doTarget, "target current"); // - if phase resistance defined
-  command.add('T', doTarget, "target voltage");
-  // command.add('T', doTarget, "target velocity");
+  // command.add('T', doTarget, "target voltage");
+  command.add('T', doTarget, "target velocity");
 
   Serial.println(F("Motor ready."));
   Serial.println(F("Set the target using serial terminal:"));
@@ -88,7 +96,7 @@ void loop() {
   // Motion control function
   motor.move();
 
-  motor.monitor();
+  // motor.monitor();
 
   // user communication
   command.run();
