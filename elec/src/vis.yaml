@@ -8,8 +8,8 @@
     y: 220
 07c83bd3-02d2-53f1-07f0-22b07549936a:
   position:
-    x: 375
-    y: 440
+    x: 380
+    y: 460
 08b1851d-c1cb-3d97-45a6-31619c31f5b9:
   position:
     x: 695
@@ -66,6 +66,10 @@
   position:
     x: 580
     y: 195
+2e03785a-8d91-db4e-8b6e-b75f5def61df:
+  position:
+    x: 200
+    y: 415
 3195e289-6525-5b7b-3898-4cd9c99c1254:
   position:
     x: 1085
@@ -90,6 +94,10 @@
   position:
     x: 480
     y: 180
+4849b443-1fd0-d535-8f75-2f46e41ddd9f:
+  position:
+    x: 130
+    y: 475
 49a89586-84ac-4049-41d6-67f01d7ea886:
   position:
     x: 495
@@ -102,6 +110,10 @@
   position:
     x: 1350
     y: 455
+5016584d-340c-5029-5cbb-88128aae6b10:
+  position:
+    x: 215
+    y: 280
 532f0495-9f38-f03e-26ad-13f00a4fefdd:
   position:
     x: 755
@@ -226,6 +238,14 @@ ac46ee0f-9a1f-013a-733c-02be5400059c:
   position:
     x: 810
     y: 485
+af0358f2-3c13-7f7f-bc8f-aa175320f974:
+  position:
+    x: 315
+    y: 710
+b235158a-ee97-ba7e-7c39-042177873ea8:
+  position:
+    x: 115
+    y: 290
 b2f53774-7c6f-5740-87e1-39846c93afc1:
   position:
     x: 315
@@ -252,8 +272,8 @@ bde5d1f2-df5c-81f3-2018-78a0bf32ebcd:
     y: 450
 buck.ato/Buck/BST_cap:
   position:
-    x: 390
-    y: 230
+    x: 505
+    y: 235
 buck.ato/Buck/FB_resistor_1:
   position:
     x: 570
@@ -264,24 +284,24 @@ buck.ato/Buck/FB_resistor_2:
     y: 480
 buck.ato/Buck/PGND_resistor:
   position:
-    x: 115
-    y: 480
+    x: 200
+    y: 500
 buck.ato/Buck/SS_cap:
   position:
     x: 265
     y: 595
 buck.ato/Buck/VCC_cap:
   position:
-    x: 125
-    y: 360
+    x: 75
+    y: 370
 buck.ato/Buck/VIN_cap_1:
   position:
     x: 175
     y: 185
 buck.ato/Buck/VIN_cap_2:
   position:
-    x: 90
-    y: 185
+    x: 60
+    y: 180
 buck.ato/Buck/VOUT_cap_1:
   position:
     x: 770
@@ -298,14 +318,22 @@ buck.ato/Buck/fb_vdiv/r_bt:
   position:
     x: 505
     y: 695
+buck.ato/Buck/fb_vdiv/r_top:
+  position:
+    x: 535
+    y: 595
 buck.ato/Buck/inductor:
   position:
-    x: 450
-    y: 330
+    x: 470
+    y: 435
 c1780593-6129-4932-6d36-64d93563c675:
   position:
     x: 910
     y: 685
+c57435b3-6a8e-ef77-c21a-34a82b37942e:
+  position:
+    x: 585
+    y: 835
 c5d83a21-221a-a0a9-f9d2-5ec8619fe128:
   position:
     x: 1215
@@ -374,6 +402,10 @@ current_sense.ato/CurrentSensor/shunt:
   position:
     x: 140
     y: 95
+d30e30bb-2126-46a9-a62f-3433f82b03d8:
+  position:
+    x: 670
+    y: 205
 d4ef45a3-4567-9944-6bcc-1b2d2dc563be:
   position:
     x: 615
@@ -394,6 +426,10 @@ da1a1199-736c-357a-ddad-044f699a161d:
   position:
     x: 1355
     y: 215
+da6cc408-8b18-26d0-6b47-1e44b6ba361b:
+  position:
+    x: 220
+    y: 320
 dc5ebe54-e055-401e-8838-5ffc58603956:
   position:
     x: 140

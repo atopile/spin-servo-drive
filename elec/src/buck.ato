@@ -15,35 +15,36 @@ module Buck:
     buck_converter = new MAX17504ATP
     VIN ~ buck_converter.VIN
     GND ~ buck_converter.PGND
+    SGND ~ buck_converter.SGND
 
     #LDO cap
     VCC_cap = new Capacitor
     VCC_cap.value = "2.2uF"
     # VCC_cap.package = "0805"
     buck_converter.VCC ~ VCC_cap.p1
-    buck_converter.SGND ~ VCC_cap.p2
+    SGND ~ VCC_cap.p2
 
     #input caps
     VIN_cap_1 = new Capacitor
     VIN_cap_1.value = "2.2uF"
     # VIN_cap_1.package = "0805"
     VIN ~ VIN_cap_1.p1
-    buck_converter.SGND ~ VIN_cap_1.p2
+    SGND ~ VIN_cap_1.p2
     VIN_cap_2 = new Capacitor
     VIN_cap_2.value = "2.2uF"
     # VIN_cap_2.package = "0805"
     VIN ~ VIN_cap_2.p1
-    buck_converter.SGND ~ VIN_cap_2.p2
+    SGND ~ VIN_cap_2.p2
 
     #soft start cap
     SS_cap = new Capacitor
     SS_cap.value = "12nF"
     # SS_cap.package = "0402"
     buck_converter.SS ~ SS_cap.p1
-    buck_converter.SGND ~ SS_cap.p2
+    SGND ~ SS_cap.p2
 
     #Connect mode to SGND for forced PWM mode
-    buck_converter.MODE ~ buck_converter.SGND
+    SGND ~ buck_converter.MODE
 
     inductor = new SMMS0420_6R8M
     buck_converter.LX ~ inductor.p1
@@ -79,7 +80,7 @@ module Buck:
 
     VOUT ~ fb_vdiv.input
     buck_converter.FB ~ fb_vdiv.output
-    buck_converter.SGND ~ fb_vdiv.gnd
+    SGND ~ fb_vdiv.gnd
 
     #Boost cap BST pin
     BST_cap = new Capacitor
@@ -100,7 +101,6 @@ module Buck:
 
     GND.visualizer.stub = True
     SGND.visualizer.stub = True
-    buck_converter.SGND.stub = True
     buck_converter.PGND.stub = True
 
     VOUT.visualizer.location = "right"
