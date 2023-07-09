@@ -23,8 +23,11 @@ module ServoDrive:
     # usbc
     usb = new Usbc
     usb_diode = new Diode
+    usb_diode.footprint = "lib:SOD-523_L1.2-W0.8-LS1.6-RD"
     r_cc1 = new Resistor
+    r_cc1.value = "5.1k"
     r_cc2 = new Resistor
+    r_cc2.value = "5.1k"
 
     v_5 ~ usb_diode.cathode
     usb_diode.anode ~ usb.vbus
