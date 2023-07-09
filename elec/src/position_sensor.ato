@@ -22,8 +22,11 @@ module PositionSensor:
     sensor.SDA ~ sda
     sensor.SCL ~ scl
 
-    #PGO to gnd
-    sensor.PGO ~ gnd
+    #PGO to gnd with 1k pulldown
+    pgo_resistor = new Resistor
+    pgo_resistor.value = "1k"
+    pgo_resistor.p1 ~ sensor.PGO
+    pgo_resistor.p2 ~ gnd
 
     sda_pullup = new Resistor
     scl_pullup = new Resistor
