@@ -294,6 +294,10 @@ buck.ato/Buck/buck_converter:
   position:
     x: 245
     y: 300
+buck.ato/Buck/fb_vdiv/r_bt:
+  position:
+    x: 505
+    y: 695
 buck.ato/Buck/inductor:
   position:
     x: 450

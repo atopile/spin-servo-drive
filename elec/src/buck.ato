@@ -2,6 +2,7 @@ import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 import SMMS0420_6R8M from "SMMS0420_6R8M.ato"
 import MAX17504ATP from "MAX17504ATP.ato"
+import Vdiv from "micro/vdiv.ato"
 #ato view --root-file buck.ato --root-node buck.ato/buck
 
 
@@ -9,6 +10,7 @@ module Buck:
     signal VIN
     signal VOUT
     signal GND
+    signal SGND
 
     buck_converter = new MAX17504ATP
     VIN ~ buck_converter.VIN
@@ -67,19 +69,17 @@ module Buck:
     # switching frequency = 500kHz
     # R1 = 89.25K
     # R2 = 8.83K
-    
-    FB_resistor_1 = new Resistor
-    FB_resistor_1.value = "89.25K"
-    # FB_resistor_1.package = "0402"
 
-    FB_resistor_2 = new Resistor
-    FB_resistor_2.value = "8.83K"
-    # FB_resistor_2.package = "0402"
+    fb_vdiv = new Vdiv
+    fb_vdiv.r_top.value = "89.25K"
+    # fb_vdiv.r_top..package = "0402"
 
-    buck_converter.FB ~ FB_resistor_1.p2
-    VOUT ~ FB_resistor_1.p1
-    buck_converter.FB ~ FB_resistor_2.p1
-    buck_converter.SGND ~ FB_resistor_2.p2
+    fb_vdiv.r_bt.value = "8.83K"
+    # fb_vdiv.r_bt.package = "0402"
+
+    VOUT ~ fb_vdiv.input
+    buck_converter.FB ~ fb_vdiv.output
+    buck_converter.SGND ~ fb_vdiv.gnd
 
     #Boost cap BST pin
     BST_cap = new Capacitor
@@ -99,6 +99,7 @@ module Buck:
     buck_converter.EN ~ VIN
 
     GND.visualizer.stub = True
+    SGND.visualizer.stub = True
     buck_converter.SGND.stub = True
     buck_converter.PGND.stub = True
 
