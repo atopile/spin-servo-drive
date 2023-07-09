@@ -1,0 +1,12 @@
+component  LP2985_33DBVR:
+    signal vin ~ pin p1
+    signal gnd ~ pin p2
+    signal en ~ pin p3
+    signal vout ~ pin p5
+    signal bypass ~ pin p4
+
+    vin.visualizer.location = "left"
+    gnd.visualizer.location = "left"
+    en.visualizer.location = "left"
+    vout.visualizer.location = "right"
+    bypass.visualizer.location = "right"

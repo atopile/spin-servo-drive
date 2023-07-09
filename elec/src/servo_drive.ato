@@ -12,9 +12,12 @@ import PinHeader25 from "pin_header.ato"
 import Usbc from "usbc.ato"
 
 import VoltageSense from "voltage_sense.ato"
+import MAX17504ATP from "MAX17504ATP.ato"
 
 module ServoDrive:
     signal v_5
+    signal v_10
+    signal vbatt
     signal gnd
 
     # Micro
@@ -35,6 +38,7 @@ module ServoDrive:
     usb.dp ~ micro_kit.micro.usb_dp
     usb.dm ~ micro_kit.micro.usb_dm
 
+    # CC1 and CC2 so it works with USB C to USB C cables
     usb.cc1 ~ r_cc1.p1
     usb.cc2 ~ r_cc1.p2
     r_cc1.p2 ~ gnd
@@ -45,6 +49,12 @@ module ServoDrive:
     # swd
     pin_header_swd = new PinHeader10
     # Still need to connect that puppy
+
+    #10V rail buck - powers gate drivers from VIN
+    buck = new MAX17504ATP
+    vbatt ~ buck.vin
+    buck.vout ~ v_10
+    buck.gnd ~ gnd
 
     power_stage = new PowerStage
 
@@ -91,9 +101,7 @@ module ServoDrive:
     power_stage.out_c ~ ps_inputs.p13
     power_stage.v_ref ~ ps_inputs.p14
     power_stage.half_v_ref ~ ps_inputs.p15
-    power_stage.v_fb_a ~ ps_inputs.p16
-    power_stage.v_fb_b ~ ps_inputs.p17
-    power_stage.v_fb_c ~ ps_inputs.p18
+    voltage_input_vdiv.out ~ ps_inputs.p16
     power_stage.i_fb_a ~ ps_inputs.p19
     power_stage.i_fb_b ~ ps_inputs.p20
     power_stage.i_fb_c ~ ps_inputs.p21
