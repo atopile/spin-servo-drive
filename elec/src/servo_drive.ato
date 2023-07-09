@@ -14,12 +14,22 @@ import Usbc from "usbc.ato"
 import VoltageSense from "voltage_sense.ato"
 import Buck from "buck.ato"
 import LDO from "ldo.ato"
+import XT30 from "xt30.ato"
+
+component PowerPad:
+    pin p1
+    footprint = "Connector_Wire:SolderWirePad_1x01_SMD_5x10mm"
 
 module ServoDrive:
     signal v_10
     signal v_3
     signal vbatt
     signal gnd
+
+    #Power input connector
+    xt30 = new XT30
+    vbatt ~ xt30.vin
+    gnd ~ xt30.gnd    
 
     # Micro
     micro_kit = new RP2040_kit
@@ -65,11 +75,17 @@ module ServoDrive:
 
     power_stage = new PowerStage
 
-    power_input = new PinHeader2
-    power_input.footprint = "Connector_AMASS:AMASS_XT30PW-M_1x02_P2.50mm_Horizontal"
+    power_stage.v_pwr ~ vbatt
+    power_stage.gnd ~ gnd
 
-    power_stage.v_pwr ~ power_input.p2
-    power_stage.gnd ~ power_input.p1
+    # phase outputs
+    pad_out_a = new PowerPad
+    pad_out_b = new PowerPad
+    pad_out_c = new PowerPad
+
+    power_stage.out_a ~ pad_out_a.p1
+    power_stage.out_b ~ pad_out_b.p1
+    power_stage.out_c ~ pad_out_c.p1
 
     # Power stage to micro
     micro_kit.micro.gpio0 ~ power_stage.high_in_a
@@ -89,27 +105,31 @@ module ServoDrive:
     voltage_input_vdiv.gnd ~ gnd
     voltage_input_vdiv.out ~ micro_kit.micro.gpio29_a3
 
-    # breaked out inputs
-    ps_inputs = new PinHeader25
+    #Power stage output
+    a
 
-    power_stage.v_pwr ~ ps_inputs.p1
-    power_stage.vcc_10v ~ ps_inputs.p2
-    power_stage.vcc_3v3 ~ ps_inputs.p3
-    power_stage.gnd ~ ps_inputs.p4
+    # # breaked out inputs
+    # ps_inputs = new PinHeader25
 
-    power_stage.high_in_a ~ ps_inputs.p5
-    power_stage.low_in_a ~ ps_inputs.p6
-    power_stage.high_in_b ~ ps_inputs.p7
-    power_stage.low_in_b ~ ps_inputs.p8
-    power_stage.high_in_c ~ ps_inputs.p9
-    power_stage.low_in_c ~ ps_inputs.p10
-    power_stage.out_a ~ ps_inputs.p11
-    power_stage.out_b ~ ps_inputs.p12
-    power_stage.out_c ~ ps_inputs.p13
-    power_stage.v_ref ~ ps_inputs.p14
-    power_stage.half_v_ref ~ ps_inputs.p15
-    voltage_input_vdiv.out ~ ps_inputs.p16
-    power_stage.i_fb_a ~ ps_inputs.p19
-    power_stage.i_fb_b ~ ps_inputs.p20
-    power_stage.i_fb_c ~ ps_inputs.p21
+
+    # power_stage.v_pwr ~ ps_inputs.p1
+    # power_stage.vcc_10v ~ ps_inputs.p2
+    # power_stage.vcc_3v3 ~ ps_inputs.p3
+    # power_stage.gnd ~ ps_inputs.p4
+
+    # power_stage.high_in_a ~ ps_inputs.p5
+    # power_stage.low_in_a ~ ps_inputs.p6
+    # power_stage.high_in_b ~ ps_inputs.p7
+    # power_stage.low_in_b ~ ps_inputs.p8
+    # power_stage.high_in_c ~ ps_inputs.p9
+    # power_stage.low_in_c ~ ps_inputs.p10
+    # power_stage.out_a ~ ps_inputs.p11
+    # power_stage.out_b ~ ps_inputs.p12
+    # power_stage.out_c ~ ps_inputs.p13
+    # power_stage.v_ref ~ ps_inputs.p14
+    # power_stage.half_v_ref ~ ps_inputs.p15
+    # voltage_input_vdiv.out ~ ps_inputs.p16
+    # power_stage.i_fb_a ~ ps_inputs.p19
+    # power_stage.i_fb_b ~ ps_inputs.p20
+    # power_stage.i_fb_c ~ ps_inputs.p21
 
