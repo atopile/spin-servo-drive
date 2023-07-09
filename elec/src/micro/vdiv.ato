@@ -1,4 +1,5 @@
-# this is a comment, it should be safely ignored
+#ato view --root-file micro/vdiv.ato --root-node micro/vdiv.ato/Vdiv
+
 import Resistor from "std/resistor.ato"
 
 module Vdiv:

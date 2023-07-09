@@ -228,8 +228,8 @@ INA225AIDGKR.ato/INA225AIDGKR:
     y: 135
 MAX17504ATP.ato/MAX17504ATP:
   position:
-    x: 100
-    y: 190
+    x: 115
+    y: 175
 NRF52832.ato/NRF52832:
   position:
     x: 550
@@ -518,6 +518,10 @@ half_bridge.ato/HalfBridge/ls_gate_r:
   position:
     x: 440
     y: 230
+micro/vdiv.ato/Vdiv/r_bt:
+  position:
+    x: 100
+    y: 190
 position_sensor.ato/PositionSensor/pgo_resistor:
   position:
     x: 440

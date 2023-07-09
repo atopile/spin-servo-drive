@@ -1,3 +1,5 @@
+#ato view --root-file servo_drive.ato --root-node servo_drive.ato/Servo_Drive
+
 import Resistor from "std/resistor.ato"
 
 import PowerStage from "power_stage.ato"
