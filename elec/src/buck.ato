@@ -5,7 +5,7 @@ import MAX17504ATP from "MAX17504ATP.ato"
 #ato view --root-file buck.ato --root-node buck.ato/buck
 
 
-module buck:
+module Buck:
     signal VIN
     signal VOUT
     signal GND

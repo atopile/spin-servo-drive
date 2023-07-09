@@ -6,6 +6,10 @@
   position:
     x: 887
     y: 220
+07c83bd3-02d2-53f1-07f0-22b07549936a:
+  position:
+    x: 375
+    y: 440
 08b1851d-c1cb-3d97-45a6-31619c31f5b9:
   position:
     x: 695
@@ -42,6 +46,10 @@
   position:
     x: 1135
     y: 980
+282608fe-e6b9-32ef-9102-de707771b7ea:
+  position:
+    x: 820
+    y: 480
 2a223f8c-0b20-dffe-97e3-4043ffe5faae:
   position:
     x: 155
@@ -78,6 +86,10 @@
   position:
     x: 895
     y: 215
+3e4e490a-f785-34b7-0615-533f99b29007:
+  position:
+    x: 480
+    y: 180
 49a89586-84ac-4049-41d6-67f01d7ea886:
   position:
     x: 495
@@ -238,51 +250,51 @@ bde5d1f2-df5c-81f3-2018-78a0bf32ebcd:
   position:
     x: 1210
     y: 450
-buck.ato/buck/BST_cap:
+buck.ato/Buck/BST_cap:
   position:
     x: 390
     y: 230
-buck.ato/buck/FB_resistor_1:
+buck.ato/Buck/FB_resistor_1:
   position:
     x: 570
     y: 385
-buck.ato/buck/FB_resistor_2:
+buck.ato/Buck/FB_resistor_2:
   position:
     x: 570
     y: 480
-buck.ato/buck/PGND_resistor:
+buck.ato/Buck/PGND_resistor:
   position:
-    x: 365
-    y: 535
-buck.ato/buck/SS_cap:
+    x: 115
+    y: 480
+buck.ato/Buck/SS_cap:
   position:
     x: 265
     y: 595
-buck.ato/buck/VCC_cap:
+buck.ato/Buck/VCC_cap:
   position:
     x: 125
     y: 360
-buck.ato/buck/VIN_cap_1:
+buck.ato/Buck/VIN_cap_1:
   position:
     x: 175
     y: 185
-buck.ato/buck/VIN_cap_2:
+buck.ato/Buck/VIN_cap_2:
   position:
     x: 90
     y: 185
-buck.ato/buck/VOUT_cap_1:
+buck.ato/Buck/VOUT_cap_1:
   position:
     x: 770
     y: 385
-buck.ato/buck/VOUT_cap_2:
+buck.ato/Buck/VOUT_cap_2:
   position:
     x: 675
     y: 385
-buck.ato/buck/buck_converter:
+buck.ato/Buck/buck_converter:
   position:
     x: 245
     y: 300
-buck.ato/buck/inductor:
+buck.ato/Buck/inductor:
   position:
     x: 450
     y: 330
@@ -362,6 +374,10 @@ d4ef45a3-4567-9944-6bcc-1b2d2dc563be:
   position:
     x: 615
     y: 730
+d6c26e4e-ec8b-4a2e-41ba-071327726691:
+  position:
+    x: 725
+    y: 480
 d88bcfe3-09fd-40a7-a128-f5e8b34520ef:
   position:
     x: 843
