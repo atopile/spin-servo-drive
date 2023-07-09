@@ -84,3 +84,7 @@ power_stage_debug.ato/PowerStageDebug/power_stage/half_bridge_b/input_bypass: C1
 power_stage_debug.ato/PowerStageDebug/power_stage/c_in_1: C18
 power_stage_debug.ato/PowerStageDebug/power_stage/c_in_2: C19
 power_stage_debug.ato/PowerStageDebug/power_stage/c_in_3: C20
+power_stage_debug.ato/PowerStageDebug/power_stage/ref/half_ref/c_filter: C19
+power_stage_debug.ato/PowerStageDebug/power_stage/voltage_sense_a/vdiv/c_filter: C20
+power_stage_debug.ato/PowerStageDebug/power_stage/voltage_sense_b/vdiv/c_filter: C21
+power_stage_debug.ato/PowerStageDebug/power_stage/voltage_sense_c/vdiv/c_filter: C22

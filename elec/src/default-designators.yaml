@@ -55,3 +55,11 @@ power_stage.ato/PowerStage/half_bridge_b/c_boot: C14
 power_stage.ato/PowerStage/current_sense_a/shunt: R29
 power_stage.ato/PowerStage/half_bridge_b/hs_gate_ilim_r: R30
 power_stage.ato/PowerStage/current_sense_a/amp: U7
+power_stage.ato/PowerStage/ref/half_ref/c_filter: C15
+power_stage.ato/PowerStage/c_in_1: C16
+power_stage.ato/PowerStage/voltage_sense_a/vdiv/c_filter: C17
+power_stage.ato/PowerStage/half_bridge_a/input_bypass: C18
+power_stage.ato/PowerStage/half_bridge_c/input_bypass: C19
+power_stage.ato/PowerStage/voltage_sense_b/vdiv/c_filter: C20
+power_stage.ato/PowerStage/voltage_sense_c/vdiv/c_filter: C21
+power_stage.ato/PowerStage/half_bridge_b/input_bypass: C22

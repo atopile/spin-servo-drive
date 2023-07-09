@@ -1,23 +1,123 @@
+02a0d47c-3e54-c19c-169a-35ac01d91d5b:
+  position:
+    x: 1425
+    y: 810
 0439dbbe-d6bf-4e15-948f-4308841950f2:
   position:
     x: 887
     y: 220
+08b1851d-c1cb-3d97-45a6-31619c31f5b9:
+  position:
+    x: 695
+    y: 690
+09a3d01f-5900-526d-db3b-c2f87d62394a:
+  position:
+    x: 1260
+    y: 360
+1508be08-e85c-f7c2-ce10-b804ca10d0db:
+  position:
+    x: 145
+    y: 590
 15cfddf2-7d93-4f88-8a2b-c23b976134b8:
   position:
     x: 1535
     y: 790
+18d7eb47-f2d3-4afe-88a6-0d06b9909d24:
+  position:
+    x: 465
+    y: 660
+1d607a8b-59c8-92c1-8cec-daf1ec5167d6:
+  position:
+    x: 985
+    y: 185
+21de211f-3d22-8763-fae6-0bc2c81a70c5:
+  position:
+    x: 1120
+    y: 360
+23c04378-1b19-2131-9a4c-ed902ea27b2f:
+  position:
+    x: 1135
+    y: 980
+2a223f8c-0b20-dffe-97e3-4043ffe5faae:
+  position:
+    x: 155
+    y: 740
 2ab8b428-ad32-e271-6cc9-009d87c4e17c:
   position:
     x: 710
     y: 575
+2acacf05-8e2e-2408-63f6-2c1532f5675f:
+  position:
+    x: 1320
+    y: 585
+2de20764-a3d2-9fa4-098d-79db65bd6056:
+  position:
+    x: 580
+    y: 195
+3195e289-6525-5b7b-3898-4cd9c99c1254:
+  position:
+    x: 1085
+    y: 385
+31d89c2e-6ef6-b5dc-2637-ec0b0d4857d1:
+  position:
+    x: 1200
+    y: 590
+327db36f-5579-6fde-2454-3ed535c7966d:
+  position:
+    x: 565
+    y: 260
+32bd0733-c938-2f68-6204-ebcd896d3da2:
+  position:
+    x: 910
+    y: 355
+32dd1f78-2437-c0f6-9480-074d360a18d0:
+  position:
+    x: 895
+    y: 215
 49a89586-84ac-4049-41d6-67f01d7ea886:
   position:
     x: 495
     y: 885
+4fb8393b-8f61-b253-75de-1b5c65fbb4a9:
+  position:
+    x: 1350
+    y: 455
+584c3e8c-5441-44a1-33a9-2beac067e9e2:
+  position:
+    x: 1060
+    y: 360
+5a88937d-9db2-b473-0150-367a6e12a1f8:
+  position:
+    x: 445
+    y: 170
+5b7523c4-e19c-0318-3961-b703748e8aac:
+  position:
+    x: 1420
+    y: 655
+5febd2ec-27f8-4e51-2004-f39626010471:
+  position:
+    x: 480
+    y: 530
+602d783a-bbc7-20b5-976f-b447fa72e88b:
+  position:
+    x: 1375
+    y: 100
+63f29521-2785-c6f0-019e-72734c5ef876:
+  position:
+    x: 260
+    y: 880
+6458538c-91bd-e770-392f-af15ff9445cd:
+  position:
+    x: 1110
+    y: 215
 6a3a1abc-7fa1-18ed-e8d7-dd23375b9db8:
   position:
     x: 240
     y: 835
+6b2abdc9-123d-ae3e-ec23-ec9fec795ec3:
+  position:
+    x: 250
+    y: 355
 6d845515-8fbf-1436-f4e2-7441458acd1a:
   position:
     x: 275
@@ -30,6 +130,34 @@
   position:
     x: 620
     y: 760
+7dbee08a-8de0-da01-c271-49ba4473fdf4:
+  position:
+    x: 935
+    y: 250
+7f7f641e-0d80-d490-90ba-abcf83d186a7:
+  position:
+    x: 540
+    y: 295
+81b23f57-d706-b5fa-3597-a8da20cd1f92:
+  position:
+    x: 990
+    y: 445
+8478ddb3-2179-5674-8248-fc7dea4f9e74:
+  position:
+    x: 1100
+    y: 455
+8aa6a40b-ff08-0c08-fd4b-2b6247c12b3d:
+  position:
+    x: 485
+    y: 115
+8bc0637b-401c-0b86-6d39-48fad4974061:
+  position:
+    x: 1075
+    y: 585
+961dc597-dde9-d3ca-1f32-fed982af53cb:
+  position:
+    x: 475
+    y: 210
 98cdc68d-776d-c0b5-071f-ad508728ab19:
   position:
     x: 240
@@ -38,6 +166,14 @@
   position:
     x: 415
     y: 615
+9d315788-0944-c359-3b81-34150c06418b:
+  position:
+    x: 695
+    y: 880
+9e8db9a4-09a2-3328-7c5a-5df72a188951:
+  position:
+    x: 305
+    y: 530
 INA225AIDGKR.ato/INA225AIDGKR:
   position:
     x: 195
@@ -50,6 +186,10 @@ aad96d27-de4d-4c15-b87d-6289bbee50f1:
   position:
     x: 238
     y: 270
+b4d8f915-6c6c-2906-1f07-2a1dfcb0ff82:
+  position:
+    x: 225
+    y: 700
 b4e3afe6-9947-81df-b1fa-b11c208ea4d1:
   position:
     x: 415
@@ -62,6 +202,30 @@ bc1dda76-244d-48f5-8171-a94e915d4783:
   position:
     x: 307
     y: 285
+bde5d1f2-df5c-81f3-2018-78a0bf32ebcd:
+  position:
+    x: 1210
+    y: 450
+c1780593-6129-4932-6d36-64d93563c675:
+  position:
+    x: 910
+    y: 685
+c5d83a21-221a-a0a9-f9d2-5ec8619fe128:
+  position:
+    x: 1215
+    y: 210
+c62d273f-2f41-c83f-ce02-d7d037ee64fb:
+  position:
+    x: 1085
+    y: 90
+c9f14677-1e41-ddfa-2ec5-e5d2679b8e23:
+  position:
+    x: 505
+    y: 195
+cb978a01-9efb-40a4-da92-33b5cc576b23:
+  position:
+    x: 260
+    y: 660
 current_sense.ato/CurrentSensor/amp:
   position:
     x: 280
@@ -118,10 +282,46 @@ d88bcfe3-09fd-40a7-a128-f5e8b34520ef:
   position:
     x: 843
     y: 158
+d8b12309-95fb-780b-ed31-0507dcfd2fd0:
+  position:
+    x: 960
+    y: 575
+da1a1199-736c-357a-ddad-044f699a161d:
+  position:
+    x: 1355
+    y: 215
 dc5ebe54-e055-401e-8838-5ffc58603956:
   position:
     x: 140
     y: -48
+e09339fb-dce6-6ace-745d-f5e36c7d53d9:
+  position:
+    x: 1465
+    y: 600
+e19d8012-8b7c-54db-1310-3f008b3613e1:
+  position:
+    x: 1460
+    y: 445
+e874101d-c2e9-30aa-4662-ce93cec42c70:
+  position:
+    x: 245
+    y: 200
+ea820ca6-f3da-dc9c-5296-66ab36732bcb:
+  position:
+    x: 1075
+    y: 210
+eb0680ef-e17a-1c67-81e9-1a10d7cb75df:
+  position:
+    x: 1380
+    y: 370
+ed63d897-2e4b-4c78-b958-289491654571:
+  position:
+    x: 195
+    y: 235
+f094db1a-4e55-930b-d64c-9f67d794a891:
+  position:
+    x: 690
+    y: 870
 half_bridge.ato/HalfBridge/c_boot:
   position:
     x: 405
@@ -214,6 +414,98 @@ power_stage.ato/PowerStage/half_bridge_a/ls_gate_ilim_r:
   position:
     x: 250
     y: 190
+rp2040.ato/Micro/boot_sw:
+  position:
+    x: 1070
+    y: 860
+rp2040.ato/Micro/boot_vdiv/c_filter:
+  position:
+    x: 530
+    y: 870
+rp2040.ato/Micro/boot_vdiv/r_bt:
+  position:
+    x: 870
+    y: 900
+rp2040.ato/Micro/boot_vdiv/r_top:
+  position:
+    x: 865
+    y: 765
+rp2040.ato/Micro/c_bp_1v_100nf_1:
+  position:
+    x: 1060
+    y: 240
+rp2040.ato/Micro/c_bp_1v_100nf_2:
+  position:
+    x: 1190
+    y: 245
+rp2040.ato/Micro/c_bp_1v_1uf:
+  position:
+    x: 1335
+    y: 240
+rp2040.ato/Micro/c_bp_3v_100nf_1:
+  position:
+    x: 905
+    y: 475
+rp2040.ato/Micro/c_bp_3v_100nf_2:
+  position:
+    x: 1025
+    y: 480
+rp2040.ato/Micro/c_bp_3v_100nf_3:
+  position:
+    x: 1150
+    y: 480
+rp2040.ato/Micro/c_bp_3v_100nf_4:
+  position:
+    x: 1275
+    y: 480
+rp2040.ato/Micro/c_bp_3v_100nf_5:
+  position:
+    x: 1405
+    y: 480
+rp2040.ato/Micro/c_bp_3v_1uf:
+  position:
+    x: 1375
+    y: 690
+rp2040.ato/Micro/c_osc_1:
+  position:
+    x: 135
+    y: 585
+rp2040.ato/Micro/c_osc_2:
+  position:
+    x: 290
+    y: 555
+rp2040.ato/Micro/flash:
+  position:
+    x: 245
+    y: 740
+rp2040.ato/Micro/micro:
+  position:
+    x: 620
+    y: 255
+rp2040.ato/Micro/osc:
+  position:
+    x: 130
+    y: 415
+rp2040.ato/Micro/r_osc:
+  position:
+    x: 310
+    y: 405
+rp2040.ato/Micro/r_pullup_reset:
+  position:
+    x: 430
+    y: 310
+rp2040.ato/Micro/r_usb_d_minus:
+  position:
+    x: 215
+    y: 240
+rp2040.ato/Micro/r_usb_d_plus:
+  position:
+    x: 415
+    y: 565
+rp2040.ato/Micro/reset_sw:
+  position:
+    x: 425
+    y: 435
 servo_drive.ato/ServoDrive/current_sensor_A/config1:
   position:
     x: 910
@@ -290,6 +582,14 @@ servo_drive.ato/ServoDrive/half_bridge_C/ls_fet:
   position:
     x: 320
     y: 755
+servo_drive.ato/ServoDrive/micro_kit/micro:
+  position:
+    x: 450
+    y: 250
+servo_drive.ato/ServoDrive/ps_inputs:
+  position:
+    x: 845
+    y: 450
 vdiv.ato/Vdiv/r_bt:
   position:
     x: 100

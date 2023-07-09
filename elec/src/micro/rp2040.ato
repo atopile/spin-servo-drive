@@ -1,0 +1,274 @@
+import Oscillator from "micro/oscillator.ato"
+import Resistor from "std/resistor.ato"
+import Capacitor from "std/capacitor.ato"
+# Switch
+import TS_1101_C_W from "micro/TS_1101_C_W.ato"
+# Flash
+import W25Q128JV from "micro/W25Q128JV.ato"
+
+import Vdiv from "micro/vdiv.ato"
+
+component RP2040:
+    signal iovdd ~ pin p1
+    iovdd ~ pin p10
+    iovdd ~ pin p22
+    iovdd ~ pin p33
+    iovdd ~ pin p42
+    iovdd ~ pin p49
+
+    signal usb_vdd ~ pin p48
+    signal dvdd ~ pin p23
+    dvdd ~ pin p50
+
+    signal testen ~ pin p19
+
+    signal xin ~ pin p20
+    signal xout ~ pin p21
+
+    signal swclk ~ pin p24
+    signal swdio ~ pin p25
+
+    signal run ~ pin p26
+
+    signal adc_avdd ~ pin p43
+
+    signal vreg_vin ~ pin p44
+    signal vreg_vout ~ pin p45
+
+    signal usb_dm ~ pin p46
+    signal usb_dp ~ pin p47
+
+    signal qspi_sd3 ~ pin p51
+    signal qspi_sclk ~ pin p52
+    signal qspi_sd0 ~ pin p53
+    signal qspi_sd2 ~ pin p54
+    signal qspi_sd1 ~ pin p55
+    signal qspi_ss_n ~ pin p56
+
+    signal gpio0 ~ pin p2
+    signal gpio1 ~ pin p3
+    signal gpio2 ~ pin p4
+    signal gpio3 ~ pin p5
+    signal gpio4 ~ pin p6
+    signal gpio5 ~ pin p7
+    signal gpio6 ~ pin p8
+    signal gpio7 ~ pin p9
+    signal gpio8 ~ pin p11
+    signal gpio9 ~ pin p12
+    signal gpio10 ~ pin p13
+    signal gpio11 ~ pin p14
+    signal gpio12 ~ pin p15
+    signal gpio13 ~ pin p16
+    signal gpio14 ~ pin p17
+    signal gpio15 ~ pin p18
+    signal gpio16 ~ pin p27
+    signal gpio17 ~ pin p28
+    signal gpio18 ~ pin p29
+    signal gpio19 ~ pin p30
+    signal gpio20 ~ pin p31
+    signal gpio21 ~ pin p32
+    signal gpio22 ~ pin p34
+    signal gpio23 ~ pin p35
+    signal gpio24 ~ pin p36
+    signal gpio25 ~ pin p37
+    signal gpio26_a0 ~ pin p38
+    signal gpio27_a1 ~ pin p39
+    signal gpio28_a2 ~ pin p40
+    signal gpio29_a3 ~ pin p41
+
+    signal gnd ~ pin p0
+
+    iovdd.visualizer.location = "top"
+
+    usb_vdd.visualizer.location = "top"
+    dvdd.visualizer.location = "top"
+
+    testen.visualizer.location = "left"
+
+    xin.visualizer.location = "left"
+    xout.visualizer.location = "left"
+
+    swclk.visualizer.location = "left"
+    swdio.visualizer.location = "left"
+
+    run.visualizer.location = "left"
+
+    adc_avdd.visualizer.location = "left"
+
+    usb_dm.visualizer.location = "left"
+    usb_dp.visualizer.location = "left"
+
+    qspi_sd3.visualizer.location = "left"
+    qspi_sclk.visualizer.location = "left"
+    qspi_sd0.visualizer.location = "left"
+    qspi_sd2.visualizer.location = "left"
+    qspi_sd1.visualizer.location = "left"
+    qspi_ss_n.visualizer.location = "left"
+
+    gpio0.visualizer.location = "right"
+    gpio1.visualizer.location = "right"
+    gpio2.visualizer.location = "right"
+    gpio3.visualizer.location = "right"
+    gpio4.visualizer.location = "right"
+    gpio5.visualizer.location = "right"
+    gpio6.visualizer.location = "right"
+    gpio7.visualizer.location = "right"
+    gpio8.visualizer.location = "right"
+    gpio9.visualizer.location = "right"
+    gpio10.visualizer.location = "right"
+    gpio11.visualizer.location = "right"
+    gpio12.visualizer.location = "right"
+    gpio13.visualizer.location = "right"
+    gpio14.visualizer.location = "right"
+    gpio15.visualizer.location = "right"
+    gpio16.visualizer.location = "right"
+    gpio17.visualizer.location = "right"
+    gpio18.visualizer.location = "right"
+    gpio19.visualizer.location = "right"
+    gpio20.visualizer.location = "right"
+    gpio21.visualizer.location = "right"
+    gpio22.visualizer.location = "right"
+    gpio23.visualizer.location = "right"
+    gpio24.visualizer.location = "right"
+    gpio25.visualizer.location = "right"
+    gpio26_a1.visualizer.location = "right"
+    gpio27_a2.visualizer.location = "right"
+    gpio28_a3.visualizer.location = "right"
+    gpio29_a4.visualizer.location = "right"
+
+    gnd.visualizer.location = "bottom"
+
+    designator_prefix = "U"
+
+module RP2040_kit:
+    signal v_3_3
+    signal v_1
+    signal gnd
+
+    signal usb_dp
+    signal usb_dm
+
+    v_3_3.visualizer.stub = True
+    v_1.visualizer.stub = True
+    gnd.visualizer.stub = True
+
+    usb_dp.visualizer.stub = True
+    usb_dm.visualizer.stub = True
+
+    # Microcontroller
+    micro = new RP2040
+
+    # Connect vcc
+    micro.usb_vdd ~ v_3_3
+    micro.adc_avdd ~ v_3_3
+    micro.vreg_vin ~ v_3_3
+
+    micro.dvdd ~ v_1
+    micro.vreg_vout ~ micro.dvdd
+
+    # Connect gnd
+    micro.gnd ~ gnd
+
+    micro.testen ~ gnd
+
+    # Bypass capacitors
+    c_bp_3v_100nf_1 = new Capacitor
+    c_bp_3v_100nf_2 = new Capacitor
+    c_bp_3v_100nf_3 = new Capacitor
+    c_bp_3v_100nf_4 = new Capacitor
+    c_bp_3v_100nf_5 = new Capacitor
+
+    c_bp_3v_1uf = new Capacitor
+
+    c_bp_3v_100nf_1.p1 ~ v_3_3
+    c_bp_3v_100nf_2.p1 ~ v_3_3
+    c_bp_3v_100nf_3.p1 ~ v_3_3
+    c_bp_3v_100nf_4.p1 ~ v_3_3
+    c_bp_3v_100nf_5.p1 ~ v_3_3
+
+    c_bp_3v_1uf.p1 ~ v_3_3
+
+    c_bp_3v_100nf_1.p2 ~ gnd
+    c_bp_3v_100nf_2.p2 ~ gnd
+    c_bp_3v_100nf_3.p2 ~ gnd
+    c_bp_3v_100nf_4.p2 ~ gnd
+    c_bp_3v_100nf_5.p2 ~ gnd
+
+    c_bp_3v_1uf.p2 ~ gnd
+
+    c_bp_1v_100nf_1 = new Capacitor
+    c_bp_1v_100nf_2 = new Capacitor
+
+    c_bp_1v_1uf = new Capacitor
+
+    c_bp_1v_100nf_1.p1 ~ v_1
+    c_bp_1v_100nf_2.p1 ~ v_1
+
+    c_bp_1v_1uf.p1 ~ v_1
+
+    c_bp_1v_100nf_1.p2 ~ gnd
+    c_bp_1v_100nf_2.p2 ~ gnd
+
+    c_bp_1v_1uf.p2 ~ gnd
+
+    # Oscillator
+    osc = new Oscillator
+
+    c_osc_1 = new Capacitor
+    c_osc_2 = new Capacitor
+    r_osc = new Resistor
+
+    micro.xin ~ osc.in
+    micro.xout ~ r_osc.p1
+    r_osc.p2 ~ osc.out
+    osc.gnd ~ gnd
+
+    osc.in ~ c_osc_1.p1
+    osc.out ~ c_osc_2.p1
+
+    c_osc_1.p2 ~ gnd
+    c_osc_2.p2 ~ gnd
+
+    # Flash
+    flash = new W25Q128JV
+
+    flash.vcc ~ v_3_3
+    flash.clk ~ micro.qspi_sclk
+    flash.ncs ~ micro.qspi_ss_n
+    flash.di ~ micro.qspi_sd0
+    flash.do ~ micro.qspi_sd1
+    flash.io2 ~ micro.qspi_sd2
+    flash.io3 ~ micro.qspi_sd3
+    flash.gnd ~ gnd
+
+    # usb
+    r_usb_d_plus = new Resistor
+    r_usb_d_minus = new Resistor
+
+    micro.usb_dp ~ r_usb_d_plus.p1
+    usb_dp ~ r_usb_d_plus.p2
+    micro.usb_dm ~ r_usb_d_minus.p1
+    usb_dm ~ r_usb_d_minus.p2
+
+    # Reset
+    r_pullup_reset = new Resistor
+    reset_sw = new TS_1101_C_W
+
+    v_3_3 ~ r_pullup_reset.p1
+    micro.run ~ r_pullup_reset.p2
+    micro.run ~ reset_sw.p1
+    gnd ~ reset_sw.p2
+
+    # Boot
+    boot_sw = new TS_1101_C_W
+
+    boot_vdiv = new Vdiv
+    boot_vdiv.r_top.value = "10k"
+    boot_vdiv.r_bt.value = "1k"
+
+    v_3_3 ~ boot_vdiv.input
+    micro.qspi_ss_n ~ boot_vdiv.output
+    gnd ~ boot_vdiv.gnd
+
+    boot_sw.p1 ~ boot_vdiv.output
+    boot_sw.p2 ~ gnd

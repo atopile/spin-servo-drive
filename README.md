@@ -12,4 +12,4 @@ For now, manufacturing is with JLCPCB.
 
 1. Install with with `pip install easyeda2kicad`
 2. `cd <here>`
-3. Add a component with: `easyeda2kicad --full --lcsc_id=C77540 --output elec/libs/servo_drive_lib`
+3. Add a component with: `easyeda2kicad --full --lcsc_id=C77540 --output elec/lib/lib`
