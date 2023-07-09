@@ -173,12 +173,18 @@ module RP2040_kit:
 
     # Bypass capacitors
     c_bp_3v_100nf_1 = new Capacitor
+    c_bp_3v_100nf_1.value = "100nF"
     c_bp_3v_100nf_2 = new Capacitor
+    c_bp_3v_100nf_2.value = "100nF"
     c_bp_3v_100nf_3 = new Capacitor
+    c_bp_3v_100nf_3.value = "100nF"
     c_bp_3v_100nf_4 = new Capacitor
+    c_bp_3v_100nf_4.value = "100nF"
     c_bp_3v_100nf_5 = new Capacitor
+    c_bp_3v_100nf_5.value = "100nF"
 
     c_bp_3v_1uf = new Capacitor
+    c_bp_3v_1uf.value = "1uF"
 
     c_bp_3v_100nf_1.p1 ~ v_3_3
     c_bp_3v_100nf_2.p1 ~ v_3_3
@@ -197,9 +203,12 @@ module RP2040_kit:
     c_bp_3v_1uf.p2 ~ gnd
 
     c_bp_1v_100nf_1 = new Capacitor
+    c_bp_1v_100nf_1.value = "100nF"
     c_bp_1v_100nf_2 = new Capacitor
+    c_bp_1v_100nf_2.value = "100nF"
 
     c_bp_1v_1uf = new Capacitor
+    c_bp_1v_1uf.value = "1uF"
 
     c_bp_1v_100nf_1.p1 ~ v_1
     c_bp_1v_100nf_2.p1 ~ v_1
@@ -215,8 +224,11 @@ module RP2040_kit:
     osc = new Oscillator
 
     c_osc_1 = new Capacitor
+    c_osc_1.value = "20pF"
     c_osc_2 = new Capacitor
+    c_osc_2.value = "20pF"
     r_osc = new Resistor
+    r_osc.value = "1k"
 
     micro.xin ~ osc.in
     micro.xout ~ r_osc.p1
@@ -243,7 +255,9 @@ module RP2040_kit:
 
     # usb
     r_usb_d_plus = new Resistor
+    r_usb_d_plus.value = "27R"
     r_usb_d_minus = new Resistor
+    r_usb_d_minus.value = "27R"
 
     micro.usb_dp ~ r_usb_d_plus.p1
     usb_dp ~ r_usb_d_plus.p2
@@ -252,6 +266,7 @@ module RP2040_kit:
 
     # Reset
     r_pullup_reset = new Resistor
+    r_pullup_reset.value = "1k"
     reset_sw = new TS_1101_C_W
 
     v_3_3 ~ r_pullup_reset.p1
