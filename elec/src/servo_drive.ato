@@ -59,10 +59,6 @@ module ServoDrive:
 
     usb.gnd ~ gnd
 
-    # swd
-    pin_header_swd = new PinHeader10
-    # Still need to connect that puppy
-
     #10V rail buck - powers gate drivers from VIN
     buck = new Buck
     vbatt ~ buck.VIN
