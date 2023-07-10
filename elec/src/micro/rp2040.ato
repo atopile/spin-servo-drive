@@ -144,14 +144,12 @@ component RP2040:
 
 module RP2040_kit:
     signal v_3_3
-    signal v_1
     signal gnd
 
     signal usb_dp
     signal usb_dm
 
     v_3_3.visualizer.stub = True
-    v_1.visualizer.stub = True
     gnd.visualizer.stub = True
 
     usb_dp.visualizer.stub = True
@@ -165,12 +163,8 @@ module RP2040_kit:
     micro.adc_avdd ~ v_3_3
     micro.vreg_vin ~ v_3_3
 
-    micro.dvdd ~ v_1
-    micro.vreg_vout ~ micro.dvdd
-
     # Connect gnd
     micro.gnd ~ gnd
-
     micro.testen ~ gnd
 
     # Bypass capacitors
@@ -204,6 +198,9 @@ module RP2040_kit:
 
     c_bp_3v_1uf.p2 ~ gnd
 
+    # 1V reg + bypass caps on DVDD
+    micro.vreg_vout ~ micro.dvdd
+
     c_bp_1v_100nf_1 = new Capacitor
     c_bp_1v_100nf_1.value = "100nF"
     c_bp_1v_100nf_2 = new Capacitor
@@ -212,10 +209,10 @@ module RP2040_kit:
     c_bp_1v_1uf = new Capacitor
     c_bp_1v_1uf.value = "1uF"
 
-    c_bp_1v_100nf_1.p1 ~ v_1
-    c_bp_1v_100nf_2.p1 ~ v_1
+    c_bp_1v_100nf_1.p1 ~ micro.dvdd
+    c_bp_1v_100nf_2.p1 ~ micro.dvdd
 
-    c_bp_1v_1uf.p1 ~ v_1
+    c_bp_1v_1uf.p1 ~ micro.dvdd
 
     c_bp_1v_100nf_1.p2 ~ gnd
     c_bp_1v_100nf_2.p2 ~ gnd
