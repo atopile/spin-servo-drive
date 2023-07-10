@@ -9,7 +9,7 @@ build-elec:
     pull_policy: if-not-present
   script:
     - mkdir -p build/src
-    - cp elec/layout/*.kicad_pcb build/src/
+    - cp elec/layouts/default/*.kicad_pcb build/src/
     - sed -i "s/"'{{GITHASH}}'"/$CI_COMMIT_SHORT_SHA/g" build/src/*.kicad_pcb
     - mkdir -p build/gerbers
     - kicad-cli pcb export gerbers -o build/gerbers/ build/src/*.kicad_pcb
