@@ -39,7 +39,7 @@ component Usbc:
     shell ~ pin p3
     shell ~ pin p4
 
-    footprint = "bike_light_lib:USB-C-SMD_KH-TYPE-C-16P"
+    footprint = "lib:USB-C-SMD_KH-TYPE-C-16P"
     designator_prefix = "J"
 
     vbus.visualizer.location = "top"
