@@ -98,9 +98,9 @@ module PowerStage:
     current_sense_b.gnd ~ gnd
     current_sense_c.gnd ~ gnd
 
-    current_sense_a.vcc ~ v_pwr
-    current_sense_b.vcc ~ v_pwr
-    current_sense_c.vcc ~ v_pwr
+    current_sense_a.vcc ~ vcc_3v3
+    current_sense_b.vcc ~ vcc_3v3
+    current_sense_c.vcc ~ vcc_3v3
     
 
     # voltage sense

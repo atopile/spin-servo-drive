@@ -6,7 +6,7 @@ import TS_1101_C_W from "micro/TS_1101_C_W.ato"
 # Flash
 import W25Q128JV from "micro/W25Q128JV.ato"
 
-import Vdiv from "micro/vdiv.ato"
+import Vdiv from "vdiv.ato"
 
 component RP2040:
     signal iovdd ~ pin p1

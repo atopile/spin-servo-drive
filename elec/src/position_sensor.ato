@@ -9,7 +9,7 @@ module PositionSensor:
 
     sensor = new AS5600
     signal vin
-    signal gnd  
+    signal gnd
     signal scl
     signal sda
 

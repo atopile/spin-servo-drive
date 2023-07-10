@@ -228,8 +228,8 @@ INA225AIDGKR.ato/INA225AIDGKR:
     y: 135
 MAX17504ATP.ato/MAX17504ATP:
   position:
-    x: 100
-    y: 190
+    x: 115
+    y: 175
 NRF52832.ato/NRF52832:
   position:
     x: 550
@@ -473,7 +473,7 @@ f094db1a-4e55-930b-d64c-9f67d794a891:
 half_bridge.ato/HalfBridge/c_boot:
   position:
     x: 405
-    y: 320
+    y: 520
 half_bridge.ato/HalfBridge/gate_driver:
   position:
     x: 130
@@ -484,40 +484,44 @@ half_bridge.ato/HalfBridge/hs_bleed_r:
     y: 310
 half_bridge.ato/HalfBridge/hs_fet:
   position:
-    x: 765
-    y: 165
+    x: 800
+    y: 300
 half_bridge.ato/HalfBridge/hs_gate_bleed_r:
   position:
-    x: 645
-    y: 270
+    x: 705
+    y: 405
 half_bridge.ato/HalfBridge/hs_gate_ilim_r:
   position:
-    x: 535
-    y: 180
+    x: 560
+    y: 300
 half_bridge.ato/HalfBridge/input_bypass:
   position:
-    x: 265
-    y: 100
+    x: 300
+    y: 515
 half_bridge.ato/HalfBridge/ls_bleed_r:
   position:
     x: 510
     y: 495
 half_bridge.ato/HalfBridge/ls_fet:
   position:
-    x: 765
-    y: 575
+    x: 805
+    y: 485
 half_bridge.ato/HalfBridge/ls_gate_bleed_r:
   position:
     x: 625
     y: 645
 half_bridge.ato/HalfBridge/ls_gate_ilim_r:
   position:
-    x: 600
-    y: 460
+    x: 585
+    y: 485
 half_bridge.ato/HalfBridge/ls_gate_r:
   position:
     x: 440
     y: 230
+vdiv.ato/Vdiv/r_bt:
+  position:
+    x: 100
+    y: 190
 position_sensor.ato/PositionSensor/pgo_resistor:
   position:
     x: 440
@@ -762,10 +766,6 @@ servo_drive.ato/ServoDrive/ps_inputs:
   position:
     x: 845
     y: 450
-vdiv.ato/Vdiv/r_bt:
-  position:
-    x: 100
-    y: 250
 voltage_reference.ato/VoltageReference/buffer:
   position:
     x: 860

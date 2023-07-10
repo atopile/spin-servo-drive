@@ -1,5 +1,4 @@
 component AS5600:
-
     signal v_5 ~ pin p1
     signal v_3 ~ pin p2
     signal OUT ~ pin p3
@@ -8,7 +7,6 @@ component AS5600:
     signal SCL ~ pin p7
     signal SDA ~ pin p6
     signal PGO ~ pin p5
-
 
     footprint = "lib:SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL"
 
