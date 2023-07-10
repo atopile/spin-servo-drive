@@ -78,6 +78,8 @@ component RP2040:
 
     signal gnd ~ pin p0
 
+    footprint = "lib:LQFN-56_L7.0-W7.0-P0.4-EP"
+
     iovdd.visualizer.location = "top"
 
     usb_vdd.visualizer.location = "top"
