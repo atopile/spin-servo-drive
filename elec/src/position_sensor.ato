@@ -6,7 +6,6 @@ import AS5600 from "as5600.ato"
 
 
 module PositionSensor:
-
     sensor = new AS5600
     signal vin
     signal gnd
@@ -39,16 +38,16 @@ module PositionSensor:
     sda_pullup.value = "10k"
     scl_pullup.value = "10k"
 
-    3v3_cap = new Capacitor
-    5v_cap = new Capacitor
+    cap_3v3 = new Capacitor
+    cap_5v = new Capacitor
 
-    3v3_cap.p1 ~ vin
-    3v3_cap.p2 ~ gnd
-    5v_cap.p1 ~ vin
-    5v_cap.p2 ~ gnd
+    cap_3v3.p1 ~ vin
+    cap_3v3.p2 ~ gnd
+    cap_5v.p1 ~ vin
+    cap_5v.p2 ~ gnd
 
-    3v3_cap.value = "1uF"
-    5v_cap.value = "100nF"
+    cap_3v3.value = "1uF"
+    cap_5v.value = "100nF"
 
     footprint = "lib:SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL"
 
@@ -58,4 +57,3 @@ module PositionSensor:
     scl.visualizer.location = "right"
     vin.visualizer.location = "left"
     gnd.visualizer.location = "bottom"
-
