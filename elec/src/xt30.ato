@@ -1,7 +1,7 @@
 #C431092
 
 component XT30:
-    signal vin ~ pin p1
-    signal gnd ~ pin p2
+    signal gnd ~ pin p1
+    signal vin ~ pin p2
 
     footprint = "lib:CONN-TH_XT30PW-M"
