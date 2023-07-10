@@ -74,6 +74,7 @@ module ServoDrive:
 
     power_stage = new PowerStage
     power_stage.v_pwr ~ vbatt
+    power_stage.vcc_10v ~ v_10
     power_stage.vcc_3v3 ~ v_3
     power_stage.gnd ~ gnd
 
