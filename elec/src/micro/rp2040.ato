@@ -258,10 +258,10 @@ module RP2040_kit:
     r_usb_d_minus = new Resistor
     r_usb_d_minus.value = "27R"
 
-    micro.usb_dp ~ r_usb_d_plus.p1
     usb_dp ~ r_usb_d_plus.p2
+    r_usb_d_plus.p1 ~ micro.usb_dp
     micro.usb_dm ~ r_usb_d_minus.p1
-    usb_dm ~ r_usb_d_minus.p2
+    r_usb_d_minus.p2 ~ usb_dm
 
     # Reset
     r_pullup_reset = new Resistor
