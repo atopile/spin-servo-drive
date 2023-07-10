@@ -1,4 +1,4 @@
-#ato view --root-file micro/vdiv.ato --root-node micro/vdiv.ato/Vdiv
+#ato view --root-file vdiv.ato --root-node vdiv.ato/Vdiv
 
 import Resistor from "std/resistor.ato"
 

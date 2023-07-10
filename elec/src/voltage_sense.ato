@@ -1,4 +1,4 @@
-import Vdiv from "vdiv_filter.ato"
+import VdivFiltered from "vdiv_filter.ato"
 import Capacitor from "std/capacitor.ato"
 
 module VoltageSense:
@@ -6,7 +6,7 @@ module VoltageSense:
     signal gnd
     signal out
 
-    vdiv = new Vdiv
+    vdiv = new VdivFiltered
     vdiv.input ~ in
     vdiv.output ~ out
     vdiv.gnd ~ gnd

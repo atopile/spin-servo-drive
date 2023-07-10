@@ -518,7 +518,7 @@ half_bridge.ato/HalfBridge/ls_gate_r:
   position:
     x: 440
     y: 230
-micro/vdiv.ato/Vdiv/r_bt:
+vdiv.ato/Vdiv/r_bt:
   position:
     x: 100
     y: 190
@@ -766,10 +766,6 @@ servo_drive.ato/ServoDrive/ps_inputs:
   position:
     x: 845
     y: 450
-vdiv.ato/Vdiv/r_bt:
-  position:
-    x: 100
-    y: 250
 voltage_reference.ato/VoltageReference/buffer:
   position:
     x: 860
