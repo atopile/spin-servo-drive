@@ -114,3 +114,9 @@ servo_drive.ato/ServoDrive/power_stage/half_bridge_c/ls_gate_ilim_r: R41
 servo_drive.ato/ServoDrive/power_stage/half_bridge_c/hs_gate_bleed_r: R42
 servo_drive.ato/ServoDrive/power_stage/half_bridge_c/ls_gate_bleed_r: R43
 servo_drive.ato/ServoDrive/power_stage/ref/buffer: U17
+servo_drive.ato/ServoDrive/position_sensor/sensor: U18
+servo_drive.ato/ServoDrive/position_sensor/pgo_resistor: R44
+servo_drive.ato/ServoDrive/position_sensor/sda_pullup: R45
+servo_drive.ato/ServoDrive/position_sensor/scl_pullup: R46
+servo_drive.ato/ServoDrive/position_sensor/cap_3v3: C46
+servo_drive.ato/ServoDrive/position_sensor/cap_5v: C47
