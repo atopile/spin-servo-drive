@@ -101,24 +101,6 @@ module PowerStage:
     current_sense_a.vcc ~ vcc_3v3
     current_sense_b.vcc ~ vcc_3v3
     current_sense_c.vcc ~ vcc_3v3
-    
-
-    # voltage sense
-    voltage_sense_a = new VoltageSense
-    voltage_sense_b = new VoltageSense
-    voltage_sense_c = new VoltageSense
-
-    voltage_sense_a.in ~ out_a
-    voltage_sense_b.in ~ out_b
-    voltage_sense_c.in ~ out_c
-
-    voltage_sense_a.out ~ v_fb_a
-    voltage_sense_b.out ~ v_fb_b
-    voltage_sense_c.out ~ v_fb_c
-
-    voltage_sense_a.gnd ~ gnd
-    voltage_sense_b.gnd ~ gnd
-    voltage_sense_c.gnd ~ gnd
 
     v_pwr.visualizer.location = "top"
     vcc_10v.visualizer.location = "top"
