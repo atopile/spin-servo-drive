@@ -31,7 +31,7 @@ module ServoDrive:
     #Power input connector
     xt30 = new XT30
     vbatt ~ xt30.vin
-    gnd ~ xt30.gnd    
+    gnd ~ xt30.gnd
 
     # Micro
     micro_kit = new RP2040_kit
@@ -65,9 +65,9 @@ module ServoDrive:
 
     #10V rail buck - powers gate drivers from VIN
     buck = new Buck
-    vbatt ~ buck.vin
-    buck.vout ~ v_10
-    buck.gnd ~ gnd
+    vbatt ~ buck.VIN
+    buck.VOUT ~ v_10
+    buck.GND ~ gnd
 
     #3v3 rail LDO - powers micro, input diode ord with usb 5v input
     ldo = new LDO
@@ -103,12 +103,11 @@ module ServoDrive:
 
     # Voltage input monitoring
     voltage_input_vdiv = new VoltageSense
-    voltage_input_vdiv.in ~ power_input.p2
+    voltage_input_vdiv.in ~ xt30.vin
     voltage_input_vdiv.gnd ~ gnd
     voltage_input_vdiv.out ~ micro_kit.micro.gpio29_a3
 
     #Power stage output
-    a
 
     # # breaked out inputs
     # ps_inputs = new PinHeader25
@@ -134,4 +133,3 @@ module ServoDrive:
     # power_stage.i_fb_a ~ ps_inputs.p19
     # power_stage.i_fb_b ~ ps_inputs.p20
     # power_stage.i_fb_c ~ ps_inputs.p21
-

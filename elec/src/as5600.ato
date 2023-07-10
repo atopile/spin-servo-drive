@@ -1,5 +1,4 @@
 component AS5600:
-
     signal v_5 ~ pin p1
     signal v_3 ~ pin p2
     signal OUT ~ pin p3
