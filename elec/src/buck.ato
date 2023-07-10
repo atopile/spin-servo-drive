@@ -19,26 +19,26 @@ module Buck:
     #LDO cap
     VCC_cap = new Capacitor
     VCC_cap.value = "2.2uF"
-    VCC_cap.footprint = "C_0805"
+    VCC_cap.footprint = "Capacitor_SMD:C_0805_2012Metric"
     buck_converter.VCC ~ VCC_cap.p1
     SGND ~ VCC_cap.p2
 
     #input caps
     VIN_cap_1 = new Capacitor
     VIN_cap_1.value = "2.2uF"
-    VIN_cap_1.footprint = "C_0805"
+    VIN_cap_1.footprint = "Capacitor_SMD:C_0805_2012Metric"
     VIN ~ VIN_cap_1.p1
     SGND ~ VIN_cap_1.p2
     VIN_cap_2 = new Capacitor
     VIN_cap_2.value = "2.2uF"
-    VIN_cap_2.footprint = "C_0805"
+    VIN_cap_2.footprint = "Capacitor_SMD:C_0805_2012Metric"
     VIN ~ VIN_cap_2.p1
     SGND ~ VIN_cap_2.p2
 
     #soft start cap
     SS_cap = new Capacitor
     SS_cap.value = "12nF"
-    SS_cap.footprint = "C_0402"
+    SS_cap.footprint = "Capacitor_SMD:C_0402_1005Metric"
     buck_converter.SS ~ SS_cap.p1
     SGND ~ SS_cap.p2
 
@@ -52,13 +52,13 @@ module Buck:
     #output caps
     VOUT_cap_1 = new Capacitor
     VOUT_cap_1.value = "22uF"
-    VOUT_cap_1.footprint = "C_0805"
+    VOUT_cap_1.footprint = "Capacitor_SMD:C_0805_2012Metric"
     VOUT ~ VOUT_cap_1.p1
     GND ~ VOUT_cap_1.p2
 
     VOUT_cap_2 = new Capacitor
     VOUT_cap_2.value = "22uF"
-    VOUT_cap_2.footprint = "C_0805"
+    VOUT_cap_2.footprint = "Capacitor_SMD:C_0805_2012Metric"
     VOUT ~ VOUT_cap_2.p1
     GND ~ VOUT_cap_2.p2
 
@@ -72,10 +72,10 @@ module Buck:
 
     fb_vdiv = new Vdiv
     fb_vdiv.r_top.value = "89.25K"
-    fb_vdiv.r_top.footprint = "R_0402"
+    fb_vdiv.r_top.footprint = "Resistor_SMD:R_0402_1005Metric"
 
     fb_vdiv.r_bt.value = "8.83K"
-    fb_vdiv.r_bt.footprint = "R_0402"
+    fb_vdiv.r_bt.footprint = "Resistor_SMD:R_0402_1005Metric"
 
     VOUT ~ fb_vdiv.input
     buck_converter.FB ~ fb_vdiv.output
@@ -84,7 +84,7 @@ module Buck:
     #Boost cap BST pin
     BST_cap = new Capacitor
     BST_cap.value = "0.1uF"
-    BST_cap.footprint = "C_0402"
+    BST_cap.footprint = "Capacitor_SMD:C_0402_1005Metric"
     buck_converter.BST ~ BST_cap.p1
     buck_converter.LX ~ BST_cap.p2
 
@@ -94,6 +94,7 @@ module Buck:
     # PGND_resistor.package = "0402"
     buck_converter.PGND ~ PGND_resistor.p1
     buck_converter.SGND ~ PGND_resistor.p2
+    PGND_resistor.footprint = "Resistor_SMD:R_0402_1005Metric"
 
     #connect EN to VIN
     buck_converter.EN ~ VIN
