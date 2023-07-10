@@ -91,7 +91,7 @@ by-spec:
   jlcpcb: <fill-me>
 - instance_of: LP2985A_33DBVR.ato/LP2985A_33DBVR
   footprint: lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR
-  jlcpcb: <fill-me>
+  jlcpcb: C89826
 - instance_of: std/resistor.ato/Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 89.25K
