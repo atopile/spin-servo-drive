@@ -38,8 +38,5 @@ component MAX17504ATP:
     PGND.visualizer.location = "bottom"
     LX.visualizer.location = "right"
     BST.visualizer.location = "right"
-    footprint = "lib:QFN-48_L6.0-W6.0-P0.40-BL-EP3.8"
 
-
-
-
+    footprint = "lib:QFN-20_L5.0-W5.0-P0.65-BL-EP"
