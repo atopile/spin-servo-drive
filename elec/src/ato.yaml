@@ -1,7 +1,7 @@
 builds:
   default:
-    root-file: power_stage.ato
-    root-node: power_stage.ato/PowerStage
+    root-file: servo_drive.ato
+    root-node: servo_drive.ato/ServoDrive
     targets:
       - designators
       - netlist-kicad6
