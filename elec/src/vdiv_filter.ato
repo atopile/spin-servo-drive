@@ -3,7 +3,7 @@ import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 
 
-module Vdiv:
+module VdivFiltered:
     signal input
     signal output
     signal gnd
