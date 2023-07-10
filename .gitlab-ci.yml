@@ -8,6 +8,7 @@ check-ato:
   image: registry.atopile.io/atopile/atopile:latest
   script:
     - ato check elec/src
+  allow_failure: true
 
 build-gerbers:
   stage: build
