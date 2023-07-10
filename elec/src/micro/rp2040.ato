@@ -76,7 +76,7 @@ component RP2040:
     signal gpio28_a2 ~ pin p40
     signal gpio29_a3 ~ pin p41
 
-    signal gnd ~ pin p0
+    signal gnd ~ pin p57
 
     footprint = "lib:LQFN-56_L7.0-W7.0-P0.4-EP"
 
