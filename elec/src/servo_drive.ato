@@ -91,8 +91,8 @@ module ServoDrive:
     micro_kit.micro.gpio1 ~ power_stage.low_in_a
     micro_kit.micro.gpio2 ~ power_stage.high_in_b
     micro_kit.micro.gpio3 ~ power_stage.low_in_b
-    micro_kit.micro.gpio4 ~ power_stage.high_in_c
-    micro_kit.micro.gpio5 ~ power_stage.low_in_c
+    micro_kit.micro.gpio6 ~ power_stage.high_in_c
+    micro_kit.micro.gpio7 ~ power_stage.low_in_c
 
     micro_kit.micro.gpio26_a0 ~ power_stage.i_fb_a
     micro_kit.micro.gpio27_a1 ~ power_stage.i_fb_b
