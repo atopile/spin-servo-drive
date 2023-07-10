@@ -98,7 +98,7 @@ by-spec:
   jlcpcb: <fill-me>
 - instance_of: xt30.ato/XT30
   footprint: lib:CONN-TH_XT30PW-M
-  jlcpcb: <fill-me>
+  jlcpcb: C431092
 - instance_of: servo_drive.ato/PowerPad
   footprint: Connector_Wire:SolderWirePad_1x01_SMD_5x10mm
   jlcpcb: <fill-me>

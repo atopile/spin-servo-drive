@@ -21,7 +21,7 @@ import XT30 from "xt30.ato"
 
 component PowerPad:
     pin p1
-    footprint = "Connector_Wire:SolderWirePad_1x01_SMD_5x10mm"
+    footprint = "pad:OutputPad"
 
 module ServoDrive:
     signal v_10
@@ -36,6 +36,8 @@ module ServoDrive:
 
     # Micro
     micro_kit = new RP2040_kit
+    micro_kit.v_3_3 ~ v_3
+    micro_kit.gnd ~ gnd
 
     # usbc
     usb = new Usbc
@@ -49,8 +51,8 @@ module ServoDrive:
     v_10 ~ usb_diode.cathode
     usb_diode.anode ~ usb.vbus
 
-    usb.dp ~ micro_kit.micro.usb_dp
-    usb.dm ~ micro_kit.micro.usb_dm
+    usb.dp ~ micro_kit.usb_dp
+    usb.dm ~ micro_kit.usb_dm
 
     # CC1 and CC2 so it works with USB C to USB C cables
     usb.cc1 ~ r_cc1.p1
@@ -73,8 +75,9 @@ module ServoDrive:
     ldo.gnd ~ gnd
 
     power_stage = new PowerStage
-
     power_stage.v_pwr ~ vbatt
+    power_stage.vcc_10v ~ v_10
+    power_stage.vcc_3v3 ~ v_3
     power_stage.gnd ~ gnd
 
     # phase outputs
@@ -87,12 +90,12 @@ module ServoDrive:
     power_stage.out_c ~ pad_out_c.p1
 
     # Power stage to micro
-    micro_kit.micro.gpio0 ~ power_stage.high_in_a
-    micro_kit.micro.gpio1 ~ power_stage.low_in_a
+    micro_kit.micro.gpio6 ~ power_stage.high_in_a
+    micro_kit.micro.gpio7 ~ power_stage.low_in_a
     micro_kit.micro.gpio2 ~ power_stage.high_in_b
     micro_kit.micro.gpio3 ~ power_stage.low_in_b
-    micro_kit.micro.gpio4 ~ power_stage.high_in_c
-    micro_kit.micro.gpio5 ~ power_stage.low_in_c
+    micro_kit.micro.gpio0 ~ power_stage.high_in_c
+    micro_kit.micro.gpio1 ~ power_stage.low_in_c
 
     micro_kit.micro.gpio26_a0 ~ power_stage.i_fb_a
     micro_kit.micro.gpio27_a1 ~ power_stage.i_fb_b

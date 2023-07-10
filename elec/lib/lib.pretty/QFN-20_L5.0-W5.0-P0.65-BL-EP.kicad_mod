@@ -41,7 +41,7 @@
 	(fp_circle (center -1.30 3.22) (end -1.23 3.22) (layer F.SilkS) (width 0.15))
 	(fp_circle (center -1.30 2.80) (end -1.23 2.80) (layer Cmts.User) (width 0.15))
 	(fp_circle (center -2.50 2.50) (end -2.47 2.50) (layer F.Fab) (width 0.06))
-	(model "/elec/lib/lib.3dshapes/QFN-20_L5.0-W5.0-H1.0-P0.65.wrl"
+	(model "elec/lib/lib.3dshapes/QFN-20_L5.0-W5.0-H1.0-P0.65.wrl"
 		(offset (xyz -896.110 885.190 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 270))
