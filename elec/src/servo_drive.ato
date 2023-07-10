@@ -21,7 +21,7 @@ import XT30 from "xt30.ato"
 
 component PowerPad:
     pin p1
-    footprint = "Connector_Wire:SolderWirePad_1x01_SMD_5x10mm"
+    footprint = "pad:OutputPad"
 
 module ServoDrive:
     signal v_10
