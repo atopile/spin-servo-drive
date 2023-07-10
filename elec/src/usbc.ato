@@ -23,7 +23,7 @@ component Usbc:
     sbu ~ pin B8
 
     # signal txp ~ pin B2
-    # txp~ pin A2
+    # txp ~ pin A2
 
     # signal txm ~ pin A3
     # txm ~ pin B3
@@ -38,6 +38,9 @@ component Usbc:
     shell ~ pin p2
     shell ~ pin p3
     shell ~ pin p4
+
+    # always ground the shell
+    shell ~ gnd
 
     footprint = "lib:USB-C-SMD_KH-TYPE-C-16P"
     designator_prefix = "J"
