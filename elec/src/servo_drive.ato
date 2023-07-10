@@ -36,6 +36,8 @@ module ServoDrive:
 
     # Micro
     micro_kit = new RP2040_kit
+    micro_kit.v_3_3 ~ v_3
+    micro_kit.gnd ~ gnd
 
     # usbc
     usb = new Usbc
