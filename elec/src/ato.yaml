@@ -1,3 +1,5 @@
+paths:
+  build: ../../build/
 builds:
   default:
     root-file: servo_drive.ato
