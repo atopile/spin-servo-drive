@@ -2,7 +2,7 @@ import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 import SMMS0420_6R8M from "SMMS0420_6R8M.ato"
 import MAX17504ATP from "MAX17504ATP.ato"
-import Vdiv from "micro/vdiv.ato"
+import Vdiv from "vdiv.ato"
 #ato view --root-file buck.ato --root-node buck.ato/Buck
 
 module Buck:
