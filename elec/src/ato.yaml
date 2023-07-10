@@ -16,9 +16,3 @@ builds:
   micro:
     root-file: rp2040.ato
     root-node: rp2040.ato/Micro
-  servo_drive:
-    root-file: servo_drive.ato
-    root-node: servo_drive.ato/ServoDrive
-targets:
-  bom-jlcpcb:
-    jlcpcb-file: power-stage-bom-jlcpcb.yaml
