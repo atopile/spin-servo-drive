@@ -1,4 +1,4 @@
-import INA225AIDGKR from "INA225AIDGKR.ato"
+import AD8418AWBRZ-RL from "AD8418AWBRZ-RL.ato"
 import LMV321IDBVR from "LMV321IDBVR.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
@@ -8,7 +8,6 @@ module CurrentSense:
     signal gnd
     signal i_in
     signal i_out
-    signal zero_offset
     signal out
 
     # Use https://jlcpcb.com/partdetail/ta_iTech-RLP25JECR001/C393066
@@ -20,10 +19,12 @@ module CurrentSense:
     i_in ~ shunt.p1
     shunt.p2 ~ i_out
 
-    amp = new INA225AIDGKR
+    amp = new AD8418AWBRZ-RL
     amp.vs ~ vcc
     amp.gnd ~ gnd
-    amp.ref ~ zero_offset
+    # Split supply mode, as per figure 33 in AD8418AWBRZ-RL.pdf
+    amp.ref1 ~ vcc
+    amp.ref2 ~ gnd
     amp.out ~ out
 
     c_bypass = new Capacitor
@@ -31,24 +32,6 @@ module CurrentSense:
     c_bypass.footprint = "Capacitor_SMD:C_0805_2012Metric"
     c_bypass.p1 ~ amp.vs
     c_bypass.p2 ~ amp.gnd
-
-    # From the INA225 datasheet:
-    #   GAIN SELECT
-    # ================
-    # GS0 | GS1 | GAIN
-    # ----------------
-    # GND | VS  | 25
-    # GND | GND | 50
-    # VS  | VS  | 100
-    # VS  | GND | 200
-    # ----------------
-    #
-    # The largest readily available 42mm-frame motors have a rated current of ~8A
-    # Burst current is ~3x rated, which means we want to ideally support ~24A
-    # We need bi-directional current measurment, so our "full-range" is 3.3V/2 = 1.65V
-    # TODO: update calculation for 1mOhm
-    amp.gs0 ~ gnd
-    amp.gs1 ~ vcc
 
     # https://www.st.com/resource/en/application_note/an4304-how-to-filter-the-input-of-a-highside-current-sensing-stmicroelectronics.pdf
     # input differential filtering
