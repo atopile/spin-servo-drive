@@ -1,4 +1,4 @@
-import AD8418AWBRZ-RL from "AD8418AWBRZ-RL.ato"
+import AD8418AWBRZ from "AD8418AWBRZ-RL.ato"
 import LMV321IDBVR from "LMV321IDBVR.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
