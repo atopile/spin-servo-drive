@@ -1,0 +1,58 @@
+ServoDrive:
+  child_attrs:
+    xt30:
+      position:
+        x: 540
+        y: 430
+    micro_kit:
+      position:
+        x: 50
+        y: 50
+    usb:
+      position:
+        x: 720
+        y: 460
+    usb_diode:
+      position:
+        x: 515
+        y: 665
+    r_cc1:
+      position:
+        x: 360
+        y: 640
+    r_cc2:
+      position:
+        x: 385
+        y: 445
+    buck:
+      position:
+        x: 50
+        y: 50
+    ldo:
+      position:
+        x: 50
+        y: 50
+    power_stage:
+      position:
+        x: 300
+        y: 285
+    pad_out_a:
+      position:
+        x: 515
+        y: 490
+    pad_out_b:
+      position:
+        x: 455
+        y: 495
+    pad_out_c:
+      position:
+        x: 370
+        y: 655
+    voltage_input_vdiv:
+      position:
+        x: 320
+        y: 165
+    position_sensor:
+      position:
+        x: 150
+        y: 115
