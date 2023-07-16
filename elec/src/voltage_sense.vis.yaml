@@ -1,0 +1,10 @@
+VoltageSense:
+  child_attrs:
+    vdiv:
+      position:
+        x: 215
+        y: 50
+    c_filter:
+      position:
+        x: 50
+        y: 140

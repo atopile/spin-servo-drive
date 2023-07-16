@@ -1,0 +1,26 @@
+CurrentSense:
+  child_attrs:
+    shunt:
+      position:
+        x: 50
+        y: 50
+    amp:
+      position:
+        x: 145
+        y: 365
+    c_bypass:
+      position:
+        x: 50
+        y: 50
+    r_in_p:
+      position:
+        x: 50
+        y: 50
+    r_in_n:
+      position:
+        x: 50
+        y: 50
+    c_diff:
+      position:
+        x: 50
+        y: 50

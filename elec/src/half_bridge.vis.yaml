@@ -1,0 +1,47 @@
+HalfBridge:
+  signals:
+  - name: gnd
+    is_stub: true
+  - name: v_pwr
+    is_stub: true
+  - name: vcc_10v
+    is_stub: true
+  - name: out
+    is_stub: true
+  child_attrs:
+    input_bypass:
+      position:
+        x: 50
+        y: 50
+    gate_driver:
+      position:
+        x: 665
+        y: 510
+    hs_fet:
+      position:
+        x: 565
+        y: 380
+    ls_fet:
+      position:
+        x: 515
+        y: 230
+    c_boot:
+      position:
+        x: 50
+        y: 50
+    hs_gate_ilim_r:
+      position:
+        x: 50
+        y: 50
+    ls_gate_ilim_r:
+      position:
+        x: 50
+        y: 50
+    hs_gate_bleed_r:
+      position:
+        x: 50
+        y: 50
+    ls_gate_bleed_r:
+      position:
+        x: 50
+        y: 50

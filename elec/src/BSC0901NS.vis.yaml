@@ -1,0 +1,23 @@
+BSC0901NS:
+  ports:
+  - name: top
+    location: top
+  - name: right
+    location: right
+  - name: left
+    location: left
+  - name: bottom
+    location: bottom
+  pins:
+  - name: source
+    index: 0
+    private: false
+    port: top
+  - name: gate
+    index: 0
+    private: false
+    port: right
+  - name: drain
+    index: 0
+    private: false
+    port: left
