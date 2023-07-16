@@ -28,12 +28,14 @@ module Buck:
     VIN_cap_1.value = "2.2uF"
     VIN_cap_1.footprint = "Capacitor_SMD:C_0805_2012Metric"
     VIN ~ VIN_cap_1.p1
-    SGND ~ VIN_cap_1.p2
+    GND ~ VIN_cap_1.p2
     VIN_cap_2 = new Capacitor
     VIN_cap_2.value = "2.2uF"
     VIN_cap_2.footprint = "Capacitor_SMD:C_0805_2012Metric"
     VIN ~ VIN_cap_2.p1
-    SGND ~ VIN_cap_2.p2
+    
+    GND ~ VIN_cap_2.p2
+
 
     #soft start cap
     SS_cap = new Capacitor
