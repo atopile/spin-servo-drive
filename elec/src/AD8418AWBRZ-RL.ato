@@ -12,11 +12,3 @@ component AD8418AWBRZ:
     footprint = "lib:SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL"
     designator_prefix = "U"
 
-    vin.visualizer.location = "left"
-    vin.visualizer.location = "left"
-    vin.visualizer.location = "left"
-    vin.visualizer.location = "left"
-    vin.visualizer.location = "right"
-    vin.visualizer.location = "right"
-    vin.visualizer.location = "right"
-    vin.visualizer.location = "right"

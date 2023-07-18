@@ -32,7 +32,7 @@ module CurrentSense:
     i_in ~ shunt.p1
     shunt.p2 ~ i_out
 
-    amp = new AD8418AWBRZ-RL
+    amp = new AD8418AWBRZ
     amp.vs ~ vcc
     amp.gnd ~ gnd
     # Split supply mode, as per figure 33 in AD8418AWBRZ-RL.pdf
