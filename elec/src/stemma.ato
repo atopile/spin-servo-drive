@@ -22,7 +22,7 @@ component BSS138:
 module I2CLevelShifter:
     # implements a module where the internal voltage is 3.3V
     # and the external voltage is >= 3.3v <=~5v
-    
+
     signal vcc_3v3
     signal internal
     signal external
@@ -46,18 +46,21 @@ module I2CLevelShifter:
 
 
 module StemmaQtPassive:
-    # this module implements the Stemma QT module according to Adafruit's spec: 
+    # this module implements the Stemma QT module according to Adafruit's spec:
     # https://learn.adafruit.com/introducing-adafruit-stemma-qt/technical-specs
-    # on top of the connector, it requires: 
+    # on top of the connector, it requires:
     # - level shifting
     # - pull-up resistors
 
+    signal ext_vcc
     signal vcc_3v3
     signal gnd
     signal sda
     signal scl
 
     conn = new StemmaQtConnector
+    conn.vcc ~ ext_vcc
+    conn.gnd ~ gnd
 
     # sda level shifting
     sda_level_shifter = new I2CLevelShifter
@@ -89,12 +92,14 @@ module StemmaQtActive:
     # This module also implements the StemmaQt module
     # to Adafruit's spec, but adds a LTC4311 I2C bus active terminator
 
+    signal ext_vcc
     signal vcc_3v3
     signal gnd
     signal sda
     signal scl
 
     passive_stemma = new StemmaQtPassive
+    passive_stemma.ext_vcc ~ ext_vcc
     passive_stemma.vcc_3v3 ~ vcc_3v3
     passive_stemma.gnd ~ gnd
     passive_stemma.sda ~ sda

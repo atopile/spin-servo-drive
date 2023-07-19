@@ -7,6 +7,8 @@ StemmaQtPassive:
   - name: bottom
     location: bottom
   pins:
+  - name: ext_vcc
+    port: top
   - name: vcc_3v3
     port: top
   - name: gnd
@@ -118,6 +120,8 @@ StemmaQtActive:
   - name: bottom
     location: bottom
   pins:
+  - name: ext_vcc
+    port: top
   - name: vcc_3v3
     port: top
   - name: gnd
