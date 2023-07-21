@@ -121,8 +121,8 @@ module ServoDrive:
     stemma = new StemmaQtActive
     stemma.vcc_3v3 ~ v_3
     stemma.gnd ~ gnd
-    stemma.sda ~ micro_kit.micro.gpio8
-    stemma.scl ~ micro_kit.micro.gpio9
+    stemma.sda ~ micro_kit.micro.gpio10
+    stemma.scl ~ micro_kit.micro.gpio11
 
     stemma_diode = new Diode
     stemma_diode.footprint = "lib:SOD-523_L1.2-W0.8-LS1.6-RD"
