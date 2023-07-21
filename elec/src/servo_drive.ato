@@ -19,6 +19,8 @@ import Buck from "buck.ato"
 import LDO from "ldo.ato"
 import XT30 from "xt30.ato"
 
+import StemmaQtActive from "stemma.ato"
+
 component PowerPad:
     pin p1
     footprint = "lib:OutputPad"
@@ -29,7 +31,7 @@ module ServoDrive:
     signal vbatt
     signal gnd
 
-    #Power input connector
+    # Power input connector
     xt30 = new XT30
     vbatt ~ xt30.vin
     gnd ~ xt30.gnd
@@ -57,7 +59,7 @@ module ServoDrive:
     # CC1 and CC2 so it works with USB C to USB C cables
     usb.cc1 ~ r_cc1.p1
     usb.cc2 ~ r_cc2.p1
-    
+
     r_cc1.p2 ~ gnd
     r_cc2.p2 ~ gnd
 
@@ -108,8 +110,21 @@ module ServoDrive:
     voltage_input_vdiv.gnd ~ gnd
     voltage_input_vdiv.out ~ micro_kit.micro.gpio29_a3
 
+    # Position sensor
     position_sensor = new PositionSensor
     position_sensor.vin ~ v_3
     position_sensor.gnd ~ gnd
     position_sensor.sda ~ micro_kit.micro.gpio4
     position_sensor.scl ~ micro_kit.micro.gpio5
+
+    # i2c comms
+    stemma = new StemmaQtActive
+    stemma.vcc_3v3 ~ v_3
+    stemma.gnd ~ gnd
+    stemma.sda ~ micro_kit.micro.gpio8
+    stemma.scl ~ micro_kit.micro.gpio9
+
+    stemma_diode = new Diode
+    stemma_diode.footprint = "lib:SOD-523_L1.2-W0.8-LS1.6-RD"
+    stemma.ext_vcc ~ stemma_diode.anode
+    stemma_diode.cathode ~ v_10
