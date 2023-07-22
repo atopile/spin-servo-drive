@@ -1,0 +1,86 @@
+RP2040_kit:
+  child_attrs:
+    micro:
+      position:
+        x: 260
+        y: 180
+    c_bp_3v_100nf_1:
+      position:
+        x: 315
+        y: 175
+    c_bp_3v_100nf_2:
+      position:
+        x: 460
+        y: 275
+    c_bp_3v_100nf_3:
+      position:
+        x: 380
+        y: 225
+    c_bp_3v_100nf_4:
+      position:
+        x: 285
+        y: 125
+    c_bp_3v_100nf_5:
+      position:
+        x: 115
+        y: 90
+    c_bp_3v_1uf:
+      position:
+        x: 210
+        y: 140
+    c_bp_1v_100nf_1:
+      position:
+        x: 260
+        y: 185
+    c_bp_1v_100nf_2:
+      position:
+        x: 240
+        y: 270
+    c_bp_1v_1uf:
+      position:
+        x: 175
+        y: 225
+    osc:
+      position:
+        x: 355
+        y: 345
+    c_osc_1:
+      position:
+        x: 240
+        y: 200
+    c_osc_2:
+      position:
+        x: 440
+        y: 280
+    r_osc:
+      position:
+        x: 240
+        y: 115
+    flash:
+      position:
+        x: 50
+        y: 230
+    r_usb_d_plus:
+      position:
+        x: 250
+        y: 50
+    r_usb_d_minus:
+      position:
+        x: 345
+        y: 95
+    r_pullup_reset:
+      position:
+        x: 245
+        y: 105
+    reset_sw:
+      position:
+        x: 225
+        y: 215
+    boot_sw:
+      position:
+        x: 200
+        y: 225
+    boot_vdiv:
+      position:
+        x: 245
+        y: 190

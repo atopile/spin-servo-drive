@@ -1,0 +1,26 @@
+PositionSensor:
+  child_attrs:
+    sensor:
+      position:
+        x: 790
+        y: 550
+    pgo_resistor:
+      position:
+        x: 50
+        y: 50
+    sda_pullup:
+      position:
+        x: 470
+        y: 430
+    scl_pullup:
+      position:
+        x: 685
+        y: 625
+    cap_3v3:
+      position:
+        x: 595
+        y: 540
+    cap_5v:
+      position:
+        x: 695
+        y: 445
