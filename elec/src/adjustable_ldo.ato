@@ -1,0 +1,46 @@
+# C443854
+# easyeda2kicad --full --lcsc_id=C443854 --output ./lib/lib
+#ato view --root-file adjustable_ldo.ato --root-node adjustable_ldo.ato/ldo_adjustable
+
+import Capacitor from "std/capacitor.ato"
+import Vdiv from "micro/vdiv.ato"
+
+component LDK220M_R:
+    signal in ~ pin 1
+    signal gnd ~ pin 2
+    signal en ~ pin 3
+    signal out ~ pin 5
+    signal adj ~ pin 4
+
+    footprint = "lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BL"
+
+module ldo_adjustable:
+    signal vin
+    signal vout
+    signal gnd
+
+    ldo = new LDK220M_R
+    ldo.in ~ vin
+    ldo.gnd ~ gnd
+    ldo.en ~ vin
+    ldo.out ~ vout
+
+    #input cap
+    input_cap = new Capacitor
+    input_cap.value = "1uF"
+    input_cap.footprint = "Capacitors_SMD:C_0603_1608Metric"
+    input_cap.p1 ~ vin
+    input_cap.p2 ~ gnd
+
+    #output cap
+    output_cap = new Capacitor
+    output_cap.value = "1uF"
+    output_cap.footprint = "Capacitors_SMD:C_0603_1608Metric"
+    output_cap.p1 ~ vout
+    output_cap.p2 ~ gnd
+
+    #voltage divider
+    feedback_div = new Vdiv
+    feedback_div.input ~ vout
+    feedback_div.gnd ~ gnd
+    feedback_div.output ~ ldo.adj
