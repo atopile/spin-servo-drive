@@ -100,7 +100,6 @@ module ServoDrive:
 
     micro_kit.micro.gpio26_a0 ~ power_stage.i_fb_a
     micro_kit.micro.gpio27_a1 ~ power_stage.i_fb_b
-    micro_kit.micro.gpio28_a2 ~ power_stage.i_fb_c
 
     # Voltage input monitoring
     voltage_input_vdiv = new VoltageSense
