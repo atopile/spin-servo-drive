@@ -36,8 +36,8 @@ module CurrentSense:
     amp.vs ~ vcc
     amp.gnd ~ gnd
     # Split supply mode, as per figure 33 in AD8418AWBRZ-RL.pdf
-    amp.ref1 ~ vcc
-    amp.ref2 ~ gnd
+    amp.vref1 ~ vcc
+    amp.vref2 ~ gnd
 
     c_bypass = new Capacitor
     c_bypass.value = "1uF"

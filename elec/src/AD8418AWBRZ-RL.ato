@@ -1,13 +1,13 @@
 #LCSC ID = C462197
 component AD8418AWBRZ:
-    signal in_p ~ p1
-    signal gnd ~ p2
-    signal vref2 ~ p3
-    signal NC ~ p4
-    signal out ~ p5
-    signal vs ~ p6
-    signal vref1 ~ p7
-    signal in_n ~ p8
+    signal in_p ~ pin p1
+    signal gnd ~ pin p2
+    signal vref2 ~ pin p3
+    signal NC ~ pin p4
+    signal out ~ pin p5
+    signal vs ~ pin p6
+    signal vref1 ~ pin p7
+    signal in_n ~ pin p8
 
     footprint = "lib:SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL"
     designator_prefix = "U"
