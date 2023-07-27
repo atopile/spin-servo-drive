@@ -1,4 +1,4 @@
-RP2040:
+STM32F103C8T6:
   ports:
   - name: top
     location: top
@@ -9,123 +9,131 @@ RP2040:
   - name: bottom
     location: bottom
   pins:
-  - name: iovdd
+  - name: VDD_3
     index: 0
     private: false
-    port: bottom
-  - name: usb_vdd
-    index: 0
-    private: false
-    port: right
-  - name: dvdd
-    index: 0
-    private: false
-    port: bottom
-  - name: testen
-    index: 0
-    private: false
-    port: bottom
-  - name: xin
+    port: top
+  - name: PD0_OSC_IN
     index: 0
     private: false
     port: left
-  - name: xout
+  - name: PD1_OSC_OUT
     index: 0
     private: false
     port: left
-  - name: swclk
+  - name: NRST
     index: 0
     private: false
     port: bottom
-  - name: swdio
+  - name: VSSA
     index: 0
     private: false
     port: bottom
-  - name: run
+  - name: VDDA
+    index: 0
+    private: false
+    port: top
+  - name: PA0_WKUP
     index: 0
     private: false
     port: bottom
-  - name: adc_avdd
+  - name: PA1
     index: 0
     private: false
     port: bottom
-  - name: usb_dm
+  - name: PA2
     index: 0
     private: false
     port: bottom
-  - name: usb_dp
+  - name: PA3
     index: 0
     private: false
     port: bottom
-  - name: qspi_sd3
+  - name: PA4
     index: 0
     private: false
     port: bottom
-  - name: qspi_sclk
+  - name: PA5
     index: 0
     private: false
     port: bottom
-  - name: qspi_sd0
+  - name: PA6
     index: 0
     private: false
     port: bottom
-  - name: qspi_sd1
+  - name: PA7
     index: 0
     private: false
     port: bottom
-  - name: qspi_sd2
+  - name: PB0
     index: 0
     private: false
     port: bottom
-  - name: qspi_ss_n
+  - name: PB1
     index: 0
     private: false
     port: bottom
-  - name: gpio0
+  - name: PB2
+    index: 0
+    private: false
+    port: bottom
+  - name: PB10
+    index: 0
+    private: false
+    port: bottom
+  - name: PB11
     index: 0
     private: false
     port: right
-  - name: gpio1
+  - name: VSS_1
+    index: 0
+    private: false
+    port: bottom
+  - name: VSS_2
+    index: 0
+    private: false
+    port: bottom
+  - name: VSS_3
+    index: 0
+    private: false
+    port: bottom
+  - name: VDD_1
+    index: 0
+    private: false
+    port: top
+  - name: PB12
     index: 0
     private: false
     port: right
-  - name: gpio2
+  - name: PB13
     index: 0
     private: false
     port: right
-  - name: gpio3
+  - name: PB14
     index: 0
     private: false
     port: right
-  - name: gpio4
+  - name: PB15
     index: 0
     private: false
     port: right
-  - name: gpio5
+  - name: PA8
     index: 0
     private: false
     port: right
-  - name: gpio6
+  - name: PA9
     index: 0
     private: false
     port: right
-  - name: gpio7
+  - name: PA10
     index: 0
     private: false
     port: right
-  - name: gpio8
+  - name: PA11
     index: 0
     private: false
     port: right
-  - name: gpio9
-    index: 0
-    private: false
-    port: right
-  - name: gpio10
-    index: 0
-    private: false
-    port: right
-  - name: gpio11
+  - name: PA12
     index: 0
     private: false
     port: right

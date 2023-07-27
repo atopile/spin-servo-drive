@@ -1,0 +1,125 @@
+import STM32F103C8T6 from "STM32F103C8T6.ato"
+import Oscillator from "oscillator.ato"
+import Resistor from "std/resistor.ato"
+import Capacitor from "std/capacitor.ato"
+# Switch
+import TS_1101_C_W from "TS_1101_C_W.ato"
+# Flash
+import W25Q128JV from "W25Q128JV.ato"
+
+import Vdiv from "vdiv.ato"
+
+module stm32_kit:
+    signal v_3_3
+    signal gnd
+
+    signal usb_dp
+    signal usb_dm
+
+    v_3_3.visualizer.stub = True
+    gnd.visualizer.stub = True
+
+    usb_dp.visualizer.stub = True
+    usb_dm.visualizer.stub = True
+
+    # Microcontroller
+    micro = new STM32F103C8T6
+
+    # Connect vcc
+    micro.VDDA ~ v_3_3
+    micro.VDD_1 ~ v_3_3
+    micro.VDD_2 ~ v_3_3
+    micro.VDD_3 ~ v_3_3
+
+    # Connect gnd
+    micro.VSSA ~ gnd
+    micro.VSS_1 ~ gnd
+    micro.VSS_2 ~ gnd
+    micro.VSS_3 ~ gnd
+
+    # Bypass capacitors
+    c_bp_3v_100nf_1 = new Capacitor
+    c_bp_3v_100nf_1.value = "100nF"
+    c_bp_3v_100nf_2 = new Capacitor
+    c_bp_3v_100nf_2.value = "100nF"
+    c_bp_3v_100nf_3 = new Capacitor
+    c_bp_3v_100nf_3.value = "100nF"
+    c_bp_3v_100nf_4 = new Capacitor
+    c_bp_3v_100nf_4.value = "100nF"
+
+    c_bp_3v_1uf = new Capacitor
+    c_bp_3v_1uf.value = "1uF"
+
+    c_bp_3v_100nf_1.p1 ~ v_3_3
+    c_bp_3v_100nf_2.p1 ~ v_3_3
+    c_bp_3v_100nf_3.p1 ~ v_3_3
+    c_bp_3v_100nf_4.p1 ~ v_3_3
+
+    c_bp_3v_1uf.p1 ~ v_3_3
+
+    c_bp_3v_100nf_1.p2 ~ gnd
+    c_bp_3v_100nf_2.p2 ~ gnd
+    c_bp_3v_100nf_3.p2 ~ gnd
+    c_bp_3v_100nf_4.p2 ~ gnd
+
+    c_bp_3v_1uf.p2 ~ gnd
+
+    # Oscillator
+    osc = new Oscillator
+    osc.value = "8Mhz"
+    c_osc_1 = new Capacitor
+    c_osc_1.value = "20pF"
+    c_osc_2 = new Capacitor
+    c_osc_2.value = "20pF"
+    r_osc = new Resistor
+    r_osc.value = "1k"
+
+    micro.PD0_OSC_IN ~ osc.in
+    micro.PD1_OSC_OUT ~ r_osc.p1
+    r_osc.p2 ~ osc.out
+    osc.gnd ~ gnd
+
+    osc.in ~ c_osc_1.p1
+    osc.out ~ c_osc_2.p1
+
+    c_osc_1.p2 ~ gnd
+    c_osc_2.p2 ~ gnd
+
+    # usb
+    r_usb_d_plus = new Resistor
+    r_usb_d_plus.value = "27R"
+    r_usb_d_minus = new Resistor
+    r_usb_d_minus.value = "27R"
+    r_usb_pullup = new Resistor
+    r_usb_pullup.value = "1k5"
+    micro.PA12 ~ r_usb_pullup.p1
+    v_3_3 ~ r_usb_pullup.p2
+    micro.PA12 ~ r_usb_d_plus.p1
+    usb_dp ~ r_usb_d_plus.p2
+    micro.PA11 ~ r_usb_d_minus.p1
+    usb_dm ~ r_usb_d_minus.p2
+
+    # Reset
+    r_pullup_reset = new Resistor
+    r_pullup_reset.value = "10k"
+    reset_sw = new TS_1101_C_W
+
+    v_3_3 ~ r_pullup_reset.p1
+    micro.NRST ~ r_pullup_reset.p2
+    micro.NRST ~ reset_sw.p1
+    gnd ~ reset_sw.p2
+
+    # Boot
+    r_pulldown_boot = new Resistor
+    r_pulldown_boot.value = "100k"
+    boot_sw = new TS_1101_C_W
+
+    micro.BOOT0 ~ r_pulldown_boot.p1
+    gnd ~ r_pulldown_boot.p2
+    boot_sw.p1 ~ micro.BOOT0
+    boot_sw.p2 ~ gnd
+
+    r_pulldown_boot1 = new Resistor
+    r_pulldown_boot1.value = "100k"
+    micro.PB2 ~ r_pulldown_boot1.p1
+    gnd ~ r_pulldown_boot1.p2

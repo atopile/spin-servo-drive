@@ -3,7 +3,7 @@
 import Resistor from "std/resistor.ato"
 
 import PowerStage from "power_stage.ato"
-import RP2040_kit from "micro/rp2040.ato"
+import RP2040_kit from "rp2040.ato"
 import PositionSensor from "position_sensor.ato"
 
 import Diode from "diode.ato"
