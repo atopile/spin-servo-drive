@@ -31,14 +31,14 @@ module AdjustableLdo:
     #input cap
     input_cap = new Capacitor
     input_cap.value = "1uF"
-    input_cap.footprint = "Capacitors_SMD:C_0603_1608Metric"
+    input_cap.footprint = "Capacitor_SMD:C_0603_1608Metric"
     input_cap.p1 ~ vin
     input_cap.p2 ~ gnd
 
     #output cap
     output_cap = new Capacitor
     output_cap.value = "1uF"
-    output_cap.footprint = "Capacitors_SMD:C_0603_1608Metric"
+    output_cap.footprint = "Capacitor_SMD:C_0603_1608Metric"
     output_cap.p1 ~ vout
     output_cap.p2 ~ gnd
 

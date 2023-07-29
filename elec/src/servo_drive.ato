@@ -58,10 +58,9 @@ module ServoDrive:
     switch_pulldown = new Resistor
     switch_pulldown.value = "10k"
     switch_pulldown.p1 ~ gnd
-    switch_pulldown.p2 ~ switch.p1
-    switch.p2 ~ v_3
-    switch.p2 ~ micro_kit.micro.gpio24
-    
+    switch_pulldown.p2 ~ switch.1
+    switch.2 ~ v_3
+    switch.2 ~ micro_kit.micro.gpio24
 
     # usbc
     usb = new Usbc

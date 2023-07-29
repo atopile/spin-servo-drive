@@ -2,7 +2,6 @@
 # easyeda2kicad --full --lcsc_id=C2890035 --output ./lib/lib
 #ato view --root-file adjustable_ldo.ato --root-node adjustable_ldo.ato/ldo_adjustable
 
-
 component SK6805_EC15:
     signal data_in ~ pin 1
     signal data_out ~ pin 3
