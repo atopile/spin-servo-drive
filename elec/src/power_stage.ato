@@ -72,7 +72,7 @@ module PowerStage:
 
     half_bridge_a.out ~ current_sense_a.i_in
     half_bridge_b.out ~ current_sense_b.i_in
-    half_bridge_b.out ~ out_c # No current sense required on phase C
+    half_bridge_c.out ~ out_c # No current sense required on phase C
 
     current_sense_a.i_out ~ out_a
     current_sense_b.i_out ~ out_b
