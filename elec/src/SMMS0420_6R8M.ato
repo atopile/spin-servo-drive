@@ -1,6 +1,6 @@
 #JLC PN: C133194
 
-component SMMS0420_6R8M
+component SMMS0420_6R8M:
     pin p1
     pin p2
 

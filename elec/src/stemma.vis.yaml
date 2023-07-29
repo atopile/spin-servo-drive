@@ -17,11 +17,14 @@ StemmaQtPassive:
     port: left
   - name: scl
     port: left
+  signals:
+  - name: 'vcc_3v3'
+    is_stub: true
   child_attrs:
     conn:
       position:
-        x: 530
-        y: 250
+        x: 590
+        y: 265
     sda_level_shifter:
       position:
         x: 50
@@ -45,10 +48,13 @@ I2CLevelShifter:
     port: left
   - name: external
     port: right
+  signals:
+  - name: 'vcc_3v3'
+    is_stub: true
   child_attrs:
     fet:
       position:
-        x: 180
+        x: 185
         y: 50
     pullup_internal:
       position:
@@ -130,6 +136,9 @@ StemmaQtActive:
     port: left
   - name: scl
     port: left
+  signals:
+  - name: 'vcc_3v3'
+    is_stub: true
   child_attrs:
     passive_stemma:
       position:
@@ -137,9 +146,9 @@ StemmaQtActive:
         y: 50
     active_terminator:
       position:
-        x: 835
-        y: 440
+        x: 885
+        y: 445
     pullup_external:
       position:
-        x: 780
-        y: 335
+        x: 900
+        y: 215

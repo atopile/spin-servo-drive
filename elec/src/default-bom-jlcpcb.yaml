@@ -66,7 +66,7 @@ by-spec:
   footprint: Capacitor_SMD:C_0805_2012Metric
   value: 2.2uF
   jlcpcb: <fill-me>
-- instance_of: micro/oscillator.ato:Oscillator
+- instance_of: oscillator.ato:Oscillator
   footprint: lib:OSC-SMD_4P-L3.2-W2.5-BL
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
@@ -77,7 +77,7 @@ by-spec:
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 1uF
   jlcpcb: <fill-me>
-- instance_of: micro/W25Q128JV.ato:W25Q128JV
+- instance_of: W25Q128JV.ato:W25Q128JV
   footprint: lib:SOIC-8_L5.3-W5.3-P1.27-LS8.0-BL
   jlcpcb: <fill-me>
 - instance_of: pin_header.ato:PinHeader10
@@ -106,7 +106,7 @@ by-spec:
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 8.83K
   jlcpcb: <fill-me>
-- instance_of: micro/TS_1101_C_W.ato:TS_1101_C_W
+- instance_of: TS_1101_C_W.ato:TS_1101_C_W
   footprint: lib:SW-SMD_L6.0-W3.3-LS8.0
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
@@ -146,7 +146,7 @@ by-spec:
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 10kOhm
   jlcpcb: <fill-me>
-- instance_of: micro/rp2040.ato:RP2040
+- instance_of: rp2040.ato:RP2040
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
   footprint: Capacitor_SMD:C_0603_1608Metric

@@ -35,7 +35,6 @@ module PowerStage:
     signal v_fb_c
     signal i_fb_a
     signal i_fb_b
-    signal i_fb_c
 
     # input caps
     c_in_1 = new RVT1H101M0810
@@ -68,39 +67,24 @@ module PowerStage:
     half_bridge_c.low_in ~ low_in_c
 
     # current sensors
-    ref = new VoltageReference
-    vcc_3v3 ~ ref.vcc
-    gnd ~ ref.gnd
-    ref.v_ref ~ v_ref
-    ref.half_v_ref ~ half_v_ref
-
     current_sense_a = new CurrentSense
     current_sense_b = new CurrentSense
-    current_sense_c = new CurrentSense
 
     half_bridge_a.out ~ current_sense_a.i_in
     half_bridge_b.out ~ current_sense_b.i_in
-    half_bridge_c.out ~ current_sense_c.i_in
+    half_bridge_b.out ~ out_c # No current sense required on phase C
 
     current_sense_a.i_out ~ out_a
     current_sense_b.i_out ~ out_b
-    current_sense_c.i_out ~ out_c
-
-    current_sense_a.zero_offset ~ half_v_ref
-    current_sense_b.zero_offset ~ half_v_ref
-    current_sense_c.zero_offset ~ half_v_ref
 
     current_sense_a.out ~ i_fb_a
     current_sense_b.out ~ i_fb_b
-    current_sense_c.out ~ i_fb_c
 
     current_sense_a.gnd ~ gnd
     current_sense_b.gnd ~ gnd
-    current_sense_c.gnd ~ gnd
 
     current_sense_a.vcc ~ vcc_3v3
     current_sense_b.vcc ~ vcc_3v3
-    current_sense_c.vcc ~ vcc_3v3
 
     v_pwr.visualizer.location = "top"
     vcc_10v.visualizer.location = "top"
@@ -125,4 +109,3 @@ module PowerStage:
     v_fb_c.visualizer.location = "right"
     i_fb_a.visualizer.location = "right"
     i_fb_b.visualizer.location = "right"
-    i_fb_c.visualizer.location = "right"
