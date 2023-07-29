@@ -13,7 +13,7 @@ import PinHeader2 from "pin_header.ato"
 import PinHeader25 from "pin_header.ato"
 
 import Usbc from "usbc.ato"
-import SK6805_EC15 from "sk6805_ec15.ato"
+import SK6805SIDE_S from "SK6805SIDE_S.ato"
 
 import VoltageSense from "voltage_sense.ato"
 import Buck from "buck.ato"
@@ -48,7 +48,7 @@ module ServoDrive:
     micro_kit.gnd ~ gnd
 
     # LED
-    led = new SK6805_EC15
+    led = new SK6805SIDE_S
     led.vcc ~ v_5 # connect to 5V rail
     led.gnd ~ gnd
     led.data_in ~ micro_kit.micro.gpio25
