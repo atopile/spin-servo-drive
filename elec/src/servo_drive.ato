@@ -13,11 +13,15 @@ import PinHeader2 from "pin_header.ato"
 import PinHeader25 from "pin_header.ato"
 
 import Usbc from "usbc.ato"
+import SK6805_EC15 from "sk6805_ec15.ato"
 
 import VoltageSense from "voltage_sense.ato"
 import Buck from "buck.ato"
 import LDO from "ldo.ato"
 import XT30 from "xt30.ato"
+import AdjustableLdo from "adjustable_ldo.ato"
+import switch_90degree from "switch_90degree.ato"
+
 
 import StemmaQtActive from "stemma.ato"
 
@@ -25,8 +29,10 @@ component PowerPad:
     pin p1
     footprint = "lib:OutputPad"
 
+
 module ServoDrive:
     signal v_10
+    signal v_5
     signal v_3
     signal vbatt
     signal gnd
@@ -41,20 +47,35 @@ module ServoDrive:
     micro_kit.v_3_3 ~ v_3
     micro_kit.gnd ~ gnd
 
+    # LED
+    led = new SK6805_EC15
+    led.vcc ~ # connect to 5V rail
+    led.gnd ~ gnd
+    led.din ~ micro_kit.micro.gpio25
+
+    # Enumeration switch
+    switch = new switch_90degree
+    switch_pulldown = new Resistor
+    switch_pulldown.value = "10k"
+    switch_pulldown.p1 ~ gnd
+    switch_pulldown.p2 ~ switch.p1
+    switch.p2 ~ v_3
+    switch.p2 ~ micro_kit.micro.gpio24
+    
+
     # usbc
     usb = new Usbc
-    usb_diode = new Diode
-    usb_diode.footprint = "lib:SOD-523_L1.2-W0.8-LS1.6-RD"
     r_cc1 = new Resistor
     r_cc1.value = "5.1k"
     r_cc2 = new Resistor
     r_cc2.value = "5.1k"
-
-    v_10 ~ usb_diode.cathode
-    usb_diode.anode ~ usb.vbus
-
     usb.dp ~ micro_kit.usb_dp
     usb.dm ~ micro_kit.usb_dm
+
+    usb_diode = new Diode
+    usb_diode.footprint = "lib:SOD-523_L1.2-W0.8-LS1.6-RD"
+    v_5 ~ usb_diode.cathode
+    usb_diode.anode ~ usb.vbus
 
     # CC1 and CC2 so it works with USB C to USB C cables
     usb.cc1 ~ r_cc1.p1
@@ -65,17 +86,27 @@ module ServoDrive:
 
     usb.gnd ~ gnd
 
-    #10V rail buck - powers gate drivers from VIN
+    # 10V rail buck - powers gate drivers from VIN
     buck = new Buck
     vbatt ~ buck.VIN
     buck.VOUT ~ v_10
     buck.GND ~ gnd
 
-    #3v3 rail LDO - powers micro, input diode ord with usb 5v input
-    ldo = new LDO
-    v_10 ~ ldo.vin
-    ldo.vout ~ v_3
-    ldo.gnd ~ gnd
+    # 5v rail LDO - powers micro
+    ldo_5v = new AdjustableLdo
+    ldo_5v.feedback_div.r_top.value = "18kOhm"
+    ldo_5v.feedback_div.r_bottom.value = "5.6kOhm"
+    v_10 ~ ldo_5v.vin
+    ldo_5v.vout ~ v_5
+    ldo_5v.gnd ~ gnd
+
+    # 3v3 rail LDO - powers micro
+    ldo_3v3 = new AdjustableLdo
+    ldo_3v3.feedback_div.r_top.value = "18kOhm"
+    ldo_3v3.feedback_div.r_bottom.value = "10kOhm"
+    v_5 ~ ldo_3v3.vin
+    ldo_3v3.vout ~ v_3
+    ldo_3v3.gnd ~ gnd
 
     power_stage = new PowerStage
     power_stage.v_pwr ~ vbatt
