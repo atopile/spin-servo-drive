@@ -61,9 +61,8 @@ module ServoDrive:
     switch_pulldown.p2 ~ switch.p1
     switch.p2 ~ v_3
     switch.p2 ~ micro_kit.micro.gpio24
-    
 
-    # usbc
+    # USB-C
     usb = new Usbc
     r_cc1 = new Resistor
     r_cc1.value = "5.1k"
