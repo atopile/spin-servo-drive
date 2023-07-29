@@ -1,20 +1,20 @@
 # C443854
-# easyeda2kicad --full --lcsc_id=C443854 --output ./lib/lib
-#ato view --root-file adjustable_ldo.ato --root-node adjustable_ldo.ato/ldo_adjustable
+# easyeda2kicad --full --lcsc_id=C443854 --output ./lib/lib 
+# ato view --root-file adjustable_ldo.ato --root-node adjustable_ldo.ato:adjustable_ldo
 
 import Capacitor from "std/capacitor.ato"
 import Vdiv from "micro/vdiv.ato"
 
 component LDK220M_R:
-    signal in ~ pin 1
-    signal gnd ~ pin 2
-    signal en ~ pin 3
-    signal out ~ pin 5
-    signal adj ~ pin 4
+    signal in ~ pin p1
+    signal gnd ~ pin p2
+    signal en ~ pin p3
+    signal out ~ pin p5
+    signal adj ~ pin p4
 
     footprint = "lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BL"
 
-module ldo_adjustable:
+module adjustable_ldo:
     signal vin
     signal vout
     signal gnd

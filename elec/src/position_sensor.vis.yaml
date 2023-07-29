@@ -2,8 +2,8 @@ PositionSensor:
   child_attrs:
     sensor:
       position:
-        x: 790
-        y: 550
+        x: 875
+        y: 490
     pgo_resistor:
       position:
         x: 50
