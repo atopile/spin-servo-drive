@@ -1,10 +1,10 @@
-import Oscillator from "micro/oscillator.ato"
+import Oscillator from "oscillator.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 # Switch
-import TS_1101_C_W from "micro/TS_1101_C_W.ato"
+import TS_1101_C_W from "TS_1101_C_W.ato"
 # Flash
-import W25Q128JV from "micro/W25Q128JV.ato"
+import W25Q128JV from "W25Q128JV.ato"
 
 import Vdiv from "vdiv.ato"
 
@@ -79,66 +79,6 @@ component RP2040:
     signal gnd ~ pin p57
 
     footprint = "lib:LQFN-56_L7.0-W7.0-P0.4-EP"
-
-    iovdd.visualizer.location = "top"
-
-    usb_vdd.visualizer.location = "top"
-    dvdd.visualizer.location = "top"
-
-    testen.visualizer.location = "left"
-
-    xin.visualizer.location = "left"
-    xout.visualizer.location = "left"
-
-    swclk.visualizer.location = "left"
-    swdio.visualizer.location = "left"
-
-    run.visualizer.location = "left"
-
-    adc_avdd.visualizer.location = "left"
-
-    usb_dm.visualizer.location = "left"
-    usb_dp.visualizer.location = "left"
-
-    qspi_sd3.visualizer.location = "left"
-    qspi_sclk.visualizer.location = "left"
-    qspi_sd0.visualizer.location = "left"
-    qspi_sd2.visualizer.location = "left"
-    qspi_sd1.visualizer.location = "left"
-    qspi_ss_n.visualizer.location = "left"
-
-    gpio0.visualizer.location = "right"
-    gpio1.visualizer.location = "right"
-    gpio2.visualizer.location = "right"
-    gpio3.visualizer.location = "right"
-    gpio4.visualizer.location = "right"
-    gpio5.visualizer.location = "right"
-    gpio6.visualizer.location = "right"
-    gpio7.visualizer.location = "right"
-    gpio8.visualizer.location = "right"
-    gpio9.visualizer.location = "right"
-    gpio10.visualizer.location = "right"
-    gpio11.visualizer.location = "right"
-    gpio12.visualizer.location = "right"
-    gpio13.visualizer.location = "right"
-    gpio14.visualizer.location = "right"
-    gpio15.visualizer.location = "right"
-    gpio16.visualizer.location = "right"
-    gpio17.visualizer.location = "right"
-    gpio18.visualizer.location = "right"
-    gpio19.visualizer.location = "right"
-    gpio20.visualizer.location = "right"
-    gpio21.visualizer.location = "right"
-    gpio22.visualizer.location = "right"
-    gpio23.visualizer.location = "right"
-    gpio24.visualizer.location = "right"
-    gpio25.visualizer.location = "right"
-    gpio26_a1.visualizer.location = "right"
-    gpio27_a2.visualizer.location = "right"
-    gpio28_a3.visualizer.location = "right"
-    gpio29_a4.visualizer.location = "right"
-
-    gnd.visualizer.location = "bottom"
 
     designator_prefix = "U"
 

@@ -1,0 +1,44 @@
+component STM32F103TBU6:
+    footprint = "VFQFPN36_L6.0-W6.0-P0.50-BL-EP3.7"
+    #lcsc_id = C8363
+    # pins
+    signal VDD_3 ~ pin p1
+    signal PD0_OSC_IN ~ pin p2
+    signal PD1_OSC_OUT ~ pin p3
+    signal NRST ~ pin p4
+    signal VSSA ~ pin p5
+    signal VDDA ~ pin p6
+    signal PA0_WKUP ~ pin p7
+    signal PA1 ~ pin p8
+    signal PA2 ~ pin p9
+    signal PA3 ~ pin p10
+    signal PA4 ~ pin p11
+    signal PA5 ~ pin p12
+    signal PA6 ~ pin p13
+    signal PA7 ~ pin p14
+    signal PB0 ~ pin p15
+    signal PB1 ~ pin p16
+    signal PB2 ~ pin p17
+    signal VSS_1 ~ pin p18
+    signal VDD_1 ~ pin p19
+    signal PA8 ~ pin p20
+    signal PA9 ~ pin p21
+    signal PA10 ~ pin p22
+    signal PA11 ~ pin p23
+    signal PA12 ~ pin p24
+    signal PA13 ~ pin p25
+    signal VSS_2 ~ pin p26
+    signal VDD_2 ~ pin p27
+    signal PA14 ~ pin p28
+    signal PA15 ~ pin p29
+    signal PB3 ~ pin p30
+    signal PB4 ~ pin p31
+    signal PB5 ~ pin p32
+    signal PB6 ~ pin p33
+    signal PB7 ~ pin p34
+    signal BOOT0 ~ pin p35
+    signal VSS_3 ~ pin p36
+    signal EP ~ pin p37
+
+    # pin types
+

@@ -11,11 +11,3 @@ component W25Q128JV:
     designator_prefix = "U"
 
     footprint = "lib:SOIC-8_L5.3-W5.3-P1.27-LS8.0-BL"
-
-    do.visualizer.location = "right"
-    di.visualizer.location = "right"
-    io2.visualizer.location = "right"
-    io3.visualizer.location = "right"
-    ncs.visualizer.location = "left"
-    clk.visualizer.location = "left"
-    gnd.visualizer.location = "bottom"

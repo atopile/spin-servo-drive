@@ -17,4 +17,4 @@ builds:
       - bom-jlcpcb
   micro:
     root-file: rp2040.ato
-    root-node: rp2040.ato:Micro
+    root-node: rp2040.ato:RP2040_kit
