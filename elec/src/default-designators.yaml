@@ -91,16 +91,6 @@ servo_drive.ato:ServoDrive.power_stage.current_sense_b.c_out: C2
 servo_drive.ato:ServoDrive.led: U5
 servo_drive.ato:ServoDrive.switch: U11
 servo_drive.ato:ServoDrive.switch_pulldown: R3
-servo_drive.ato:ServoDrive.stemma.passive_stemma.conn: U17
-servo_drive.ato:ServoDrive.stemma.passive_stemma.sda_level_shifter.fet: U19
-servo_drive.ato:ServoDrive.stemma.passive_stemma.sda_level_shifter.pullup_internal: R5
-servo_drive.ato:ServoDrive.stemma.passive_stemma.sda_level_shifter.pullup_external: R6
-servo_drive.ato:ServoDrive.stemma.passive_stemma.scl_level_shifter.fet: U20
-servo_drive.ato:ServoDrive.stemma.passive_stemma.scl_level_shifter.pullup_internal: R12
-servo_drive.ato:ServoDrive.stemma.passive_stemma.scl_level_shifter.pullup_external: R13
-servo_drive.ato:ServoDrive.stemma.active_terminator: U21
-servo_drive.ato:ServoDrive.stemma.pullup_external: R16
-servo_drive.ato:ServoDrive.stemma_diode: D2
 servo_drive.ato:ServoDrive.ldo_5v.ldo: U22
 servo_drive.ato:ServoDrive.ldo_5v.input_cap: C5
 servo_drive.ato:ServoDrive.ldo_5v.output_cap: C16
@@ -111,3 +101,5 @@ servo_drive.ato:ServoDrive.ldo_3v3.input_cap: C18
 servo_drive.ato:ServoDrive.ldo_3v3.output_cap: C19
 servo_drive.ato:ServoDrive.ldo_3v3.feedback_div.r_top: R21
 servo_drive.ato:ServoDrive.ldo_3v3.feedback_div.r_bt: R22
+servo_drive.ato:ServoDrive.stemma: U17
+servo_drive.ato:ServoDrive.i2c_active_terminator: U19
