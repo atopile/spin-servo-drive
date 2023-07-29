@@ -50,7 +50,7 @@ module ServoDrive:
     led = new SK6805_EC15
     led.vcc ~ # connect to 5V rail
     led.gnd ~ gnd
-    led.din ~ micro_kit.micro.gpio25 #todo: pick a pin for STM32
+    led.din ~ micro_kit.micro.gpio25
 
     # usbc
     usb = new Usbc
