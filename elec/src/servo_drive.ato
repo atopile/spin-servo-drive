@@ -20,6 +20,7 @@ import Buck from "buck.ato"
 import LDO from "ldo.ato"
 import XT30 from "xt30.ato"
 import AdjustableLdo from "adjustable_ldo.ato"
+import switch_90degree from "switch_90degree.ato"
 
 
 component PowerPad:
@@ -49,6 +50,16 @@ module ServoDrive:
     led.vcc ~ # connect to 5V rail
     led.gnd ~ gnd
     led.din ~ micro_kit.micro.gpio25 #todo: pick a pin for STM32
+
+    # Enumeration switch
+    switch = new switch_90degree
+    switch_pulldown = new Resistor
+    switch_pulldown.value = "10k"
+    switch_pulldown.p1 ~ gnd
+    switch_pulldown.p2 ~ switch.p1
+    switch.p2 ~ v_3
+    switch.p2 ~ micro_kit.micro.gpio24
+    
 
     # usbc
     usb = new Usbc
