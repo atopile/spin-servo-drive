@@ -22,8 +22,8 @@ import XT30 from "xt30.ato"
 import AdjustableLdo from "adjustable_ldo.ato"
 import switch_90degree from "switch_90degree.ato"
 
-
-import StemmaQtActive from "stemma.ato"
+import StemmaQtConnector from "stemma.ato"
+import LTC4311 from "stemma.ato"
 
 component PowerPad:
     pin p1
@@ -147,13 +147,16 @@ module ServoDrive:
     position_sensor.scl ~ micro_kit.micro.gpio5
 
     # i2c comms
-    stemma = new StemmaQtActive
-    stemma.vcc_3v3 ~ v_3
+    # we're not using the pre-built STEMMA module here because we're not adding the level shifting
+    # this means it's not actually STEMMA complaint, but it's close enough for our purposes
+    stemma = new StemmaQtConnector
+    stemma.vcc ~ v_3
     stemma.gnd ~ gnd
     stemma.sda ~ micro_kit.micro.gpio10
     stemma.scl ~ micro_kit.micro.gpio11
-
-    stemma_diode = new Diode
-    stemma_diode.footprint = "lib:SOD-523_L1.2-W0.8-LS1.6-RD"
-    stemma.ext_vcc ~ stemma_diode.anode
-    stemma_diode.cathode ~ v_5
+    i2c_active_terminator = new LTC4311
+    i2c_active_terminator.vcc ~ v_3
+    i2c_active_terminator.gnd ~ gnd
+    i2c_active_terminator.bus1 ~ stemma.sda
+    i2c_active_terminator.bus2 ~ stemma.scl
+    i2c_active_terminator.enable ~ stemma.vcc
