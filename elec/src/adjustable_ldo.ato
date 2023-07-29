@@ -3,7 +3,7 @@
 # ato view --root-file adjustable_ldo.ato --root-node adjustable_ldo.ato:adjustable_ldo
 
 import Capacitor from "std/capacitor.ato"
-import Vdiv from "micro/vdiv.ato"
+import Vdiv from "vdiv.ato"
 
 component LDK220M_R:
     signal in ~ pin p1
