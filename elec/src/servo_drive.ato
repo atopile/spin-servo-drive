@@ -51,7 +51,7 @@ module ServoDrive:
     led = new SK6805_EC15
     led.vcc ~ v_5 # connect to 5V rail
     led.gnd ~ gnd
-    led.din ~ micro_kit.micro.gpio25
+    led.data_in ~ micro_kit.micro.gpio25
 
     # Enumeration switch
     switch = new switch_90degree
