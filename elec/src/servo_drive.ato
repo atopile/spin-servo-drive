@@ -60,7 +60,7 @@ module ServoDrive:
     switch_pulldown.p1 ~ gnd
     switch_pulldown.p2 ~ switch.1
     switch.2 ~ v_3
-    switch.2 ~ micro_kit.micro.gpio24
+    switch.1 ~ micro_kit.micro.gpio24
 
     # USB-C
     usb = new Usbc
