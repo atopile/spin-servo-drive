@@ -1,59 +1,28 @@
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
-import AS5600 from "as5600.ato"
+import ma730 from "ma730.ato"
 
 #ato view --root-file position_sensor.ato --root-node position_sensor.ato/PositionSensor
 
-
 module PositionSensor:
-    sensor = new AS5600
+    sensor = new ma730
     signal vin
     signal gnd
-    signal scl
-    signal sda
-
-    gnd ~ sensor.GND
-
-    # 5v and 3v3 are connected together in 3v3 operation
-    sensor.v_5 ~ sensor.v_3
-    vin ~ sensor.v_3
-
-    sensor.SDA ~ sda
-    sensor.SCL ~ scl
-
-    #PGO to gnd with 1k pulldown
-    pgo_resistor = new Resistor
-    pgo_resistor.value = "1k"
-    pgo_resistor.p1 ~ sensor.PGO
-    pgo_resistor.p2 ~ gnd
-
-    sda_pullup = new Resistor
-    scl_pullup = new Resistor
-
-    sda_pullup.p1 ~ vin
-    sda_pullup.p2 ~ sda
-    scl_pullup.p1 ~ vin
-    scl_pullup.p2 ~ scl
-
-    sda_pullup.value = "10k"
-    scl_pullup.value = "10k"
+    signal miso
+    signal mosi
+    signal sck
+    signal cs
 
     cap_3v3 = new Capacitor
-    cap_5v = new Capacitor
-
-    cap_3v3.p1 ~ vin
-    cap_3v3.p2 ~ gnd
-    cap_5v.p1 ~ vin
-    cap_5v.p2 ~ gnd
-
     cap_3v3.value = "1uF"
-    cap_5v.value = "100nF"
+    cap_3v3.footprint = "Capacitor:SMD_C_0402_1005Metric"
 
-    footprint = "lib:SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL"
+    vin ~ sensor.vdd
+    vin ~ cap_3v3.1
+    gnd ~ sensor.gnd
+    gnd ~ cap_3v3.2
 
-    gnd.visualizer.stub = True
-
-    sda.visualizer.location = "right"
-    scl.visualizer.location = "right"
-    vin.visualizer.location = "left"
-    gnd.visualizer.location = "bottom"
+    miso ~ sensor.miso
+    mosi ~ sensor.mosi
+    sck ~ sensor.sclk
+    cs ~ sensor.cs

@@ -139,12 +139,14 @@ module ServoDrive:
     voltage_input_vdiv.gnd ~ gnd
     voltage_input_vdiv.out ~ micro_kit.micro.gpio29_a3
 
-    # Position sensor
+    # Position sensor - SPI interface
     position_sensor = new PositionSensor
     position_sensor.vin ~ v_3
     position_sensor.gnd ~ gnd
-    position_sensor.sda ~ micro_kit.micro.gpio4
-    position_sensor.scl ~ micro_kit.micro.gpio5
+    position_sensor.miso ~ micro_kit.micro.gpio19
+    position_sensor.mosi ~ micro_kit.micro.gpio16
+    position_sensor.sck ~ micro_kit.micro.gpio18
+    position_sensor.cs ~ micro_kit.micro.gpio17
 
     # i2c comms
     # we're not using the pre-built STEMMA module here because we're not adding the level shifting
