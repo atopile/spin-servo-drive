@@ -2,7 +2,7 @@ CurrentSense:
   child_attrs:
     shunt:
       position:
-        x: 50
+        x: 370
         y: 50
     amp:
       position:
@@ -24,3 +24,19 @@ CurrentSense:
       position:
         x: 50
         y: 50
+    opamp:
+      position:
+        x: 80
+        y: 320
+    feedback_div:
+      position:
+        x: 285
+        y: 240
+    input_r_top:
+      position:
+        x: 50
+        y: 100
+    output_filter:
+      position:
+        x: 525
+        y: 190

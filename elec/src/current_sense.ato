@@ -1,19 +1,17 @@
-import AD8418AWBRZ from "AD8418AWBRZ-RL.ato"
+#ato view --root-file current_sense.ato --root-node current_sense.ato:CurrentSense
+
 import LMV321IDBVR from "LMV321IDBVR.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
+import Vdiv from "vdiv.ato"
+import LowPass  from "low_pass.ato"
 
-# This file impliments a differential shunt-based current sense 
-# It's capable of 70V commonmode, and can be connected to an inverter switching node
-
+# This file impliments a lowside shunt-based current sense
 # The largest readily available 42mm-frame motors have a rated current of ~8A
 # Burst current is ~3x rated, which means we want to ideally support ~24A
 # Aim for constant power rating on shunt resistor to match constant rating of motor (8A)
-# Irange = Vcc/2 / GAIN / Rshunt
-# GAIN = 20v/v fixed for the AD8418
-# Rshunt = 3mOhm
-# VCC = 3.3V typical Use
-# Irange = +/- 27.5A
+# Shunt Resistor Voltage: Using Ohm's law, the maximum voltage across a 3mΩ shunt resistor at 24A is 0.072V.
+# Amplifier Gain: To map this to the ADC's maximum measurable voltage of 3.3V, we calculate the required gain to be 45.8.
 
 module CurrentSense:
     signal vcc
@@ -22,53 +20,36 @@ module CurrentSense:
     signal i_out
     signal out
 
-    # Use C2681063 for 2010 1.0W 
+    # Use C2681063 for 2010 1.0W
     # or C128540 for 0805 0.5W (3x overload rated, probably okay..)
     shunt = new Resistor
     shunt.value = "3mOhm"
-    shunt.footprint = "Resistor_SMD:R_2010_5025Metric"
-    shunt.p1.visualizer.location = "left"
-    shunt.p2.visualizer.location = "right"
+    shunt.footprint = "Resistor_SMD:R_0805_2012Metric"
     i_in ~ shunt.p1
     shunt.p2 ~ i_out
 
-    amp = new AD8418AWBRZ
-    amp.vs ~ vcc
-    amp.gnd ~ gnd
-    # Split supply mode, as per figure 33 in AD8418AWBRZ-RL.pdf
-    amp.vref1 ~ vcc
-    amp.vref2 ~ gnd
+    opamp = new LMV321IDBVR
+    opamp.vcc ~ vcc
+    opamp.gnd ~ gnd
 
-    c_bypass = new Capacitor
-    c_bypass.value = "1uF"
-    c_bypass.footprint = "Capacitor_SMD:C_0805_2012Metric"
-    c_bypass.p1 ~ amp.vs
-    c_bypass.p2 ~ amp.gnd
+    # feedback
+    feedback_div = new Vdiv
+    feedback_div.input ~ i_out
+    feedback_div.gnd ~ opamp.out
+    feedback_div.output ~ opamp.in_n
+    feedback_div.r1.value = "1kOhm"
+    feedback_div.r2.value = "45kOhm"
 
-    # connect shunt to amplifier
-    shunt.p1 ~ amp.in_p
-    shunt.p2 ~ amp.in_n
+    # input resistor
+    input_r_top = new Resistor
+    input_r_top.p1 ~ i_in
+    input_r_top.p2 ~ opamp.in_p
+    input_r_top.value = "1kOhm"
 
-    # filter output at 167khz
-    # This is done instead of filtering the input to avoid input current error
-    r_out = new Resistor
-    r_out.value = "100ohm"
-    r_out.footprint = "Resistor_SMD:R_0603_1608Metric"
-    r_out.p2 ~ amp.out
-    r_out.p1 ~ out
-
-    c_out = new Capacitor
-    c_out.value = "100nF"
-    c_out.footprint = "Capacitor_SMD:C_0603_1608Metric"
-    c_out.p1 ~ gnd
-    c_out.p2 ~ out
-
-    # visualiser hints
-    vcc.visualizer.location = "top"
-    gnd.visualizer.location = "bottom"
-    i_in.visualizer.location = "left"
-    zero_offset.visualizer.location = "left"
-    i_out.visualizer.location = "right"
-    out.visualizer.location = "right"
-    c_out.p1.visualizer.location = "left"
-    c_out.p2.visualizer.location = "right"
+    # output filter - cutoff at 1.3MHz
+    output_filter = new LowPass
+    output_filter.in ~ opamp.out
+    output_filter.out ~ out
+    output_filter.gnd ~ gnd
+    output_filter.c.value = "2200pf"
+    output_filter.r.value = "56R"
