@@ -3,7 +3,7 @@
 import Resistor from "std/resistor.ato"
 
 import PowerStage from "power_stage.ato"
-import RP2040_kit from "rp2040.ato"
+import stm32_kit from "stm32.ato"
 import PositionSensor from "position_sensor.ato"
 
 import Diode from "diode.ato"
@@ -43,7 +43,7 @@ module ServoDrive:
     gnd ~ xt30.gnd
 
     # Micro
-    micro_kit = new RP2040_kit
+    micro_kit = new stm32_kit
     micro_kit.v_3_3 ~ v_3
     micro_kit.gnd ~ gnd
 
@@ -123,28 +123,32 @@ module ServoDrive:
     power_stage.out_c ~ pad_out_c.p1
 
     # Power stage to micro
-    micro_kit.micro.gpio6 ~ power_stage.high_in_a
-    micro_kit.micro.gpio7 ~ power_stage.low_in_a
-    micro_kit.micro.gpio2 ~ power_stage.high_in_b
-    micro_kit.micro.gpio3 ~ power_stage.low_in_b
-    micro_kit.micro.gpio0 ~ power_stage.high_in_c
-    micro_kit.micro.gpio1 ~ power_stage.low_in_c
+    micro_kit.micro.PA8 ~ power_stage.high_in_a
+    micro_kit.micro.PA7 ~ power_stage.low_in_a
+    micro_kit.micro.PA9 ~ power_stage.high_in_b
+    micro_kit.micro.PB0 ~ power_stage.low_in_b
+    micro_kit.micro.PA10 ~ power_stage.high_in_c
+    micro_kit.micro.PB1 ~ power_stage.low_in_c
 
-    micro_kit.micro.gpio26_a0 ~ power_stage.i_fb_a
-    micro_kit.micro.gpio27_a1 ~ power_stage.i_fb_b
+    micro_kit.micro.PA0 ~ power_stage.i_fb_a
+    micro_kit.micro.PA1 ~ power_stage.i_fb_b
+    micro_kit.micro.PA2 ~ power_stage.i_fb_c
 
     # Voltage input monitoring
     voltage_input_vdiv = new VoltageSense
     voltage_input_vdiv.in ~ xt30.vin
     voltage_input_vdiv.gnd ~ gnd
-    voltage_input_vdiv.out ~ micro_kit.micro.gpio29_a3
+    voltage_input_vdiv.out ~ micro_kit.micro.PA3
 
     # Position sensor
     position_sensor = new PositionSensor
     position_sensor.vin ~ v_3
     position_sensor.gnd ~ gnd
-    position_sensor.sda ~ micro_kit.micro.gpio4
-    position_sensor.scl ~ micro_kit.micro.gpio5
+    # needs to merge with position sensor update
+    # micro_kit.micro.PB5 ~ position_sensor.mosi
+    # micro_kit.micro.PB4 ~ position_sensor.miso
+    # micro_kit.micro.PB3 ~ position_sensor.sclk
+    # micro_kit.micro.PA15 ~ position_sensor.cs
 
     # i2c comms
     # we're not using the pre-built STEMMA module here because we're not adding the level shifting
@@ -152,8 +156,8 @@ module ServoDrive:
     stemma = new StemmaQtConnector
     stemma.vcc ~ v_3
     stemma.gnd ~ gnd
-    stemma.sda ~ micro_kit.micro.gpio10
-    stemma.scl ~ micro_kit.micro.gpio11
+    stemma.sda ~ micro_kit.micro.PB7
+    stemma.scl ~ micro_kit.micro.PB6
     i2c_active_terminator = new LTC4311
     i2c_active_terminator.vcc ~ v_3
     i2c_active_terminator.gnd ~ gnd
