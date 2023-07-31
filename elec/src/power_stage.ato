@@ -56,6 +56,12 @@ module PowerStage:
     half_bridge_b.vcc_10v ~ vcc_10v
     half_bridge_c.vcc_10v ~ vcc_10v
 
+    # connect halfbridges output to phase outputs
+    half_bridge_a.out ~ out_a
+    half_bridge_b.out ~ out_b
+    half_bridge_c.out ~ out_c
+
+    # connect gnd of half bridges to gnd
     half_bridge_a.gnd ~ gnd
     half_bridge_b.gnd ~ gnd
     half_bridge_c.gnd ~ gnd
@@ -72,17 +78,14 @@ module PowerStage:
     current_sense_b = new CurrentSense
     current_sense_c = new CurrentSense
 
-    half_bridge_a.out ~ current_sense_a.i_in
-    half_bridge_b.out ~ current_sense_b.i_in
-    half_bridge_c.out ~ current_sense_c.i_in
+    half_bridge_a.pwr_gnd ~ current_sense_a.i_in
+    half_bridge_b.pwr_gnd ~ current_sense_b.i_in
+    half_bridge_c.pwr_gnd ~ current_sense_c.i_in
 
-    current_sense_a.i_out ~ out_a
-    current_sense_b.i_out ~ out_b
-    current_sense_c.i_out ~ out_c
-
-    current_sense_a.out ~ i_fb_a
-    current_sense_b.out ~ i_fb_b
-    current_sense_c.out ~ i_fb_c
+    # connect i_out of current sensors to gnd
+    current_sense_a.i_out ~ gnd
+    current_sense_b.i_out ~ gnd
+    current_sense_c.i_out ~ gnd
 
     current_sense_a.gnd ~ gnd
     current_sense_b.gnd ~ gnd

@@ -175,12 +175,12 @@
   (net 78 "servo_drive.ato:ServoDrive.voltage_input_vdiv.out")
   (net 79 "servo_drive.ato:ServoDrive.micro_kit.micro.usb_dm")
   (net 80 "servo_drive.ato:ServoDrive.micro_kit.micro.usb_dp")
-  (net 81 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.ls_fet.gate")
-  (net 82 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.hs_fet.gate")
-  (net 83 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.ls_fet.gate")
-  (net 84 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.hs_fet.gate")
-  (net 85 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.hs_fet.gate")
-  (net 86 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.ls_fet.gate")
+  (net 81 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.fets.gate_bottom")
+  (net 82 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.fets.gate_top")
+  (net 83 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.fets.gate_bottom")
+  (net 84 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.fets.gate_top")
+  (net 85 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.fets.gate_top")
+  (net 86 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.fets.gate_bottom")
   (net 87 "servo_drive.ato:ServoDrive.power_stage.current_sense_b.amp.NC")
   (net 88 "servo_drive.ato:ServoDrive.power_stage.current_sense_b.amp.out")
   (net 89 "servo_drive.ato:ServoDrive.power_stage.current_sense_a.amp.NC")
@@ -252,7 +252,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "F.Cu")
     (tstamp 09fd69d0-3cc1-419d-9c3d-b3defab86926)
     (at 169.5704 109.2708 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -352,7 +352,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp 0ab26ae0-f25b-4711-9d3a-039bbe6c2333)
     (at 162.1536 97.6376 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -394,7 +394,7 @@
     (pad "1" smd roundrect (at -0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 37 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.gate_driver.lvg") (tstamp 07025950-80a4-4795-83d3-929507e82dee))
     (pad "2" smd roundrect (at 0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 86 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.ls_fet.gate") (tstamp c51d7967-1aae-4e84-a917-72348272c295))
+      (net 86 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.fets.gate_bottom") (tstamp c51d7967-1aae-4e84-a917-72348272c295))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
@@ -502,7 +502,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "F.Cu")
     (tstamp 223b1fb3-04d6-416e-82ab-948c520e817a)
     (at 141.314628 100.973629 -90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -602,7 +602,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp 34a8533c-d7e1-4d3a-a384-05764c3f2589)
     (at 148.29291 95.768369 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -644,7 +644,7 @@
     (pad "1" smd roundrect (at -0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 31 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.gate_driver.lvg") (tstamp 30055e96-738d-4f2e-961d-514dcc462cfc))
     (pad "2" smd roundrect (at 0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 83 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.ls_fet.gate") (tstamp d04845fa-32eb-49d1-add5-a7316941f0f2))
+      (net 83 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.fets.gate_bottom") (tstamp d04845fa-32eb-49d1-add5-a7316941f0f2))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
@@ -652,7 +652,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp 3f30945b-ec7e-4936-841b-daeaf9b44dfe)
     (at 155.524352 87.520304 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -692,7 +692,7 @@
     (fp_line (start 0.8 0.4125) (end -0.8 0.4125)
       (stroke (width 0.1) (type solid)) (layer "F.Fab") (tstamp 047d9f3a-1487-4d59-a2c5-1217f23d1193))
     (pad "1" smd roundrect (at -0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 82 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.hs_fet.gate") (tstamp 294eb139-25d9-4d0a-9f32-fc43de78bf7c))
+      (net 82 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.fets.gate_top") (tstamp 294eb139-25d9-4d0a-9f32-fc43de78bf7c))
     (pad "2" smd roundrect (at 0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 97 "servo_drive.ato:ServoDrive.power_stage.current_sense_b.i_in-half_bridge_b.out") (tstamp 8c059ee1-4e02-44f5-983b-57ff52118244))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
@@ -702,7 +702,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "F.Cu")
     (tstamp 4dc5bcca-d736-4f0c-b3df-0af7e6c011a7)
     (at 169.418 106.426 180)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -914,7 +914,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "F.Cu")
     (tstamp 6b1c9331-50e1-4e34-9cc5-153d2f74e6d7)
     (at 148.160271 101.459345 -90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -964,7 +964,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp 6f9fb2d9-747b-4bab-bb59-6fecfa367948)
     (at 161.632911 116.527629 180)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -1404,7 +1404,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "F.Cu")
     (tstamp 8fdd2bc5-66f1-410c-ae9b-1b7b1616314f)
     (at 159.183626 109.16576 -90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -1454,7 +1454,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "F.Cu")
     (tstamp 9316c752-2636-4351-ab49-6e6837aaf610)
     (at 156.108929 109.160074 -90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -1504,7 +1504,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp 94f9e907-b22e-4763-b7ed-ee0e1f1a6045)
     (at 155.592815 90.661304 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -1546,7 +1546,7 @@
     (pad "1" smd roundrect (at -0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 27 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.gate_driver.hvg") (tstamp 32e3bdf3-ca98-468f-871f-44faa71740e8))
     (pad "2" smd roundrect (at 0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 82 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.hs_fet.gate") (tstamp 919275e7-c9fc-4e27-9154-6be50a3ad96d))
+      (net 82 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.fets.gate_top") (tstamp 919275e7-c9fc-4e27-9154-6be50a3ad96d))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
@@ -1596,7 +1596,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "F.Cu")
     (tstamp a31d9221-3e67-4bb8-9b54-231ea301f3d3)
     (at 157.657555 109.164954 -90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -1646,7 +1646,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp a4eea9fd-ce5e-4e9a-90ba-ad9e30ec475e)
     (at 163.868113 88.022578 -90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -1688,7 +1688,7 @@
     (pad "1" smd roundrect (at -0.825 0 270) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 38 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.gate_driver.hvg") (tstamp 78204e3f-1be7-422c-bebf-a0497cd438ea))
     (pad "2" smd roundrect (at 0.825 0 270) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 85 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.hs_fet.gate") (tstamp 28610fb7-af3b-463d-b348-ce2cc2785808))
+      (net 85 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.fets.gate_top") (tstamp 28610fb7-af3b-463d-b348-ce2cc2785808))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
@@ -1727,7 +1727,7 @@
       (net 53 "servo_drive.ato:ServoDrive.power_stage.out_c") (tstamp 47564a03-9346-4d7d-8710-9e4c87a3cddd))
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp b5ba7270-b456-4ea6-97a5-55746e65394b)
     (at 168.3004 103.0732)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -1777,7 +1777,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp b62dffdf-b430-4142-b40f-f6e338efd9ed)
     (at 148.287385 87.548994 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -1817,7 +1817,7 @@
     (fp_line (start 0.8 0.4125) (end -0.8 0.4125)
       (stroke (width 0.1) (type solid)) (layer "F.Fab") (tstamp 273954be-dc1c-4b89-adcd-ce21f33b38a9))
     (pad "1" smd roundrect (at -0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 84 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.hs_fet.gate") (tstamp ac57c9ea-5aa9-4a0e-ad81-f7c138e9054b))
+      (net 84 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.fets.gate_top") (tstamp ac57c9ea-5aa9-4a0e-ad81-f7c138e9054b))
     (pad "2" smd roundrect (at 0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 32 "servo_drive.ato:ServoDrive.power_stage.current_sense_a.i_in-half_bridge_a.out") (tstamp 4a00071f-7786-4f49-9eb3-6ebb3de6f77e))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
@@ -1931,7 +1931,7 @@
     (pad "3" smd rect (at 0.63 2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 1 "servo_drive.ato:ServoDrive.gnd") (tstamp 57c3a2d4-1b28-4285-b647-77c1b3fc5964))
     (pad "4" smd rect (at 1.9 2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
-      (net 81 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.ls_fet.gate") (tstamp 91208634-9ea2-4081-adba-ea9a03e6ff97))
+      (net 81 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.fets.gate_bottom") (tstamp 91208634-9ea2-4081-adba-ea9a03e6ff97))
     (pad "5" smd rect (at 1.9 -2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 97 "servo_drive.ato:ServoDrive.power_stage.current_sense_b.i_in-half_bridge_b.out") (tstamp 5d193aaf-d04e-4705-9857-75d26a18f474))
     (pad "6" smd rect (at 0.63 -2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
@@ -2182,7 +2182,7 @@
     (pad "3" smd rect (at 0.63 2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 1 "servo_drive.ato:ServoDrive.gnd") (tstamp 0cda6b49-fa4e-498d-a139-0fd6ff5bd280))
     (pad "4" smd rect (at 1.9 2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
-      (net 83 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.ls_fet.gate") (tstamp 90977f9e-1958-4878-9d57-aa3d6f2066ff))
+      (net 83 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.fets.gate_bottom") (tstamp 90977f9e-1958-4878-9d57-aa3d6f2066ff))
     (pad "5" smd rect (at 1.9 -2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 32 "servo_drive.ato:ServoDrive.power_stage.current_sense_a.i_in-half_bridge_a.out") (tstamp 8ceab1d0-3190-41f8-bc99-49d9b2aef74c))
     (pad "6" smd rect (at 0.63 -2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
@@ -2200,7 +2200,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp cb59af36-696a-4c10-9943-8d016cbe8798)
     (at 155.017788 96.493112 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -2242,7 +2242,7 @@
     (pad "1" smd roundrect (at -0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 26 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.gate_driver.lvg") (tstamp ccc86077-34d6-4cc8-8ed6-e52e83636aa3))
     (pad "2" smd roundrect (at 0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 81 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.ls_fet.gate") (tstamp 094130aa-0894-4e07-a0f1-bedc11b5f842))
+      (net 81 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.fets.gate_bottom") (tstamp 094130aa-0894-4e07-a0f1-bedc11b5f842))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
@@ -2350,7 +2350,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp da1a4555-d379-4056-92eb-ec470edd9e69)
     (at 162.214757 88.006889 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -2390,7 +2390,7 @@
     (fp_line (start 0.8 0.4125) (end -0.8 0.4125)
       (stroke (width 0.1) (type solid)) (layer "F.Fab") (tstamp 4f5d6e4c-e02d-444e-8083-2d13e89c4287))
     (pad "1" smd roundrect (at -0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 85 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.hs_fet.gate") (tstamp 0c957dd4-b08c-465b-8727-517e8cb2816d))
+      (net 85 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.fets.gate_top") (tstamp 0c957dd4-b08c-465b-8727-517e8cb2816d))
     (pad "2" smd roundrect (at 0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 53 "servo_drive.ato:ServoDrive.power_stage.out_c") (tstamp b3f77e57-5a23-47af-b5b9-285e6d6f89be))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
@@ -2446,7 +2446,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "F.Cu")
     (tstamp ddd1eb66-19bb-4c80-8759-fe3d56911a9f)
     (at 148.283046 90.510477 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -2488,7 +2488,7 @@
     (pad "1" smd roundrect (at -0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 33 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.gate_driver.hvg") (tstamp a038e77e-b1c9-41a5-875b-5e9826d9543b))
     (pad "2" smd roundrect (at 0.825 0 90) (size 0.8 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 84 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.hs_fet.gate") (tstamp 3422a2fb-d34e-41de-959b-3d8e9fc17de5))
+      (net 84 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.fets.gate_top") (tstamp 3422a2fb-d34e-41de-959b-3d8e9fc17de5))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
@@ -2546,7 +2546,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "F.Cu")
     (tstamp fa73a268-e370-4ba5-8706-690864f998c8)
     (at 155.236225 101.315154 -90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -2706,7 +2706,7 @@
     (pad "3" smd rect (at 0.63 2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 1 "servo_drive.ato:ServoDrive.gnd") (tstamp cef89481-4556-4b99-a89d-edc1f4d9f41f))
     (pad "4" smd rect (at 1.9 2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
-      (net 86 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.ls_fet.gate") (tstamp 591a6447-d2a1-4168-a094-0cbe14989234))
+      (net 86 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.fets.gate_bottom") (tstamp 591a6447-d2a1-4168-a094-0cbe14989234))
     (pad "5" smd rect (at 1.9 -2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 53 "servo_drive.ato:ServoDrive.power_stage.out_c") (tstamp 21d15530-cb37-4802-9898-ee6948a08cc9))
     (pad "6" smd rect (at 0.63 -2.92) (size 0.6 1) (layers "F.Cu" "F.Paste" "F.Mask")
@@ -2724,7 +2724,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 0000d36c-55e9-43cd-813d-568dd4d7b098)
     (at 146.899348 111.448304 -90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -2774,7 +2774,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 003013f2-e254-4b3f-83a1-66078bc5b534)
     (at 158.185347 100.922694 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -2824,7 +2824,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 0306329c-4f31-459a-a10b-3ed51aaf3983)
     (at 148.9964 85.1916 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -2874,7 +2874,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 0bcf22be-8a3a-44d1-ae86-689b37cdfa8f)
     (at 147.149475 116.337906 -90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -2924,7 +2924,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 12ad3b86-2bf8-470b-8c13-70d32f7308ea)
     (at 156.672302 100.9221 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -2974,7 +2974,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 13a497b2-b0a9-4f70-8594-a2d685c28712)
     (at 146.396007 98.033652 180)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3074,7 +3074,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 1fc07688-0a56-460c-ad52-f826a3ef5448)
     (at 134.622703 93.205353)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3124,7 +3124,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 32965563-f6bf-49cd-802a-4e64af8e8f2a)
     (at 161.036 84.0232 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3174,7 +3174,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 35ca5682-14da-462c-b669-bf7c93ef1492)
     (at 157.696711 97.142082)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3214,7 +3214,7 @@
     (fp_line (start 0.8 0.4125) (end 0.8 -0.4125)
       (stroke (width 0.1) (type solid)) (layer "B.Fab") (tstamp d9154660-4954-45d0-8b6e-35bc9ad88f00))
     (pad "1" smd roundrect (at -0.825 0) (size 0.8 0.95) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.25)
-      (net 81 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.ls_fet.gate") (tstamp ebe1babf-58fd-4149-aa65-c620323778ef))
+      (net 81 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.fets.gate_bottom") (tstamp ebe1babf-58fd-4149-aa65-c620323778ef))
     (pad "2" smd roundrect (at 0.825 0) (size 0.8 0.95) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.25)
       (net 1 "servo_drive.ato:ServoDrive.gnd") (tstamp cdf741c0-bdb7-49a9-98b8-116408c8497e))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
@@ -3340,7 +3340,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 393f1251-063a-4108-a9e0-6094c4e0da81)
     (at 144.873787 116.217934 -90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3558,7 +3558,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 40fc679e-a260-48fa-8490-5f31d76d8d1f)
     (at 134.622703 91.637249)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3664,7 +3664,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 46c524d1-1931-43a0-927f-0ae76cc7c602)
     (at 157.462366 117.822663 -90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3714,7 +3714,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 48a5eea2-740a-4f37-8099-a7289c84eb6a)
     (at 155.943349 117.81158 -90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3764,7 +3764,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 55ad8c7f-48fa-4865-aac5-29e165f124de)
     (at 163.487342 98.58766 -90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3804,7 +3804,7 @@
     (fp_line (start 0.8 0.4125) (end 0.8 -0.4125)
       (stroke (width 0.1) (type solid)) (layer "B.Fab") (tstamp 0236a221-0159-40a2-a592-20aaf2379b26))
     (pad "1" smd roundrect (at -0.825 0 270) (size 0.8 0.95) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.25)
-      (net 86 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.ls_fet.gate") (tstamp 0b212a50-b531-45d8-ae89-0dd8121c12d4))
+      (net 86 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.fets.gate_bottom") (tstamp 0b212a50-b531-45d8-ae89-0dd8121c12d4))
     (pad "2" smd roundrect (at 0.825 0 270) (size 0.8 0.95) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.25)
       (net 1 "servo_drive.ato:ServoDrive.gnd") (tstamp 720c7c12-2139-4e76-af3d-538302678ef9))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
@@ -3814,7 +3814,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 58af2be0-601e-48c8-964d-89d59d40db4f)
     (at 146.389002 99.593718 180)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3864,7 +3864,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 5a1627d2-d558-43d7-8bdf-b4c89d9a80cf)
     (at 146.4056 105.41 180)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3914,7 +3914,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 5afaab43-76b0-422d-a9c9-b01d2982ce96)
     (at 143.434202 97.991751 180)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -3954,7 +3954,7 @@
     (fp_line (start 0.8 0.4125) (end 0.8 -0.4125)
       (stroke (width 0.1) (type solid)) (layer "B.Fab") (tstamp 230fd9bc-6d40-4301-9d6b-f3142bc58d5f))
     (pad "1" smd roundrect (at -0.825 0 180) (size 0.8 0.95) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.25)
-      (net 83 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.ls_fet.gate") (tstamp cb8af8ba-34c2-4542-a2a7-526e9dde44e3))
+      (net 83 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.fets.gate_bottom") (tstamp cb8af8ba-34c2-4542-a2a7-526e9dde44e3))
     (pad "2" smd roundrect (at 0.825 0 180) (size 0.8 0.95) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.25)
       (net 1 "servo_drive.ato:ServoDrive.gnd") (tstamp b31c5c29-a98a-47c8-ae25-69b469893b95))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
@@ -4130,7 +4130,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 6632fae6-2fb7-44ba-824d-f3c9424f0b55)
     (at 160.415365 99.092855 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4234,7 +4234,7 @@
     (pad "3" smd rect (at 0.63 -2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
       (net 97 "servo_drive.ato:ServoDrive.power_stage.current_sense_b.i_in-half_bridge_b.out") (tstamp e6013d5b-0ea0-4438-9b00-1c4cedc2782b))
     (pad "4" smd rect (at 1.9 -2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
-      (net 82 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.hs_fet.gate") (tstamp 8c3a2d7a-ccc4-460e-aabf-fa546349ae87))
+      (net 82 "servo_drive.ato:ServoDrive.power_stage.half_bridge_b.fets.gate_top") (tstamp 8c3a2d7a-ccc4-460e-aabf-fa546349ae87))
     (pad "5" smd rect (at 1.9 2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
       (net 40 "servo_drive.ato:ServoDrive.vbatt") (tstamp 1f0b9999-eb3f-4b8d-9d09-f4693f844a57))
     (pad "6" smd rect (at 0.63 2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
@@ -4252,7 +4252,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 6a0f9144-89bf-4fbe-8817-69cf4afa13c0)
     (at 163.172147 117.787052 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4354,7 +4354,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 71f2d727-1627-42d3-8477-e1d579cc1930)
     (at 132.334 107.1372 180)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4404,7 +4404,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 72e6004e-07c3-45c7-bf2c-0f508b9ff72e)
     (at 140.4112 81.343 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4454,7 +4454,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 75946fa7-c513-492d-9aee-5e0105f7a1cf)
     (at 166.131359 99.969924)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4504,7 +4504,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 78917b9a-a8a1-489c-b592-8b2189898a54)
     (at 161.94368 99.089527 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4554,7 +4554,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 7d7f2dac-d073-4596-a308-6ca1f1e36b27)
     (at 146.4056 103.9876)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4604,7 +4604,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 8c4e772b-5afd-422d-952c-0ac7ec5ee0be)
     (at 134.622703 94.773456 180)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4758,7 +4758,7 @@
     (pad "3" smd rect (at 0.63 -2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
       (net 32 "servo_drive.ato:ServoDrive.power_stage.current_sense_a.i_in-half_bridge_a.out") (tstamp 59617abc-2c14-48bf-aab6-8718bebe838c))
     (pad "4" smd rect (at 1.9 -2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
-      (net 84 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.hs_fet.gate") (tstamp b28f9852-c818-470c-bf90-1538f0b2450f))
+      (net 84 "servo_drive.ato:ServoDrive.power_stage.half_bridge_a.fets.gate_top") (tstamp b28f9852-c818-470c-bf90-1538f0b2450f))
     (pad "5" smd rect (at 1.9 2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
       (net 40 "servo_drive.ato:ServoDrive.vbatt") (tstamp 0d52ed57-7f39-4197-8ea0-fb8efe48f786))
     (pad "6" smd rect (at 0.63 2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
@@ -4776,7 +4776,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp 96bbae5c-8b65-46db-aaa7-1181cd9f96bd)
     (at 156.486482 103.904685 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4826,7 +4826,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp 9dc6dfb0-ddd5-401a-aaa4-35d59d3483e8)
     (at 167.117894 108.329582 -90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4876,7 +4876,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp a1b970f3-5ce0-406a-8287-c8ae45a9c62c)
     (at 154.924002 103.895869 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -4926,7 +4926,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp a9faab1e-4d1e-478f-9bfb-84b5889e191d)
     (at 145.370515 112.3696 -90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -5130,7 +5130,7 @@
     (pad "3" smd rect (at 0.63 -2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
       (net 53 "servo_drive.ato:ServoDrive.power_stage.out_c") (tstamp 179e7d40-cfc4-46c6-a90f-18d3c0cb8844))
     (pad "4" smd rect (at 1.9 -2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
-      (net 85 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.hs_fet.gate") (tstamp 41a26428-81ee-4a85-800f-45609515a528))
+      (net 85 "servo_drive.ato:ServoDrive.power_stage.half_bridge_c.fets.gate_top") (tstamp 41a26428-81ee-4a85-800f-45609515a528))
     (pad "5" smd rect (at 1.9 2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
       (net 40 "servo_drive.ato:ServoDrive.vbatt") (tstamp a590a330-eb9a-4123-8db8-c6b3d35f40c0))
     (pad "6" smd rect (at 0.63 2.92) (size 0.6 1) (layers "B.Cu" "B.Paste" "B.Mask")
@@ -5194,7 +5194,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp cb58c667-c2a4-4ef8-ae00-2a5cd6b9183a)
     (at 141.6304 108.458 180)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -5244,7 +5244,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp cdd2d4c8-645e-4df5-b8ed-7074c82a090e)
     (at 143.8148 110.6932 -90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -5344,7 +5344,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp d17f183d-a182-48e5-a1f7-71300e1c182c)
     (at 158.005012 103.906274 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -5394,7 +5394,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp d83905d7-0392-4df2-aee9-f1f52751ba4f)
     (at 141.6304 106.9848)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -5444,7 +5444,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp d84c3f49-5940-46c2-8cfc-ffdbeb523abd)
     (at 157.616405 98.607657)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -5494,7 +5494,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp ef8cbaaf-22ab-4dc0-beae-c72252e546fa)
     (at 134.612985 90.090168)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -5694,7 +5694,7 @@
     )
   )
 
-  (footprint "Resistor_SMD:R_0603_1608Metric" (layer "B.Cu")
+  (footprint "Resistor_SMD:R_0402_1005Metric" (layer "B.Cu")
     (tstamp fc823a24-1ac8-4fbb-9665-9783a72e5526)
     (at 148.9964 82.0928 90)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
@@ -5744,7 +5744,7 @@
     )
   )
 
-  (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "B.Cu")
+  (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
     (tstamp fdd7378f-3bcf-4452-b116-99a7aaeaabd7)
     (at 140.4112 84.2772 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")

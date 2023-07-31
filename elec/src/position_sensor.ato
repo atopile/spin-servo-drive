@@ -15,7 +15,7 @@ module PositionSensor:
 
     cap_3v3 = new Capacitor
     cap_3v3.value = "1uF"
-    cap_3v3.footprint = "Capacitor:SMD_C_0402_1005Metric"
+    cap_3v3.footprint = "Capacitor_SMD:C_0402_1005Metric"
 
     vin ~ sensor.vdd
     vin ~ cap_3v3.p1

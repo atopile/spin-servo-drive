@@ -3,16 +3,17 @@ adjustable_ldo:
     ldo:
       position:
         x: 305
-        y: 205
+        y: 155
     input_cap:
       position:
-        x: 630
-        y: 175
+        x: 610
+        y: 115
     output_cap:
       position:
-        x: 445
+        x: 465
         y: 50
     feedback_div:
       position:
         x: 50
-        y: 155
+        y: 125
+

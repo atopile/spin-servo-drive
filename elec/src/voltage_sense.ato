@@ -12,9 +12,9 @@ module VoltageSense:
     vdiv.gnd ~ gnd
 
     vdiv.r_top.value = "10kOhm"
-    vdiv.r_top.footprint = "Resistor_SMD:R_0603_1608Metric"
+    vdiv.r_top.footprint = "Resistor_SMD:R_0402_1005Metric"
     vdiv.r_bt.value = "1kOhm"
-    vdiv.r_bt.footprint = "Resistor_SMD:R_0603_1608Metric"
+    vdiv.r_bt.footprint = "Resistor_SMD:R_0402_1005Metric"
 
     # RC filter off the top resistor and this cap
     # Fc = 1/(2*pi*r*c)
@@ -22,7 +22,7 @@ module VoltageSense:
     c_filter.p1 ~ vdiv.output
     c_filter.p2 ~ vdiv.gnd
     c_filter.value = "2nF"
-    c_filter.footprint = "Capacitor_SMD:C_0603_1608Metric"
+    c_filter.footprint = "Capacitor_SMD:C_0402_1005Metric"
     in.visualizer.location = "left"
     gnd.visualizer.location = "bottom"
     out.visualizer.location = "right"

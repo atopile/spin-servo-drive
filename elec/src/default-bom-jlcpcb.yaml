@@ -1,10 +1,10 @@
 by-spec:
 - instance_of: std/capacitor.ato:Capacitor
-  footprint: Capacitor_SMD:C_0603_1608Metric
+  footprint: Capacitor_SMD:C_0402_1005Metric
   value: 2nF
   jlcpcb: C1601
 - instance_of: std/resistor.ato:Resistor
-  footprint: Resistor_SMD:R_0603_1608Metric
+  footprint: Resistor_SMD:R_0402_1005Metric
   value: 10kOhm
   jlcpcb: C216802
 - instance_of: std/resistor.ato:Resistor
@@ -21,7 +21,7 @@ by-spec:
   footprint: lib:SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL
   jlcpcb: C6961
 - instance_of: std/capacitor.ato:Capacitor
-  footprint: Capacitor_SMD:C_0603_1608Metric
+  footprint: Capacitor_SMD:C_0402_1005Metric
   value: 0.1uF
   jlcpcb: C14663
 - instance_of: INA225AIDGKR.ato:INA225AIDGKR
@@ -35,19 +35,19 @@ by-spec:
   value: 1uF
   jlcpcb: C161268
 - instance_of: std/resistor.ato:Resistor
-  footprint: Resistor_SMD:R_0603_1608Metric
+  footprint: Resistor_SMD:R_0402_1005Metric
   value: 10ohm
   jlcpcb: C407639
 - instance_of: L6387ED.ato:L6387ED
   footprint: lib:SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL
   jlcpcb: C155554
 - instance_of: std/resistor.ato:Resistor
-  footprint: Resistor_SMD:R_0603_1608Metric
+  footprint: Resistor_SMD:R_0402_1005Metric
   value: 25ohm
   # note this is the actually a 26.1ohm resistor
   jlcpcb: C100916
 - instance_of: std/resistor.ato:Resistor
-  footprint: Resistor_SMD:R_0603_1608Metric
+  footprint: Resistor_SMD:R_0402_1005Metric
   value: 1kOhm
   jlcpcb: C136938
 - instance_of: std/capacitor.ato:Capacitor
@@ -70,7 +70,7 @@ by-spec:
   footprint: lib:OSC-SMD_4P-L3.2-W2.5-BL
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
-  footprint: Capacitor_SMD:C_0603_1608Metric
+  footprint: Capacitor_SMD:C_0402_1005Metric
   value: 20pF
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
@@ -83,7 +83,7 @@ by-spec:
 - instance_of: pin_header.ato:PinHeader10
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
-  footprint: Capacitor_SMD:C_0603_1608Metric
+  footprint: Capacitor_SMD:C_0402_1005Metric
   jlcpcb: <fill-me>
 - instance_of: std/resistor.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
@@ -110,7 +110,7 @@ by-spec:
   footprint: lib:SW-SMD_L6.0-W3.3-LS8.0
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
-  footprint: Capacitor_SMD:C_0603_1608Metric
+  footprint: Capacitor_SMD:C_0402_1005Metric
   value: 2.2uF
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
@@ -127,11 +127,11 @@ by-spec:
   footprint: lib:QFN-48_L6.0-W6.0-P0.40-BL-EP3.8
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
-  footprint: Capacitor_SMD:C_0603_1608Metric
+  footprint: Capacitor_SMD:C_0402_1005Metric
   value: 100nF
   jlcpcb: <fill-me>
 - instance_of: std/resistor.ato:Resistor
-  footprint: Resistor_SMD:R_0603_1608Metric
+  footprint: Resistor_SMD:R_0402_1005Metric
   value: 1k
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
@@ -139,7 +139,7 @@ by-spec:
   value: 0.1uF
   jlcpcb: <fill-me>
 - instance_of: std/resistor.ato:Resistor
-  footprint: Resistor_SMD:R_0603_1608Metric
+  footprint: Resistor_SMD:R_0402_1005Metric
   value: 5.1k
   jlcpcb: <fill-me>
 - instance_of: std/resistor.ato:Resistor
@@ -149,19 +149,19 @@ by-spec:
 - instance_of: rp2040.ato:RP2040
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
-  footprint: Capacitor_SMD:C_0603_1608Metric
+  footprint: Capacitor_SMD:C_0402_1005Metric
   value: 1uF
   jlcpcb: <fill-me>
 - instance_of: std/resistor.ato:Resistor
-  footprint: Resistor_SMD:R_0603_1608Metric
+  footprint: Resistor_SMD:R_0402_1005Metric
   value: 10k
   jlcpcb: <fill-me>
 - instance_of: std/resistor.ato:Resistor
-  footprint: Resistor_SMD:R_0603_1608Metric
+  footprint: Resistor_SMD:R_0402_1005Metric
   value: 27R
   jlcpcb: <fill-me>
 - instance_of: std/capacitor.ato:Capacitor
-  footprint: Capacitor_SMD:C_0603_1608Metric
+  footprint: Capacitor_SMD:C_0402_1005Metric
   value: 10nF
   jlcpcb: <fill-me>
 - instance_of: usbc.ato:Usbc

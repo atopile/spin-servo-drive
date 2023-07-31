@@ -1,7 +1,7 @@
 # ato view --root-file half_bridge.ato --root-node half_bridge.ato/HalfBridge
 
 import L6387ED from "L6387ED.ato"
-import dmt3008ldt_7 from "dmt3008ldt_7.ato"
+import dmt3009ldt_7 from "dmt3009ldt_7.ato"
 import Capacitor from "std/capacitor.ato"
 import Resistor from "std/resistor.ato"
 
@@ -9,9 +9,10 @@ module HalfBridge:
     signal v_pwr
     signal vcc_10v
     signal gnd
+    signal pwr_gnd
 
     signal high_in  # logic signals to switch FETs
-    signal low_in  # logic signals to switch FETs
+    signal low_in  # logic signals to switch FET
 
     signal out
 
@@ -28,10 +29,10 @@ module HalfBridge:
     high_in ~ gate_driver.hin
     out ~ gate_driver.out
 
-    fets = new dmt3008ldt_7
+    fets = new dmt3009ldt_7
     v_pwr ~ fets.drain_top
     out ~ fets.center
-    gnd ~ fets.source_bottom
+    pwr_gnd ~ fets.source_bottom
 
     # from STM DocID13990 Rev 4
     # looking at the drive FET's gate as a cap (c_ext)
@@ -48,7 +49,7 @@ module HalfBridge:
     #   -> c_boot > ~0.1uF
     c_boot = new Capacitor
     c_boot.value = "0.1uF"
-    c_boot.footprint = "Capacitor_SMD:C_0603_1608Metric"
+    c_boot.footprint = "Capacitor_SMD:C_0402_1005Metric"
     c_boot.p1 ~ gate_driver.vboot
     c_boot.p2 ~ out
 
@@ -58,13 +59,13 @@ module HalfBridge:
     #   -> 25ohm
     hs_gate_ilim_r = new Resistor
     hs_gate_ilim_r.value = "25ohm"
-    hs_gate_ilim_r.footprint = "Resistor_SMD:R_0603_1608Metric"
+    hs_gate_ilim_r.footprint = "Resistor_SMD:R_0402_1005Metric"
     gate_driver.hvg ~ hs_gate_ilim_r.p1
     hs_gate_ilim_r.p2 ~ fets.gate_top
 
     ls_gate_ilim_r = new Resistor
     ls_gate_ilim_r.value = "25ohm"
-    ls_gate_ilim_r.footprint = "Resistor_SMD:R_0603_1608Metric"
+    ls_gate_ilim_r.footprint = "Resistor_SMD:R_0402_1005Metric"
     gate_driver.lvg ~ ls_gate_ilim_r.p1
     ls_gate_ilim_r.p2 ~ fets.gate_bottom
 
@@ -72,13 +73,13 @@ module HalfBridge:
     # we're just going to assume 10kOhm from the G431CBU6 example
     hs_gate_bleed_r = new Resistor
     hs_gate_bleed_r.value = "10kOhm"
-    hs_gate_bleed_r.footprint = "Resistor_SMD:R_0603_1608Metric"
+    hs_gate_bleed_r.footprint = "Resistor_SMD:R_0402_1005Metric"
     fets.gate_top ~ hs_gate_bleed_r.p1
     hs_gate_bleed_r.p2 ~ out
 
     ls_gate_bleed_r = new Resistor
     ls_gate_bleed_r.value = "10kOhm"
-    hs_gate_bleed_r.footprint = "Resistor_SMD:R_0603_1608Metric"
+    hs_gate_bleed_r.footprint = "Resistor_SMD:R_0402_1005Metric"
     fets.gate_bottom ~ ls_gate_bleed_r.p1
     ls_gate_bleed_r.p2 ~ gnd
 
