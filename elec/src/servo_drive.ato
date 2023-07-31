@@ -51,7 +51,7 @@ module ServoDrive:
     led = new SK6805SIDE_S
     led.vcc ~ v_5 # connect to 5V rail
     led.gnd ~ gnd
-    led.data_in ~ micro_kit.micro.gpio25
+    led.data_in ~ micro_kit.micro.PA6
 
     # Enumeration switch
     switch = new switch_90degree
@@ -60,7 +60,7 @@ module ServoDrive:
     switch_pulldown.p1 ~ gnd
     switch_pulldown.p2 ~ switch.1
     switch.2 ~ v_3
-    switch.1 ~ micro_kit.micro.gpio24
+    switch.1 ~ micro_kit.micro.PC13
 
     # USB-C
     usb = new Usbc
@@ -130,6 +130,7 @@ module ServoDrive:
     micro_kit.micro.PA10 ~ power_stage.high_in_c
     micro_kit.micro.PB1 ~ power_stage.low_in_c
 
+    # Todo: merge with low side current sense
     micro_kit.micro.PA0 ~ power_stage.i_fb_a
     micro_kit.micro.PA1 ~ power_stage.i_fb_b
     micro_kit.micro.PA2 ~ power_stage.i_fb_c
@@ -144,11 +145,14 @@ module ServoDrive:
     position_sensor = new PositionSensor
     position_sensor.vin ~ v_3
     position_sensor.gnd ~ gnd
-    # needs to merge with position sensor update
+    # Todo: needs to merge with position sensor update
     # micro_kit.micro.PB5 ~ position_sensor.mosi
     # micro_kit.micro.PB4 ~ position_sensor.miso
     # micro_kit.micro.PB3 ~ position_sensor.sclk
     # micro_kit.micro.PA15 ~ position_sensor.cs
+    # micro_kit.micro.PB8 ~ position_sensor.encoder_a
+    # micro_kit.micro.PB9 ~ position_sensor.encoder_b
+    # micro_kit.micro.PA10 ~ position_sensor.encoder_z
 
     # i2c comms
     # we're not using the pre-built STEMMA module here because we're not adding the level shifting
