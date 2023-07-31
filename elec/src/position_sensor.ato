@@ -18,9 +18,9 @@ module PositionSensor:
     cap_3v3.footprint = "Capacitor:SMD_C_0402_1005Metric"
 
     vin ~ sensor.vdd
-    vin ~ cap_3v3.1
+    vin ~ cap_3v3.p1
     gnd ~ sensor.gnd
-    gnd ~ cap_3v3.2
+    gnd ~ cap_3v3.p2
 
     miso ~ sensor.miso
     mosi ~ sensor.mosi

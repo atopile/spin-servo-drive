@@ -60,7 +60,7 @@ module ServoDrive:
     switch_pulldown.p1 ~ gnd
     switch_pulldown.p2 ~ switch.1
     switch.2 ~ v_3
-    switch.1 ~ micro_kit.micro.PC13
+    switch.1 ~ micro_kit.micro.PC13_TAMPER_RTC
 
     # USB-C
     usb = new Usbc
@@ -131,7 +131,7 @@ module ServoDrive:
     micro_kit.micro.PB1 ~ power_stage.low_in_c
 
     # Todo: merge with low side current sense
-    micro_kit.micro.PA0 ~ power_stage.i_fb_a
+    micro_kit.micro.PA0_WKUP ~ power_stage.i_fb_a
     micro_kit.micro.PA1 ~ power_stage.i_fb_b
     micro_kit.micro.PA2 ~ power_stage.i_fb_c
 

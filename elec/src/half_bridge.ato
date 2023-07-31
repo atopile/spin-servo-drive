@@ -73,13 +73,13 @@ module HalfBridge:
     hs_gate_bleed_r = new Resistor
     hs_gate_bleed_r.value = "10kOhm"
     hs_gate_bleed_r.footprint = "Resistor_SMD:R_0603_1608Metric"
-    hs_fet.gate ~ hs_gate_bleed_r.p1
+    fets.gate_top ~ hs_gate_bleed_r.p1
     hs_gate_bleed_r.p2 ~ out
 
     ls_gate_bleed_r = new Resistor
     ls_gate_bleed_r.value = "10kOhm"
     hs_gate_bleed_r.footprint = "Resistor_SMD:R_0603_1608Metric"
-    ls_fet.gate ~ ls_gate_bleed_r.p1
+    fets.gate_bottom ~ ls_gate_bleed_r.p1
     ls_gate_bleed_r.p2 ~ gnd
 
     # visualiser info
