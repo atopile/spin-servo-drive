@@ -1,7 +1,7 @@
 # ato view --root-file half_bridge.ato --root-node half_bridge.ato/HalfBridge
 
 import L6387ED from "L6387ED.ato"
-import BSC0901NS from "BSC0901NS.ato"
+import dmt3008ldt_7 from "dmt3008ldt_7.ato"
 import Capacitor from "std/capacitor.ato"
 import Resistor from "std/resistor.ato"
 
@@ -28,13 +28,10 @@ module HalfBridge:
     high_in ~ gate_driver.hin
     out ~ gate_driver.out
 
-    hs_fet = new BSC0901NS
-    v_pwr ~ hs_fet.drain
-    out ~ hs_fet.source
-
-    ls_fet = new BSC0901NS
-    out ~ ls_fet.drain
-    gnd ~ ls_fet.source
+    fets = new dmt3008ldt_7
+    v_pwr ~ fets.drain_top
+    out ~ fets.center
+    gnd ~ fets.source_bottom
 
     # from STM DocID13990 Rev 4
     # looking at the drive FET's gate as a cap (c_ext)
@@ -63,13 +60,13 @@ module HalfBridge:
     hs_gate_ilim_r.value = "25ohm"
     hs_gate_ilim_r.footprint = "Resistor_SMD:R_0603_1608Metric"
     gate_driver.hvg ~ hs_gate_ilim_r.p1
-    hs_gate_ilim_r.p2 ~ hs_fet.gate
+    hs_gate_ilim_r.p2 ~ fets.gate_top
 
     ls_gate_ilim_r = new Resistor
     ls_gate_ilim_r.value = "25ohm"
     ls_gate_ilim_r.footprint = "Resistor_SMD:R_0603_1608Metric"
     gate_driver.lvg ~ ls_gate_ilim_r.p1
-    ls_gate_ilim_r.p2 ~ ls_fet.gate
+    ls_gate_ilim_r.p2 ~ fets.gate_bottom
 
     # gate bleed resistors
     # we're just going to assume 10kOhm from the G431CBU6 example

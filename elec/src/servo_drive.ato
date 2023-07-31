@@ -141,7 +141,7 @@ module ServoDrive:
     voltage_input_vdiv.gnd ~ gnd
     voltage_input_vdiv.out ~ micro_kit.micro.PA3
 
-    # Position sensor
+    # Position sensor - SPI interface
     position_sensor = new PositionSensor
     position_sensor.vin ~ v_3
     position_sensor.gnd ~ gnd
