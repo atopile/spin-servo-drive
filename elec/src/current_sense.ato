@@ -19,7 +19,7 @@ module CurrentSense:
     signal i_in
     signal i_out
     signal out
-    signal vref
+    signal v_ref
 
     # Use C2681063 for 2010 1.0W
     # or C128540 for 0805 0.5W (3x overload rated, probably okay..)
@@ -43,7 +43,7 @@ module CurrentSense:
     
     bias_div = new Vdiv
     bias_div.input ~ i_in
-    bias_div.gnd ~ vref
+    bias_div.gnd ~ v_ref
     bias_div.output ~ opamp.in_p
     bias_div.r1.value = "1kOhm"
     bias_div.r2.value = "45kOhm"

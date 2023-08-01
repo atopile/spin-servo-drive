@@ -13,7 +13,7 @@ CurrentSense:
     index: 0
     private: false
     port: top
-  - name: vref
+  - name: v_ref
     index: 0
     private: false
     port: left
