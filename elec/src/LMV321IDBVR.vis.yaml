@@ -1,4 +1,4 @@
-Vdiv:
+LMV321IDBVR:
   ports:
   - name: top
     location: top
@@ -9,24 +9,23 @@ Vdiv:
   - name: bottom
     location: bottom
   pins:
-  - name: input
+  - name: in_p
     index: 0
     private: false
     port: left
-  - name: output
+  - name: in_n
     index: 0
     private: false
-    port: right
+    port: left
+  - name: vcc
+    index: 0
+    private: false
+    port: top
   - name: gnd
     index: 0
     private: false
     port: bottom
-  child_attrs:
-    r_top:
-      position:
-        x: 50
-        y: 50
-    r_bt:
-      position:
-        x: 50
-        y: 135
+  - name: out
+    index: 0
+    private: false
+    port: right

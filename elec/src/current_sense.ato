@@ -19,6 +19,7 @@ module CurrentSense:
     signal i_in
     signal i_out
     signal out
+    signal vref
 
     # Use C2681063 for 2010 1.0W
     # or C128540 for 0805 0.5W (3x overload rated, probably okay..)
@@ -39,12 +40,13 @@ module CurrentSense:
     feedback_div.output ~ opamp.in_n
     feedback_div.r1.value = "1kOhm"
     feedback_div.r2.value = "45kOhm"
-
-    # input resistor
-    input_r_top = new Resistor
-    input_r_top.p1 ~ i_in
-    input_r_top.p2 ~ opamp.in_p
-    input_r_top.value = "1kOhm"
+    
+    bias_div = new Vdiv
+    bias_div.input ~ i_in
+    bias_div.gnd ~ vref
+    bias_div.output ~ opamp.in_p
+    bias_div.r1.value = "1kOhm"
+    bias_div.r2.value = "45kOhm"
 
     # output filter - cutoff at 1.3MHz
     output_filter = new LowPass
