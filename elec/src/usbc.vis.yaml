@@ -1,0 +1,41 @@
+Usbc:
+  ports:
+    - name: top
+      location: top
+    - name: right
+      location: right
+    - name: left
+      location: left
+    - name: bottom
+      location: bottom
+  pins:
+    - name: vbus
+      index: 0
+      private: false
+      port: top
+    - name: dp
+      index: 0
+      private: false
+      port: right
+    - name: dm
+      index: 0
+      private: false
+      port: right
+    - name: cc
+      index: 0
+      private: false
+      port: right
+    - name: sbu
+      index: 0
+      private: false
+      port: right
+    - name: shell
+      index: 0
+      private: false
+      port: right
+    - name: gnd
+      index: 0
+      private: false
+      port: bottom
+  signals: {}
+  child_attrs: {}
