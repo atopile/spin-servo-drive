@@ -44,19 +44,3 @@ component Usbc:
 
     footprint = "lib:USB-C-SMD_KH-TYPE-C-16P"
     designator_prefix = "J"
-
-    vbus.visualizer.location = "top"
-
-    txp.visualizer.location = "right"
-    txm.visualizer.location = "right"
-    rxp.visualizer.location = "right"
-    rxm.visualizer.location = "right"
-
-    dp.visualizer.location = "right"
-    dm.visualizer.location = "right"
-
-    cc.visualizer.location = "left"
-    cc.visualizer.location = "left"
-
-    gnd.visualizer.location = "bottom"
-    shell.visualizer.location = "bottom"
