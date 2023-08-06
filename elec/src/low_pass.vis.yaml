@@ -1,4 +1,26 @@
 LowPass:
+  ports:
+  - name: top
+    location: top
+  - name: right
+    location: right
+  - name: left
+    location: left
+  - name: bottom
+    location: bottom
+  pins:
+  - name: in
+    index: 0
+    private: false
+    port: left
+  - name: out
+    index: 0
+    private: false
+    port: right
+  - name: gnd
+    index: 0
+    private: false
+    port: bottom
   child_attrs:
     r:
       position:

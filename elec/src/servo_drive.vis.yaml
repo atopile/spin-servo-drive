@@ -1,58 +1,97 @@
 ServoDrive:
+  signals:
+  - name: v_10
+    is_stub: true
+  - name: V_5
+    is_stub: true
+  - name: V_3
+    is_stub: true
+  - name: vbatt
+    is_stub: true
+  - name: gnd
+    is_stub: true
   child_attrs:
     xt30:
       position:
-        x: 540
-        y: 430
+        x: 1600
+        y: 70
     micro_kit:
       position:
-        x: 50
-        y: 50
+        x: 335
+        y: 285
     usb:
       position:
-        x: 720
-        y: 460
+        x: 55
+        y: 240
     usb_diode:
       position:
-        x: 515
-        y: 665
+        x: 660
+        y: 540
     r_cc1:
       position:
-        x: 360
-        y: 640
+        x: 50
+        y: 135
     r_cc2:
       position:
-        x: 385
-        y: 445
+        x: 155
+        y: 135
     buck:
       position:
-        x: 50
-        y: 50
+        x: 1125
+        y: 65
     ldo:
       position:
         x: 50
         y: 50
     power_stage:
       position:
-        x: 300
-        y: 285
+        x: 1200
+        y: 505
     pad_out_a:
       position:
-        x: 515
-        y: 490
+        x: 1430
+        y: 530
     pad_out_b:
       position:
-        x: 455
-        y: 495
+        x: 1505
+        y: 530
     pad_out_c:
       position:
-        x: 370
-        y: 655
+        x: 1580
+        y: 530
     voltage_input_vdiv:
       position:
-        x: 320
-        y: 165
+        x: 1365
+        y: 65
     position_sensor:
       position:
-        x: 150
-        y: 115
+        x: 1200
+        y: 290
+    led:
+      position:
+        x: 765
+        y: 325
+    switch:
+      position:
+        x: 465
+        y: 110
+    switch_pulldown:
+      position:
+        x: 300
+        y: 50
+    ldo_5v:
+      position:
+        x: 670
+        y: 65
+    ldo_3v3:
+      position:
+        x: 885
+        y: 65
+    stemma:
+      position:
+        x: 175
+        y: 405
+    i2c_active_terminator:
+      position:
+        x: 140
+        y: 525

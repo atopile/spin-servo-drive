@@ -1,9 +1,43 @@
 CurrentSense:
+  ports:
+  - name: top
+    location: top
+  - name: right
+    location: right
+  - name: left
+    location: left
+  - name: bottom
+    location: bottom
+  pins:
+  - name: vcc
+    index: 0
+    private: false
+    port: top
+  - name: v_ref
+    index: 0
+    private: false
+    port: left
+  - name: i_in
+    index: 0
+    private: false
+    port: left
+  - name: i_out
+    index: 0
+    private: false
+    port: left
+  - name: gnd
+    index: 0
+    private: false
+    port: bottom
+  - name: out
+    index: 0
+    private: false
+    port: right
   child_attrs:
     shunt:
       position:
-        x: 370
-        y: 50
+        x: 50
+        y: 195
     amp:
       position:
         x: 145
@@ -26,17 +60,21 @@ CurrentSense:
         y: 50
     opamp:
       position:
-        x: 80
-        y: 320
+        x: 340
+        y: 275
     feedback_div:
       position:
-        x: 285
-        y: 240
+        x: 130
+        y: 325
     input_r_top:
       position:
-        x: 50
-        y: 100
+        x: 265
+        y: 50
     output_filter:
       position:
         x: 525
-        y: 190
+        y: 180
+    bias_div:
+      position:
+        x: 120
+        y: 50

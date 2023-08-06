@@ -6,6 +6,7 @@ import NRF52832 from "NRF52832.ato"
 import VoltageReference from "voltage_reference.ato"
 import VoltageSense from "voltage_sense.ato"
 import RVT1H101M0810 from "RVT1H101M0810.ato"
+import VoltageReference from "voltage_reference.ato"
 
 module PowerStage:
     # power
@@ -73,6 +74,13 @@ module PowerStage:
     half_bridge_c.high_in ~ high_in_c
     half_bridge_c.low_in ~ low_in_c
 
+    # voltage reference for current sensors
+    reference = new VoltageReference
+    reference.vcc ~ vcc_3v3
+    reference.gnd ~ gnd
+    reference.v_ref ~ v_ref
+    reference.half_v_ref ~ half_v_ref
+
     # current sensors
     current_sense_a = new CurrentSense
     current_sense_b = new CurrentSense
@@ -94,6 +102,10 @@ module PowerStage:
     current_sense_a.vcc ~ vcc_3v3
     current_sense_b.vcc ~ vcc_3v3
     current_sense_c.vcc ~ vcc_3v3
+
+    current_sense_a.v_ref ~ v_ref
+    current_sense_b.v_ref ~ v_ref
+    current_sense_c.v_ref ~ v_ref
 
     v_pwr.visualizer.location = "top"
     vcc_10v.visualizer.location = "top"
