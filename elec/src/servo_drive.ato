@@ -169,3 +169,15 @@ module ServoDrive:
     i2c_active_terminator.bus1 ~ stemma.sda
     i2c_active_terminator.bus2 ~ stemma.scl
     i2c_active_terminator.enable ~ stemma.vcc
+
+    # CANBUS Comms
+    canbus = new can_xcvr
+    canbus.v_3_3 ~ v_3
+    canbus.gnd ~ gnd
+    canbus.can_rx ~ micro_kit.micro.PB8
+    canbus.can_tx ~ micro_kit.micro.PB9
+    canbus_conn = new StemmaQtConnector
+    canbus_conn.vcc ~ v_3
+    canbus_conn.gnd ~ gnd
+    canbus_conn.sda ~ canbus.CANH
+    canbus_conn.scl ~ canbus.CANL
