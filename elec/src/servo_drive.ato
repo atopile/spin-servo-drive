@@ -25,8 +25,10 @@ import switch_90degree from "switch_90degree.ato"
 import StemmaQtConnector from "stemma.ato"
 import LTC4311 from "stemma.ato"
 
+import can_xcvr from "SN65HVD230DR.ato"
+
 component PowerPad:
-    pin p1
+    pin p2
     footprint = "lib:OutputPad"
 
 
@@ -176,8 +178,13 @@ module ServoDrive:
     canbus.gnd ~ gnd
     canbus.can_rx ~ micro_kit.micro.PB8
     canbus.can_tx ~ micro_kit.micro.PB9
-    canbus_conn = new StemmaQtConnector
-    canbus_conn.vcc ~ v_3
-    canbus_conn.gnd ~ gnd
-    canbus_conn.sda ~ canbus.CANH
-    canbus_conn.scl ~ canbus.CANL
+    canbus_conn_1 = new StemmaQtConnector
+    canbus_conn_1.vcc ~ v_3
+    canbus_conn_1.gnd ~ gnd
+    canbus_conn_1.sda ~ canbus.CANH
+    canbus_conn_1.scl ~ canbus.CANL
+    canbus_conn_2 = new StemmaQtConnector
+    canbus_conn_2.vcc ~ v_3
+    canbus_conn_2.gnd ~ gnd
+    canbus_conn_2.sda ~ canbus.CANH
+    canbus_conn_2.scl ~ canbus.CANL

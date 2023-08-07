@@ -5,7 +5,7 @@ import Capacitor from "std/capacitor.ato"
 # Switch
 import TS_1101_C_W from "TS_1101_C_W.ato"
 # Flash
-import W25Q128JV from "W25Q128JV.ato"
+# import W25Q128JV from "W25Q128JV.ato"
 
 import Vdiv from "vdiv.ato"
 

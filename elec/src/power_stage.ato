@@ -39,7 +39,7 @@ module PowerStage:
     signal i_fb_b
     signal i_fb_c
 
-    # input caps
+    # # input caps
     c_in_1 = new Capacitor
     c_in_2 = new Capacitor
     c_in_3 = new Capacitor
@@ -58,12 +58,6 @@ module PowerStage:
     c_in_2.value = "10uF"
     c_in_3.value = "10uF"
     c_in_4.value = "10uF"
-
-    c_in_1.footprint = "Capacitor_SMD:C_1206_3216Metric"
-    c_in_2.footprint = "Capacitor_SMD:C_1206_3216Metric"
-    c_in_3.footprint = "Capacitor_SMD:C_1206_3216Metric"
-    c_in_4.footprint = "Capacitor_SMD:C_1206_3216Metric"
-
 
     # half bridges
     half_bridge_a = new HalfBridge
