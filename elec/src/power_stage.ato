@@ -7,6 +7,7 @@ import VoltageReference from "voltage_reference.ato"
 import VoltageSense from "voltage_sense.ato"
 import RVT1H101M0810 from "RVT1H101M0810.ato"
 import VoltageReference from "voltage_reference.ato"
+import Capacitor from "std/capacitor.ato"
 
 module PowerStage:
     # power
@@ -39,9 +40,29 @@ module PowerStage:
     signal i_fb_c
 
     # input caps
-    c_in_1 = new RVT1H101M0810
-    c_in_1.positive ~ v_pwr
-    c_in_1.negative ~ gnd
+    c_in_1 = new Capacitor
+    c_in_2 = new Capacitor
+    c_in_3 = new Capacitor
+    c_in_4 = new Capacitor
+
+    c_in_1.p1 ~ v_pwr
+    c_in_2.p1 ~ v_pwr
+    c_in_3.p1 ~ v_pwr
+    c_in_4.p1 ~ v_pwr
+    c_in_1.p2 ~ gnd
+    c_in_2.p2 ~ gnd
+    c_in_3.p2 ~ gnd
+    c_in_4.p2 ~ gnd
+
+    c_in_1.value = "10uF"
+    c_in_2.value = "10uF"
+    c_in_3.value = "10uF"
+    c_in_4.value = "10uF"
+
+    c_in_1.footprint = "Capacitor_SMD:C_1206_3216Metric"
+    c_in_2.footprint = "Capacitor_SMD:C_1206_3216Metric"
+    c_in_3.footprint = "Capacitor_SMD:C_1206_3216Metric"
+    c_in_4.footprint = "Capacitor_SMD:C_1206_3216Metric"
 
 
     # half bridges
