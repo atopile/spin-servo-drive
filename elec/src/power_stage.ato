@@ -30,7 +30,6 @@ module PowerStage:
 
     # feedback
     signal v_ref
-    signal half_v_ref
     signal v_fb_a
     signal v_fb_b
     signal v_fb_c
@@ -98,7 +97,6 @@ module PowerStage:
     reference.vcc ~ vcc_3v3
     reference.gnd ~ gnd
     reference.v_ref ~ v_ref
-    reference.half_v_ref ~ half_v_ref
 
     # current sensors
     current_sense_a = new CurrentSense
@@ -126,6 +124,10 @@ module PowerStage:
     current_sense_b.v_ref ~ v_ref
     current_sense_c.v_ref ~ v_ref
 
+    current_sense_a.out ~ i_fb_a
+    current_sense_b.out ~ i_fb_b
+    current_sense_c.out ~ i_fb_c
+
     v_pwr.visualizer.location = "top"
     vcc_10v.visualizer.location = "top"
     vcc_3v3.visualizer.location = "top"
@@ -143,7 +145,6 @@ module PowerStage:
     out_c.visualizer.location = "right"
 
     v_ref.visualizer.location = "right"
-    half_v_ref.visualizer.location = "right"
     v_fb_a.visualizer.location = "right"
     v_fb_b.visualizer.location = "right"
     v_fb_c.visualizer.location = "right"

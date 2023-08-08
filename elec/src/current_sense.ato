@@ -38,9 +38,9 @@ module CurrentSense:
     feedback_div.input ~ i_out
     feedback_div.gnd ~ opamp.out
     feedback_div.output ~ opamp.in_n
-    feedback_div.r1.value = "1kOhm"
-    feedback_div.r2.value = "45kOhm"
-    
+    feedback_div.r_top.value = "1kOhm"
+    feedback_div.r_bt.value = "45kOhm"
+
     bias_div = new Vdiv
     bias_div.input ~ i_in
     bias_div.gnd ~ v_ref

@@ -1,7 +1,6 @@
-# ato view --root-file voltage_reference.ato --root-node voltage_reference.ato/VoltageReference
+# ato view voltage_reference.ato:VoltageReference
 
-
-import TL072CDT from "TL072CDT.ato"
+import LMV321IDBVR from "LMV321IDBVR.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 import VdivFiltered from "vdiv_filter.ato"
@@ -11,16 +10,13 @@ module VoltageReference:
     signal vcc
     signal gnd
     signal v_ref
-    signal half_v_ref
-
 
     # voltage reference should be half our supply
-    buffer = new TL072CDT
+    buffer = new LMV321IDBVR
     buffer.vcc ~ vcc
     buffer.gnd ~ gnd
     # set them up as unity gain buffers
-    buffer.out_a ~ buffer.in_n_a
-    buffer.out_b ~ buffer.in_n_b
+    buffer.out ~ buffer.in_n
 
     c_bypass = new Capacitor
     c_bypass.value = "1uF"
@@ -32,29 +28,18 @@ module VoltageReference:
     filter = new LowPass
     filter.in ~ vcc
     filter.gnd ~ gnd
-    filter.out ~ buffer.in_p_a
+    filter.out ~ buffer.in_p
     filter.r.value = "10kOhm"
     filter.r.footprint = "Resistor_SMD:R_0402_1005Metric"
     filter.c.value = "1uF"
     filter.c.footprint = "Capacitor_SMD:C_0402_1005Metric"
 
-    # the second reference is mid-rail (1/2) reference
-    half_ref = new VdivFiltered
-    half_ref.r_top.value = "10kOhm"
-    half_ref.r_top.footprint = "Resistor_SMD:R_0402_1005Metric"
-    half_ref.r_bt.value = "10kOhm"
-    half_ref.r_bt.footprint = "Resistor_SMD:R_0402_1005Metric"
-    half_ref.input ~ v_ref
-    half_ref.gnd ~ gnd
-
-    half_ref.output ~ buffer.in_p_b
-    buffer.out_b ~ half_v_ref
+    v_ref ~ buffer.out
 
     # visualiser hints
     vcc.visualizer.location = "top"
     gnd.visualizer.location = "bottom"
     v_ref.visualizer.location = "right"
-    half_v_ref.visualizer.location = "right"
     gnd.visualizer.stub = True
     vcc.visualizer.stub = True
     v_ref.visualizer.stub = True

@@ -13,80 +13,80 @@ ServoDrive:
   child_attrs:
     xt30:
       position:
-        x: 1600
-        y: 70
+        x: 1610
+        y: 65
     micro_kit:
       position:
-        x: 335
-        y: 285
+        x: 1225
+        y: 650
     usb:
       position:
-        x: 55
-        y: 240
+        x: 215
+        y: 495
     usb_diode:
       position:
-        x: 660
-        y: 540
+        x: 145
+        y: 345
     r_cc1:
       position:
         x: 50
-        y: 135
+        y: 485
     r_cc2:
       position:
-        x: 155
-        y: 135
+        x: 120
+        y: 485
     buck:
       position:
-        x: 1125
-        y: 65
+        x: 975
+        y: 220
     ldo:
       position:
         x: 50
         y: 50
     power_stage:
       position:
-        x: 1200
-        y: 505
+        x: 1710
+        y: 590
     pad_out_a:
       position:
-        x: 1430
-        y: 530
+        x: 1855
+        y: 350
     pad_out_b:
       position:
-        x: 1505
-        y: 530
+        x: 1850
+        y: 415
     pad_out_c:
       position:
-        x: 1580
-        y: 530
+        x: 1845
+        y: 485
     voltage_input_vdiv:
       position:
-        x: 1365
-        y: 65
+        x: 1725
+        y: 175
     position_sensor:
       position:
-        x: 1200
-        y: 290
+        x: 615
+        y: 410
     led:
       position:
-        x: 765
-        y: 325
+        x: 335
+        y: 340
     switch:
       position:
-        x: 465
+        x: 705
         y: 110
     switch_pulldown:
       position:
-        x: 300
+        x: 540
         y: 50
     ldo_5v:
       position:
-        x: 670
-        y: 65
+        x: 1200
+        y: 220
     ldo_3v3:
       position:
-        x: 885
-        y: 65
+        x: 1430
+        y: 220
     stemma:
       position:
         x: 175
@@ -95,3 +95,15 @@ ServoDrive:
       position:
         x: 140
         y: 525
+    canbus:
+      position:
+        x: 440
+        y: 615
+    canbus_conn_1:
+      position:
+        x: 695
+        y: 715
+    canbus_conn_2:
+      position:
+        x: 700
+        y: 595

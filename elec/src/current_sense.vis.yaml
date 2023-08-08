@@ -37,7 +37,7 @@ CurrentSense:
     shunt:
       position:
         x: 50
-        y: 195
+        y: 125
     amp:
       position:
         x: 145
@@ -60,21 +60,21 @@ CurrentSense:
         y: 50
     opamp:
       position:
-        x: 340
-        y: 275
+        x: 530
+        y: 165
     feedback_div:
       position:
-        x: 130
-        y: 325
+        x: 250
+        y: 250
     input_r_top:
       position:
         x: 265
         y: 50
     output_filter:
       position:
-        x: 525
-        y: 180
+        x: 745
+        y: 145
     bias_div:
       position:
-        x: 120
+        x: 245
         y: 50

@@ -4,6 +4,7 @@ import SMMS0420_6R8M from "SMMS0420_6R8M.ato"
 import MAX17504ATP from "MAX17504ATP.ato"
 import Vdiv from "vdiv.ato"
 #ato view --root-file buck.ato --root-node buck.ato/Buck
+#Cost down buck https://jlcpcb.com/partdetail/TexasInstruments-TPS5430DDAR/C9864
 
 module Buck:
     signal VIN
@@ -19,7 +20,7 @@ module Buck:
     #LDO cap
     VCC_cap = new Capacitor
     VCC_cap.value = "2.2uF"
-    VCC_cap.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    VCC_cap.footprint = "Capacitor_SMD:C_0603_1608Metric"
     buck_converter.VCC ~ VCC_cap.p1
     SGND ~ VCC_cap.p2
 
@@ -31,7 +32,7 @@ module Buck:
     GND ~ VIN_cap_1.p2
     VIN_cap_2 = new Capacitor
     VIN_cap_2.value = "2.2uF"
-    VIN_cap_2.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    VIN_cap_2.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VIN ~ VIN_cap_2.p1
     
     GND ~ VIN_cap_2.p2
@@ -53,16 +54,29 @@ module Buck:
 
     #output caps
     VOUT_cap_1 = new Capacitor
-    VOUT_cap_1.value = "22uF"
-    VOUT_cap_1.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    VOUT_cap_1.value = "10uF"
+    VOUT_cap_1.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VOUT ~ VOUT_cap_1.p1
     GND ~ VOUT_cap_1.p2
 
     VOUT_cap_2 = new Capacitor
-    VOUT_cap_2.value = "22uF"
-    VOUT_cap_2.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    VOUT_cap_2.value = "10uF"
+    VOUT_cap_2.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VOUT ~ VOUT_cap_2.p1
     GND ~ VOUT_cap_2.p2
+
+    VOUT_cap_3 = new Capacitor
+    VOUT_cap_3.value = "10uF"
+    VOUT_cap_3.footprint = "Capacitor_SMD:C_0603_1608Metric"
+    VOUT ~ VOUT_cap_3.p1
+    GND ~ VOUT_cap_3.p2
+
+    VOUT_cap_4 = new Capacitor
+    VOUT_cap_4.value = "10uF"
+    VOUT_cap_4.footprint = "Capacitor_SMD:C_0603_1608Metric"
+    VOUT ~ VOUT_cap_4.p1
+    GND ~ VOUT_cap_4.p2
+
 
     #feedback divider - set to 10V output
     #3.3v out: R1 = 76.8k, R2 = 28.7k

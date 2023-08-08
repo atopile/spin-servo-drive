@@ -54,6 +54,10 @@ module ServoDrive:
     led.vcc ~ v_5 # connect to 5V rail
     led.gnd ~ gnd
     led.data_in ~ micro_kit.micro.PA6
+    led2 = new SK6805SIDE_S
+    led2.vcc ~ v_5 # connect to 5V rail
+    led2.gnd ~ gnd
+    led2.data_in ~ led.data_out
 
     # Enumeration switch
     switch = new switch_90degree
@@ -113,7 +117,6 @@ module ServoDrive:
     power_stage.v_pwr ~ vbatt
     power_stage.vcc_10v ~ v_10
     power_stage.vcc_3v3 ~ v_3
-    power_stage.v_ref ~ v_3
     power_stage.gnd ~ gnd
 
     # phase outputs
@@ -149,10 +152,10 @@ module ServoDrive:
     position_sensor.vin ~ v_3
     position_sensor.gnd ~ gnd
     # Todo: needs to merge with position sensor update
-    # micro_kit.micro.PB5 ~ position_sensor.mosi
-    # micro_kit.micro.PB4 ~ position_sensor.miso
-    # micro_kit.micro.PB3 ~ position_sensor.sclk
-    # micro_kit.micro.PA15 ~ position_sensor.cs
+    micro_kit.micro.PB5 ~ position_sensor.mosi
+    micro_kit.micro.PB4 ~ position_sensor.miso
+    micro_kit.micro.PB3 ~ position_sensor.sck
+    micro_kit.micro.PA15 ~ position_sensor.cs
     # micro_kit.micro.PB8 ~ position_sensor.encoder_a
     # micro_kit.micro.PB9 ~ position_sensor.encoder_b
     # micro_kit.micro.PA10 ~ position_sensor.encoder_z
@@ -160,17 +163,17 @@ module ServoDrive:
     # i2c comms
     # we're not using the pre-built STEMMA module here because we're not adding the level shifting
     # this means it's not actually STEMMA complaint, but it's close enough for our purposes
-    stemma = new StemmaQtConnector
-    stemma.vcc ~ v_3
-    stemma.gnd ~ gnd
-    stemma.sda ~ micro_kit.micro.PB7
-    stemma.scl ~ micro_kit.micro.PB6
-    i2c_active_terminator = new LTC4311
-    i2c_active_terminator.vcc ~ v_3
-    i2c_active_terminator.gnd ~ gnd
-    i2c_active_terminator.bus1 ~ stemma.sda
-    i2c_active_terminator.bus2 ~ stemma.scl
-    i2c_active_terminator.enable ~ stemma.vcc
+    # stemma = new StemmaQtConnector
+    # stemma.vcc ~ v_3
+    # stemma.gnd ~ gnd
+    # stemma.sda ~ micro_kit.micro.PB7
+    # stemma.scl ~ micro_kit.micro.PB6
+    # i2c_active_terminator = new LTC4311
+    # i2c_active_terminator.vcc ~ v_3
+    # i2c_active_terminator.gnd ~ gnd
+    # i2c_active_terminator.bus1 ~ stemma.sda
+    # i2c_active_terminator.bus2 ~ stemma.scl
+    # i2c_active_terminator.enable ~ stemma.vcc
 
     # CANBUS Comms
     canbus = new can_xcvr
