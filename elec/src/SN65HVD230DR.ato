@@ -2,14 +2,14 @@ component SN65HVD230DR:
     footprint = "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL"
     lcsc_id = "C12084"
     # pins
-    signal D ~ p1
-    signal GND ~ p2
-    signal VCC ~ p3
-    signal R ~ p4
-    signal VREF ~ p5
-    signal CANL ~ p6
-    signal CANH ~ p7
-    signal RS ~ p8
+    signal D ~ pin p1
+    signal GND ~ pin p2
+    signal VCC ~ pin p3
+    signal R ~ pin p4
+    signal VREF ~ pin p5
+    signal CANL ~ pin p6
+    signal CANH ~ pin p7
+    signal RS ~ pin p8
 
     # pin types
 
