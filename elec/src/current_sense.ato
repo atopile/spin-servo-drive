@@ -5,6 +5,7 @@ import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 import Vdiv from "vdiv.ato"
 import LowPass  from "low_pass.ato"
+import nettie_250u from "nettie.ato"
 
 # This file impliments a lowside shunt-based current sense
 # The largest readily available 42mm-frame motors have a rated current of ~8A
@@ -28,21 +29,24 @@ module CurrentSense:
     shunt.footprint = "Resistor_SMD:R_0805_2012Metric"
     i_in ~ shunt.p1
     shunt.p2 ~ i_out
-
+    nt_p = new nettie_250u
+    nt_p.p2 ~ i_in
+    nt_n = new nettie_250u
+    nt_n.p2 ~ i_out
     opamp = new LMV321IDBVR
     opamp.vcc ~ vcc
     opamp.gnd ~ gnd
 
     # feedback
     feedback_div = new Vdiv
-    feedback_div.input ~ i_out
+    feedback_div.input ~ nt_n.p1
     feedback_div.gnd ~ opamp.out
     feedback_div.output ~ opamp.in_n
     feedback_div.r_top.value = "1kOhm"
     feedback_div.r_bt.value = "45kOhm"
 
     bias_div = new Vdiv
-    bias_div.input ~ i_in
+    bias_div.input ~ nt_p.p1
     bias_div.gnd ~ v_ref
     bias_div.output ~ opamp.in_p
     bias_div.r1.value = "1kOhm"

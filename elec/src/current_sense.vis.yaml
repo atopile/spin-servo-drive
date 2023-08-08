@@ -60,12 +60,12 @@ CurrentSense:
         y: 50
     opamp:
       position:
-        x: 530
-        y: 165
+        x: 490
+        y: 235
     feedback_div:
       position:
         x: 250
-        y: 250
+        y: 385
     input_r_top:
       position:
         x: 265
@@ -78,3 +78,11 @@ CurrentSense:
       position:
         x: 245
         y: 50
+    nt_p:
+      position:
+        x: 120
+        y: 95
+    nt_n:
+      position:
+        x: 105
+        y: 315
