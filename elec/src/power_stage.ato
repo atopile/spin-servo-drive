@@ -44,6 +44,11 @@ module PowerStage:
     c_in_3 = new Capacitor
     c_in_4 = new Capacitor
 
+    c_in_1.footprint = "Capacitor_SMD:C_1206_3216Metric"
+    c_in_2.footprint = "Capacitor_SMD:C_1206_3216Metric"
+    c_in_3.footprint = "Capacitor_SMD:C_1206_3216Metric"
+    c_in_4.footprint = "Capacitor_SMD:C_1206_3216Metric"
+
     c_in_1.p1 ~ v_pwr
     c_in_2.p1 ~ v_pwr
     c_in_3.p1 ~ v_pwr
