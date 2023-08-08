@@ -28,7 +28,7 @@ import LTC4311 from "stemma.ato"
 import can_xcvr from "SN65HVD230DR.ato"
 
 component PowerPad:
-    pin p2
+    pin p1
     footprint = "lib:OutputPad"
 
 

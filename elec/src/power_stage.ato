@@ -2,7 +2,6 @@
 
 import HalfBridge from "half_bridge.ato"
 import CurrentSense from "current_sense.ato"
-import NRF52832 from "NRF52832.ato"
 import VoltageReference from "voltage_reference.ato"
 import VoltageSense from "voltage_sense.ato"
 import RVT1H101M0810 from "RVT1H101M0810.ato"

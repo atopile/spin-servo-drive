@@ -1,6 +1,7 @@
 component STM32F103C8T6:
-    footprint = "LQFP-48_L7.0-W7.0-P0.50-LS9.0-BL"
     #lcsc_id = C8734
+    footprint = "LQFP-48_L7.0-W7.0-P0.50-LS9.0-BL"
+
     # pins
     signal VBAT ~ pin p1
     signal PC13_TAMPER_RTC ~ pin p2

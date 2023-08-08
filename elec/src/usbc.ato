@@ -1,3 +1,5 @@
+# easyeda2kicad --full --lcsc_id=C2909057 --output elec/lib/lib
+
 component Usbc:
 
     signal gnd ~ pin A1
