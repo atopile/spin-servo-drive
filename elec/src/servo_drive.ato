@@ -26,6 +26,7 @@ import StemmaQtConnector from "stemma.ato"
 import LTC4311 from "stemma.ato"
 
 import can_xcvr from "SN65HVD230DR.ato"
+import TC2050 from "TC2050.ato"
 
 component PowerPad:
     pin p1
@@ -152,10 +153,10 @@ module ServoDrive:
     position_sensor.vin ~ v_3
     position_sensor.gnd ~ gnd
     # Todo: needs to merge with position sensor update
-    micro_kit.micro.PB5 ~ position_sensor.mosi
-    micro_kit.micro.PB4 ~ position_sensor.miso
-    micro_kit.micro.PB3 ~ position_sensor.sck
-    micro_kit.micro.PA15 ~ position_sensor.cs
+    micro_kit.micro.PB15 ~ position_sensor.mosi
+    micro_kit.micro.PB14 ~ position_sensor.miso
+    micro_kit.micro.PB13 ~ position_sensor.sck
+    micro_kit.micro.PB12 ~ position_sensor.cs
     # micro_kit.micro.PB8 ~ position_sensor.encoder_a
     # micro_kit.micro.PB9 ~ position_sensor.encoder_b
     # micro_kit.micro.PA10 ~ position_sensor.encoder_z
@@ -191,3 +192,14 @@ module ServoDrive:
     canbus_conn_2.gnd ~ gnd
     canbus_conn_2.sda ~ canbus.CANH
     canbus_conn_2.scl ~ canbus.CANL
+
+    # JTAG
+    jtag = new TC2050
+    jtag.vcc ~ v_3
+    jtag.gnd ~ gnd
+    jtag.tck ~ micro_kit.micro.PA14
+    jtag.tdi ~ micro_kit.micro.PA15
+    jtag.tdo ~ micro_kit.micro.PB3
+    jtag.tms ~ micro_kit.micro.PA13
+    jtag.rst ~ micro_kit.micro.PB4
+
