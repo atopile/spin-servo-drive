@@ -22,7 +22,7 @@ component MAX17504ATP:
     PGND ~ pin p16
     LX ~ pin p18
     LX ~ pin p19
-    SGND ~ pin p21 #EP
+    PGND ~ pin p21 #EP
 
     VIN.visualizer.location = "top"
     EN.visualizer.location = "top"
