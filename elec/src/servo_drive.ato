@@ -5,33 +5,24 @@ import Resistor from "std/resistor.ato"
 import PowerStage from "power_stage.ato"
 import stm32_kit from "stm32.ato"
 import PositionSensor from "position_sensor.ato"
-
 import Diode from "diode.ato"
-
-import PinHeader10 from "pin_header.ato"
-import PinHeader2 from "pin_header.ato"
-import PinHeader25 from "pin_header.ato"
-
 import Usbc from "usbc.ato"
 import SK6805SIDE_S from "SK6805SIDE_S.ato"
-
 import VoltageSense from "voltage_sense.ato"
 import Buck from "buck.ato"
 import LDO from "ldo.ato"
 import XT30 from "xt30.ato"
 import AdjustableLdo from "adjustable_ldo.ato"
 import switch_90degree from "switch_90degree.ato"
-
 import StemmaQtConnector from "stemma.ato"
 import LTC4311 from "stemma.ato"
-
 import can_xcvr from "SN65HVD230DR.ato"
 import TC2050 from "TC2050.ato"
+import Vdiv from "vdiv.ato"
 
 component PowerPad:
     pin p1
     footprint = "lib:OutputPad"
-
 
 module ServoDrive:
     signal v_10
@@ -91,6 +82,14 @@ module ServoDrive:
     r_cc2.p2 ~ gnd
 
     usb.gnd ~ gnd
+
+    # Temperature sensors
+    temp_sensor_fets = new Vdiv
+    temp_sensor_fets.r_top.value = "10k"
+    temp_sensor_fets.r_bottom.value = "10k_NTC"
+    temp_sensor_fets.input ~ v_3
+    temp_sensor_fets.output ~ micro_kit.micro.PA5
+    temp_sensor_fets.gnd ~ gnd
 
     # 10V rail buck - powers gate drivers from VIN
     buck = new Buck
