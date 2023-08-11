@@ -10,19 +10,18 @@ module Buck:
     signal VIN
     signal VOUT
     signal GND
-    signal SGND
 
     buck_converter = new MAX17504ATP
     VIN ~ buck_converter.VIN
     GND ~ buck_converter.PGND
-    SGND ~ buck_converter.SGND
+    GND ~ buck_converter.SGND
 
     #LDO cap
     VCC_cap = new Capacitor
     VCC_cap.value = "2.2uF"
     VCC_cap.footprint = "Capacitor_SMD:C_0603_1608Metric"
     buck_converter.VCC ~ VCC_cap.p1
-    SGND ~ VCC_cap.p2
+    GND ~ VCC_cap.p2
 
     #input caps
     VIN_cap_1 = new Capacitor
@@ -43,10 +42,10 @@ module Buck:
     SS_cap.value = "12nF"
     SS_cap.footprint = "Capacitor_SMD:C_0402_1005Metric"
     buck_converter.SS ~ SS_cap.p1
-    SGND ~ SS_cap.p2
+    GND ~ SS_cap.p2
 
     #Connect mode to SGND for forced PWM mode
-    SGND ~ buck_converter.MODE
+    GND ~ buck_converter.MODE
 
     inductor = new SMMS0420_6R8M
     buck_converter.LX ~ inductor.p1
@@ -95,7 +94,7 @@ module Buck:
 
     VOUT ~ fb_vdiv.input
     buck_converter.FB ~ fb_vdiv.output
-    SGND ~ fb_vdiv.gnd
+    GND ~ fb_vdiv.gnd
 
     #Boost cap BST pin
     BST_cap = new Capacitor
@@ -104,19 +103,10 @@ module Buck:
     buck_converter.BST ~ BST_cap.p1
     buck_converter.LX ~ BST_cap.p2
 
-    #Connect PGND to SGND with a 0R resistor
-    PGND_resistor = new Resistor
-    PGND_resistor.value = "0R"
-    # PGND_resistor.package = "0402"
-    buck_converter.PGND ~ PGND_resistor.p1
-    buck_converter.SGND ~ PGND_resistor.p2
-    PGND_resistor.footprint = "Resistor_SMD:R_0402_1005Metric"
-
     #connect EN to VIN
     buck_converter.EN ~ VIN
 
     GND.visualizer.stub = True
-    SGND.visualizer.stub = True
     buck_converter.PGND.stub = True
 
     VOUT.visualizer.location = "right"
