@@ -7,14 +7,9 @@ builds:
     targets:
       - designators
       - netlist-kicad6
-      - bom-jlcpcb
   debug:
     root-file: power_stage_debug.ato
     root-node: power_stage_debug.ato:PowerStageDebug
     targets:
       - designators
       - netlist-kicad6
-      - bom-jlcpcb
-  micro:
-    root-file: rp2040.ato
-    root-node: rp2040.ato:RP2040_kit

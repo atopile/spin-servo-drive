@@ -1,31 +1,42 @@
 stages:
   - check
   - build
+  - store
 
-build-elec:
+check-ato:
+  stage: check
+  image: registry.atopile.io/atopile/atopile:latest
+  script:
+    - ato check elec/src
+
+build-gerbers-default:
   stage: build
   image:
     name: kicad/kicad:nightly
     pull_policy: if-not-present
   script:
-    - mkdir -p build/src
-    - cp elec/layouts/default/*.kicad_pcb build/src/
-    - sed -i "s/"'{{GITHASH}}'"/$CI_COMMIT_SHORT_SHA/g" build/src/*.kicad_pcb
-    - mkdir -p build/gerbers
-    - kicad-cli pcb export gerbers -o build/gerbers/ build/src/*.kicad_pcb
-    - kicad-cli pcb export drill -o build/gerbers/ build/src/*.kicad_pcb
-    - zip "build/gerbers/gerbers-$CI_COMMIT_SHORT_SHA.zip" build/gerbers/*
+    - mkdir -p build/default/src
+    - cd build/default
+    - cp ../../elec/layouts/default/*.kicad_pcb src/
+    - sed -i "s/"'{{GITHASH}}'"/$CI_COMMIT_SHORT_SHA/g" src/*.kicad_pcb
+    - mkdir gerbers
+    - kicad-cli pcb export gerbers -o gerbers/ src/*.kicad_pcb
+    - kicad-cli pcb export drill -o gerbers/ src/*.kicad_pcb
+    - zip "gerbers-$CI_COMMIT_SHORT_SHA.zip" gerbers/*
+
+    # position files need some massaging for JLCPCB
+    - kicad-cli pcb export pos --format csv --units mm --use-drill-file-origin -o servo-drive-pos.csv src/*.kicad_pcb
+    - POS_HEADER="$(cat ../../metadata/pos-header)"
+    - sed -i "1s/.*/$POS_HEADER/" servo-drive-pos.csv
   artifacts:
     paths:
       - build/
 
-# TODO: figure out how to install atopile in this environment
-# check-debug:
-#   stage: check
-#   image:
-#     name: python:3.10
-#     pull_policy: if-not-present
-#   script:
-#     - git clone https://gitlab.atopile.io/atopile/atopile.git
-#     - pip install ./atopile
-#     - ato check elec/src
+build-ato-default:
+  stage: build
+  image: registry.atopile.io/atopile/atopile:latest
+  script:
+    - ato build elec/src
+  artifacts:
+    paths:
+      - build/
