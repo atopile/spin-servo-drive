@@ -4,7 +4,7 @@ HalfBridge:
     is_stub: true
   - name: v_pwr
     is_stub: true
-  - name: vcc_10v
+  - name: vcc_12v
     is_stub: true
   - name: out
     is_stub: true

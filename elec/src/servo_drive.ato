@@ -5,7 +5,7 @@ import Resistor from "std/resistor.ato"
 import PowerStage from "power_stage.ato"
 import stm32_kit from "stm32.ato"
 import PositionSensor from "position_sensor.ato"
-import Diode from "diode.ato"
+import DIODE_1N5819WS from "1N5819WS.ato"
 import Usbc from "usbc.ato"
 import SK6805SIDE_S from "SK6805SIDE_S.ato"
 import VoltageSense from "voltage_sense.ato"
@@ -25,7 +25,7 @@ component PowerPad:
     footprint = "lib:OutputPad"
 
 module ServoDrive:
-    signal v_10
+    signal v_12
     signal v_5
     signal v_3
     signal vbatt
@@ -69,8 +69,7 @@ module ServoDrive:
     usb.dp ~ micro_kit.usb_dp
     usb.dm ~ micro_kit.usb_dm
 
-    usb_diode = new Diode
-    usb_diode.footprint = "lib:SOD-523_L1.2-W0.8-LS1.6-RD"
+    usb_diode = new DIODE_1N5819WS
     v_5 ~ usb_diode.cathode
     usb_diode.anode ~ usb.vbus
 
@@ -86,36 +85,37 @@ module ServoDrive:
     # Temperature sensors
     temp_sensor_fets = new Vdiv
     temp_sensor_fets.r_top.value = "10k"
-    temp_sensor_fets.r_bottom.value = "10k_NTC"
+    temp_sensor_fets.r_bt.value = "10k_NTC"
     temp_sensor_fets.input ~ v_3
+    signal temp_sense ~ temp_sensor_fets.output
     temp_sensor_fets.output ~ micro_kit.micro.PA5
     temp_sensor_fets.gnd ~ gnd
 
     # 10V rail buck - powers gate drivers from VIN
     buck = new Buck
     vbatt ~ buck.VIN
-    buck.VOUT ~ v_10
+    buck.VOUT ~ v_12
     buck.GND ~ gnd
 
     # 5v rail LDO - powers micro
     ldo_5v = new AdjustableLdo
-    ldo_5v.feedback_div.r_top.value = "18kOhm"
-    ldo_5v.feedback_div.r_bottom.value = "5.6kOhm"
-    v_10 ~ ldo_5v.vin
+    ldo_5v.feedback_div.r_top.value = "18k"
+    ldo_5v.feedback_div.r_bt.value = "5.1k"
+    v_12 ~ ldo_5v.vin
     ldo_5v.vout ~ v_5
     ldo_5v.gnd ~ gnd
 
     # 3v3 rail LDO - powers micro
     ldo_3v3 = new AdjustableLdo
-    ldo_3v3.feedback_div.r_top.value = "18kOhm"
-    ldo_3v3.feedback_div.r_bottom.value = "10kOhm"
+    ldo_3v3.feedback_div.r_top.value = "18k"
+    ldo_3v3.feedback_div.r_bt.value = "10k"
     v_5 ~ ldo_3v3.vin
     ldo_3v3.vout ~ v_3
     ldo_3v3.gnd ~ gnd
 
     power_stage = new PowerStage
     power_stage.v_pwr ~ vbatt
-    power_stage.vcc_10v ~ v_10
+    power_stage.vcc_12v ~ v_12
     power_stage.vcc_3v3 ~ v_3
     power_stage.gnd ~ gnd
 
@@ -146,6 +146,7 @@ module ServoDrive:
     voltage_input_vdiv.in ~ xt30.vin
     voltage_input_vdiv.gnd ~ gnd
     voltage_input_vdiv.out ~ micro_kit.micro.PA3
+    voltage_input_vdiv.c_filter.value = "100nF"
 
     # Position sensor - SPI interface
     position_sensor = new PositionSensor

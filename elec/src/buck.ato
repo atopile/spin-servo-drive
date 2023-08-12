@@ -1,27 +1,19 @@
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
-import SMMS0420_6R8M from "SMMS0420_6R8M.ato"
-import MAX17504ATP from "MAX17504ATP.ato"
+import LV2842XLVDDCR from "LV2842XLVDDCR.ato"
+import CPY201212T_100M_NP from "CPY201212T_100M_NP.ato"
 import Vdiv from "vdiv.ato"
-#ato view --root-file buck.ato --root-node buck.ato/Buck
-#Cost down buck https://jlcpcb.com/partdetail/TexasInstruments-TPS5430DDAR/C9864
+import DIODE_1N5819WS from "1N5819WS.ato"
+#ato view buck.ato:Buck
 
 module Buck:
     signal VIN
     signal VOUT
     signal GND
 
-    buck_converter = new MAX17504ATP
-    VIN ~ buck_converter.VIN
-    GND ~ buck_converter.PGND
-    GND ~ buck_converter.SGND
-
-    #LDO cap
-    VCC_cap = new Capacitor
-    VCC_cap.value = "2.2uF"
-    VCC_cap.footprint = "Capacitor_SMD:C_0603_1608Metric"
-    buck_converter.VCC ~ VCC_cap.p1
-    GND ~ VCC_cap.p2
+    buck_converter = new LV2842XLVDDCR
+    VIN ~ buck_converter.vin
+    GND ~ buck_converter.gnd
 
     #input caps
     VIN_cap_1 = new Capacitor
@@ -29,85 +21,58 @@ module Buck:
     VIN_cap_1.footprint = "Capacitor_SMD:C_0805_2012Metric"
     VIN ~ VIN_cap_1.p1
     GND ~ VIN_cap_1.p2
-    VIN_cap_2 = new Capacitor
-    VIN_cap_2.value = "2.2uF"
-    VIN_cap_2.footprint = "Capacitor_SMD:C_0603_1608Metric"
-    VIN ~ VIN_cap_2.p1
-    
-    GND ~ VIN_cap_2.p2
 
+    # diode
+    diode = new DIODE_1N5819WS
+    diode.cathode ~ buck_converter.sw
+    diode.anode ~ GND
 
-    #soft start cap
-    SS_cap = new Capacitor
-    SS_cap.value = "12nF"
-    SS_cap.footprint = "Capacitor_SMD:C_0402_1005Metric"
-    buck_converter.SS ~ SS_cap.p1
-    GND ~ SS_cap.p2
+    inductor = new CPY201212T_100M_NP
+    buck_converter.sw ~ inductor.1
+    VOUT ~ inductor.2
 
-    #Connect mode to SGND for forced PWM mode
-    GND ~ buck_converter.MODE
-
-    inductor = new SMMS0420_6R8M
-    buck_converter.LX ~ inductor.p1
-    VOUT ~ inductor.p2
-
-    #output caps
+    #output caps - pretty peaky loads, so lots of caps
     VOUT_cap_1 = new Capacitor
-    VOUT_cap_1.value = "10uF"
+    VOUT_cap_1.value = "4.7uF"
     VOUT_cap_1.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VOUT ~ VOUT_cap_1.p1
     GND ~ VOUT_cap_1.p2
 
     VOUT_cap_2 = new Capacitor
-    VOUT_cap_2.value = "10uF"
+    VOUT_cap_2.value = "4.7uF"
     VOUT_cap_2.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VOUT ~ VOUT_cap_2.p1
     GND ~ VOUT_cap_2.p2
 
     VOUT_cap_3 = new Capacitor
-    VOUT_cap_3.value = "10uF"
+    VOUT_cap_3.value = "4.7uF"
     VOUT_cap_3.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VOUT ~ VOUT_cap_3.p1
     GND ~ VOUT_cap_3.p2
 
     VOUT_cap_4 = new Capacitor
-    VOUT_cap_4.value = "10uF"
+    VOUT_cap_4.value = "4.7uF"
     VOUT_cap_4.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VOUT ~ VOUT_cap_4.p1
     GND ~ VOUT_cap_4.p2
 
-
-    #feedback divider - set to 10V output
-    #3.3v out: R1 = 76.8k, R2 = 28.7k
-    #R1 = (216 * 10^3)/(switching frequency/9 * COUT(uF)))
-    #R2 = R1 * 0.9 / (vout-0.9)
-    # switching frequency = 500kHz
-    # R1 = 89.25K
-    # R2 = 8.83K
-
     fb_vdiv = new Vdiv
-    fb_vdiv.r_top.value = "89.25K"
+    fb_vdiv.r_top.value = "147K"
     fb_vdiv.r_top.footprint = "Resistor_SMD:R_0402_1005Metric"
 
-    fb_vdiv.r_bt.value = "8.83K"
+    fb_vdiv.r_bt.value = "10K"
     fb_vdiv.r_bt.footprint = "Resistor_SMD:R_0402_1005Metric"
 
     VOUT ~ fb_vdiv.input
-    buck_converter.FB ~ fb_vdiv.output
+    buck_converter.fb ~ fb_vdiv.output
     GND ~ fb_vdiv.gnd
 
     #Boost cap BST pin
-    BST_cap = new Capacitor
-    BST_cap.value = "0.1uF"
-    BST_cap.footprint = "Capacitor_SMD:C_0402_1005Metric"
-    buck_converter.BST ~ BST_cap.p1
-    buck_converter.LX ~ BST_cap.p2
+    boot_cap = new Capacitor
+    boot_cap.value = "100nF"
+    boot_cap.footprint = "Capacitor_SMD:C_0402_1005Metric"
+    buck_converter.cb ~ boot_cap.p1
+    buck_converter.sw ~ boot_cap.p2
 
-    #connect EN to VIN
-    buck_converter.EN ~ VIN
-
-    GND.visualizer.stub = True
-    buck_converter.PGND.stub = True
-
-    VOUT.visualizer.location = "right"
-    VIN.visualizer.location = "left"
+    # connect shdn to vin to enable
+    VIN ~ buck_converter.shdn

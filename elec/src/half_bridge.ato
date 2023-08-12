@@ -7,7 +7,7 @@ import Resistor from "std/resistor.ato"
 
 module HalfBridge:
     signal v_pwr
-    signal vcc_10v
+    signal vcc_12v
     signal gnd
     signal pwr_gnd
 
@@ -23,7 +23,7 @@ module HalfBridge:
     input_bypass.p2 ~ gnd
 
     gate_driver = new L6387ED
-    vcc_10v ~ gate_driver.vcc
+    vcc_12v ~ gate_driver.vcc
     gnd ~ gate_driver.gnd
     low_in ~ gate_driver.lin
     high_in ~ gate_driver.hin
@@ -84,7 +84,7 @@ module HalfBridge:
     # ls_gate_bleed_r.p2 ~ gnd
 
     # visualiser info
-    vcc_10v.visualizer.location = "top"
+    vcc_12v.visualizer.location = "top"
     gnd.visualizer.location = "bottom"
     v_pwr.visualizer.location = "top"
     high_in.visualizer.location = "left"

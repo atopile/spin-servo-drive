@@ -1,6 +1,6 @@
 ServoDrive:
   signals:
-  - name: v_10
+  - name: v_12
     is_stub: true
   - name: V_5
     is_stub: true
