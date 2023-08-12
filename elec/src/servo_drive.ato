@@ -25,7 +25,7 @@ component PowerPad:
     footprint = "lib:OutputPad"
 
 module ServoDrive:
-    signal v_10
+    signal v_12
     signal v_5
     signal v_3
     signal vbatt
@@ -95,14 +95,14 @@ module ServoDrive:
     # 10V rail buck - powers gate drivers from VIN
     buck = new Buck
     vbatt ~ buck.VIN
-    buck.VOUT ~ v_10
+    buck.VOUT ~ v_12
     buck.GND ~ gnd
 
     # 5v rail LDO - powers micro
     ldo_5v = new AdjustableLdo
     ldo_5v.feedback_div.r_top.value = "18kOhm"
     ldo_5v.feedback_div.r_bottom.value = "5.6kOhm"
-    v_10 ~ ldo_5v.vin
+    v_12 ~ ldo_5v.vin
     ldo_5v.vout ~ v_5
     ldo_5v.gnd ~ gnd
 
@@ -116,7 +116,7 @@ module ServoDrive:
 
     power_stage = new PowerStage
     power_stage.v_pwr ~ vbatt
-    power_stage.vcc_10v ~ v_10
+    power_stage.vcc_12v ~ v_12
     power_stage.vcc_3v3 ~ v_3
     power_stage.gnd ~ gnd
 

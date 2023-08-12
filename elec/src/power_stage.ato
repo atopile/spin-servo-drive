@@ -11,7 +11,7 @@ import Capacitor from "std/capacitor.ato"
 module PowerStage:
     # power
     signal v_pwr
-    signal vcc_10v
+    signal vcc_12v
     signal vcc_3v3
     signal gnd
 
@@ -131,9 +131,9 @@ module PowerStage:
     half_bridge_b.v_pwr ~ v_pwr
     half_bridge_c.v_pwr ~ v_pwr
 
-    half_bridge_a.vcc_10v ~ vcc_10v
-    half_bridge_b.vcc_10v ~ vcc_10v
-    half_bridge_c.vcc_10v ~ vcc_10v
+    half_bridge_a.vcc_12v ~ vcc_12v
+    half_bridge_b.vcc_12v ~ vcc_12v
+    half_bridge_c.vcc_12v ~ vcc_12v
 
     # connect halfbridges output to phase outputs
     half_bridge_a.out ~ out_a
@@ -189,7 +189,7 @@ module PowerStage:
     current_sense_c.out ~ i_fb_c
 
     v_pwr.visualizer.location = "top"
-    vcc_10v.visualizer.location = "top"
+    vcc_12v.visualizer.location = "top"
     vcc_3v3.visualizer.location = "top"
     gnd.visualizer.location = "bottom"
 

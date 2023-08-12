@@ -39,7 +39,7 @@ module PowerStageDebug:
     i_fb_c_pad = new SignalPad
 
     power_stage.v_pwr ~ v_pwr_pad.p1
-    power_stage.vcc_10v ~ vcc_10v_pad.p1
+    power_stage.vcc_12v ~ vcc_10v_pad.p1
     power_stage.vcc_3v3 ~ vcc_3v3_pad.p1
     power_stage.gnd ~ gnd_pad0.p1
     power_stage.gnd ~ gnd_pad1.p1
