@@ -1,0 +1,9 @@
+# JLCPN: C191023
+# easyeda2kicad --full --lcsc_id=C191023 --output elec/lib/lib
+# 40V 600mV@1A 1A SOD-323 Schottky Barrier Diodes (SBD) ROHS Copy
+
+component DIODE_1N5819WS:
+    signal anode ~ pin 2
+    signal cathode ~ pin 1
+
+    footprint="SOD-323_L1.8-W1.3-LS2.5-RD"

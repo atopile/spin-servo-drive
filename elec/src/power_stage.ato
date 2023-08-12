@@ -46,6 +46,14 @@ module PowerStage:
     c_in_6 = new Capacitor
     c_in_7 = new Capacitor
     c_in_8 = new Capacitor
+    c_in_9 = new Capacitor
+    c_in_10 = new Capacitor
+    c_in_11 = new Capacitor
+    c_in_12 = new Capacitor
+    c_in_13 = new Capacitor
+    c_in_14 = new Capacitor
+    c_in_15 = new Capacitor
+    c_in_16 = new Capacitor
 
     c_in_1.footprint = "Capacitor_SMD:C_0805_2012Metric"
     c_in_2.footprint = "Capacitor_SMD:C_0805_2012Metric"
@@ -55,6 +63,14 @@ module PowerStage:
     c_in_6.footprint = "Capacitor_SMD:C_0805_2012Metric"
     c_in_7.footprint = "Capacitor_SMD:C_0805_2012Metric"
     c_in_8.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_9.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_10.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_11.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_12.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_13.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_14.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_15.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_16.footprint = "Capacitor_SMD:C_0805_2012Metric"
 
     c_in_1.p1 ~ v_pwr
     c_in_2.p1 ~ v_pwr
@@ -64,6 +80,14 @@ module PowerStage:
     c_in_6.p1 ~ v_pwr
     c_in_7.p1 ~ v_pwr
     c_in_8.p1 ~ v_pwr
+    c_in_9.p1 ~ v_pwr
+    c_in_10.p1 ~ v_pwr
+    c_in_11.p1 ~ v_pwr
+    c_in_12.p1 ~ v_pwr
+    c_in_13.p1 ~ v_pwr
+    c_in_14.p1 ~ v_pwr
+    c_in_15.p1 ~ v_pwr
+    c_in_16.p1 ~ v_pwr
     c_in_1.p2 ~ gnd
     c_in_2.p2 ~ gnd
     c_in_3.p2 ~ gnd
@@ -72,6 +96,14 @@ module PowerStage:
     c_in_6.p2 ~ gnd
     c_in_7.p2 ~ gnd
     c_in_8.p2 ~ gnd
+    c_in_9.p2 ~ gnd
+    c_in_10.p2 ~ gnd
+    c_in_11.p2 ~ gnd
+    c_in_12.p2 ~ gnd
+    c_in_13.p2 ~ gnd
+    c_in_14.p2 ~ gnd
+    c_in_15.p2 ~ gnd
+    c_in_16.p2 ~ gnd
 
     c_in_1.value = "10uF"
     c_in_2.value = "10uF"
@@ -81,6 +113,14 @@ module PowerStage:
     c_in_6.value = "10uF"
     c_in_7.value = "10uF"
     c_in_8.value = "10uF"
+    c_in_9.value = "10uF"
+    c_in_10.value = "10uF"
+    c_in_11.value = "10uF"
+    c_in_12.value = "10uF"
+    c_in_13.value = "10uF"
+    c_in_14.value = "10uF"
+    c_in_15.value = "10uF"
+    c_in_16.value = "10uF"
 
     # half bridges
     half_bridge_a = new HalfBridge

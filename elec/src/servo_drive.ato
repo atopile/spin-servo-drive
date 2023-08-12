@@ -88,6 +88,7 @@ module ServoDrive:
     temp_sensor_fets.r_top.value = "10k"
     temp_sensor_fets.r_bottom.value = "10k_NTC"
     temp_sensor_fets.input ~ v_3
+    signal temp_sense ~ temp_sensor_fets.output
     temp_sensor_fets.output ~ micro_kit.micro.PA5
     temp_sensor_fets.gnd ~ gnd
 
