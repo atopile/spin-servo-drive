@@ -1,4 +1,4 @@
-# ato view --root-file power_stage.ato --root-node power_stage.ato/PowerStage
+# ato view --root
 
 import HalfBridge from "half_bridge.ato"
 import CurrentSense from "current_sense.ato"

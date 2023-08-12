@@ -4,8 +4,7 @@ import LV2842XLVDDCR from "LV2842XLVDDCR.ato"
 import CPY201212T_100M_NP from "CPY201212T_100M_NP.ato"
 import Vdiv from "vdiv.ato"
 import DIODE_1N5819WS from "1N5819WS.ato"
-#ato view --root-file buck.ato --root-node buck.ato/Buck
-#Cost down buck https://jlcpcb.com/partdetail/TexasInstruments-TPS5430DDAR/C9864
+#ato view buck.ato:Buck
 
 module Buck:
     signal VIN
