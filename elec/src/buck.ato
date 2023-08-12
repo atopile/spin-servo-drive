@@ -33,25 +33,25 @@ module Buck:
 
     #output caps - pretty peaky loads, so lots of caps
     VOUT_cap_1 = new Capacitor
-    VOUT_cap_1.value = "10uF"
+    VOUT_cap_1.value = "4.7uF"
     VOUT_cap_1.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VOUT ~ VOUT_cap_1.p1
     GND ~ VOUT_cap_1.p2
 
     VOUT_cap_2 = new Capacitor
-    VOUT_cap_2.value = "10uF"
+    VOUT_cap_2.value = "4.7uF"
     VOUT_cap_2.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VOUT ~ VOUT_cap_2.p1
     GND ~ VOUT_cap_2.p2
 
     VOUT_cap_3 = new Capacitor
-    VOUT_cap_3.value = "10uF"
+    VOUT_cap_3.value = "4.7uF"
     VOUT_cap_3.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VOUT ~ VOUT_cap_3.p1
     GND ~ VOUT_cap_3.p2
 
     VOUT_cap_4 = new Capacitor
-    VOUT_cap_4.value = "10uF"
+    VOUT_cap_4.value = "4.7uF"
     VOUT_cap_4.footprint = "Capacitor_SMD:C_0603_1608Metric"
     VOUT ~ VOUT_cap_4.p1
     GND ~ VOUT_cap_4.p2

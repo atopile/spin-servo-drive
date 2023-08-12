@@ -21,7 +21,7 @@ module VoltageSense:
     c_filter = new Capacitor
     c_filter.p1 ~ vdiv.output
     c_filter.p2 ~ vdiv.gnd
-    c_filter.value = "2nF"
+    c_filter.value = "100nF"
     c_filter.footprint = "Capacitor_SMD:C_0402_1005Metric"
     in.visualizer.location = "left"
     gnd.visualizer.location = "bottom"

@@ -42,15 +42,15 @@ module CurrentSense:
     feedback_div.input ~ nt_n.p1
     feedback_div.gnd ~ opamp.out
     feedback_div.output ~ opamp.in_n
-    feedback_div.r_top.value = "1kOhm"
-    feedback_div.r_bt.value = "45kOhm"
+    feedback_div.r_top.value = "1k"
+    feedback_div.r_bt.value = "45k"
 
     bias_div = new Vdiv
     bias_div.input ~ nt_p.p1
     bias_div.gnd ~ v_ref
     bias_div.output ~ opamp.in_p
-    bias_div.r1.value = "1kOhm"
-    bias_div.r2.value = "45kOhm"
+    bias_div.r_top.value = "1k"
+    bias_div.r_bt.value = "45k"
 
     # output filter - cutoff at 1.3MHz
     output_filter = new LowPass
