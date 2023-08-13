@@ -13,3 +13,4 @@ builds:
     targets:
       - designators
       - netlist-kicad6
+      - bom-jlcpcb

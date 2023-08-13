@@ -1,16 +1,17 @@
-# ato view --root-file power_stage.ato --root-node power_stage.ato/PowerStage
+# ato view --root
 
 import HalfBridge from "half_bridge.ato"
 import CurrentSense from "current_sense.ato"
-import NRF52832 from "NRF52832.ato"
 import VoltageReference from "voltage_reference.ato"
 import VoltageSense from "voltage_sense.ato"
 import RVT1H101M0810 from "RVT1H101M0810.ato"
+import VoltageReference from "voltage_reference.ato"
+import Capacitor from "std/capacitor.ato"
 
 module PowerStage:
     # power
     signal v_pwr
-    signal vcc_10v
+    signal vcc_12v
     signal vcc_3v3
     signal gnd
 
@@ -29,18 +30,97 @@ module PowerStage:
 
     # feedback
     signal v_ref
-    signal half_v_ref
     signal v_fb_a
     signal v_fb_b
     signal v_fb_c
     signal i_fb_a
     signal i_fb_b
+    signal i_fb_c
 
-    # input caps
-    c_in_1 = new RVT1H101M0810
-    c_in_1.positive ~ v_pwr
-    c_in_1.negative ~ gnd
+    # # input caps
+    c_in_1 = new Capacitor
+    c_in_2 = new Capacitor
+    c_in_3 = new Capacitor
+    c_in_4 = new Capacitor
+    c_in_5 = new Capacitor
+    c_in_6 = new Capacitor
+    c_in_7 = new Capacitor
+    c_in_8 = new Capacitor
+    c_in_9 = new Capacitor
+    c_in_10 = new Capacitor
+    c_in_11 = new Capacitor
+    c_in_12 = new Capacitor
+    c_in_13 = new Capacitor
+    c_in_14 = new Capacitor
+    c_in_15 = new Capacitor
+    c_in_16 = new Capacitor
 
+    c_in_1.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_2.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_3.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_4.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_5.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_6.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_7.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_8.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_9.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_10.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_11.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_12.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_13.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_14.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_15.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    c_in_16.footprint = "Capacitor_SMD:C_0805_2012Metric"
+
+    c_in_1.p1 ~ v_pwr
+    c_in_2.p1 ~ v_pwr
+    c_in_3.p1 ~ v_pwr
+    c_in_4.p1 ~ v_pwr
+    c_in_5.p1 ~ v_pwr
+    c_in_6.p1 ~ v_pwr
+    c_in_7.p1 ~ v_pwr
+    c_in_8.p1 ~ v_pwr
+    c_in_9.p1 ~ v_pwr
+    c_in_10.p1 ~ v_pwr
+    c_in_11.p1 ~ v_pwr
+    c_in_12.p1 ~ v_pwr
+    c_in_13.p1 ~ v_pwr
+    c_in_14.p1 ~ v_pwr
+    c_in_15.p1 ~ v_pwr
+    c_in_16.p1 ~ v_pwr
+    c_in_1.p2 ~ gnd
+    c_in_2.p2 ~ gnd
+    c_in_3.p2 ~ gnd
+    c_in_4.p2 ~ gnd
+    c_in_5.p2 ~ gnd
+    c_in_6.p2 ~ gnd
+    c_in_7.p2 ~ gnd
+    c_in_8.p2 ~ gnd
+    c_in_9.p2 ~ gnd
+    c_in_10.p2 ~ gnd
+    c_in_11.p2 ~ gnd
+    c_in_12.p2 ~ gnd
+    c_in_13.p2 ~ gnd
+    c_in_14.p2 ~ gnd
+    c_in_15.p2 ~ gnd
+    c_in_16.p2 ~ gnd
+
+    c_in_1.value = "10uF"
+    c_in_2.value = "10uF"
+    c_in_3.value = "10uF"
+    c_in_4.value = "10uF"
+    c_in_5.value = "10uF"
+    c_in_6.value = "10uF"
+    c_in_7.value = "10uF"
+    c_in_8.value = "10uF"
+    c_in_9.value = "10uF"
+    c_in_10.value = "10uF"
+    c_in_11.value = "10uF"
+    c_in_12.value = "10uF"
+    c_in_13.value = "10uF"
+    c_in_14.value = "10uF"
+    c_in_15.value = "10uF"
+    c_in_16.value = "10uF"
 
     # half bridges
     half_bridge_a = new HalfBridge
@@ -51,10 +131,16 @@ module PowerStage:
     half_bridge_b.v_pwr ~ v_pwr
     half_bridge_c.v_pwr ~ v_pwr
 
-    half_bridge_a.vcc_10v ~ vcc_10v
-    half_bridge_b.vcc_10v ~ vcc_10v
-    half_bridge_c.vcc_10v ~ vcc_10v
+    half_bridge_a.vcc_12v ~ vcc_12v
+    half_bridge_b.vcc_12v ~ vcc_12v
+    half_bridge_c.vcc_12v ~ vcc_12v
 
+    # connect halfbridges output to phase outputs
+    half_bridge_a.out ~ out_a
+    half_bridge_b.out ~ out_b
+    half_bridge_c.out ~ out_c
+
+    # connect gnd of half bridges to gnd
     half_bridge_a.gnd ~ gnd
     half_bridge_b.gnd ~ gnd
     half_bridge_c.gnd ~ gnd
@@ -66,28 +152,44 @@ module PowerStage:
     half_bridge_c.high_in ~ high_in_c
     half_bridge_c.low_in ~ low_in_c
 
+    # voltage reference for current sensors
+    reference = new VoltageReference
+    reference.vcc ~ vcc_3v3
+    reference.gnd ~ gnd
+    reference.v_ref ~ v_ref
+
     # current sensors
     current_sense_a = new CurrentSense
     current_sense_b = new CurrentSense
+    current_sense_c = new CurrentSense
 
-    half_bridge_a.out ~ current_sense_a.i_in
-    half_bridge_b.out ~ current_sense_b.i_in
-    half_bridge_c.out ~ out_c # No current sense required on phase C
+    half_bridge_a.pwr_gnd ~ current_sense_a.i_in
+    half_bridge_b.pwr_gnd ~ current_sense_b.i_in
+    half_bridge_c.pwr_gnd ~ current_sense_c.i_in
 
-    current_sense_a.i_out ~ out_a
-    current_sense_b.i_out ~ out_b
-
-    current_sense_a.out ~ i_fb_a
-    current_sense_b.out ~ i_fb_b
+    # connect i_out of current sensors to gnd
+    current_sense_a.i_out ~ gnd
+    current_sense_b.i_out ~ gnd
+    current_sense_c.i_out ~ gnd
 
     current_sense_a.gnd ~ gnd
     current_sense_b.gnd ~ gnd
+    current_sense_c.gnd ~ gnd
 
     current_sense_a.vcc ~ vcc_3v3
     current_sense_b.vcc ~ vcc_3v3
+    current_sense_c.vcc ~ vcc_3v3
+
+    current_sense_a.v_ref ~ v_ref
+    current_sense_b.v_ref ~ v_ref
+    current_sense_c.v_ref ~ v_ref
+
+    current_sense_a.out ~ i_fb_a
+    current_sense_b.out ~ i_fb_b
+    current_sense_c.out ~ i_fb_c
 
     v_pwr.visualizer.location = "top"
-    vcc_10v.visualizer.location = "top"
+    vcc_12v.visualizer.location = "top"
     vcc_3v3.visualizer.location = "top"
     gnd.visualizer.location = "bottom"
 
@@ -103,7 +205,6 @@ module PowerStage:
     out_c.visualizer.location = "right"
 
     v_ref.visualizer.location = "right"
-    half_v_ref.visualizer.location = "right"
     v_fb_a.visualizer.location = "right"
     v_fb_b.visualizer.location = "right"
     v_fb_c.visualizer.location = "right"

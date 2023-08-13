@@ -1,0 +1,10 @@
+component TC2050:
+    signal tdo ~ pin 1
+    signal tdi ~ pin 3
+    signal tms ~ pin 5
+    signal tck ~ pin 7
+    signal gnd ~ pin 9
+    signal rst ~ pin 10
+    signal vcc ~ pin 4
+
+    footprint = "TAG-CONNECT_TC2050-IDC"

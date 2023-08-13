@@ -3,35 +3,29 @@
 import Resistor from "std/resistor.ato"
 
 import PowerStage from "power_stage.ato"
-import RP2040_kit from "rp2040.ato"
+import stm32_kit from "stm32.ato"
 import PositionSensor from "position_sensor.ato"
-
-import Diode from "diode.ato"
-
-import PinHeader10 from "pin_header.ato"
-import PinHeader2 from "pin_header.ato"
-import PinHeader25 from "pin_header.ato"
-
+import DIODE_1N5819WS from "1N5819WS.ato"
 import Usbc from "usbc.ato"
 import SK6805SIDE_S from "SK6805SIDE_S.ato"
-
 import VoltageSense from "voltage_sense.ato"
 import Buck from "buck.ato"
 import LDO from "ldo.ato"
 import XT30 from "xt30.ato"
 import AdjustableLdo from "adjustable_ldo.ato"
 import switch_90degree from "switch_90degree.ato"
-
 import StemmaQtConnector from "stemma.ato"
 import LTC4311 from "stemma.ato"
+import can_xcvr from "SN65HVD230DR.ato"
+import TC2050 from "TC2050.ato"
+import Vdiv from "vdiv.ato"
 
 component PowerPad:
     pin p1
     footprint = "lib:OutputPad"
 
-
 module ServoDrive:
-    signal v_10
+    signal v_12
     signal v_5
     signal v_3
     signal vbatt
@@ -43,7 +37,7 @@ module ServoDrive:
     gnd ~ xt30.gnd
 
     # Micro
-    micro_kit = new RP2040_kit
+    micro_kit = new stm32_kit
     micro_kit.v_3_3 ~ v_3
     micro_kit.gnd ~ gnd
 
@@ -51,7 +45,11 @@ module ServoDrive:
     led = new SK6805SIDE_S
     led.vcc ~ v_5 # connect to 5V rail
     led.gnd ~ gnd
-    led.data_in ~ micro_kit.micro.gpio25
+    led.data_in ~ micro_kit.micro.PA6
+    led2 = new SK6805SIDE_S
+    led2.vcc ~ v_5 # connect to 5V rail
+    led2.gnd ~ gnd
+    led2.data_in ~ led.data_out
 
     # Enumeration switch
     switch = new switch_90degree
@@ -60,7 +58,7 @@ module ServoDrive:
     switch_pulldown.p1 ~ gnd
     switch_pulldown.p2 ~ switch.1
     switch.2 ~ v_3
-    switch.1 ~ micro_kit.micro.gpio24
+    switch.1 ~ micro_kit.micro.PC13_TAMPER_RTC
 
     # USB-C
     usb = new Usbc
@@ -71,8 +69,7 @@ module ServoDrive:
     usb.dp ~ micro_kit.usb_dp
     usb.dm ~ micro_kit.usb_dm
 
-    usb_diode = new Diode
-    usb_diode.footprint = "lib:SOD-523_L1.2-W0.8-LS1.6-RD"
+    usb_diode = new DIODE_1N5819WS
     v_5 ~ usb_diode.cathode
     usb_diode.anode ~ usb.vbus
 
@@ -85,31 +82,40 @@ module ServoDrive:
 
     usb.gnd ~ gnd
 
+    # Temperature sensors
+    temp_sensor_fets = new Vdiv
+    temp_sensor_fets.r_top.value = "10k"
+    temp_sensor_fets.r_bt.value = "10k_NTC"
+    temp_sensor_fets.input ~ v_3
+    signal temp_sense ~ temp_sensor_fets.output
+    temp_sensor_fets.output ~ micro_kit.micro.PA5
+    temp_sensor_fets.gnd ~ gnd
+
     # 10V rail buck - powers gate drivers from VIN
     buck = new Buck
     vbatt ~ buck.VIN
-    buck.VOUT ~ v_10
+    buck.VOUT ~ v_12
     buck.GND ~ gnd
 
     # 5v rail LDO - powers micro
     ldo_5v = new AdjustableLdo
-    ldo_5v.feedback_div.r_top.value = "18kOhm"
-    ldo_5v.feedback_div.r_bottom.value = "5.6kOhm"
-    v_10 ~ ldo_5v.vin
+    ldo_5v.feedback_div.r_top.value = "18k"
+    ldo_5v.feedback_div.r_bt.value = "5.1k"
+    v_12 ~ ldo_5v.vin
     ldo_5v.vout ~ v_5
     ldo_5v.gnd ~ gnd
 
     # 3v3 rail LDO - powers micro
     ldo_3v3 = new AdjustableLdo
-    ldo_3v3.feedback_div.r_top.value = "18kOhm"
-    ldo_3v3.feedback_div.r_bottom.value = "10kOhm"
+    ldo_3v3.feedback_div.r_top.value = "18k"
+    ldo_3v3.feedback_div.r_bt.value = "10k"
     v_5 ~ ldo_3v3.vin
     ldo_3v3.vout ~ v_3
     ldo_3v3.gnd ~ gnd
 
     power_stage = new PowerStage
     power_stage.v_pwr ~ vbatt
-    power_stage.vcc_10v ~ v_10
+    power_stage.vcc_12v ~ v_12
     power_stage.vcc_3v3 ~ v_3
     power_stage.gnd ~ gnd
 
@@ -123,40 +129,77 @@ module ServoDrive:
     power_stage.out_c ~ pad_out_c.p1
 
     # Power stage to micro
-    micro_kit.micro.gpio6 ~ power_stage.high_in_a
-    micro_kit.micro.gpio7 ~ power_stage.low_in_a
-    micro_kit.micro.gpio2 ~ power_stage.high_in_b
-    micro_kit.micro.gpio3 ~ power_stage.low_in_b
-    micro_kit.micro.gpio0 ~ power_stage.high_in_c
-    micro_kit.micro.gpio1 ~ power_stage.low_in_c
+    micro_kit.micro.PA8 ~ power_stage.high_in_a
+    micro_kit.micro.PA7 ~ power_stage.low_in_a
+    micro_kit.micro.PA9 ~ power_stage.high_in_b
+    micro_kit.micro.PB0 ~ power_stage.low_in_b
+    micro_kit.micro.PA10 ~ power_stage.high_in_c
+    micro_kit.micro.PB1 ~ power_stage.low_in_c
 
-    micro_kit.micro.gpio26_a0 ~ power_stage.i_fb_a
-    micro_kit.micro.gpio27_a1 ~ power_stage.i_fb_b
+    # Todo: merge with low side current sense
+    micro_kit.micro.PA0_WKUP ~ power_stage.i_fb_a
+    micro_kit.micro.PA1 ~ power_stage.i_fb_b
+    micro_kit.micro.PA2 ~ power_stage.i_fb_c
 
     # Voltage input monitoring
     voltage_input_vdiv = new VoltageSense
     voltage_input_vdiv.in ~ xt30.vin
     voltage_input_vdiv.gnd ~ gnd
-    voltage_input_vdiv.out ~ micro_kit.micro.gpio29_a3
+    voltage_input_vdiv.out ~ micro_kit.micro.PA3
+    voltage_input_vdiv.c_filter.value = "100nF"
 
-    # Position sensor
+    # Position sensor - SPI interface
     position_sensor = new PositionSensor
     position_sensor.vin ~ v_3
     position_sensor.gnd ~ gnd
-    position_sensor.sda ~ micro_kit.micro.gpio4
-    position_sensor.scl ~ micro_kit.micro.gpio5
+    # Todo: needs to merge with position sensor update
+    micro_kit.micro.PB15 ~ position_sensor.mosi
+    micro_kit.micro.PB14 ~ position_sensor.miso
+    micro_kit.micro.PB13 ~ position_sensor.sck
+    micro_kit.micro.PB12 ~ position_sensor.cs
+    # micro_kit.micro.PB8 ~ position_sensor.encoder_a
+    # micro_kit.micro.PB9 ~ position_sensor.encoder_b
+    # micro_kit.micro.PA10 ~ position_sensor.encoder_z
 
     # i2c comms
     # we're not using the pre-built STEMMA module here because we're not adding the level shifting
     # this means it's not actually STEMMA complaint, but it's close enough for our purposes
-    stemma = new StemmaQtConnector
-    stemma.vcc ~ v_3
-    stemma.gnd ~ gnd
-    stemma.sda ~ micro_kit.micro.gpio10
-    stemma.scl ~ micro_kit.micro.gpio11
-    i2c_active_terminator = new LTC4311
-    i2c_active_terminator.vcc ~ v_3
-    i2c_active_terminator.gnd ~ gnd
-    i2c_active_terminator.bus1 ~ stemma.sda
-    i2c_active_terminator.bus2 ~ stemma.scl
-    i2c_active_terminator.enable ~ stemma.vcc
+    # stemma = new StemmaQtConnector
+    # stemma.vcc ~ v_3
+    # stemma.gnd ~ gnd
+    # stemma.sda ~ micro_kit.micro.PB7
+    # stemma.scl ~ micro_kit.micro.PB6
+    # i2c_active_terminator = new LTC4311
+    # i2c_active_terminator.vcc ~ v_3
+    # i2c_active_terminator.gnd ~ gnd
+    # i2c_active_terminator.bus1 ~ stemma.sda
+    # i2c_active_terminator.bus2 ~ stemma.scl
+    # i2c_active_terminator.enable ~ stemma.vcc
+
+    # CANBUS Comms
+    canbus = new can_xcvr
+    canbus.v_3_3 ~ v_3
+    canbus.gnd ~ gnd
+    canbus.can_rx ~ micro_kit.micro.PB8
+    canbus.can_tx ~ micro_kit.micro.PB9
+    canbus_conn_1 = new StemmaQtConnector
+    canbus_conn_1.vcc ~ v_3
+    canbus_conn_1.gnd ~ gnd
+    canbus_conn_1.sda ~ canbus.CANH
+    canbus_conn_1.scl ~ canbus.CANL
+    canbus_conn_2 = new StemmaQtConnector
+    canbus_conn_2.vcc ~ v_3
+    canbus_conn_2.gnd ~ gnd
+    canbus_conn_2.sda ~ canbus.CANH
+    canbus_conn_2.scl ~ canbus.CANL
+
+    # JTAG
+    jtag = new TC2050
+    jtag.vcc ~ v_3
+    jtag.gnd ~ gnd
+    jtag.tck ~ micro_kit.micro.PA14
+    jtag.tdi ~ micro_kit.micro.PA15
+    jtag.tdo ~ micro_kit.micro.PB3
+    jtag.tms ~ micro_kit.micro.PA13
+    jtag.rst ~ micro_kit.micro.PB4
+

@@ -1,0 +1,19 @@
+nettie_250u:
+  ports:
+  - name: top
+    location: top
+  - name: right
+    location: right
+  - name: left
+    location: left
+  - name: bottom
+    location: bottom
+  pins:
+  - name: p1
+    index: 0
+    private: false
+    port: right
+  - name: p2
+    index: 0
+    private: false
+    port: left

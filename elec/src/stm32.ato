@@ -3,9 +3,9 @@ import Oscillator from "oscillator.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 # Switch
-import TS_1101_C_W from "TS_1101_C_W.ato"
+import Button from "button.ato"
 # Flash
-import W25Q128JV from "W25Q128JV.ato"
+# import W25Q128JV from "W25Q128JV.ato"
 
 import Vdiv from "vdiv.ato"
 
@@ -102,22 +102,22 @@ module stm32_kit:
     # Reset
     r_pullup_reset = new Resistor
     r_pullup_reset.value = "10k"
-    reset_sw = new TS_1101_C_W
+    reset_sw = new Button
 
     v_3_3 ~ r_pullup_reset.p1
     micro.NRST ~ r_pullup_reset.p2
-    micro.NRST ~ reset_sw.p1
-    gnd ~ reset_sw.p2
+    micro.NRST ~ reset_sw.in
+    gnd ~ reset_sw.out
 
     # Boot
     r_pulldown_boot = new Resistor
     r_pulldown_boot.value = "100k"
-    boot_sw = new TS_1101_C_W
+    boot_sw = new Button
 
     micro.BOOT0 ~ r_pulldown_boot.p1
     gnd ~ r_pulldown_boot.p2
-    boot_sw.p1 ~ micro.BOOT0
-    boot_sw.p2 ~ gnd
+    boot_sw.in ~ micro.BOOT0
+    boot_sw.out ~ gnd
 
     r_pulldown_boot1 = new Resistor
     r_pulldown_boot1.value = "100k"

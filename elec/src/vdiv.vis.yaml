@@ -1,4 +1,26 @@
 Vdiv:
+  ports:
+  - name: top
+    location: top
+  - name: right
+    location: right
+  - name: left
+    location: left
+  - name: bottom
+    location: bottom
+  pins:
+  - name: input
+    index: 0
+    private: false
+    port: left
+  - name: output
+    index: 0
+    private: false
+    port: right
+  - name: gnd
+    index: 0
+    private: false
+    port: bottom
   child_attrs:
     r_top:
       position:
@@ -7,4 +29,4 @@ Vdiv:
     r_bt:
       position:
         x: 50
-        y: 50
+        y: 135
