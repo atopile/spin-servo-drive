@@ -7,7 +7,6 @@ builds:
     targets:
       - designators
       - netlist-kicad6
-      - bom-jlcpcb
   debug:
     root-file: power_stage_debug.ato
     root-node: power_stage_debug.ato:PowerStageDebug
