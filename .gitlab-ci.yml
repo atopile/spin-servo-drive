@@ -40,3 +40,12 @@ build-ato-default:
   artifacts:
     paths:
       - build/
+
+store-build:
+  stage: store
+  image: alpine
+  script:
+    - echo "noop"
+  artifacts:
+    paths:
+      - build/
