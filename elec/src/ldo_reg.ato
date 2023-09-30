@@ -14,7 +14,7 @@ component LDK220M_R:
 
     footprint = "lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BL"
 
-module AdjustableLdo:
+module LDOReg:
     # Vadj = 1.185V
     # Vo = Vadj * (1 + R1 / R2) = 1.185V * (1 + R1 / R2)
 
@@ -47,3 +47,11 @@ module AdjustableLdo:
     feedback_div.input ~ vout
     feedback_div.gnd ~ gnd
     feedback_div.output ~ ldo.adj
+
+module LDOReg5V from LDOReg:
+    feedback_div.r_top.value = "18k"
+    feedback_div.r_bt.value = "5.1k"
+
+module LDOReg3V3 from LDOReg:
+    feedback_div.r_top.value = "18k"
+    feedback_div.r_bt.value = "10k"

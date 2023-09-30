@@ -1,0 +1,102 @@
+import Capacitor from "std/capacitor.ato"
+
+import SpinServoDrive from "spin_servo_drive.ato"
+import BuckReg12V from "buck_reg.ato"
+import BulkCapacitance from "generic_power_stage.ato"
+import L6387EDPowerStage from "L6387EDPowerStage.ato"
+
+import DMT3009LDT_7 from "DMT3009LDT_7.ato"
+
+
+component _PowerCap from Capacitor:
+    footprint = "Capacitor_SMD:C_0805_2012Metric"
+    value = "10uF"
+
+module _BulkCapacitance from BulkCapacitance:
+    c01 = new _PowerCap
+    c01.p1 ~ vcc
+    c01.p2 ~ gnd
+
+    c02 = new _PowerCap
+    c02.p1 ~ vcc
+    c02.p2 ~ gnd
+
+    c03 = new _PowerCap
+    c03.p1 ~ vcc
+    c03.p2 ~ gnd
+
+    c04 = new _PowerCap
+    c04.p1 ~ vcc
+    c04.p2 ~ gnd
+
+    c05 = new _PowerCap
+    c05.p1 ~ vcc
+    c05.p2 ~ gnd
+
+    c06 = new _PowerCap
+    c06.p1 ~ vcc
+    c06.p2 ~ gnd
+
+    c07 = new _PowerCap
+    c07.p1 ~ vcc
+    c07.p2 ~ gnd
+
+    c08 = new _PowerCap
+    c08.p1 ~ vcc
+    c08.p2 ~ gnd
+
+    c09 = new _PowerCap
+    c09.p1 ~ vcc
+    c09.p2 ~ gnd
+
+    c10 = new _PowerCap
+    c10.p1 ~ vcc
+    c10.p2 ~ gnd
+
+    c11 = new _PowerCap
+    c11.p1 ~ vcc
+    c11.p2 ~ gnd
+
+    c12 = new _PowerCap
+    c12.p1 ~ vcc
+    c12.p2 ~ gnd
+
+    c13 = new _PowerCap
+    c13.p1 ~ vcc
+    c13.p2 ~ gnd
+
+    c14 = new _PowerCap
+    c14.p1 ~ vcc
+    c14.p2 ~ gnd
+
+    c15 = new _PowerCap
+    c15.p1 ~ vcc
+    c15.p2 ~ gnd
+
+    c16 = new _PowerCap
+    c16.p1 ~ vcc
+    c16.p2 ~ gnd
+
+component PowerPad:
+    pin p1
+    footprint = "lib:OutputPad"
+
+module SpinServoNEMA17 from SpinServoDrive:
+    # configure the power stage
+    power_stage -> L6387EDPowerStage
+    power_stage._a._hb -> DMT3009LDT_7
+    power_stage._b._hb -> DMT3009LDT_7
+    power_stage._c._hb -> DMT3009LDT_7
+    power_stage.c_in -> _BulkCapacitance
+
+    # configure the gate drive supply
+    gate_reg -> BuckReg12V
+
+    # add phase outputs
+    pad_out_a = new PowerPad
+    pad_out_b = new PowerPad
+    pad_out_c = new PowerPad
+
+    power_stage.out_a ~ pad_out_a.p1
+    power_stage.out_b ~ pad_out_b.p1
+    power_stage.out_c ~ pad_out_c.p1

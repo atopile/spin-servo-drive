@@ -219,7 +219,7 @@
     "last_paths": {
       "gencad": "",
       "idf": "",
-      "netlist": "../../../../bike-light/build/bike_light.net",
+      "netlist": "../../../build/default/spin_servo_nema17.net",
       "specctra_dsn": "",
       "step": "",
       "vrml": ""

@@ -287,7 +287,29 @@ by-spec:
   jlcpcb: C13564
 - instance_of: std/capacitor.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
-  jlcpcb: <fill-me>
-- instance_of: std/capacitor.ato:Capacitor
-  footprint: Capacitor_SMD:C_0402_1005Metric
   jlcpcb: C307331
+- instance_of: buck_reg.ato:_PowerCap
+  footprint: Capacitor_SMD:C_0603_1608Metric
+  value: 4.7uF
+  jlcpcb: C69335
+- instance_of: ldo_reg.ato:LDK220M_R
+  footprint: lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BL
+  jlcpcb: C443854
+- instance_of: L6387EDPowerStage.ato:_BootstrapCap
+  footprint: Capacitor_SMD:C_0402_1005Metric
+  value: 0.1uF
+  jlcpcb: C14663
+- instance_of: spin_servo_nema17.ato:PowerPad
+  footprint: lib:OutputPad
+  jlcpcb: DNP
+- instance_of: spin_servo_nema17.ato:_PowerCap
+  footprint: Capacitor_SMD:C_0805_2012Metric
+  value: 10uF
+  jlcpcb: C162422
+- instance_of: L6387EDPowerStage.ato:_GateILimResistor
+  footprint: Resistor_SMD:R_0603_1608Metric
+  value: 5ohm
+  jlcpcb: C95177
+- instance_of: DMT3009LDT_7.ato:DMT3009LDT_7
+  footprint: lib:V-DFN3030-8K_L3.0-W3.0-P0.65-BL
+  jlcpcb: C155503
