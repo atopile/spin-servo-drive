@@ -20,6 +20,8 @@ module PositionSensor:
     vin ~ sensor.vdd
     vin ~ cap_3v3.p1
     gnd ~ sensor.gnd
+    gnd ~ sensor.ep
+    gnd ~ sensor.test
     gnd ~ cap_3v3.p2
 
     miso ~ sensor.miso

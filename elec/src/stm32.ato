@@ -1,4 +1,4 @@
-import STM32F103C8T6 from "STM32F103C8T6.ato"
+import STM32F103Cxxx from "STM32F103Cxxx.ato"
 import Oscillator from "oscillator.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
@@ -23,7 +23,7 @@ module stm32_kit:
     usb_dm.visualizer.stub = True
 
     # Microcontroller
-    micro = new STM32F103C8T6
+    micro = new STM32F103Cxxx
 
     # Connect vcc
     micro.VDDA ~ v_3_3
@@ -117,7 +117,7 @@ module stm32_kit:
     micro.BOOT0 ~ r_pulldown_boot.p1
     gnd ~ r_pulldown_boot.p2
     boot_sw.in ~ micro.BOOT0
-    boot_sw.out ~ gnd
+    boot_sw.out ~ v_3_3
 
     r_pulldown_boot1 = new Resistor
     r_pulldown_boot1.value = "100k"
