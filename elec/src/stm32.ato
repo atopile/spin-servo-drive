@@ -23,7 +23,7 @@ module stm32_kit:
     usb_dm.visualizer.stub = True
 
     # Microcontroller
-    micro = new STM32F103C8T6
+    micro = new STM32F103CBT6
 
     # Connect vcc
     micro.VDDA ~ v_3_3
