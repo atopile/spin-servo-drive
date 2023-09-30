@@ -7,6 +7,8 @@ import DRV8300PowerStage from "DRV8300PowerStage.ato"
 
 import DMT3009LDT_7 from "DMT3009LDT_7.ato"
 
+import Button90Degree from "button.ato"
+import ButtonSKRPACE010 from "button.ato"
 
 component _PowerCap from Capacitor:
     footprint = "Capacitor_SMD:C_0805_2012Metric"
@@ -100,3 +102,9 @@ module SpinServoNEMA17 from SpinServoDrive:
     power_stage.out_a ~ pad_out_a.p1
     power_stage.out_b ~ pad_out_b.p1
     power_stage.out_c ~ pad_out_c.p1
+
+    # Configure the enum button
+    switch -> Button90Degree
+    # Configure the micro buttons
+    micro_kit.boot_sw -> ButtonSKRPACE010
+    micro_kit.reset_sw -> ButtonSKRPACE010

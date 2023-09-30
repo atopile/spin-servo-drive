@@ -1,9 +1,0 @@
-# MPN: SKTDLDE010
-# JLC: C115365
-# easyeda2kicad --full --lcsc_id=C115365 --output ./lib/lib
-
-component switch_90degree:
-    signal pin1 ~ pin 1
-    signal pin2 ~ pin 2
-
-    footprint = "lib:KEY-SMD_SKTDLDE010"
