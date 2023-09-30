@@ -1,4 +1,4 @@
-STM32F103CBT6:
+STM32F103Cxxx:
   ports:
   - name: top
     location: top

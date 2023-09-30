@@ -1,5 +1,4 @@
-component STM32F103C8T6:
-    #lcsc_id = C8734
+component STM32F103Cxxx:
     footprint = "LQFP-48_L7.0-W7.0-P0.50-LS9.0-BL"
 
     # pins

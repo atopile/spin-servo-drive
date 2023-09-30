@@ -1,4 +1,4 @@
-import STM32F103CBT6 from "STM32F103CBT6.ato"
+import STM32F103Cxxx from "STM32F103Cxxx.ato"
 import Oscillator from "oscillator.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
@@ -23,7 +23,7 @@ module stm32_kit:
     usb_dm.visualizer.stub = True
 
     # Microcontroller
-    micro = new STM32F103CBT6
+    micro = new STM32F103Cxxx
 
     # Connect vcc
     micro.VDDA ~ v_3_3

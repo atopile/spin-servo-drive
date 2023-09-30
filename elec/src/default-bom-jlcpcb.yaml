@@ -178,7 +178,7 @@ by-spec:
 - instance_of: button.ato:Button
   footprint: SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL-2
   jlcpcb: C318884
-- instance_of: STM32F103CBT6.ato:STM32F103CBT6
+- instance_of: STM32F103Cxxx.ato:STM32F103Cxxx
   footprint: LQFP-48_L7.0-W7.0-P0.50-LS9.0-BL
   jlcpcb: C8304
 - instance_of: oscillator.ato:Oscillator
