@@ -2,15 +2,8 @@ paths:
   build: ../../build/
 builds:
   default:
-    root-file: servo_drive.ato
-    root-node: servo_drive.ato:ServoDrive
-    targets:
-      - designators
-      - netlist-kicad6
-      - bom-jlcpcb
-  debug:
-    root-file: power_stage_debug.ato
-    root-node: power_stage_debug.ato:PowerStageDebug
+    root-file: spin_servo_nema17.ato
+    root-node: spin_servo_nema17.ato:SpinServoNEMA17
     targets:
       - designators
       - netlist-kicad6

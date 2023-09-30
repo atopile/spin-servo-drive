@@ -1,0 +1,75 @@
+LDOReg: &_LDOReg
+  ports:
+  - name: top
+    location: top
+  - name: bottom
+    location: bottom
+  - name: left
+    location: left
+  - name: right
+    location: right
+  pins:
+  - name: vin
+    index: 0
+    private: false
+    port: left
+  - name: vout
+    index: 0
+    private: false
+    port: right
+  - name: gnd
+    index: 0
+    private: false
+    port: bottom
+  child_attrs:
+    ldo:
+      position:
+        x: 110
+        y: 50
+    input_cap:
+      position:
+        x: 50
+        y: 220
+    output_cap:
+      position:
+        x: 400
+        y: 220
+    feedback_div:
+      position:
+        x: 220
+        y: 175
+
+LDK220M_R:
+  ports:
+  - name: top
+    location: top
+  - name: bottom
+    location: bottom
+  - name: left
+    location: left
+  - name: right
+    location: right
+  pins:
+  - name: in
+    index: 0
+    private: false
+    port: left
+  - name: out
+    index: 0
+    private: false
+    port: right
+  - name: en
+    index: 0
+    private: false
+    port: left
+  - name: adj
+    index: 0
+    private: false
+    port: left
+  - name: gnd
+    index: 0
+    private: false
+    port: bottom
+
+LDOReg5V: *_LDOReg
+LDOReg3V3: *_LDOReg

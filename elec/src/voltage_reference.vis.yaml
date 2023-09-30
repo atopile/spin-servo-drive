@@ -1,4 +1,25 @@
 VoltageReference:
+  ports:
+  - name: top
+    location: top
+  - name: bottom
+    location: bottom
+  - name: right
+    location: right
+  pins:
+  - name: vcc
+    index: 0
+    private: false
+    port: top
+  - name: gnd
+    index: 0
+    private: false
+    port: bottom
+  - name: v_ref
+    index: 0
+    private: false
+    port: right
+
   child_attrs:
     buffer:
       position:
