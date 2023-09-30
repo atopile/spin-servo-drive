@@ -288,6 +288,9 @@ by-spec:
 - instance_of: std/capacitor.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   jlcpcb: C307331
+- instance_of: jst_gh.ato:JSTGH4Pin
+  footprint: lib:CONN-SMD_4P-P1.25_SM04B-GHS-TB-LF-SN
+  jlcpcb: C189895
 - instance_of: buck_reg.ato:_PowerCap
   footprint: Capacitor_SMD:C_0603_1608Metric
   value: 4.7uF

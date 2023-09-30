@@ -19,7 +19,7 @@ import XT30 from "xt30.ato"
 import switch_90degree from "switch_90degree.ato"
 import TC2050 from "TC2050.ato"
 import LTC4311 from "stemma.ato"
-import StemmaQtConnector from "stemma.ato"
+import JSTGH4Pin from "jst_gh.ato"
 import can_xcvr from "SN65HVD230DR.ato"
 
 
@@ -150,16 +150,18 @@ module SpinServoDrive:
     canbus.gnd ~ gnd
     canbus.can_rx ~ micro_kit.micro.PB8
     canbus.can_tx ~ micro_kit.micro.PB9
-    canbus_conn_1 = new StemmaQtConnector
-    canbus_conn_1.vcc ~ v_3
-    canbus_conn_1.gnd ~ gnd
-    canbus_conn_1.sda ~ canbus.CANH
-    canbus_conn_1.scl ~ canbus.CANL
-    canbus_conn_2 = new StemmaQtConnector
-    canbus_conn_2.vcc ~ v_3
-    canbus_conn_2.gnd ~ gnd
-    canbus_conn_2.sda ~ canbus.CANH
-    canbus_conn_2.scl ~ canbus.CANL
+
+    # Following the PixHawk can pinout standard
+    canbus_conn_1 = new JSTGH4Pin
+    canbus_conn_1.p1 ~ v_3
+    canbus_conn_1.p2 ~ canbus.CANH
+    canbus_conn_1.p3 ~ canbus.CANL
+    canbus_conn_1.p4 ~ gnd
+    canbus_conn_2 = new JSTGH4Pin
+    canbus_conn_2.p1 ~ v_3
+    canbus_conn_2.p2 ~ canbus.CANH
+    canbus_conn_2.p3 ~ canbus.CANL
+    canbus_conn_2.p4 ~ gnd
 
     # JTAG
     jtag = new TC2050
