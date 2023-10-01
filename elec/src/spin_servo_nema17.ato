@@ -3,7 +3,7 @@ import Capacitor from "std/capacitor.ato"
 import SpinServoDrive from "spin_servo_drive.ato"
 import BuckReg12V from "buck_reg.ato"
 import BulkCapacitance from "generic_power_stage.ato"
-import L6387EDPowerStage from "L6387EDPowerStage.ato"
+import DRV8300PowerStage from "DRV8300PowerStage.ato"
 
 import DMT3009LDT_7 from "DMT3009LDT_7.ato"
 
@@ -83,7 +83,7 @@ component PowerPad:
 
 module SpinServoNEMA17 from SpinServoDrive:
     # configure the power stage
-    power_stage -> L6387EDPowerStage
+    power_stage -> DRV8300PowerStage
     power_stage._a._hb -> DMT3009LDT_7
     power_stage._b._hb -> DMT3009LDT_7
     power_stage._c._hb -> DMT3009LDT_7

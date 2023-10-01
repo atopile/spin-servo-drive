@@ -1,0 +1,119 @@
+import Resistor from "std/resistor.ato"
+import Capacitor from "std/capacitor.ato"
+import DRV8300DRGER from "DRV8300DRGER.ato"
+import CurrentSense from "current_sense.ato"
+import VoltageReference from "voltage_reference.ato"
+import PhaseControl from "generic_power_stage.ato"
+import GenericPowerStage from "generic_power_stage.ato"
+import GenericHalfBridge from "generic_power_stage.ato"
+import BulkCapacitance from "generic_power_stage.ato"
+
+component _Resistor0402 from Resistor:
+    footprint = "Resistor_SMD:R_0402_1005Metric"
+
+component _GateResistor from _Resistor0402:
+    # these resistors are used to limit gate current
+    # this calculation should be embedded, however, bare with me
+    # If we're running 8V vcc_gate, and have a 750mA gate drive current limit
+    # we should have a 8/0.75 = 10.6 ohm resistor
+    # There's also ~1Ohm of resistance on the FETs themselves, so I'm rounding down to 10Ohm
+    value = "10Ohm"
+
+component _BootstrapCap from Capacitor:
+    value = "1uF"
+    footprint = "Capacitor_SMD:C_0402_1005Metric"
+
+# private half-bridge type that includes everything we need to repeat
+module _Phase:
+    signal vcc_pwr
+    signal vcc_3v3
+    ctrl = new PhaseControl
+    signal i_fb_zero
+    signal out
+    signal gnd
+    signal bs
+
+    _hb = new GenericHalfBridge
+
+    _r_gate_high = new _GateResistor
+    _r_gate_high.p1 ~ _hb.high_gate
+    _r_gate_high.p2 ~ ctrl.high
+
+    _r_gate_low = new _GateResistor
+    _r_gate_low.p1 ~ _hb.low_gate
+    _r_gate_low.p2 ~ ctrl.low
+
+    _i_sense = new CurrentSense
+    _hb.gnd ~ _i_sense.i_in
+    _i_sense.i_out ~ gnd
+
+    _i_sense.vcc ~ vcc_3v3
+    _i_sense.gnd ~ gnd
+
+    _i_sense.v_ref ~ i_fb_zero
+    _i_sense.out ~ ctrl.i_fb
+
+    bs_cap = new _BootstrapCap
+    bs ~ bs_cap.p1
+    bs_cap.p2 ~ out
+
+module DRV8300PowerStage from GenericPowerStage:
+    drv8300 = new DRV8300DRGER
+    vcc_gate ~ drv8300.GVDD
+    gnd ~ drv8300.GND
+    ctrl_a.high ~ drv8300.INHA
+    ctrl_a.low ~ drv8300.INLA
+    ctrl_b.high ~ drv8300.INHB
+    ctrl_b.low ~ drv8300.INLB
+    ctrl_c.high ~ drv8300.INHC
+    ctrl_c.low ~ drv8300.INLC
+
+    vref_1V65 = new VoltageReference
+    vcc_3v3 ~ vref_1V65.vcc
+    gnd ~ vref_1V65.gnd
+    vref_1V65.v_ref ~ i_fb_zero
+
+    _a = new _Phase
+    vcc_pwr ~ _a.vcc_pwr
+    vcc_3v3 ~ _a.vcc_3v3
+    i_fb_zero ~ _a.i_fb_zero
+    gnd ~ _a.gnd
+    _a.out ~ out_a
+
+    drv8300.GHA ~ _a.ctrl.high
+    drv8300.GLA ~ _a.ctrl.low
+    _a.out ~ drv8300.SHA
+    _a.bs ~ drv8300.BSTA
+
+    _b = new _Phase
+    vcc_pwr ~ _b.vcc_pwr
+    vcc_3v3 ~ _b.vcc_3v3
+    i_fb_zero ~ _b.i_fb_zero
+    gnd ~ _b.gnd
+    _b.out ~ out_b
+
+    drv8300.GHB ~ _b.ctrl.high
+    drv8300.GLB ~ _b.ctrl.low
+    _b.out ~ drv8300.SHB
+    _b.bs ~ drv8300.BSTB
+
+    _c = new _Phase
+    vcc_pwr ~ _c.vcc_pwr
+    vcc_3v3 ~ _c.vcc_3v3
+    i_fb_zero ~ _c.i_fb_zero
+    gnd ~ _c.gnd
+    _c.out ~ out_c
+
+    drv8300.GHC ~ _c.ctrl.high
+    drv8300.GLC ~ _c.ctrl.low
+    _c.out ~ drv8300.SHC
+    _c.bs ~ drv8300.BSTC
+
+    # deadtime config
+    r_dt = new _Resistor0402
+    r_dt.value = "40.2kOhm"
+    r_dt.p1 ~ drv8300.DT
+    r_dt.p2 ~ gnd
+
+    # stuff that'd be nice to do at somepoint later
+    # TODO: mode config pulldown

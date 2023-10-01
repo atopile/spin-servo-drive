@@ -133,3 +133,11 @@ voltage_input_vdiv.vdiv.c_filter: C33
 voltage_input_vdiv.vdiv.r_bt: R28
 voltage_input_vdiv.vdiv.r_top: R27
 xt30: U14
+power_stage.r_dt: R31
+power_stage.drv8300: U12
+power_stage._b._r_gate_low: R32
+power_stage._a._r_gate_high: R33
+power_stage._c._r_gate_high: R34
+power_stage._a._r_gate_low: R35
+power_stage._c._r_gate_low: R36
+power_stage._b._r_gate_high: R37

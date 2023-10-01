@@ -313,3 +313,19 @@ by-spec:
 - instance_of: DMT3009LDT_7.ato:DMT3009LDT_7
   footprint: lib:V-DFN3030-8K_L3.0-W3.0-P0.65-BL
   jlcpcb: C155503
+# setting a higher pulse power capable resistor for the gate
+- instance_of: DRV8300PowerStage.ato:_GateResistor
+  footprint: Resistor_SMD:R_0402_1005Metric
+  value: 10Ohm
+  jlcpcb: C481926
+- instance_of: DRV8300DRGER.ato:DRV8300DRGER
+  footprint: VQFN-24_L4.0-W4.0-P0.50-TL-EP2.5
+  jlcpcb: C3655801
+- instance_of: DRV8300PowerStage.ato:_Resistor0402
+  footprint: Resistor_SMD:R_0402_1005Metric
+  value: 40.2kOhm
+  jlcpcb: C25893
+- instance_of: DRV8300PowerStage.ato:_BootstrapCap
+  footprint: Capacitor_SMD:C_0402_1005Metric
+  value: 1uF
+  jlcpcb: C52923
