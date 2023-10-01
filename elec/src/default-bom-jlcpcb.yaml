@@ -175,7 +175,7 @@ by-spec:
 - instance_of: nettie.ato:nettie_250u
   footprint: NetTie-2_SMD_Pad0.25mm
   jlcpcb: DNP
-- instance_of: button.ato:Button
+- instance_of: button.ato:ButtonTS1187A
   footprint: SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL-2
   jlcpcb: C318884
 - instance_of: STM32F103Cxxx.ato:STM32F103Cxxx
@@ -210,7 +210,7 @@ by-spec:
 - instance_of: CPY201212T_100M_NP.ato:CPY201212T_100M_NP
   footprint: L0805
   jlcpcb: C285963
-- instance_of: switch_90degree.ato:switch_90degree
+- instance_of: button.ato:Button90Degree
   footprint: lib:KEY-SMD_SKTDLDE010
   jlcpcb: C115365
 - instance_of: std/resistor.ato:Resistor
@@ -244,9 +244,6 @@ by-spec:
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 56R
   jlcpcb: C3013179
-- instance_of: switch_90degree.ato:switch_90degree
-  footprint: lib:KEY-SMD_SKTDLDE010
-  jlcpcb: C115365
 - instance_of: std/capacitor.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 2200pf
@@ -329,3 +326,6 @@ by-spec:
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 1uF
   jlcpcb: C52923
+- instance_of: button.ato:ButtonSKRPACE010
+  footprint: lib:KEY-SMD_4P-L4.2-W3.2-P2.20-LS4.6
+  jlcpcb: C139797
