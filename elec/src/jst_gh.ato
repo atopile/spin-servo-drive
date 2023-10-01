@@ -1,0 +1,4 @@
+import Connector4Pin from "connector.ato"
+
+component JSTGH4Pin from Connector4Pin:
+    footprint = "lib:CONN-SMD_4P-P1.25_SM04B-GHS-TB-LF-SN"

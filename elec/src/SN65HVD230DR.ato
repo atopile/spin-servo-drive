@@ -37,7 +37,7 @@ module can_xcvr:
     c_bp.value = "100nF"
     c_bp.p1 ~ v_3_3
     c_bp.p2 ~ gnd
-    
+
     # Termination
     signal v_mid
     xcvr.VREF ~ v_mid
