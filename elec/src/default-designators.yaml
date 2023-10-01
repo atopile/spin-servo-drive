@@ -118,8 +118,9 @@ power_stage._c._input_bypass: C44
 power_stage._c._r_low_gate_ilim: R41
 power_stage.vref_1V65.buffer: U4
 power_stage.vref_1V65.c_bypass: C1
-power_stage.vref_1V65.filter.c: C2
-power_stage.vref_1V65.filter.r: R1
+power_stage.vref_1V65.c_filter: C2
+power_stage.vref_1V65.bias_div.r_top: R1
+power_stage.vref_1V65.bias_div.r_bt: R38
 r_cc1: R19
 r_cc2: R20
 switch_pulldown: R3
