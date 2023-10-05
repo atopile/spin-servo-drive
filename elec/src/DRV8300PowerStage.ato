@@ -56,6 +56,7 @@ module _Phase:
     bs_cap = new _BootstrapCap
     bs ~ bs_cap.p1
     bs_cap.p2 ~ out
+    _hb.out ~ out
 
 module DRV8300PowerStage from GenericPowerStage:
     drv8300 = new DRV8300DRGER
