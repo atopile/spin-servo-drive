@@ -32,4 +32,4 @@ Introducing spin ✨ - the $30 servo for the masses (designed with atopile)
 
 ## Getting started
 
-If you don't have access to [atopile](https://gitlab.atopile.io/atopile/atopile) - hang tight, it's coming soon!
+This project was written in `ato`, a new electronics description language we are developing to help create and share electronic designs. If you don't have access to [atopile](https://gitlab.atopile.io/atopile/atopile) - hang tight, it's coming soon!
