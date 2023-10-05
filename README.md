@@ -1,15 +1,35 @@
-# servo drive
+# Servos are dope.
 
-An inexpensive servo driver for brushless motors, compilable with atopile.
+Compared to the steppers we stick on our 3D printers, CNC machines and paintball turrets:
+ - They're way faster 🏃
+ - Far more powerful (higher torque for longer) 💪
+ - More accurate (higher resolution) 🎯
+ - And they're closed loop (they know where they are) 🤖
 
-## Developer guide
+The only downside is that they're expensive, like hundreds of dollars.
 
-### Adding components
+Introducing spin ✨ - the $30 servo for the masses (designed with atopile)
 
-For now, manufacturing is with JLCPCB.
+![spin](docs/showing-off-the-goods.jpg)
 
-[easyeda2kicad](https://github.com/uPesy/easyeda2kicad.py) is a great tool to pull from their footprint library.
+## Wiggle wiggle wiggle
 
-1. Install with with `pip install easyeda2kicad`
-2. `cd <here>`
-3. Add a component with: `easyeda2kicad --full --lcsc_id=C77540 --output elec/lib/lib`
+![wiggle-wiggle-wiggle](docs/wiggle-wiggle-wiggle.gif)
+
+## Goals + (default) Specs
+
+- Obviously better option than stepper motors for 3D printers, CNC machines and robotics
+- Open-source design that is easy to:
+  - contribute to
+  - fork maintainable derivatives of
+  - robust
+
+- 2x CAN comms with JST-GH connectors
+- XT30 power connector
+- 0.25Nm continuous rated torque (0.75Nm peak)
+- <0.1° resolution
+- 12V-24V input voltage
+
+## Getting started
+
+This project was written in `ato`, a new electronics description language we are developing to help create and share electronic designs. If you don't have access to [atopile](https://gitlab.atopile.io/atopile/atopile) - hang tight, it's coming soon!
