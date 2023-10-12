@@ -1,0 +1,208 @@
+
+STM32F103C8T6:
+  ports:
+  - name: top
+    location: top
+  - name: right
+    location: right
+  - name: left
+    location: left
+  - name: bottom
+    location: bottom
+  pins:
+  - name: VDD
+    index: 0
+    private: false
+    port: bottom
+  - name: PB9
+    index: 0
+    private: false
+    port: bottom
+  - name: PB8_BOOT0
+    index: 0
+    private: false
+    port: bottom
+  - name: PB7
+    index: 0
+    private: false
+    port: bottom
+  - name: PB6
+    index: 0
+    private: false
+    port: bottom
+  - name: PB5
+    index: 0
+    private: false
+    port: bottom
+  - name: PB4
+    index: 0
+    private: false
+    port: bottom
+  - name: PB3
+    index: 0
+    private: false
+    port: bottom
+  - name: PC11
+    index: 0
+    private: false
+    port: bottom
+  - name: PC10
+    index: 0
+    private: false
+    port: bottom
+  - name: PA15
+    index: 0
+    private: false
+    port: bottom
+  - name: PA14
+    index: 0
+    private: false
+    port: bottom
+  - name: PA13
+    index: 0
+    private: false
+    port: right
+  - name: VDD
+    index: 0
+    private: false
+    port: right
+  - name: PA12
+    index: 0
+    private: false
+    port: right
+  - name: PA11
+    index: 0
+    private: false
+    port: right
+  - name: PA10
+    index: 0
+    private: false
+    port: right
+  - name: PA9
+    index: 0
+    private: false
+    port: right
+  - name: PA8
+    index: 0
+    private: false
+    port: right
+  - name: PC6
+    index: 0
+    private: false
+    port: right
+  - name: PB15
+    index: 0
+    private: false
+    port: right
+  - name: PB14
+    index: 0
+    private: false
+    port: right
+  - name: PB13
+    index: 0
+    private: false
+    port: right
+  - name: PB12
+    index: 0
+    private: false
+    port: right
+  - name: PB11
+    index: 0
+    private: false
+    port: top
+  - name: VDD
+    index: 0
+    private: false
+    port: top
+  - name: PB10
+    index: 0
+    private: false
+    port: top
+  - name: VDDA
+    index: 0
+    private: false
+    port: top
+  - name: VREF+
+    index: 0
+    private: false
+    port: top
+  - name: PB2
+    index: 0
+    private: false
+    port: top
+  - name: PB1
+    index: 0
+    private: false
+    port: top
+  - name: PB0
+    index: 0
+    private: false
+    port: top
+  - name: PC4
+    index: 0
+    private: false
+    port: top
+  - name: PA7
+    index: 0
+    private: false
+    port: top
+  - name: PA6
+    index: 0
+    private: false
+    port: top
+  - name: PA5
+    index: 0
+    private: false
+    port: top
+  - name: PA4
+    index: 0
+    private: false
+    port: left
+  - name: PA3
+    index: 0
+    private: false
+    port: left
+  - name: PA2
+    index: 0
+    private: false
+    port: left
+  - name: PA1
+    index: 0
+    private: false
+    port: left
+  - name: PA0
+    index: 0
+    private: false
+    port: left
+  - name: PG10_NRST
+    index: 0
+    private: false
+    port: left
+  - name: PF1_OSC_OUT
+    index: 0
+    private: false
+    port: left
+  - name: PF0_OSC_IN
+    index: 0
+    private: false
+    port: left
+  - name: PC15_OSC32_OUT
+    index: 0
+    private: false
+    port: left
+  - name: PC14_OSC32_IN
+    index: 0
+    private: false
+    port: left
+  - name: PC13
+    index: 0
+    private: false
+    port: left
+  - name: VBAT
+    index: 0
+    private: false
+    port: left
+  - name: EP
+    index: 0
+    private: false
+    port: left

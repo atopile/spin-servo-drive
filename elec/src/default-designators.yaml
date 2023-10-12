@@ -142,3 +142,9 @@ power_stage._c._r_gate_high: R34
 power_stage._a._r_gate_low: R35
 power_stage._c._r_gate_low: R36
 power_stage._b._r_gate_high: R37
+micro_kit.canbus.c_bp: C13
+micro_kit.canbus.r_term_h: R39
+micro_kit.canbus.r_term_l: R40
+micro_kit.canbus.c_term: C17
+micro_kit.jtag: U13
+micro_kit.canbus.xcvr: U16
