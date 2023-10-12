@@ -1,4 +1,4 @@
-ato-version: ^0.0.16
+ato-version: ^0.0.18
 paths:
   build: ../../build/
 builds:
