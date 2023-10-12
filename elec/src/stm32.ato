@@ -1,41 +1,38 @@
-import STM32F103Cxxx from "STM32F103Cxxx.ato"
+import STM32G431CBU6 from "STM32G431CBU6.ato"
 import Oscillator from "oscillator.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
-# Switch
 import NoButton from "button.ato"
-# Flash
-# import W25Q128JV from "W25Q128JV.ato"
+import TC2050 from "TC2050.ato"
+import can_xcvr from "SN65HVD230DR.ato"
 
 import Vdiv from "vdiv.ato"
 
 module stm32_kit:
-    signal v_3_3
+    signal VDD
     signal gnd
 
     signal usb_dp
     signal usb_dm
 
-    v_3_3.visualizer.stub = True
+    VDD.visualizer.stub = True
     gnd.visualizer.stub = True
 
     usb_dp.visualizer.stub = True
     usb_dm.visualizer.stub = True
 
     # Microcontroller
-    micro = new STM32F103Cxxx
+    micro = new STM32G431CBU6
 
     # Connect vcc
-    micro.VDDA ~ v_3_3
-    micro.VDD_1 ~ v_3_3
-    micro.VDD_2 ~ v_3_3
-    micro.VDD_3 ~ v_3_3
+    micro.VDDA ~ VDD
+    micro.VDD1 ~ VDD
+    micro.VDD2 ~ VDD
+    micro.VDD3 ~ VDD
+    micro.VREF ~ VDD
 
     # Connect gnd
-    micro.VSSA ~ gnd
-    micro.VSS_1 ~ gnd
-    micro.VSS_2 ~ gnd
-    micro.VSS_3 ~ gnd
+    micro.EP ~ gnd
 
     # Bypass capacitors
     c_bp_3v_100nf_1 = new Capacitor
@@ -50,12 +47,12 @@ module stm32_kit:
     c_bp_3v_1uf = new Capacitor
     c_bp_3v_1uf.value = "1uF"
 
-    c_bp_3v_100nf_1.p1 ~ v_3_3
-    c_bp_3v_100nf_2.p1 ~ v_3_3
-    c_bp_3v_100nf_3.p1 ~ v_3_3
-    c_bp_3v_100nf_4.p1 ~ v_3_3
+    c_bp_3v_100nf_1.p1 ~ VDD
+    c_bp_3v_100nf_2.p1 ~ VDD
+    c_bp_3v_100nf_3.p1 ~ VDD
+    c_bp_3v_100nf_4.p1 ~ VDD
 
-    c_bp_3v_1uf.p1 ~ v_3_3
+    c_bp_3v_1uf.p1 ~ VDD
 
     c_bp_3v_100nf_1.p2 ~ gnd
     c_bp_3v_100nf_2.p2 ~ gnd
@@ -72,10 +69,10 @@ module stm32_kit:
     c_osc_2 = new Capacitor
     c_osc_2.value = "20pF"
     r_osc = new Resistor
-    r_osc.value = "1k"
+    r_osc.value = "220"
 
-    micro.PD0_OSC_IN ~ osc.in
-    micro.PD1_OSC_OUT ~ r_osc.p1
+    micro.PF0_OSC_IN ~ osc.in
+    micro.PF1_OSC_OUT ~ r_osc.p1
     r_osc.p2 ~ osc.out
     osc.gnd ~ gnd
 
@@ -93,20 +90,21 @@ module stm32_kit:
     r_usb_pullup = new Resistor
     r_usb_pullup.value = "1k5"
     micro.PA12 ~ r_usb_pullup.p1
-    v_3_3 ~ r_usb_pullup.p2
+    VDD ~ r_usb_pullup.p2
     micro.PA12 ~ r_usb_d_plus.p1
     usb_dp ~ r_usb_d_plus.p2
     micro.PA11 ~ r_usb_d_minus.p1
     usb_dm ~ r_usb_d_minus.p2
 
+    # TODO: Can we delete the switches??
     # Reset
     r_pullup_reset = new Resistor
     r_pullup_reset.value = "10k"
     reset_sw = new NoButton
 
-    v_3_3 ~ r_pullup_reset.p1
-    micro.NRST ~ r_pullup_reset.p2
-    micro.NRST ~ reset_sw.in
+    VDD ~ r_pullup_reset.p1
+    micro.PG10_NRST ~ r_pullup_reset.p2
+    micro.PG10_NRST ~ reset_sw.in
     gnd ~ reset_sw.out
 
     # Boot
@@ -114,12 +112,53 @@ module stm32_kit:
     r_pulldown_boot.value = "100k"
     boot_sw = new NoButton
 
-    micro.BOOT0 ~ r_pulldown_boot.p1
+    micro.PB8_BOOT0 ~ r_pulldown_boot.p1
     gnd ~ r_pulldown_boot.p2
-    boot_sw.in ~ micro.BOOT0
-    boot_sw.out ~ v_3_3
+    boot_sw.in ~ micro.PB8_BOOT0
+    boot_sw.out ~ VDD
 
     r_pulldown_boot1 = new Resistor
     r_pulldown_boot1.value = "100k"
     micro.PB2 ~ r_pulldown_boot1.p1
     gnd ~ r_pulldown_boot1.p2
+
+    #Input/Output configuration
+    # TODO: check pinout in STM32CubeMX
+    # Power stage PWM outputs
+    signal ctrl_a_high ~ micro.PA8
+    signal ctrl_a_low ~ micro.PA7
+    signal ctrl_b_high ~ micro.PA9
+    signal ctrl_b_low ~ micro.PB0
+    signal ctrl_c_high ~ micro.PA10
+    signal ctrl_c_low ~ micro.PB1
+    # Current sense
+    # TODO: look into using opamps internal to stm32G4
+    signal a_isense ~ micro.PA0
+    signal b_isense ~ micro.PA1
+    signal c_isense ~ micro.PA2
+    # Inputs
+    signal vin_sense ~ micro.PA3
+    signal temp_fet ~ micro.PA5
+    signal enum_sw ~ micro.PC13
+    # Serial LED
+    signal led_pixel ~ micro.PA6
+    # SPI
+    signal spi_mosi ~ micro.PB15
+    signal spi_miso ~ micro.PB14
+    signal spi_sck ~ micro.PB13
+    signal spi_cs ~ micro.PB12
+    # CANBUS Comms
+    canbus = new can_xcvr
+    canbus.v_3_3 ~ VDD
+    canbus.gnd ~ gnd
+    canbus.can_rx ~ micro.PB8_BOOT0
+    canbus.can_tx ~ micro.PB9
+    signal CANH ~ canbus.CANH
+    signal CANL ~ canbus.CANL
+    # JTAG
+    # TODO: use smaller tag connect? check pinout
+    jtag = new TC2050
+    jtag.vcc ~ VDD
+    jtag.gnd ~ gnd
+    jtag.tck ~ micro.PA14
+    jtag.tms ~ micro.PA13
