@@ -124,13 +124,14 @@ module stm32_kit:
 
     #Input/Output configuration
     # TODO: check pinout in STM32CubeMX
-    # Power stage PWM outputs
+    # Power stage PWM outputs - 3 PWM would be nice to save a few pins
     signal ctrl_a_high ~ micro.PA8
     signal ctrl_a_low ~ micro.PA7
     signal ctrl_b_high ~ micro.PA9
     signal ctrl_b_low ~ micro.PB0
     signal ctrl_c_high ~ micro.PA10
     signal ctrl_c_low ~ micro.PB1
+    #define PHASE_UH 12
     # Current sense
     # TODO: look into using opamps internal to stm32G4
     signal a_isense ~ micro.PA0
@@ -140,8 +141,8 @@ module stm32_kit:
     signal vin_sense ~ micro.PA3
     signal temp_fet ~ micro.PA5
     signal enum_sw ~ micro.PC13
-    # Serial LED
-    signal led_pixel ~ micro.PA6
+    # Serial LED - MOSI PIN on SPI1/3
+    signal led_pixel ~ micro.PB5
     # SPI
     signal spi_mosi ~ micro.PB15
     signal spi_miso ~ micro.PB14
