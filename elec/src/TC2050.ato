@@ -1,11 +1,14 @@
+#source https://www.tag-connect.com/wp-content/uploads/bsk-pdf-manager/2021/02/TC2050-ARM2010-2021.pdf
 component TC2050:
     signal tdo ~ pin 6
     signal tdi ~ pin 8
     signal tms ~ pin 2
-    signal tck ~ pin 7
+    signal tck ~ pin 4
     signal gnd ~ pin 3
     gnd ~ pin 5
     signal rst ~ pin 10
     signal vcc ~ pin 1
+
+
 
     footprint = "TAG-CONNECT_TC2050-IDC"
