@@ -1,0 +1,20 @@
+
+STM32F103C8T6:
+  ports:
+  - name: top
+    location: top
+  - name: right
+    location: right
+  - name: left
+    location: left
+  - name: bottom
+    location: bottom
+  pins:
+  - name: K
+    index: 0
+    private: false
+    port: left
+  - name: A
+    index: 0
+    private: false
+    port: right
