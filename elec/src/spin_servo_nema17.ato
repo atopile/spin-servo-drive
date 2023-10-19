@@ -79,6 +79,18 @@ module _BulkCapacitance from BulkCapacitance:
     c16.p1 ~ vcc
     c16.p2 ~ gnd
 
+    c17 = new _PowerCap
+    c17.p1 ~ vcc
+    c17.p2 ~ gnd
+
+    c18 = new _PowerCap
+    c18.p1 ~ vcc
+    c18.p2 ~ gnd
+
+    c19 = new _PowerCap
+    c19.p1 ~ vcc
+    c19.p2 ~ gnd
+
 component PowerPad:
     pin p1
     footprint = "lib:OutputPad"

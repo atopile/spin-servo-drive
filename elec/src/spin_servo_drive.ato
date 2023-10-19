@@ -19,7 +19,7 @@ import XT30 from "xt30.ato"
 import NoButton from "button.ato"
 import LTC4311 from "stemma.ato"
 import JSTGH4Pin from "jst_gh.ato"
-
+import indicator_led from "indicator_led.ato"
 
 module SpinServoDrive:
     signal v_pwr
@@ -47,6 +47,10 @@ module SpinServoDrive:
     led2.vcc ~ v_5 # connect to 5V rail
     led2.gnd ~ gnd
     led2.data_in ~ led1.data_out
+
+    indicator = new indicator_led
+    indicator.input ~ micro_kit.led_pixel
+    indicator.gnd ~ gnd
 
     # Enumeration switch
     switch = new NoButton

@@ -5,7 +5,7 @@ import Capacitor from "std/capacitor.ato"
 import NoButton from "button.ato"
 import TC2050 from "TC2050.ato"
 import can_xcvr from "SN65HVD230DR.ato"
-
+import indicator_led from "indicator_led.ato"
 import Vdiv from "vdiv.ato"
 
 module stm32_kit:
@@ -161,5 +161,12 @@ module stm32_kit:
     jtag = new TC2050
     jtag.vcc ~ VDD
     jtag.gnd ~ gnd
+    #hack to fix naming 
+    signal tck ~ jtag.tck
+    signal tms ~ jtag.tms
+    signal tdi ~ jtag.tdi
+    signal tdo ~ jtag.tdo
     jtag.tck ~ micro.PA14
-    jtag.tms ~ micro.PA13
+    jtag.tms ~ micro.PA13 
+    jtag.tdi ~ micro.PA15
+    jtag.tdo ~ micro.PB3

@@ -339,3 +339,9 @@ by-spec:
 - instance_of: STM32G431CBU6.ato:STM32G431CBU6
   footprint: UFQFPN-48_L7.0-W7.0-P0.50-BL-EP
   jlcpcb: C529356
+- instance_of: std/resistor.ato:Resistor
+  footprint: Resistor_SMD:R_0402_1005Metric
+  jlcpcb: C136938
+- instance_of: KT-0603R.ato:KT_0603R
+  footprint: LED0603-RD
+  jlcpcb: C2286

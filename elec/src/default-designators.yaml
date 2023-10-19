@@ -148,3 +148,5 @@ micro_kit.canbus.r_term_l: R40
 micro_kit.canbus.c_term: C17
 micro_kit.jtag: U13
 micro_kit.canbus.xcvr: U16
+indicator.led: U25
+indicator.resistor: R41

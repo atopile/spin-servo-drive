@@ -81,6 +81,7 @@ module DRV8300PowerStage from GenericPowerStage:
     gnd ~ _a.gnd
     _a.out ~ out_a
 
+
     drv8300.GHA ~ _a.ctrl.high
     drv8300.GLA ~ _a.ctrl.low
     _a.out ~ drv8300.SHA
