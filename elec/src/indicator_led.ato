@@ -7,9 +7,9 @@ module indicator_led:
 
     #resistor
     resistor = new Resistor
-    resistor.value = '1k'
+    resistor.value = "1k"
 
-    signal input 
+    signal input
     signal gnd
 
     #connect

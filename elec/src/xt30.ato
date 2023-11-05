@@ -1,7 +1,13 @@
 #C431092
+import Power from "generics.ato"
 
 component XT30:
     signal gnd ~ pin p1
     signal vin ~ pin p2
+    power = new Power
+    power.vcc ~ vin
+    power.gnd ~ gnd
+
+
 
     footprint = "lib:CONN-TH_XT30PW-M"

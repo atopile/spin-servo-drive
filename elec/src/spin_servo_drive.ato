@@ -2,9 +2,9 @@
 
 import Resistor from "std/resistor.ato"
 
-import GenericPowerStage from "generic_power_stage.ato"
+import DRV8300PowerStage from "DRV8300PowerStage.ato"
 import stm32_kit from "stm32.ato"
-import BuckReg from "buck_reg.ato"
+import BuckReg12V from "buck_reg.ato"
 import LDOReg3V3 from "ldo_reg.ato"
 import LDOReg5V from "ldo_reg.ato"
 
@@ -20,32 +20,31 @@ import NoButton from "button.ato"
 import LTC4311 from "stemma.ato"
 import JSTGH4Pin from "jst_gh.ato"
 import indicator_led from "indicator_led.ato"
+import StemmaQtConnector from "stemma.ato"
+import Power from "power.ato"
 
 module SpinServoDrive:
-    signal v_pwr
-    signal v_gate
-    signal v_5
-    signal v_3
-    signal gnd
+    power_3v3 = new Power
+    power_5v = new Power
+    power_gate = new Power
+    power_vin = new Power
 
     # Power input connector
     xt30 = new XT30
-    v_pwr ~ xt30.vin
-    gnd ~ xt30.gnd
+    xt30.power ~ power_vin
+    xt30_2 = new XT30
+    xt30.power ~ power_vin
 
     # Micro
-    micro_kit = new stm32_kit
-    micro_kit.VDD ~ v_3
-    micro_kit.gnd ~ gnd
+    micro = new stm32_kit
+    micro.power ~ power_3v3
 
     # LED
     led1 = new SK6805SIDE_S
-    led1.vcc ~ v_5 # connect to 5V rail
-    led1.gnd ~ gnd
+    led1.power ~ power_5v
     led1.data_in ~ micro_kit.led_pixel
     led2 = new SK6805SIDE_S
-    led2.vcc ~ v_5 # connect to 5V rail
-    led2.gnd ~ gnd
+    led2.power ~ power_5v
     led2.data_in ~ led1.data_out
 
     indicator = new indicator_led
@@ -58,21 +57,21 @@ module SpinServoDrive:
     switch_pulldown.value = "10k"
     switch_pulldown.p1 ~ gnd
     switch_pulldown.p2 ~ switch.in
-    switch.out ~ v_3
+    switch.out ~ power_3v3.vcc
     switch.in ~ micro_kit.enum_sw
 
     # USB-C
-    usb = new Usbc
+    usbc = new Usbc
     r_cc1 = new Resistor
     r_cc1.value = "5.1k"
     r_cc2 = new Resistor
     r_cc2.value = "5.1k"
-    usb.dp ~ micro_kit.usb_dp
-    usb.dm ~ micro_kit.usb_dm
+    usbc.usb ~ micro.usb
 
     usb_diode = new DIODE_1N5819WS
-    v_5 ~ usb_diode.cathode
-    usb_diode.anode ~ usb.vbus
+    power_5v.vcc ~ usb_diode.cathode
+    usb_diode.anode ~ usb.power.vcc
+    power_5v.gnd ~ usbc.power.gnd
 
     # CC1 and CC2 so it works with USB C to USB C cables
     usb.cc1 ~ r_cc1.p1
@@ -80,8 +79,6 @@ module SpinServoDrive:
 
     r_cc1.p2 ~ gnd
     r_cc2.p2 ~ gnd
-
-    usb.gnd ~ gnd
 
     # Temperature sensors
     temp_sensor_fets = new Vdiv
@@ -93,7 +90,7 @@ module SpinServoDrive:
     temp_sensor_fets.gnd ~ gnd
 
     # gate driver regulator
-    gate_reg = new BuckReg
+    gate_reg = new BuckReg12V
     gate_reg.vin ~ v_pwr
     gate_reg.vout ~ v_gate
     gate_reg.gnd ~ gnd
@@ -111,19 +108,13 @@ module SpinServoDrive:
     ldo_3v3.gnd ~ gnd
 
     # power stage
-    power_stage = new GenericPowerStage
+    power_stage = new DRV8300PowerStage
     power_stage.vcc_pwr ~ v_pwr
     power_stage.vcc_gate ~ v_gate
     power_stage.vcc_3v3 ~ v_3
-    power_stage.gnd ~ gnd
 
     # Power stage to micro
-    micro_kit.ctrl_a_high ~ power_stage.ctrl_a.high
-    micro_kit.ctrl_a_low ~ power_stage.ctrl_a.low
-    micro_kit.ctrl_b_high ~ power_stage.ctrl_b.high
-    micro_kit.ctrl_b_low ~ power_stage.ctrl_b.low
-    micro_kit.ctrl_c_high ~ power_stage.ctrl_c.high
-    micro_kit.ctrl_c_low ~ power_stage.ctrl_c.low
+    micro.bldc_3pwm ~ powerstage.bldc_3pwm
 
     # Todo: merge with low side current sense
     micro_kit.a_isense ~ power_stage.ctrl_a.i_fb
@@ -139,13 +130,11 @@ module SpinServoDrive:
 
     # Position sensor - SPI interface
     position_sensor = new PositionSensor
-    position_sensor.vin ~ v_3
-    position_sensor.gnd ~ gnd
+    position_sensor.power ~ power3v3
     micro_kit.spi_mosi ~ position_sensor.mosi
     micro_kit.spi_miso ~ position_sensor.miso
     micro_kit.spi_sck ~ position_sensor.sck
     micro_kit.spi_cs ~ position_sensor.cs
-
 
     # Following the PixHawk can pinout standard
     canbus_conn_1 = new JSTGH4Pin
@@ -155,7 +144,16 @@ module SpinServoDrive:
     canbus_conn_1.p4 ~ gnd
     canbus_conn_2 = new JSTGH4Pin
     canbus_conn_2.p1 ~ v_3
-    canbus_conn_2.p2 ~ micro_kit.CANH
-    canbus_conn_2.p3 ~ micro_kit.CANL
+    signal CANH ~ canbus_conn_2.p2
+    signal CANL ~ canbus_conn_2.p3
+    CANH ~ micro_kit.CANH
+    CANL ~ micro_kit.CANL
     canbus_conn_2.p4 ~ gnd
+
+    # Stemma QT connector
+    stemma = new StemmaQtConnector
+    stemma.vcc ~ v_3
+    stemma.gnd ~ gnd
+    stemma.sda ~ micro_kit.sda
+    stemma.scl ~ micro_kit.scl
 

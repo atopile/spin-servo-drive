@@ -7,32 +7,71 @@ import TC2050 from "TC2050.ato"
 import can_xcvr from "SN65HVD230DR.ato"
 import indicator_led from "indicator_led.ato"
 import Vdiv from "vdiv.ato"
+import SPI from "generics.ato"
+import JTAG from "generics.ato"
+import I2C from "generics.ato"
+import USB2 from "generics.ato"
+import Power from "generics.ato"
+import CAN from "generics.ato"
+import ISOCAN from "generics.ato"
+import BLDC_3PWM from "generics.ato"
 
 module stm32_kit:
-    signal VDD
-    signal gnd
-
-    signal usb_dp
-    signal usb_dm
-
-    VDD.visualizer.stub = True
-    gnd.visualizer.stub = True
-
-    usb_dp.visualizer.stub = True
-    usb_dm.visualizer.stub = True
-
     # Microcontroller
     micro = new STM32G431CBU6
 
-    # Connect vcc
-    micro.VDDA ~ VDD
-    micro.VDD1 ~ VDD
-    micro.VDD2 ~ VDD
-    micro.VDD3 ~ VDD
-    micro.VREF ~ VDD
+    power = new Power
+    power.gnd ~ EP
+    power.vcc ~ VDDA
+    power.vcc ~ VDD1
+    power.vcc ~ VDD2
+    power.vcc ~ VDD3
+    power.vcc ~ VREF
 
-    # Connect gnd
-    micro.EP ~ gnd
+    bldc_3pwm = new BLDC_3PWM
+    bldc_3pwm.phase_a ~ PA0
+    bldc_3pwm.phase_b ~ PA1
+    bldc_3pwm.phase_c ~ PA2
+    bldc_3pwm.enable ~ PA3
+
+    # USB interface
+    usb = new USB2
+    usb.dm ~ PA11
+    usb.dp ~ PA12
+    usb.gnd ~ gnd
+
+    # SPI interface - same as moteus
+    spi = new SPI
+    spi.mosi ~ micro.PB15
+    spi.miso ~ micro.PB14
+    spi.sck ~ micro.PB13
+    spi.cs ~ micro.PB12
+
+    # JTAG interface
+    jtag = new JTAG
+    jtag.tck ~ micro.PA14
+    jtag.tdi ~ micro.PA15
+    jtag.tdo ~ micro.PB3
+    jtag.tms ~ micro.PA13
+    jtag.reset ~ micro.PB4
+    jtag.gnd ~ power.gnd
+
+    tag_connect = new TC2050
+    tag_connect.power ~ power
+    tag_connect.jtag ~ jtag
+
+    i2c = new I2C
+    i2c.sda ~ PB9
+    i2c.scl ~ PB8_BOOT0
+    i2c.gnd ~ power.gnd
+
+    debug_led_1 = new indicator_led
+    debug_led_1.input ~ micro.PF0_OSC_IN
+    debug_led_1.gnd ~ power.gnd
+
+    debug_led_2 = new indicator_led
+    debug_led_2.input ~ micro.PF1_OSC_OUT
+    debug_led_2.gnd ~ power.gnd
 
     # Bypass capacitors
     c_bp_3v_100nf_1 = new Capacitor
@@ -47,17 +86,17 @@ module stm32_kit:
     c_bp_3v_1uf = new Capacitor
     c_bp_3v_1uf.value = "1uF"
 
-    c_bp_3v_100nf_1.p1 ~ VDD
-    c_bp_3v_100nf_2.p1 ~ VDD
-    c_bp_3v_100nf_3.p1 ~ VDD
-    c_bp_3v_100nf_4.p1 ~ VDD
+    c_bp_3v_100nf_1.p1 ~ power.vcc
+    c_bp_3v_100nf_2.p1 ~ power.vcc
+    c_bp_3v_100nf_3.p1 ~ power.vcc
+    c_bp_3v_100nf_4.p1 ~ power.vcc
 
-    c_bp_3v_1uf.p1 ~ VDD
+    c_bp_3v_1uf.p1 ~ power.vcc
 
-    c_bp_3v_100nf_1.p2 ~ gnd
-    c_bp_3v_100nf_2.p2 ~ gnd
-    c_bp_3v_100nf_3.p2 ~ gnd
-    c_bp_3v_100nf_4.p2 ~ gnd
+    c_bp_3v_100nf_1.p2 ~ power.gnd
+    c_bp_3v_100nf_2.p2 ~ power.gnd
+    c_bp_3v_100nf_3.p2 ~ power.gnd
+    c_bp_3v_100nf_4.p2 ~ power.gnd
 
     c_bp_3v_1uf.p2 ~ gnd
 
@@ -89,84 +128,32 @@ module stm32_kit:
     r_usb_d_minus.value = "27R"
     r_usb_pullup = new Resistor
     r_usb_pullup.value = "1k5"
+
+    # maybe it should look like this: usb.dp ~ resistor1 ~ micro.PA12
     micro.PA12 ~ r_usb_pullup.p1
     VDD ~ r_usb_pullup.p2
     micro.PA12 ~ r_usb_d_plus.p1
-    usb_dp ~ r_usb_d_plus.p2
+    usb.dp ~ r_usb_d_plus.p2
     micro.PA11 ~ r_usb_d_minus.p1
-    usb_dm ~ r_usb_d_minus.p2
+    usb.dm ~ r_usb_d_minus.p2
 
-    # TODO: Can we delete the switches??
-    # Reset
-    r_pullup_reset = new Resistor
-    r_pullup_reset.value = "10k"
-    reset_sw = new NoButton
-
-    VDD ~ r_pullup_reset.p1
-    micro.PG10_NRST ~ r_pullup_reset.p2
-    micro.PG10_NRST ~ reset_sw.in
-    gnd ~ reset_sw.out
-
-    # Boot
-    r_pulldown_boot = new Resistor
-    r_pulldown_boot.value = "100k"
-    boot_sw = new NoButton
-
-    micro.PB8_BOOT0 ~ r_pulldown_boot.p1
-    gnd ~ r_pulldown_boot.p2
-    boot_sw.in ~ micro.PB8_BOOT0
-    boot_sw.out ~ VDD
-
-    r_pulldown_boot1 = new Resistor
-    r_pulldown_boot1.value = "100k"
-    micro.PB2 ~ r_pulldown_boot1.p1
-    gnd ~ r_pulldown_boot1.p2
-
-    #Input/Output configuration
-    # TODO: check pinout in STM32CubeMX
-    # Power stage PWM outputs - 3 PWM would be nice to save a few pins
-    signal ctrl_a_high ~ micro.PA8
-    signal ctrl_a_low ~ micro.PA7
-    signal ctrl_b_high ~ micro.PA9
-    signal ctrl_b_low ~ micro.PB0
-    signal ctrl_c_high ~ micro.PA10
-    signal ctrl_c_low ~ micro.PB1
-    #define PHASE_UH 12
     # Current sense
     # TODO: look into using opamps internal to stm32G4
-    signal a_isense ~ micro.PA0
-    signal b_isense ~ micro.PA1
-    signal c_isense ~ micro.PA2
+    signal a_isense ~ micro.PB0
+    signal b_isense ~ micro.PB1
+    signal c_isense ~ micro.PB2
     # Inputs
-    signal vin_sense ~ micro.PA3
-    signal temp_fet ~ micro.PA5
-    signal enum_sw ~ micro.PC13
+    signal vin_sense ~ micro.PA8
+    signal temp_fet ~ micro.PA9
+    signal enum_sw ~ micro.PA5
     # Serial LED - MOSI PIN on SPI1/3
     signal led_pixel ~ micro.PB5
-    # SPI
-    signal spi_mosi ~ micro.PB15
-    signal spi_miso ~ micro.PB14
-    signal spi_sck ~ micro.PB13
-    signal spi_cs ~ micro.PB12
+
     # CANBUS Comms
     canbus = new can_xcvr
-    canbus.v_3_3 ~ VDD
-    canbus.gnd ~ gnd
     canbus.can_rx ~ micro.PB8_BOOT0
     canbus.can_tx ~ micro.PB9
+
+
     signal CANH ~ canbus.CANH
     signal CANL ~ canbus.CANL
-    # JTAG
-    # TODO: use smaller tag connect? check pinout
-    jtag = new TC2050
-    jtag.vcc ~ VDD
-    jtag.gnd ~ gnd
-    #hack to fix naming 
-    signal tck ~ jtag.tck
-    signal tms ~ jtag.tms
-    signal tdi ~ jtag.tdi
-    signal tdo ~ jtag.tdo
-    jtag.tck ~ micro.PA14
-    jtag.tms ~ micro.PA13 
-    jtag.tdi ~ micro.PA15
-    jtag.tdo ~ micro.PB3

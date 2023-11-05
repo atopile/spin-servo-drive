@@ -1,4 +1,7 @@
 #source https://www.tag-connect.com/wp-content/uploads/bsk-pdf-manager/2021/02/TC2050-ARM2010-2021.pdf
+import JTAG from "generics.ato"
+import Power from "generics.ato"
+
 component TC2050:
     signal tdo ~ pin 6
     signal tdi ~ pin 8
@@ -9,6 +12,16 @@ component TC2050:
     signal rst ~ pin 10
     signal vcc ~ pin 1
 
+    jtag = new JTAG
+    jtag.tdo ~ tdo
+    jtag.tdi ~ tdi
+    jtag.tms ~ tms
+    tag.tck ~ tck
+    jtag.gnd ~ gnd
+    jtag.reset ~ rst
 
+    power = new Power
+    power.vcc ~ vcc
+    power.gnd ~ gnd
 
     footprint = "TAG-CONNECT_TC2050-IDC"

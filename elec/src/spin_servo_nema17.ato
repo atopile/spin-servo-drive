@@ -97,15 +97,9 @@ component PowerPad:
 
 module SpinServoNEMA17 from SpinServoDrive:
     # configure the power stage
-    power_stage -> DRV8300PowerStage
-    power_stage._a._hb -> DMT3009LDT_7
-    power_stage._b._hb -> DMT3009LDT_7
-    power_stage._c._hb -> DMT3009LDT_7
     power_stage.c_in -> _BulkCapacitance
 
     # configure the gate drive supply
-    gate_reg -> BuckReg12V
-
     # add phase outputs
     pad_out_a = new PowerPad
     pad_out_b = new PowerPad
