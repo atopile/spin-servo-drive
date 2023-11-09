@@ -9,6 +9,7 @@ import GenericHalfBridge from "generic_power_stage.ato"
 import BulkCapacitance from "generic_power_stage.ato"
 import DMT3009LDT_7 from "DMT3009LDT_7.ato"
 import BLDC_3PWM from "generics.ato"
+import Power from "generics.ato"
 
 component _Resistor0402 from Resistor:
     footprint = "Resistor_SMD:R_0402_1005Metric"
@@ -66,9 +67,13 @@ module DRV8300PowerStage from GenericPowerStage:
     gnd ~ drv8300.GND
     gnd ~ drv8300.EP
 
-    power = new Power
-    power.gnd ~ gnd
-    power.vcc ~ vcc_gate
+    power_gate = new Power
+    power_gate.gnd ~ gnd
+    power_gate.vcc ~ vcc_gate
+
+    power_3v3 = new Power
+    power_3v3.gnd ~ gnd
+    power_3v3.vcc ~ vcc_3v3
 
     # configured for 3PWM mode, high and low signals tied together, INLX inverted by tieing mode to VDD
     bldc_3pwm = new BLDC_3PWM
@@ -78,8 +83,9 @@ module DRV8300PowerStage from GenericPowerStage:
     bldc_3pwm.phase_b ~ drv8300.INLB
     bldc_3pwm.phase_c ~ drv8300.INHC
     bldc_3pwm.phase_c ~ drv8300.INLC
+
     # set mode pin to 3PWM mode
-    drv8300.mode ~ power.vcc
+    drv8300.MODE ~ power_3v3.vcc
 
     vref_1V65 = new VoltageReference
     vcc_3v3 ~ vref_1V65.vcc

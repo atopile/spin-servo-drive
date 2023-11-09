@@ -1,10 +1,21 @@
 import Resistor from "std/resistor.ato"
+import Power from "generics.ato"
+import I2C from "generics.ato"
 
 component StemmaQtConnector:
     signal gnd ~ pin p1
     signal vcc ~ pin p2
     signal sda ~ pin p3
     signal scl ~ pin p4
+
+    i2c = new I2C
+    i2c.sda ~ sda
+    i2c.scl ~ scl
+    i2c.gnd ~ gnd
+
+    power = new Power
+    power.vcc ~ vcc
+    power.gnd ~ gnd
 
     footprint = "lib:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN"
 

@@ -1,7 +1,8 @@
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
 import ma730 from "ma730.ato"
-
+import SPI from "generics.ato"
+import Power from "generics.ato"
 #ato view --root-file position_sensor.ato --root-node position_sensor.ato/PositionSensor
 
 module PositionSensor:
@@ -28,3 +29,14 @@ module PositionSensor:
     mosi ~ sensor.mosi
     sck ~ sensor.sclk
     cs ~ sensor.cs
+
+    power = new Power
+    power.gnd ~ gnd
+    power.vcc ~ vin
+
+    spi = new SPI
+    spi.mosi ~ mosi
+    spi.miso ~ miso
+    spi.sck ~ sck
+    spi.cs ~ cs
+    spi.gnd ~ gnd

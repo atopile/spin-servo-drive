@@ -55,6 +55,12 @@ interface JTAG:
     signal vcc
     signal gnd
 
+interface BLDC_3PWM:
+    signal phase_a
+    signal phase_b
+    signal phase_c
+    signal enable
+
 component Resistor:
     signal p1 ~ pin 1
     signal p2 ~ pin 2

@@ -16,7 +16,7 @@ component TC2050:
     jtag.tdo ~ tdo
     jtag.tdi ~ tdi
     jtag.tms ~ tms
-    tag.tck ~ tck
+    jtag.tck ~ tck
     jtag.gnd ~ gnd
     jtag.reset ~ rst
 

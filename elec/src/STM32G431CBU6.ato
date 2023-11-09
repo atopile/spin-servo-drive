@@ -51,35 +51,3 @@ component STM32G431CBU6:
     signal PC13 ~ pin p2
     signal VBAT ~ pin p1
     signal EP ~ pin p49
-
-    # USB interface
-    usb = new USB2
-    usb.dm ~ PA11
-    usb.dp ~ PA12
-
-    # SPI interface - same as moteus
-    spi = new SPI
-    spi.mosi ~ PB15
-    spi.miso ~ PB14
-    spi.sck ~ PB13
-    spi.cs ~ PB12
-
-    # JTAG interface
-    jtag = new JTAG
-    jtag.tck ~ micro_kit.micro.PA14
-    jtag.tdi ~ micro_kit.micro.PA15
-    jtag.tdo ~ micro_kit.micro.PB3
-    jtag.tms ~ micro_kit.micro.PA13
-    jtag.reset ~ micro_kit.micro.PB4
-
-    i2c = new I2C
-    i2c.sda ~ PB9
-    i2c.scl ~ PB8_BOOT0
-
-    power = new Power
-    power.gnd ~ EP
-    power.vcc ~ VDDA
-    power.vcc ~ VDD1
-    power.vcc ~ VDD2
-    power.vcc ~ VDD3
-    power.vcc ~ VREF

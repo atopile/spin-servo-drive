@@ -111,6 +111,4 @@ module SpinServoNEMA17 from SpinServoDrive:
 
     # Configure the enum button
     switch -> Button90Degree
-    # Configure the micro buttons
-    micro_kit.boot_sw -> ButtonSKRPACE010
-    micro_kit.reset_sw -> ButtonSKRPACE010
+

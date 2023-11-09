@@ -21,24 +21,24 @@ module stm32_kit:
     micro = new STM32G431CBU6
 
     power = new Power
-    power.gnd ~ EP
-    power.vcc ~ VDDA
-    power.vcc ~ VDD1
-    power.vcc ~ VDD2
-    power.vcc ~ VDD3
-    power.vcc ~ VREF
+    power.gnd ~ micro.EP
+    power.vcc ~ micro.VDDA
+    power.vcc ~ micro.VDD1
+    power.vcc ~ micro.VDD2
+    power.vcc ~ micro.VDD3
+    power.vcc ~ micro.VREF
 
     bldc_3pwm = new BLDC_3PWM
-    bldc_3pwm.phase_a ~ PA0
-    bldc_3pwm.phase_b ~ PA1
-    bldc_3pwm.phase_c ~ PA2
-    bldc_3pwm.enable ~ PA3
+    bldc_3pwm.phase_a ~ micro.PA0
+    bldc_3pwm.phase_b ~ micro.PA1
+    bldc_3pwm.phase_c ~ micro.PA2
+    bldc_3pwm.enable ~ micro.PA3
 
     # USB interface
     usb = new USB2
-    usb.dm ~ PA11
-    usb.dp ~ PA12
-    usb.gnd ~ gnd
+    usb.dm ~ micro.PA11
+    usb.dp ~ micro.PA12
+    usb.gnd ~ power.gnd
 
     # SPI interface - same as moteus
     spi = new SPI
@@ -61,9 +61,23 @@ module stm32_kit:
     tag_connect.jtag ~ jtag
 
     i2c = new I2C
-    i2c.sda ~ PB9
-    i2c.scl ~ PB8_BOOT0
+    i2c.sda ~ micro.PB9
+    i2c.scl ~ micro.PB8_BOOT0
     i2c.gnd ~ power.gnd
+
+    can = new CAN
+    can.rx ~ micro.PA11
+    can.tx ~ micro.PA12
+
+    isocan = new ISOCAN
+
+    # CANBUS Comms
+    canbus = new can_xcvr
+    canbus.can ~ can
+    canbus.isocan ~ isocan
+
+    signal CANH ~ canbus.CANH
+    signal CANL ~ canbus.CANL
 
     debug_led_1 = new indicator_led
     debug_led_1.input ~ micro.PF0_OSC_IN
@@ -98,7 +112,7 @@ module stm32_kit:
     c_bp_3v_100nf_3.p2 ~ power.gnd
     c_bp_3v_100nf_4.p2 ~ power.gnd
 
-    c_bp_3v_1uf.p2 ~ gnd
+    c_bp_3v_1uf.p2 ~ power.gnd
 
     # Oscillator
     osc = new Oscillator
@@ -113,13 +127,13 @@ module stm32_kit:
     micro.PF0_OSC_IN ~ osc.in
     micro.PF1_OSC_OUT ~ r_osc.p1
     r_osc.p2 ~ osc.out
-    osc.gnd ~ gnd
+    osc.gnd ~ power.gnd
 
     osc.in ~ c_osc_1.p1
     osc.out ~ c_osc_2.p1
 
-    c_osc_1.p2 ~ gnd
-    c_osc_2.p2 ~ gnd
+    c_osc_1.p2 ~ power.gnd
+    c_osc_2.p2 ~ power.gnd
 
     # usb
     r_usb_d_plus = new Resistor
@@ -131,14 +145,13 @@ module stm32_kit:
 
     # maybe it should look like this: usb.dp ~ resistor1 ~ micro.PA12
     micro.PA12 ~ r_usb_pullup.p1
-    VDD ~ r_usb_pullup.p2
+    power.vcc ~ r_usb_pullup.p2
     micro.PA12 ~ r_usb_d_plus.p1
     usb.dp ~ r_usb_d_plus.p2
     micro.PA11 ~ r_usb_d_minus.p1
     usb.dm ~ r_usb_d_minus.p2
 
     # Current sense
-    # TODO: look into using opamps internal to stm32G4
     signal a_isense ~ micro.PB0
     signal b_isense ~ micro.PB1
     signal c_isense ~ micro.PB2
@@ -146,14 +159,4 @@ module stm32_kit:
     signal vin_sense ~ micro.PA8
     signal temp_fet ~ micro.PA9
     signal enum_sw ~ micro.PA5
-    # Serial LED - MOSI PIN on SPI1/3
     signal led_pixel ~ micro.PB5
-
-    # CANBUS Comms
-    canbus = new can_xcvr
-    canbus.can_rx ~ micro.PB8_BOOT0
-    canbus.can_tx ~ micro.PB9
-
-
-    signal CANH ~ canbus.CANH
-    signal CANL ~ canbus.CANL
