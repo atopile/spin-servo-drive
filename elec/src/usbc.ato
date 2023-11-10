@@ -40,7 +40,6 @@ component Usbc:
     usb = new USB2
     usb.dp ~ dp
     usb.dm ~ dm
-    usb.gnd ~ gnd
 
     footprint = "lib:USB-C-SMD_KH-TYPE-C-16P"
     designator_prefix = "J"

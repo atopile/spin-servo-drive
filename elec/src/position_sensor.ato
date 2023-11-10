@@ -39,4 +39,3 @@ module PositionSensor:
     spi.miso ~ miso
     spi.sck ~ sck
     spi.cs ~ cs
-    spi.gnd ~ gnd

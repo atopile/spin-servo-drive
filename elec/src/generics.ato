@@ -4,32 +4,26 @@ interface Power:
 interface I2C:
     signal sda
     signal scl
-    signal gnd
 interface SPI:
     signal mosi
     signal miso
     signal sck
     signal cs
-    signal gnd
 interface UART:
     signal tx
     signal rx
-    signal gnd
 interface CAN:
     signal tx
     signal rx
-    signal gnd
 interface ISOCAN:
     signal CANH
     signal CANL
 interface Ethernet:
     signal tx
     signal rx
-    signal gnd
 interface USB2:
     signal dp
     signal dm
-    signal gnd
 interface QSPI:
     signal cs
     signal sck
@@ -37,7 +31,6 @@ interface QSPI:
     signal io1
     signal io2
     signal io3
-    signal gnd
 interface SDIO:
     signal cmd
     signal clk
@@ -45,7 +38,6 @@ interface SDIO:
     signal dat1
     signal dat2
     signal dat3
-    signal gnd
 interface JTAG:
     signal tck
     signal tms
@@ -53,7 +45,6 @@ interface JTAG:
     signal tdo
     signal reset
     signal vcc
-    signal gnd
 
 interface BLDC_3PWM:
     signal phase_a

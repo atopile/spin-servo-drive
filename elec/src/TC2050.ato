@@ -17,7 +17,6 @@ component TC2050:
     jtag.tdi ~ tdi
     jtag.tms ~ tms
     jtag.tck ~ tck
-    jtag.gnd ~ gnd
     jtag.reset ~ rst
 
     power = new Power

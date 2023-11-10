@@ -34,27 +34,23 @@ module stm32_kit:
     bldc_3pwm.phase_c ~ micro.PA2
     bldc_3pwm.enable ~ micro.PA3
 
-    # USB interface
-    usb = new USB2
-    usb.dm ~ micro.PA11
-    usb.dp ~ micro.PA12
-    usb.gnd ~ power.gnd
+    # PA4 - DAQ for version
 
-    # SPI interface - same as moteus
+    # SPI interface
     spi = new SPI
     spi.mosi ~ micro.PB15
     spi.miso ~ micro.PB14
     spi.sck ~ micro.PB13
-    spi.cs ~ micro.PB12
+    spi.cs ~ micro.PB11
 
     # JTAG interface
     jtag = new JTAG
     jtag.tck ~ micro.PA14
     jtag.tdi ~ micro.PA15
-    jtag.tdo ~ micro.PB3
+    jtag.tdo ~ micro.PB10
     jtag.tms ~ micro.PA13
     jtag.reset ~ micro.PB4
-    jtag.gnd ~ power.gnd
+
 
     tag_connect = new TC2050
     tag_connect.power ~ power
@@ -63,11 +59,20 @@ module stm32_kit:
     i2c = new I2C
     i2c.sda ~ micro.PB9
     i2c.scl ~ micro.PB8_BOOT0
-    i2c.gnd ~ power.gnd
 
+    # i2c pullups
+    sda_pullup = new Resistor
+    sda_pullup.p1 ~ i2c.sda
+    sda_pullup.p2 ~ power.vcc
+
+    scl_pullup = new Resistor
+    scl_pullup.p1 ~ i2c.scl
+    scl_pullup.p2 ~ power.vcc
+
+    # same as moteus
     can = new CAN
-    can.rx ~ micro.PA11
-    can.tx ~ micro.PA12
+    can.rx ~ micro.PB5
+    can.tx ~ micro.PB6
 
     isocan = new ISOCAN
 
@@ -75,17 +80,11 @@ module stm32_kit:
     canbus = new can_xcvr
     canbus.can ~ can
     canbus.isocan ~ isocan
-
-    signal CANH ~ canbus.CANH
-    signal CANL ~ canbus.CANL
+    canbus.power ~ power
 
     debug_led_1 = new indicator_led
-    debug_led_1.input ~ micro.PF0_OSC_IN
+    debug_led_1.input ~ micro.PB4
     debug_led_1.gnd ~ power.gnd
-
-    debug_led_2 = new indicator_led
-    debug_led_2.input ~ micro.PF1_OSC_OUT
-    debug_led_2.gnd ~ power.gnd
 
     # Bypass capacitors
     c_bp_3v_100nf_1 = new Capacitor
@@ -135,7 +134,9 @@ module stm32_kit:
     c_osc_1.p2 ~ power.gnd
     c_osc_2.p2 ~ power.gnd
 
-    # usb
+    # USB interface
+    usb = new USB2
+
     r_usb_d_plus = new Resistor
     r_usb_d_plus.value = "27R"
     r_usb_d_minus = new Resistor
@@ -147,16 +148,16 @@ module stm32_kit:
     micro.PA12 ~ r_usb_pullup.p1
     power.vcc ~ r_usb_pullup.p2
     micro.PA12 ~ r_usb_d_plus.p1
-    usb.dp ~ r_usb_d_plus.p2
+    r_usb_d_plus.p2 ~ usb.dp
     micro.PA11 ~ r_usb_d_minus.p1
-    usb.dm ~ r_usb_d_minus.p2
+    r_usb_d_minus.p2 ~ usb.dm
 
     # Current sense
     signal a_isense ~ micro.PB0
     signal b_isense ~ micro.PB1
     signal c_isense ~ micro.PB2
     # Inputs
-    signal vin_sense ~ micro.PA8
+    signal vin_sense ~ micro.PB12
     signal temp_fet ~ micro.PA9
     signal enum_sw ~ micro.PA5
-    signal led_pixel ~ micro.PB5
+    signal led_pixel ~ micro.PA7

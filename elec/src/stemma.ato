@@ -11,7 +11,6 @@ component StemmaQtConnector:
     i2c = new I2C
     i2c.sda ~ sda
     i2c.scl ~ scl
-    i2c.gnd ~ gnd
 
     power = new Power
     power.vcc ~ vcc
