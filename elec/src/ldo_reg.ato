@@ -4,6 +4,7 @@
 
 import Capacitor from "std/capacitor.ato"
 import Vdiv from "vdiv.ato"
+import Power from "generics.ato"
 
 component LDK220M_R:
     signal in ~ pin p1
@@ -21,6 +22,14 @@ module LDOReg:
     signal vin
     signal vout
     signal gnd
+
+    power_in = new Power
+    power_in.vcc ~ vin
+    power_in.gnd ~ gnd
+
+    power_out = new Power
+    power_out.vcc ~ vout
+    power_out.gnd ~ gnd
 
     ldo = new LDK220M_R
     ldo.in ~ vin

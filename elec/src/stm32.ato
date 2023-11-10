@@ -1,41 +1,90 @@
-import STM32F103Cxxx from "STM32F103Cxxx.ato"
+import STM32G431CBU6 from "STM32G431CBU6.ato"
 import Oscillator from "oscillator.ato"
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
-# Switch
-import Button from "button.ato"
-# Flash
-# import W25Q128JV from "W25Q128JV.ato"
-
+import NoButton from "button.ato"
+import TC2050 from "TC2050.ato"
+import can_xcvr from "SN65HVD230DR.ato"
+import indicator_led from "indicator_led.ato"
 import Vdiv from "vdiv.ato"
+import SPI from "generics.ato"
+import JTAG from "generics.ato"
+import I2C from "generics.ato"
+import USB2 from "generics.ato"
+import Power from "generics.ato"
+import CAN from "generics.ato"
+import ISOCAN from "generics.ato"
+import BLDC_3PWM from "generics.ato"
 
 module stm32_kit:
-    signal v_3_3
-    signal gnd
-
-    signal usb_dp
-    signal usb_dm
-
-    v_3_3.visualizer.stub = True
-    gnd.visualizer.stub = True
-
-    usb_dp.visualizer.stub = True
-    usb_dm.visualizer.stub = True
-
     # Microcontroller
-    micro = new STM32F103Cxxx
+    micro = new STM32G431CBU6
 
-    # Connect vcc
-    micro.VDDA ~ v_3_3
-    micro.VDD_1 ~ v_3_3
-    micro.VDD_2 ~ v_3_3
-    micro.VDD_3 ~ v_3_3
+    power = new Power
+    power.gnd ~ micro.EP
+    power.vcc ~ micro.VDDA
+    power.vcc ~ micro.VDD1
+    power.vcc ~ micro.VDD2
+    power.vcc ~ micro.VDD3
+    power.vcc ~ micro.VREF
 
-    # Connect gnd
-    micro.VSSA ~ gnd
-    micro.VSS_1 ~ gnd
-    micro.VSS_2 ~ gnd
-    micro.VSS_3 ~ gnd
+    bldc_3pwm = new BLDC_3PWM
+    bldc_3pwm.phase_a ~ micro.PA0
+    bldc_3pwm.phase_b ~ micro.PA1
+    bldc_3pwm.phase_c ~ micro.PA2
+    bldc_3pwm.enable ~ micro.PA3
+
+    # PA4 - DAQ for version
+
+    # SPI interface
+    spi = new SPI
+    spi.mosi ~ micro.PB15
+    spi.miso ~ micro.PB14
+    spi.sck ~ micro.PB13
+    spi.cs ~ micro.PB11
+
+    # JTAG interface
+    jtag = new JTAG
+    jtag.tck ~ micro.PA14
+    jtag.tdi ~ micro.PA15
+    jtag.tdo ~ micro.PB3
+    jtag.tms ~ micro.PA13
+    jtag.reset ~ micro.PB4
+
+
+    tag_connect = new TC2050
+    tag_connect.power ~ power
+    tag_connect.jtag ~ jtag
+
+    i2c = new I2C
+    i2c.sda ~ micro.PB9
+    i2c.scl ~ micro.PB8_BOOT0
+
+    # i2c pullups
+    sda_pullup = new Resistor
+    sda_pullup.p1 ~ i2c.sda
+    sda_pullup.p2 ~ power.vcc
+
+    scl_pullup = new Resistor
+    scl_pullup.p1 ~ i2c.scl
+    scl_pullup.p2 ~ power.vcc
+
+    # same as moteus
+    can = new CAN
+    can.rx ~ micro.PB5
+    can.tx ~ micro.PB6
+
+    isocan = new ISOCAN
+
+    # CANBUS Comms
+    canbus = new can_xcvr
+    canbus.can ~ can
+    canbus.isocan ~ isocan
+    canbus.power ~ power
+
+    debug_led_1 = new indicator_led
+    debug_led_1.input ~ micro.PB4
+    debug_led_1.gnd ~ power.gnd
 
     # Bypass capacitors
     c_bp_3v_100nf_1 = new Capacitor
@@ -50,19 +99,19 @@ module stm32_kit:
     c_bp_3v_1uf = new Capacitor
     c_bp_3v_1uf.value = "1uF"
 
-    c_bp_3v_100nf_1.p1 ~ v_3_3
-    c_bp_3v_100nf_2.p1 ~ v_3_3
-    c_bp_3v_100nf_3.p1 ~ v_3_3
-    c_bp_3v_100nf_4.p1 ~ v_3_3
+    c_bp_3v_100nf_1.p1 ~ power.vcc
+    c_bp_3v_100nf_2.p1 ~ power.vcc
+    c_bp_3v_100nf_3.p1 ~ power.vcc
+    c_bp_3v_100nf_4.p1 ~ power.vcc
 
-    c_bp_3v_1uf.p1 ~ v_3_3
+    c_bp_3v_1uf.p1 ~ power.vcc
 
-    c_bp_3v_100nf_1.p2 ~ gnd
-    c_bp_3v_100nf_2.p2 ~ gnd
-    c_bp_3v_100nf_3.p2 ~ gnd
-    c_bp_3v_100nf_4.p2 ~ gnd
+    c_bp_3v_100nf_1.p2 ~ power.gnd
+    c_bp_3v_100nf_2.p2 ~ power.gnd
+    c_bp_3v_100nf_3.p2 ~ power.gnd
+    c_bp_3v_100nf_4.p2 ~ power.gnd
 
-    c_bp_3v_1uf.p2 ~ gnd
+    c_bp_3v_1uf.p2 ~ power.gnd
 
     # Oscillator
     osc = new Oscillator
@@ -72,54 +121,43 @@ module stm32_kit:
     c_osc_2 = new Capacitor
     c_osc_2.value = "20pF"
     r_osc = new Resistor
-    r_osc.value = "1k"
+    r_osc.value = "220"
 
-    micro.PD0_OSC_IN ~ osc.in
-    micro.PD1_OSC_OUT ~ r_osc.p1
+    micro.PF0_OSC_IN ~ osc.in
+    micro.PF1_OSC_OUT ~ r_osc.p1
     r_osc.p2 ~ osc.out
-    osc.gnd ~ gnd
+    osc.gnd ~ power.gnd
 
     osc.in ~ c_osc_1.p1
     osc.out ~ c_osc_2.p1
 
-    c_osc_1.p2 ~ gnd
-    c_osc_2.p2 ~ gnd
+    c_osc_1.p2 ~ power.gnd
+    c_osc_2.p2 ~ power.gnd
 
-    # usb
+    # USB interface
+    usb = new USB2
+
     r_usb_d_plus = new Resistor
     r_usb_d_plus.value = "27R"
     r_usb_d_minus = new Resistor
     r_usb_d_minus.value = "27R"
     r_usb_pullup = new Resistor
     r_usb_pullup.value = "1k5"
+
+    # maybe it should look like this: usb.dp ~ resistor1 ~ micro.PA12
     micro.PA12 ~ r_usb_pullup.p1
-    v_3_3 ~ r_usb_pullup.p2
+    power.vcc ~ r_usb_pullup.p2
     micro.PA12 ~ r_usb_d_plus.p1
-    usb_dp ~ r_usb_d_plus.p2
+    r_usb_d_plus.p2 ~ usb.dp
     micro.PA11 ~ r_usb_d_minus.p1
-    usb_dm ~ r_usb_d_minus.p2
+    r_usb_d_minus.p2 ~ usb.dm
 
-    # Reset
-    r_pullup_reset = new Resistor
-    r_pullup_reset.value = "10k"
-    reset_sw = new Button
-
-    v_3_3 ~ r_pullup_reset.p1
-    micro.NRST ~ r_pullup_reset.p2
-    micro.NRST ~ reset_sw.in
-    gnd ~ reset_sw.out
-
-    # Boot
-    r_pulldown_boot = new Resistor
-    r_pulldown_boot.value = "100k"
-    boot_sw = new Button
-
-    micro.BOOT0 ~ r_pulldown_boot.p1
-    gnd ~ r_pulldown_boot.p2
-    boot_sw.in ~ micro.BOOT0
-    boot_sw.out ~ v_3_3
-
-    r_pulldown_boot1 = new Resistor
-    r_pulldown_boot1.value = "100k"
-    micro.PB2 ~ r_pulldown_boot1.p1
-    gnd ~ r_pulldown_boot1.p2
+    # Current sense
+    signal a_isense ~ micro.PB0
+    signal b_isense ~ micro.PB1
+    signal c_isense ~ micro.PB2
+    # Inputs
+    signal vin_sense ~ micro.PB12
+    signal temp_fet ~ micro.PA9
+    signal enum_sw ~ micro.PA5
+    signal led_pixel ~ micro.PA7

@@ -2,7 +2,7 @@
 component nettie_250u:
     signal p1
     signal p2
- 
+
     p1 ~ pin 1
     p2 ~ pin 2
 

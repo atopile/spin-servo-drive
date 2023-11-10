@@ -175,7 +175,7 @@ by-spec:
 - instance_of: nettie.ato:nettie_250u
   footprint: NetTie-2_SMD_Pad0.25mm
   jlcpcb: DNP
-- instance_of: button.ato:Button
+- instance_of: button.ato:ButtonTS1187A
   footprint: SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL-2
   jlcpcb: C318884
 - instance_of: STM32F103Cxxx.ato:STM32F103Cxxx
@@ -210,7 +210,7 @@ by-spec:
 - instance_of: CPY201212T_100M_NP.ato:CPY201212T_100M_NP
   footprint: L0805
   jlcpcb: C285963
-- instance_of: switch_90degree.ato:switch_90degree
+- instance_of: button.ato:Button90Degree
   footprint: lib:KEY-SMD_SKTDLDE010
   jlcpcb: C115365
 - instance_of: std/resistor.ato:Resistor
@@ -244,9 +244,6 @@ by-spec:
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 56R
   jlcpcb: C3013179
-- instance_of: switch_90degree.ato:switch_90degree
-  footprint: lib:KEY-SMD_SKTDLDE010
-  jlcpcb: C115365
 - instance_of: std/capacitor.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 2200pf
@@ -288,6 +285,9 @@ by-spec:
 - instance_of: std/capacitor.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   jlcpcb: C307331
+- instance_of: jst_gh.ato:JSTGH4Pin
+  footprint: lib:CONN-SMD_4P-P1.25_SM04B-GHS-TB-LF-SN
+  jlcpcb: C189895
 - instance_of: buck_reg.ato:_PowerCap
   footprint: Capacitor_SMD:C_0603_1608Metric
   value: 4.7uF
@@ -313,3 +313,35 @@ by-spec:
 - instance_of: DMT3009LDT_7.ato:DMT3009LDT_7
   footprint: lib:V-DFN3030-8K_L3.0-W3.0-P0.65-BL
   jlcpcb: C155503
+# setting a higher pulse power capable resistor for the gate
+- instance_of: DRV8300PowerStage.ato:_GateResistor
+  footprint: Resistor_SMD:R_0402_1005Metric
+  value: 10Ohm
+  jlcpcb: C481926
+- instance_of: DRV8300DRGER.ato:DRV8300DRGER
+  footprint: VQFN-24_L4.0-W4.0-P0.50-TL-EP2.5
+  jlcpcb: C3655801
+- instance_of: DRV8300PowerStage.ato:_Resistor0402
+  footprint: Resistor_SMD:R_0402_1005Metric
+  value: 40.2kOhm
+  jlcpcb: C25893
+- instance_of: DRV8300PowerStage.ato:_BootstrapCap
+  footprint: Capacitor_SMD:C_0402_1005Metric
+  value: 1uF
+  jlcpcb: C52923
+- instance_of: button.ato:ButtonSKRPACE010
+  footprint: lib:KEY-SMD_4P-L4.2-W3.2-P2.20-LS4.6
+  jlcpcb: C139797
+- instance_of: std/resistor.ato:Resistor
+  footprint: Resistor_SMD:R_0402_1005Metric
+  value: '220'
+  jlcpcb: C25091
+- instance_of: STM32G431CBU6.ato:STM32G431CBU6
+  footprint: UFQFPN-48_L7.0-W7.0-P0.50-BL-EP
+  jlcpcb: C529356
+- instance_of: std/resistor.ato:Resistor
+  footprint: Resistor_SMD:R_0402_1005Metric
+  jlcpcb: C136938
+- instance_of: KT-0603R.ato:KT_0603R
+  footprint: LED0603-RD
+  jlcpcb: C2286

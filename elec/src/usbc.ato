@@ -1,7 +1,9 @@
 # easyeda2kicad --full --lcsc_id=C2909057 --output elec/lib/lib
+import USB2 from "generics.ato"
+import Power from "generics.ato"
+import DIODE_1N5819WS from "1N5819WS.ato"
 
 component Usbc:
-
     signal gnd ~ pin A1
     gnd ~ pin A12
     gnd ~ pin B1
@@ -24,18 +26,6 @@ component Usbc:
     signal sbu ~ pin A8
     sbu ~ pin B8
 
-    # signal txp ~ pin B2
-    # txp ~ pin A2
-
-    # signal txm ~ pin A3
-    # txm ~ pin B3
-
-    # signal rxp ~ pin A11
-    # rxp ~ pin B11
-
-    # signal rxm ~ pin A10
-    # rxm ~ pin B10
-
     signal shell ~ pin p1
     shell ~ pin p2
     shell ~ pin p3
@@ -43,6 +33,17 @@ component Usbc:
 
     # always ground the shell
     shell ~ gnd
+
+    diode = new DIODE_1N5819WS
+
+    power = new Power
+    diode.anode ~ vbus
+    power.vcc ~ diode.cathode
+    power.gnd ~ gnd
+
+    usb = new USB2
+    usb.dp ~ dp
+    usb.dm ~ dm
 
     footprint = "lib:USB-C-SMD_KH-TYPE-C-16P"
     designator_prefix = "J"

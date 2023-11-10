@@ -1,0 +1,153 @@
+interface Power:
+    signal vcc
+    signal gnd
+
+interface I2C:
+    signal sda
+    signal scl
+
+interface SPI:
+    signal mosi
+    signal miso
+    signal sck
+    signal cs
+
+interface UART:
+    signal tx
+    signal rx
+
+interface CAN:
+    signal tx
+    signal rx
+
+interface ISOCAN:
+    signal CANH
+    signal CANL
+
+interface Ethernet:
+    signal tx
+    signal rx
+
+interface USB2:
+    signal dp
+    signal dm
+
+interface QSPI:
+    signal cs
+    signal sck
+    signal io0
+    signal io1
+    signal io2
+    signal io3
+
+interface SDIO:
+    signal cmd
+    signal clk
+    signal dat0
+    signal dat1
+    signal dat2
+    signal dat3
+
+interface JTAG:
+    signal tck
+    signal tms
+    signal tdi
+    signal tdo
+    signal reset
+    signal vcc
+
+interface BLDC_3PWM:
+    signal phase_a
+    signal phase_b
+    signal phase_c
+    signal enable
+
+component Resistor:
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component Capacitor:
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component Inductor:
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component Diode:
+    signal anode ~ pin 1
+    signal cathode ~ pin 2
+
+component LED:
+    signal anode ~ pin 1
+    signal cathode ~ pin 2
+
+component Transistor_npn:
+    signal base ~ pin 1
+    signal collector ~ pin 2
+    signal emitter ~ pin 3
+
+component Transistor_pnp:
+    signal base
+    signal collector
+    signal emitter
+
+component Mosfet_nchannel:
+    signal gate
+    signal drain
+    signal source
+
+component Mosfet_pchannel:
+    signal gate
+    signal drain
+    signal source
+
+component Opamp:
+    signal inverting_input
+    signal noninverting_input
+    signal output
+
+component Comparator:
+    signal inverting_input
+    signal noninverting_input
+    signal output
+
+component LDO:
+    power_in = new Power
+    power_out =  new Power
+
+component Oscillator:
+    signal output
+    signal input
+    signal gnd
+
+component Switch:
+    signal input
+    signal output
+
+module Vdiv:
+    signal input
+    signal output
+    signal gnd
+
+    r_top = new Resistor
+    r_bt = new Resistor
+
+    r_top.p1 ~ input
+    r_top.p2 ~ output
+    r_bt.p1 ~ output
+    r_bt.p2 ~ gnd
+
+module RCFilter:
+    signal input
+    signal output
+    signal gnd
+
+    r = new Resistor
+    c = new Capacitor
+
+    r.p1 ~ input
+    r.p2 ~ c.p1
+    c.p2 ~ output
+    c.p2 ~ gnd
+

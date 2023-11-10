@@ -1,12 +1,10 @@
 import Resistor from "std/resistor.ato"
 import Capacitor from "std/capacitor.ato"
-
 import Vdiv from "vdiv.ato"
-
 import LV2842XLVDDCR from "LV2842XLVDDCR.ato"
 import CPY201212T_100M_NP from "CPY201212T_100M_NP.ato"
 import DIODE_1N5819WS from "1N5819WS.ato"
-
+import Power from "generics.ato"
 
 component _PowerCap from Capacitor:
     value = "4.7uF"
@@ -36,6 +34,14 @@ module BuckReg:
     signal vin
     signal vout
     signal gnd
+
+    power_in = new Power
+    power_in.vcc ~ vin
+    # power_in.gnd ~ gnd
+
+    power_out = new Power
+    power_out.vcc ~ vout
+    power_out.gnd ~ gnd
 
     buck_converter = new LV2842XLVDDCR
     vin ~ buck_converter.vin

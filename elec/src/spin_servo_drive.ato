@@ -1,13 +1,11 @@
 #ato view --root-file servo_drive.ato --root-node servo_drive.ato/Servo_Drive
 
 import Resistor from "std/resistor.ato"
-
-import GenericPowerStage from "generic_power_stage.ato"
+import DRV8300PowerStage from "DRV8300PowerStage.ato"
 import stm32_kit from "stm32.ato"
-import BuckReg from "buck_reg.ato"
+import BuckReg12V from "buck_reg.ato"
 import LDOReg3V3 from "ldo_reg.ato"
 import LDOReg5V from "ldo_reg.ato"
-
 import Vdiv from "vdiv.ato"
 import DMT3009LDT_7 from "DMT3009LDT_7.ato"
 import VoltageSense from "voltage_sense.ato"
@@ -16,157 +14,126 @@ import Usbc from "usbc.ato"
 import DIODE_1N5819WS from "1N5819WS.ato"
 import SK6805SIDE_S from "SK6805SIDE_S.ato"
 import XT30 from "xt30.ato"
-import switch_90degree from "switch_90degree.ato"
-import TC2050 from "TC2050.ato"
+import NoButton from "button.ato"
 import LTC4311 from "stemma.ato"
+import JSTGH4Pin from "jst_gh.ato"
+import indicator_led from "indicator_led.ato"
 import StemmaQtConnector from "stemma.ato"
-import can_xcvr from "SN65HVD230DR.ato"
-
+import Power from "generics.ato"
 
 module SpinServoDrive:
-    signal v_pwr
-    signal v_gate
-    signal v_5
-    signal v_3
-    signal gnd
+    power_3v3 = new Power
+    power_5v = new Power
+    power_gate = new Power
+    power_vin = new Power
+
+    # Common ground for all power rails
+    signal gnd ~ power_3v3.gnd
+    gnd ~ power_5v.gnd
+    gnd ~ power_gate.gnd
+    gnd ~ power_vin.gnd
 
     # Power input connector
     xt30 = new XT30
-    v_pwr ~ xt30.vin
-    gnd ~ xt30.gnd
+    xt30.power ~ power_vin
+    xt30_2 = new XT30
+    xt30_2.power ~ power_vin
 
     # Micro
-    micro_kit = new stm32_kit
-    micro_kit.v_3_3 ~ v_3
-    micro_kit.gnd ~ gnd
+    micro = new stm32_kit
+    micro.power ~ power_3v3
 
     # LED
     led1 = new SK6805SIDE_S
-    led1.vcc ~ v_5 # connect to 5V rail
-    led1.gnd ~ gnd
-    led1.data_in ~ micro_kit.micro.PA6
+    led1.power ~ power_5v
+    led1.data_in ~ micro.led_pixel
     led2 = new SK6805SIDE_S
-    led2.vcc ~ v_5 # connect to 5V rail
-    led2.gnd ~ gnd
+    led2.power ~ power_5v
     led2.data_in ~ led1.data_out
 
     # Enumeration switch
-    switch = new switch_90degree
+    switch = new NoButton
     switch_pulldown = new Resistor
     switch_pulldown.value = "10k"
     switch_pulldown.p1 ~ gnd
-    switch_pulldown.p2 ~ switch.1
-    switch.2 ~ v_3
-    switch.1 ~ micro_kit.micro.PC13_TAMPER_RTC
+    switch_pulldown.p2 ~ switch.in
+    switch.out ~ power_3v3.vcc
+    switch.in ~ micro.enum_sw
 
     # USB-C
-    usb = new Usbc
+    usbc = new Usbc
     r_cc1 = new Resistor
     r_cc1.value = "5.1k"
     r_cc2 = new Resistor
     r_cc2.value = "5.1k"
-    usb.dp ~ micro_kit.usb_dp
-    usb.dm ~ micro_kit.usb_dm
-
-    usb_diode = new DIODE_1N5819WS
-    v_5 ~ usb_diode.cathode
-    usb_diode.anode ~ usb.vbus
+    usbc.usb ~ micro.usb
+    usbc.power ~ power_5v
 
     # CC1 and CC2 so it works with USB C to USB C cables
-    usb.cc1 ~ r_cc1.p1
-    usb.cc2 ~ r_cc2.p1
-
+    usbc.cc1 ~ r_cc1.p1
+    usbc.cc2 ~ r_cc2.p1
     r_cc1.p2 ~ gnd
     r_cc2.p2 ~ gnd
-
-    usb.gnd ~ gnd
 
     # Temperature sensors
     temp_sensor_fets = new Vdiv
     temp_sensor_fets.r_top.value = "10k"
     temp_sensor_fets.r_bt.value = "10k_NTC"
-    temp_sensor_fets.input ~ v_3
+    temp_sensor_fets.input ~ power_3v3.vcc
     signal temp_sense ~ temp_sensor_fets.output
-    temp_sensor_fets.output ~ micro_kit.micro.PA5
+    temp_sensor_fets.output ~ micro.temp_fet
     temp_sensor_fets.gnd ~ gnd
 
     # gate driver regulator
-    gate_reg = new BuckReg
-    gate_reg.vin ~ v_pwr
-    gate_reg.vout ~ v_gate
-    gate_reg.gnd ~ gnd
+    gate_reg = new BuckReg12V
+    gate_reg.power_in ~ power_vin
+    gate_reg.power_out ~ power_gate
 
     # 5v rail LDO - powers micro
     ldo_5v = new LDOReg5V
-    v_gate ~ ldo_5v.vin
-    ldo_5v.vout ~ v_5
-    ldo_5v.gnd ~ gnd
+    ldo_5v.power_in ~ power_gate
+    power_5v ~ ldo_5v.power_out
 
     # 3v3 rail LDO - powers micro
     ldo_3v3 = new LDOReg3V3
-    ldo_3v3.vin ~ v_5
-    ldo_3v3.vout ~ v_3
-    ldo_3v3.gnd ~ gnd
+    ldo_3v3.power_in ~ power_5v
+    power_3v3 ~ ldo_3v3.power_out
 
     # power stage
-    power_stage = new GenericPowerStage
-    power_stage.vcc_pwr ~ v_pwr
-    power_stage.vcc_gate ~ v_gate
-    power_stage.vcc_3v3 ~ v_3
-    power_stage.gnd ~ gnd
+    power_stage = new DRV8300PowerStage
+    power_stage.power_vin ~ power_vin
+    power_stage.power_gate ~ power_gate
+    power_stage.power_3v3 ~ power_3v3
 
     # Power stage to micro
-    micro_kit.micro.PA8 ~ power_stage.ctrl_a.high
-    micro_kit.micro.PA7 ~ power_stage.ctrl_a.low
-    micro_kit.micro.PA9 ~ power_stage.ctrl_b.high
-    micro_kit.micro.PB0 ~ power_stage.ctrl_b.low
-    micro_kit.micro.PA10 ~ power_stage.ctrl_c.high
-    micro_kit.micro.PB1 ~ power_stage.ctrl_c.low
+    micro.bldc_3pwm ~ power_stage.bldc_3pwm
 
     # Todo: merge with low side current sense
-    micro_kit.micro.PA0_WKUP ~ power_stage.ctrl_a.i_fb
-    micro_kit.micro.PA1 ~ power_stage.ctrl_b.i_fb
-    micro_kit.micro.PA2 ~ power_stage.ctrl_c.i_fb
+    micro.a_isense ~ power_stage.ctrl_a.i_fb
+    micro.b_isense ~ power_stage.ctrl_b.i_fb
+    micro.c_isense ~ power_stage.ctrl_c.i_fb
 
     # Voltage input monitoring
     voltage_input_vdiv = new VoltageSense
     voltage_input_vdiv.in ~ xt30.vin
     voltage_input_vdiv.gnd ~ gnd
-    voltage_input_vdiv.out ~ micro_kit.micro.PA3
+    voltage_input_vdiv.out ~ micro.vin_sense
     voltage_input_vdiv.c_filter.value = "100nF"
 
     # Position sensor - SPI interface
     position_sensor = new PositionSensor
-    position_sensor.vin ~ v_3
-    position_sensor.gnd ~ gnd
-    micro_kit.micro.PB15 ~ position_sensor.mosi
-    micro_kit.micro.PB14 ~ position_sensor.miso
-    micro_kit.micro.PB13 ~ position_sensor.sck
-    micro_kit.micro.PB12 ~ position_sensor.cs
+    position_sensor.power ~ power_3v3
+    micro.spi ~ position_sensor.spi
 
-    # CANBUS Comms
-    canbus = new can_xcvr
-    canbus.v_3_3 ~ v_3
-    canbus.gnd ~ gnd
-    canbus.can_rx ~ micro_kit.micro.PB8
-    canbus.can_tx ~ micro_kit.micro.PB9
-    canbus_conn_1 = new StemmaQtConnector
-    canbus_conn_1.vcc ~ v_3
-    canbus_conn_1.gnd ~ gnd
-    canbus_conn_1.sda ~ canbus.CANH
-    canbus_conn_1.scl ~ canbus.CANL
-    canbus_conn_2 = new StemmaQtConnector
-    canbus_conn_2.vcc ~ v_3
-    canbus_conn_2.gnd ~ gnd
-    canbus_conn_2.sda ~ canbus.CANH
-    canbus_conn_2.scl ~ canbus.CANL
+    # Following the PixHawk can pinout standard
+    canbus_conn_1 = new JSTGH4Pin
+    canbus_conn_1.isocan ~ micro.isocan
+    canbus_conn_1.power ~ power_5v
+    canbus_conn_2 = new JSTGH4Pin
+    canbus_conn_2.isocan ~ micro.isocan
+    canbus_conn_2.power ~ power_5v
 
-    # JTAG
-    jtag = new TC2050
-    jtag.vcc ~ v_3
-    jtag.gnd ~ gnd
-    jtag.tck ~ micro_kit.micro.PA14
-    jtag.tdi ~ micro_kit.micro.PA15
-    jtag.tdo ~ micro_kit.micro.PB3
-    jtag.tms ~ micro_kit.micro.PA13
-    jtag.rst ~ micro_kit.micro.PB4
+    # Stemma QT connector
+    stemma = new StemmaQtConnector
+    stemma.i2c ~ micro.i2c
+    stemma.power ~ power_3v3

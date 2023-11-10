@@ -1,3 +1,7 @@
+import CAN from "generics.ato"
+import ISOCAN from "generics.ato"
+import Power from "generics.ato"
+
 component SN65HVD230DR:
     footprint = "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL"
     lcsc_id = "C12084"
@@ -24,6 +28,17 @@ module can_xcvr:
     signal CANH
     signal CANL
 
+    power = new Power
+    power.vcc ~ v_3_3
+    power.gnd ~ gnd
+
+    can = new CAN
+    can.rx ~ can_rx
+    can.tx ~ can_tx
+    isocan = new ISOCAN
+    isocan.CANH ~ CANH
+    isocan.CANL ~ CANL
+
     xcvr.VCC ~ v_3_3
     xcvr.GND ~ gnd
     xcvr.R ~ can_rx
@@ -37,7 +52,7 @@ module can_xcvr:
     c_bp.value = "100nF"
     c_bp.p1 ~ v_3_3
     c_bp.p2 ~ gnd
-    
+
     # Termination
     signal v_mid
     xcvr.VREF ~ v_mid

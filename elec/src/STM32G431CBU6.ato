@@ -1,0 +1,53 @@
+component STM32G431CBU6:
+    footprint = "UFQFPN-48_L7.0-W7.0-P0.50-BL-EP"
+    lcsc_id = "C529356"
+    # pins
+    signal VDD1 ~ pin p48
+    signal PB9 ~ pin p47
+    signal PB8_BOOT0 ~ pin p46
+    signal PB7 ~ pin p45
+    signal PB6 ~ pin p44
+    signal PB5 ~ pin p43
+    signal PB4 ~ pin p42
+    signal PB3 ~ pin p41
+    signal PC11 ~ pin p40
+    signal PC10 ~ pin p39
+    signal PA15 ~ pin p38
+    signal PA14 ~ pin p37
+    signal PA13 ~ pin p36
+    signal VDD2 ~ pin p35
+    signal PA12 ~ pin p34
+    signal PA11 ~ pin p33
+    signal PA10 ~ pin p32
+    signal PA9 ~ pin p31
+    signal PA8 ~ pin p30
+    signal PC6 ~ pin p29
+    signal PB15 ~ pin p28
+    signal PB14 ~ pin p27
+    signal PB13 ~ pin p26
+    signal PB12 ~ pin p25
+    signal PB11 ~ pin p24
+    signal VDD3 ~ pin p23
+    signal PB10 ~ pin p22
+    signal VDDA ~ pin p21
+    signal VREF ~ pin p20
+    signal PB2 ~ pin p19
+    signal PB1 ~ pin p18
+    signal PB0 ~ pin p17
+    signal PC4 ~ pin p16
+    signal PA7 ~ pin p15
+    signal PA6 ~ pin p14
+    signal PA5 ~ pin p13
+    signal PA4 ~ pin p12
+    signal PA3 ~ pin p11
+    signal PA2 ~ pin p10
+    signal PA1 ~ pin p9
+    signal PA0 ~ pin p8
+    signal PG10_NRST ~ pin p7
+    signal PF1_OSC_OUT ~ pin p6
+    signal PF0_OSC_IN ~ pin p5
+    signal PC15_OSC32_OUT ~ pin p4
+    signal PC14_OSC32_IN ~ pin p3
+    signal PC13 ~ pin p2
+    signal VBAT ~ pin p1
+    signal EP ~ pin p49

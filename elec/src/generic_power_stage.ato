@@ -35,3 +35,4 @@ module GenericPowerStage:
     signal out_a
     signal out_b
     signal out_c
+
