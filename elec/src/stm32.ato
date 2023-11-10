@@ -47,7 +47,7 @@ module stm32_kit:
     jtag = new JTAG
     jtag.tck ~ micro.PA14
     jtag.tdi ~ micro.PA15
-    jtag.tdo ~ micro.PB10
+    jtag.tdo ~ micro.PB3
     jtag.tms ~ micro.PA13
     jtag.reset ~ micro.PB4
 

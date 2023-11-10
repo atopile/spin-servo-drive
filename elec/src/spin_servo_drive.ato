@@ -67,11 +67,7 @@ module SpinServoDrive:
     r_cc2 = new Resistor
     r_cc2.value = "5.1k"
     usbc.usb ~ micro.usb
-
-    
-    # usb_diode.anode ~ usbc.power.vcc
-    # power_5v.gnd ~ usbc.power.gnd
-    
+    usbc.power ~ power_5v
 
     # CC1 and CC2 so it works with USB C to USB C cables
     usbc.cc1 ~ r_cc1.p1
@@ -105,6 +101,7 @@ module SpinServoDrive:
 
     # power stage
     power_stage = new DRV8300PowerStage
+    power_stage.power_vin ~ power_vin
     power_stage.power_gate ~ power_gate
     power_stage.power_3v3 ~ power_3v3
 
@@ -131,10 +128,10 @@ module SpinServoDrive:
     # Following the PixHawk can pinout standard
     canbus_conn_1 = new JSTGH4Pin
     canbus_conn_1.isocan ~ micro.isocan
-    canbus_conn_1.power ~ power_3v3
+    canbus_conn_1.power ~ power_5v
     canbus_conn_2 = new JSTGH4Pin
     canbus_conn_2.isocan ~ micro.isocan
-    canbus_conn_2.power ~ power_3v3
+    canbus_conn_2.power ~ power_5v
 
     # Stemma QT connector
     stemma = new StemmaQtConnector

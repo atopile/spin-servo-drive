@@ -30,10 +30,17 @@ component _BootstrapCap from Capacitor:
 module _Phase:
     signal vcc_pwr
     signal vcc_3v3
+    signal gnd
+    power_vin = new Power
+    power_3v3 = new Power
+    vcc_pwr ~ power_vin.vcc
+    vcc_3v3 ~ power_3v3.vcc
+    gnd ~ power_vin.gnd
+    gnd ~ power_3v3.gnd
+
     ctrl = new PhaseControl
     signal i_fb_zero
     signal out
-    signal gnd
     signal bs
 
     _hb = new DMT3009LDT_7
@@ -41,6 +48,7 @@ module _Phase:
     _r_gate_high = new _GateResistor
     _r_gate_high.p1 ~ _hb.high_gate
     _r_gate_high.p2 ~ ctrl.high
+    _hb.vcc_pwr ~ vcc_pwr
 
     _r_gate_low = new _GateResistor
     _r_gate_low.p1 ~ _hb.low_gate
@@ -66,6 +74,10 @@ module DRV8300PowerStage from GenericPowerStage:
     vcc_gate ~ drv8300.GVDD
     gnd ~ drv8300.GND
     gnd ~ drv8300.EP
+
+    power_vin = new Power
+    vcc_pwr ~ power_vin.vcc
+    gnd ~ power_vin.gnd
 
     power_gate = new Power
     power_gate.gnd ~ gnd
@@ -93,10 +105,9 @@ module DRV8300PowerStage from GenericPowerStage:
     vref_1V65.v_ref ~ i_fb_zero
 
     _a = new _Phase
-    vcc_pwr ~ _a.vcc_pwr
-    vcc_3v3 ~ _a.vcc_3v3
+    power_3v3 ~ _a.power_3v3
+    power_vin ~ _a.power_vin
     i_fb_zero ~ _a.i_fb_zero
-    gnd ~ _a.gnd
     _a.out ~ out_a
     ctrl_a.i_fb ~ _a.ctrl.i_fb
 
@@ -106,10 +117,9 @@ module DRV8300PowerStage from GenericPowerStage:
     _a.bs ~ drv8300.BSTA
 
     _b = new _Phase
-    vcc_pwr ~ _b.vcc_pwr
-    vcc_3v3 ~ _b.vcc_3v3
+    power_3v3 ~ _b.power_3v3
+    power_vin ~ _b.power_vin
     i_fb_zero ~ _b.i_fb_zero
-    gnd ~ _b.gnd
     _b.out ~ out_b
     ctrl_b.i_fb ~ _b.ctrl.i_fb
 
@@ -119,10 +129,9 @@ module DRV8300PowerStage from GenericPowerStage:
     _b.bs ~ drv8300.BSTB
 
     _c = new _Phase
-    vcc_pwr ~ _c.vcc_pwr
-    vcc_3v3 ~ _c.vcc_3v3
+    power_3v3 ~ _c.power_3v3
+    power_vin ~ _c.power_vin
     i_fb_zero ~ _c.i_fb_zero
-    gnd ~ _c.gnd
     _c.out ~ out_c
     ctrl_c.i_fb ~ _c.ctrl.i_fb
 

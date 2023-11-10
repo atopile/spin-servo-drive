@@ -37,7 +37,7 @@ module BuckReg:
 
     power_in = new Power
     power_in.vcc ~ vin
-    power_in.gnd ~ gnd
+    # power_in.gnd ~ gnd
 
     power_out = new Power
     power_out.vcc ~ vout

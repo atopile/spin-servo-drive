@@ -1,6 +1,7 @@
 # easyeda2kicad --full --lcsc_id=C2909057 --output elec/lib/lib
 import USB2 from "generics.ato"
 import Power from "generics.ato"
+import DIODE_1N5819WS from "1N5819WS.ato"
 
 component Usbc:
     signal gnd ~ pin A1
@@ -33,8 +34,11 @@ component Usbc:
     # always ground the shell
     shell ~ gnd
 
+    diode = new DIODE_1N5819WS
+
     power = new Power
-    power.vcc ~ vbus
+    diode.anode ~ vbus
+    power.vcc ~ diode.cathode
     power.gnd ~ gnd
 
     usb = new USB2

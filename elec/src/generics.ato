@@ -1,29 +1,37 @@
 interface Power:
     signal vcc
     signal gnd
+
 interface I2C:
     signal sda
     signal scl
+
 interface SPI:
     signal mosi
     signal miso
     signal sck
     signal cs
+
 interface UART:
     signal tx
     signal rx
+
 interface CAN:
     signal tx
     signal rx
+
 interface ISOCAN:
     signal CANH
     signal CANL
+
 interface Ethernet:
     signal tx
     signal rx
+
 interface USB2:
     signal dp
     signal dm
+
 interface QSPI:
     signal cs
     signal sck
@@ -31,6 +39,7 @@ interface QSPI:
     signal io1
     signal io2
     signal io3
+
 interface SDIO:
     signal cmd
     signal clk
@@ -38,6 +47,7 @@ interface SDIO:
     signal dat1
     signal dat2
     signal dat3
+
 interface JTAG:
     signal tck
     signal tms
