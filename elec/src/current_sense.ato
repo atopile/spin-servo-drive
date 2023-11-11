@@ -59,3 +59,10 @@ module CurrentSense:
     output_filter.gnd ~ gnd
     output_filter.c.value = "2200pf"
     output_filter.r.value = "56R"
+
+    # bypass cap
+    bypass = new Capacitor
+    bypass.value = "100nF"
+    bypass.footprint = "Capacitor_SMD:C_0402_1005Metric"
+    bypass.p1 ~ vcc
+    bypass.p2 ~ gnd
