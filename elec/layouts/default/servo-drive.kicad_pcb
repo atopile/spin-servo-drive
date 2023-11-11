@@ -2572,7 +2572,7 @@
     (at 230.801843 105.116933)
     (path "/98cbf1bd-a366-20d2-6d13-1df736825dde/ec840f7d-1f9f-b979-d8dc-f3c0bc61bf01")
     (attr smd)
-    (fp_text reference "U36" (at 0 -4) (layer "F.SilkS")
+    (fp_text reference "U36" (at 0 -4) (layer "F.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 0fa9e20f-fd51-4149-802d-fb1d22273f7e)
     )
@@ -2789,7 +2789,7 @@
     (at 226.010123 94.388415)
     (path "/737bc1e8-1277-332a-8c63-c690624a360c/a37d16e5-e4c3-1d3b-14c9-9bc7a2784ae8")
     (attr smd)
-    (fp_text reference "U12" (at 0 -5.9) (layer "F.SilkS")
+    (fp_text reference "U12" (at 0 -5.9) (layer "F.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 2a1e0890-5587-44ef-85a1-490c490a68a4)
     )
@@ -4246,7 +4246,7 @@
     (at 229.13551 114.409602 -90)
     (path "/bd87a13f-e123-dde5-2d9b-4480c289ab86/8159343b-85b8-5b83-b026-9d81d3bafde9")
     (attr smd)
-    (fp_text reference "U25" (at 0 -6.77 -90) (layer "F.SilkS")
+    (fp_text reference "U25" (at 0 -6.77 -90) (layer "F.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 2f42426a-038b-4607-861e-1ba24d49d51f)
     )
