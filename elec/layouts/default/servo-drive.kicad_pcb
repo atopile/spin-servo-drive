@@ -268,7 +268,7 @@
     (at 213.412228 99.961657)
     (path "/deda4150-e5d5-3c00-28ea-7251987c38dc/c9e14a92-df03-7104-431d-2aaaf7e215a1")
     (attr smd)
-    (fp_text reference "U16" (at -1.908355 -5.979565) (layer "F.SilkS")
+    (fp_text reference "U16" (at -1.908355 -5.979565) (layer "F.SilkS") hide
         (effects (font (size 1.40248 1.40248) (thickness 0.15)))
       (tstamp b5f4f337-b172-43e1-96d8-165576bc259e)
     )
@@ -2317,7 +2317,7 @@
     (at 213.31991 89.59932)
     (path "/ab480d0d-38e4-087d-0293-6b6835230889/52ea65dd-3ba0-2ff4-f038-f582b5bde468")
     (attr smd)
-    (fp_text reference "U29" (at 0 -4) (layer "F.SilkS")
+    (fp_text reference "U29" (at 0 -4) (layer "F.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 910603cf-b81c-4997-9faf-852dae5b9008)
     )
@@ -2935,7 +2935,7 @@
     (at 229.212249 110.124245 180)
     (path "/98cbf1bd-a366-20d2-6d13-1df736825dde/535e7075-f7cb-c65d-172b-833bd94a4b1a")
     (attr smd)
-    (fp_text reference "U6" (at 0 -4.95 180) (layer "F.SilkS")
+    (fp_text reference "U6" (at 0 -4.95 180) (layer "F.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 37d114e1-6a83-451d-99fb-d28de30e066c)
     )
@@ -3559,7 +3559,7 @@
     (at 227.653021 104.833666 90)
     (path "/98cbf1bd-a366-20d2-6d13-1df736825dde/18daf205-2c2c-2f85-068f-c9b945a27914")
     (attr smd)
-    (fp_text reference "U10" (at 0 -4 90) (layer "F.SilkS")
+    (fp_text reference "U10" (at 0 -4 90) (layer "F.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 95fdc890-6032-4355-aa7a-44a31bd8fb00)
     )
@@ -4302,7 +4302,7 @@
     (at 217.614033 114.344378 -90)
     (path "/bf5e9fa7-2cc0-31e9-ca59-83ea4e0c00d2/13126961-4cbe-e0b5-644b-55877448a37c")
     (attr smd)
-    (fp_text reference "U30" (at 0 -4 -90) (layer "F.SilkS")
+    (fp_text reference "U30" (at 0 -4 -90) (layer "F.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp cb31195a-f477-4b4f-9d81-f35d3c62c4fa)
     )
@@ -4494,7 +4494,7 @@
     (tags "capacitor")
     (path "/9328b2e1-717f-bd91-8c01-d88216567fea/7829c4e0-0f1c-b794-6a3b-1575d1e5a7e3")
     (attr smd)
-    (fp_text reference "C50" (at 0 1.16) (layer "B.SilkS")
+    (fp_text reference "C50" (at 0 1.16) (layer "B.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 7f43db2b-78ca-47bc-a293-86faa864adcf)
     )
@@ -4592,7 +4592,7 @@
     (at 213.5505 89.895967 45)
     (path "/deda4150-e5d5-3c00-28ea-7251987c38dc/42756231-11c3-0fdd-6596-05d93077c8f4")
     (attr smd)
-    (fp_text reference "U13" (at 0 7.45 225) (layer "B.SilkS")
+    (fp_text reference "U13" (at 0 7.45 225) (layer "B.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 2f359391-0b8b-44d5-ae01-e25ebedde910)
     )
@@ -5497,7 +5497,7 @@
     (tags "capacitor")
     (path "/ead1093e-1b47-68ff-57eb-972d990237e4/8d39aec0-74ab-0906-48d8-7243e177f648")
     (attr smd)
-    (fp_text reference "C52" (at 0 1.16) (layer "B.SilkS")
+    (fp_text reference "C52" (at 0 1.16) (layer "B.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp d0877ead-5993-4bb2-bc28-ffa6887cbcdb)
     )
@@ -7236,7 +7236,7 @@
     (tags "capacitor")
     (path "/7ae3f1b2-d212-007b-9718-401e59f0287f/abc2210a-b0f4-d1ec-c4d6-effaf06f0790")
     (attr smd)
-    (fp_text reference "C51" (at 0 1.16 90) (layer "B.SilkS")
+    (fp_text reference "C51" (at 0 1.16 90) (layer "B.SilkS") hide
         (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 7cd0c4cf-916a-49cc-be1d-fce9a26a3e9b)
     )
