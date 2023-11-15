@@ -27,7 +27,7 @@ module VoltageReference:
     gnd ~ c_bypass.p2
 
     # add low pass filter to Vref input
-    
+
     bias_div = new Vdiv
     bias_div.input ~ vcc
     bias_div.gnd ~ gnd
@@ -42,11 +42,3 @@ module VoltageReference:
     gnd ~ c_filter.p2
 
     v_ref ~ buffer.out
-
-    # visualiser hints
-    vcc.visualizer.location = "top"
-    gnd.visualizer.location = "bottom"
-    v_ref.visualizer.location = "right"
-    gnd.visualizer.stub = True
-    vcc.visualizer.stub = True
-    v_ref.visualizer.stub = True
