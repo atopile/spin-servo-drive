@@ -191,7 +191,7 @@ by-spec:
 - instance_of: std/resistor.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 1k5
-  jlcpcb: C136938
+  jlcpcb: C25867
 - instance_of: ma730.ato:ma730
   footprint: lib:VQFN-16_L3.0-W3.0-P0.50-BL-EP1.6
   jlcpcb: C161798
