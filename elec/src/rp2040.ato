@@ -89,12 +89,6 @@ module RP2040_kit:
     signal usb_dp
     signal usb_dm
 
-    v_3_3.visualizer.stub = True
-    gnd.visualizer.stub = True
-
-    usb_dp.visualizer.stub = True
-    usb_dm.visualizer.stub = True
-
     # Microcontroller
     micro = new RP2040
 
