@@ -2,8 +2,8 @@ BuckReg:
   child_attrs:
     buck_converter:
       position:
-        x: 220
-        y: 270
+        x: 45
+        y: 255
     VCC_cap:
       position:
         x: 50
@@ -22,8 +22,8 @@ BuckReg:
         y: 50
     inductor:
       position:
-        x: 435
-        y: 285
+        x: 260
+        y: 270
     VOUT_cap_1:
       position:
         x: 655
@@ -34,8 +34,8 @@ BuckReg:
         y: 285
     fb_vdiv:
       position:
-        x: 470
-        y: 50
+        x: 545
+        y: 105
     BST_cap:
       position:
         x: 50
@@ -46,8 +46,8 @@ BuckReg:
         y: 50
     diode:
       position:
-        x: 370
-        y: 370
+        x: 195
+        y: 355
     VOUT_cap_3:
       position:
         x: 800
@@ -58,5 +58,31 @@ BuckReg:
         y: 280
     boot_cap:
       position:
-        x: 170
+        x: 380
         y: 105
+    vin_cap_1:
+      position:
+        x: 110
+        y: 75
+    output_caps:
+      position:
+        x: 815
+        y: 45
+_BulkCaps:
+  child_attrs:
+    cap_1:
+      position:
+        x: 255
+        y: 45
+    cap_2:
+      position:
+        x: 150
+        y: 120
+    cap_3:
+      position:
+        x: 255
+        y: 240
+    cap_4:
+      position:
+        x: 45
+        y: 240

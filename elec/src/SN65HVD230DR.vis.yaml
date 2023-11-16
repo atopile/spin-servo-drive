@@ -1,5 +1,5 @@
 
-STM32F103C8T6:
+SN65HVD230DR:
   ports:
   - name: top
     location: top
