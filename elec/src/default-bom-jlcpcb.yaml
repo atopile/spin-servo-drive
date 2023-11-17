@@ -178,10 +178,10 @@ by-spec:
 - instance_of: button.ato:ButtonTS1187A
   footprint: SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL-2
   jlcpcb: C318884
-- instance_of: STM32F103Cxxx.ato:STM32F103Cxxx
+- instance_of: micro/STM32F103Cxxx.ato:STM32F103Cxxx
   footprint: LQFP-48_L7.0-W7.0-P0.50-LS9.0-BL
   jlcpcb: C8304
-- instance_of: oscillator.ato:Oscillator
+- instance_of: micro/oscillator.ato:Oscillator
   footprint: lib:OSC-SMD_4P-L3.2-W2.5-BL
   value: 8Mhz
   jlcpcb: C400090
@@ -237,7 +237,7 @@ by-spec:
 - instance_of: stemma.ato:StemmaQtConnector
   footprint: lib:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN
   jlcpcb: C160404
-- instance_of: TC2050.ato:TC2050
+- instance_of: micro/TC2050.ato:TC2050
   footprint: TAG-CONNECT_TC2050-IDC
   jlcpcb: DNP
 - instance_of: std/resistor.ato:Resistor
@@ -336,7 +336,7 @@ by-spec:
   footprint: Resistor_SMD:R_0402_1005Metric
   value: '220'
   jlcpcb: C25091
-- instance_of: STM32G431CBU6.ato:STM32G431CBU6
+- instance_of: micro/STM32G431CBU6.ato:STM32G431CBU6
   footprint: UFQFPN-48_L7.0-W7.0-P0.50-BL-EP
   jlcpcb: C529356
 - instance_of: std/resistor.ato:Resistor

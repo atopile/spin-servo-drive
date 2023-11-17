@@ -2,7 +2,7 @@
 
 import Resistor from "std/resistor.ato"
 import DRV8300PowerStage from "DRV8300PowerStage.ato"
-import stm32_kit from "stm32.ato"
+import stm32_kit from "micro/stm32.ato"
 import BuckReg12V from "buck_reg.ato"
 import LDOReg3V3 from "ldo_reg.ato"
 import LDOReg5V from "ldo_reg.ato"
