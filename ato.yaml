@@ -1,0 +1,7 @@
+ato-version: ^0.0.22
+paths:
+  src: elec/src
+  kicad-project: elec/layouts/${selected_build_name}/
+builds:
+  default:
+    entry: spin_servo_nema17.ato:SpinServoNEMA17
