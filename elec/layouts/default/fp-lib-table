@@ -1,4 +1,0 @@
-(fp_lib_table
-  (version 7)
-  (lib (name "lib0")(type "KiCad")(uri "/Users/mattwildoer/Projects/atopile-workspace/servo-drive/elec/lib/lib.pretty")(options "")(descr ""))
-)
