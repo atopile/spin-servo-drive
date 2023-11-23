@@ -1,0 +1,3 @@
+[submodule "elec/src/.ato/modules/modules"]
+	path = elec/src/.ato/modules/modules
+	url = git@gitlab.atopile.io:atopile/modules.git

@@ -1,8 +1,8 @@
 #ato view --root-file current_sense.ato --root-node current_sense.ato:CurrentSense
 
 import LMV321IDBVR from "LMV321IDBVR.ato"
-import Resistor from "std/resistor.ato"
-import Capacitor from "std/capacitor.ato"
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
 import Vdiv from "vdiv.ato"
 import LowPass  from "low_pass.ato"
 import nettie_250u from "nettie.ato"

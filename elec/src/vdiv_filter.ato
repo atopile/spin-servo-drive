@@ -1,6 +1,6 @@
 # this is a comment, it should be safely ignored
-import Resistor from "std/resistor.ato"
-import Capacitor from "std/capacitor.ato"
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
 
 
 module VdivFiltered:

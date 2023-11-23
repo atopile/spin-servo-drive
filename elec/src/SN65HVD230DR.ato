@@ -17,8 +17,8 @@ component SN65HVD230DR:
 
     # pin types
 
-import Resistor from "std/resistor.ato"
-import Capacitor from "std/capacitor.ato"
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
 module can_xcvr:
     xcvr = new SN65HVD230DR
     signal v_3_3

@@ -1,5 +1,5 @@
-import Resistor from "std/resistor.ato"
-import Capacitor from "std/capacitor.ato"
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
 import DRV8300DRGER from "DRV8300DRGER.ato"
 import CurrentSense from "current_sense.ato"
 import VoltageReference from "voltage_reference.ato"

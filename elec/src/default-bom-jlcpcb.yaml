@@ -1,13 +1,13 @@
 by-spec:
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 2nF
   jlcpcb: C1601
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 10kOhm
   jlcpcb: C216802
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_2512_6332Metric
   value: 1mOhm
   jlcpcb: C509731
@@ -20,7 +20,7 @@ by-spec:
 - instance_of: TL072CDT.ato:TL072CDT
   footprint: lib:SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL
   jlcpcb: C6961
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 0.1uF
   jlcpcb: C14663
@@ -30,27 +30,27 @@ by-spec:
 - instance_of: BSC0901NS.ato:BSC0901NS
   footprint: lib:DFN-8_L5.9-W5.2-P1.27-LS6.2-BL
   jlcpcb: C152424
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0805_2012Metric
   value: 1uF
   jlcpcb: C161268
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 10ohm
   jlcpcb: C407639
 - instance_of: L6387ED.ato:L6387ED
   footprint: lib:SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL
   jlcpcb: C155554
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 25ohm
   # note this is the actually a 26.1ohm resistor
   jlcpcb: C100916
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 1kOhm
   jlcpcb: C136938
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0805_2012Metric
   value: 4.7uF
   jlcpcb: C162320
@@ -58,26 +58,26 @@ by-spec:
   footprint: lib:CAP-SMD_BD8.0-L8.3-W8.3-FD
   value: 100uF
   jlcpcb: C3352
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 12nF
   jlcpcb: C113786
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0805_2012Metric
   value: 2.2uF
   jlcpcb: C49217
 - instance_of: oscillator.ato:Oscillator
   footprint: lib:OSC-SMD_4P-L3.2-W2.5-BL
   jlcpcb: C9002
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 20pF
   jlcpcb: C1554
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 1uF
   jlcpcb: C52923
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 0R
   jlcpcb: C137860
@@ -93,7 +93,7 @@ by-spec:
 - instance_of: TS_1101_C_W.ato:TS_1101_C_W
   footprint: lib:SW-SMD_L6.0-W3.3-LS8.0
   jlcpcb: C318938
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 2.2uF
   jlcpcb: C12530
@@ -103,55 +103,55 @@ by-spec:
 - instance_of: MAX17504ATP.ato:MAX17504ATP
   footprint: lib:QFN-48_L6.0-W6.0-P0.40-BL-EP3.8
   jlcpcb: C516781
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 100nF
   jlcpcb: C307331
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 1k
   jlcpcb: C140196
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 0.1uF
   jlcpcb: C307331
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 5.1k
   jlcpcb: C2906948
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 10kOhm
   jlcpcb: C60490
 - instance_of: rp2040.ato:RP2040
   jlcpcb: C2040
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 1uF
   jlcpcb: C52923
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 10k
   jlcpcb: C60490
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 27R
   jlcpcb: C138021
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 10nF
   jlcpcb: C15195
 - instance_of: usbc.ato:Usbc
   footprint: lib:USB-C-SMD_KH-TYPE-C-16P
   jlcpcb: C709357
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 10K
   jlcpcb: C60490
 - instance_of: LMV321IDBVR.ato:LMV321IDBVR
   footprint: Package_TO_SOT_SMD:SOT-23-5
   jlcpcb: C7972
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 100k
   jlcpcb: C60491
@@ -161,14 +161,14 @@ by-spec:
 - instance_of: servo_drive.ato:PowerPad
   footprint: lib:OutputPad
   jlcpcb: DNP
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0603_1608Metric
   value: 5ohm
   jlcpcb: C95177
 - instance_of: LV2842XLVDDCR.ato:LV2842XLVDDCR
   footprint: SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR
   jlcpcb: C225807
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 60R
   jlcpcb: C852867
@@ -188,22 +188,22 @@ by-spec:
 - instance_of: adjustable_ldo.ato:LDK220M_R
   footprint: lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BL
   jlcpcb: C443854
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 1k5
   jlcpcb: C25867
 - instance_of: ma730.ato:ma730
   footprint: lib:VQFN-16_L3.0-W3.0-P0.50-BL-EP1.6
   jlcpcb: C161798
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0805_2012Metric
   value: 3mOhm
   jlcpcb: C128540
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 147K
   jlcpcb: C5197520
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0805_2012Metric
   value: 10uF
   jlcpcb: C162422
@@ -213,11 +213,11 @@ by-spec:
 - instance_of: button.ato:Button90Degree
   footprint: lib:KEY-SMD_SKTDLDE010
   jlcpcb: C115365
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 45kOhm
   jlcpcb: C137977
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 56R
   jlcpcb: C3013179
@@ -230,7 +230,7 @@ by-spec:
 - instance_of: SK6805SIDE_S.ato:SK6805SIDE_S
   footprint: lib:LED-SMD_4P-L4.0-W1.4_SK6805SIDE-S
   jlcpcb: C2909057
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 2200pf
   jlcpcb: C1531
@@ -240,22 +240,22 @@ by-spec:
 - instance_of: micro/TC2050.ato:TC2050
   footprint: TAG-CONNECT_TC2050-IDC
   jlcpcb: DNP
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 56R
   jlcpcb: C3013179
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   value: 2200pf
   jlcpcb: C1531
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0603_1608Metric
   value: 4.7uF
   jlcpcb: C69335
 - instance_of: servo_drive.ato:PowerPad
   footprint: lib:OutputPad
   jlcpcb: DNP
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 18k
   jlcpcb: C2909327
@@ -274,15 +274,15 @@ by-spec:
 - instance_of: CPY201212T_100M_NP.ato:CPY201212T_100M_NP
   footprint: L0805
   jlcpcb: C285963
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 45k
   jlcpcb: C137977
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: 10k_NTC
   jlcpcb: C13564
-- instance_of: std/capacitor.ato:Capacitor
+- instance_of: modules/generics.ato:Capacitor
   footprint: Capacitor_SMD:C_0402_1005Metric
   jlcpcb: C307331
 - instance_of: jst_gh.ato:JSTGH4Pin
@@ -332,14 +332,14 @@ by-spec:
 - instance_of: button.ato:ButtonSKRPACE010
   footprint: lib:KEY-SMD_4P-L4.2-W3.2-P2.20-LS4.6
   jlcpcb: C139797
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   value: '220'
   jlcpcb: C25091
 - instance_of: micro/STM32G431CBU6.ato:STM32G431CBU6
   footprint: UFQFPN-48_L7.0-W7.0-P0.50-BL-EP
   jlcpcb: C529356
-- instance_of: std/resistor.ato:Resistor
+- instance_of: modules/generics.ato:Resistor
   footprint: Resistor_SMD:R_0402_1005Metric
   jlcpcb: C136938
 - instance_of: KT-0603R.ato:KT_0603R

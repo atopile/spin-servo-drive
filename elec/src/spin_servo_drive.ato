@@ -1,6 +1,12 @@
 #ato view --root-file servo_drive.ato --root-node servo_drive.ato/Servo_Drive
 
-import Resistor from "std/resistor.ato"
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
+
+# FIXME: this is a hack that won't stick around for long - not recommended
+Resistor.footprint = "Resistor_SMD:R_0402_1005Metric"
+Capacitor.footprint = "Capacitor_SMD:C_0402_1005Metric"
+
 import DRV8300PowerStage from "DRV8300PowerStage.ato"
 import stm32_kit from "micro/stm32.ato"
 import BuckReg12V from "buck_reg.ato"

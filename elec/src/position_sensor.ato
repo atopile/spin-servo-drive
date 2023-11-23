@@ -1,5 +1,5 @@
-import Resistor from "std/resistor.ato"
-import Capacitor from "std/capacitor.ato"
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
 import ma730 from "ma730.ato"
 import SPI from "generics.ato"
 import Power from "generics.ato"

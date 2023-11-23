@@ -9,3 +9,4 @@ builds:
       - designators
       - netlist-kicad6
       - bom-jlcpcb
+    kicad-project-dir: ../layouts/default/

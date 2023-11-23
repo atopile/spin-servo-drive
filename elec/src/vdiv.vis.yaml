@@ -24,9 +24,9 @@ Vdiv:
   child_attrs:
     r_top:
       position:
-        x: 50
-        y: 50
+        x: 540
+        y: 165
     r_bt:
       position:
-        x: 50
-        y: 135
+        x: 465
+        y: 165
