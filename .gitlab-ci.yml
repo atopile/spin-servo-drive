@@ -3,6 +3,9 @@ stages:
   - build
   - store
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 check-ato:
   stage: check
   image: registry.atopile.io/atopile/atopile/ci:latest
