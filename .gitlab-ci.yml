@@ -5,7 +5,7 @@ stages:
 
 check-ato:
   stage: check
-  image: registry.atopile.io/atopile/atopile:latest
+  image: registry.atopile.io/atopile/atopile/ci:latest
   script:
     - ato check elec/src
 
@@ -34,7 +34,7 @@ build-gerbers-default:
 
 build-ato-default:
   stage: build
-  image: registry.atopile.io/atopile/atopile:latest
+  image: registry.atopile.io/atopile/atopile/ci:latest
   script:
     - ato build elec/src
   artifacts:
