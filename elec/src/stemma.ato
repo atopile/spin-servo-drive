@@ -1,4 +1,4 @@
-import Resistor from "std/resistor.ato"
+import Resistor from "modules/generics.ato"
 import Power from "generics.ato"
 import I2C from "generics.ato"
 

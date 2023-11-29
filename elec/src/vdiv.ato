@@ -1,6 +1,6 @@
 #ato view --root-file vdiv.ato --root-node vdiv.ato/Vdiv
 
-import Resistor from "std/resistor.ato"
+import Resistor from "modules/generics.ato"
 
 module Vdiv:
     signal input

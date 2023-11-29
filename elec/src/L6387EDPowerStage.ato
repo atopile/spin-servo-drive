@@ -1,7 +1,7 @@
 # ato view elec/src/L6387EDPowerStage.ato:L6387EDPowerStage
 
-import Resistor from "std/resistor.ato"
-import Capacitor from "std/capacitor.ato"
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
 
 import L6387ED from "L6387ED.ato"
 

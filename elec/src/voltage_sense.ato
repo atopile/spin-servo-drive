@@ -1,5 +1,5 @@
 import VdivFiltered from "vdiv_filter.ato"
-import Capacitor from "std/capacitor.ato"
+import Capacitor from "modules/generics.ato"
 
 module VoltageSense:
     signal in

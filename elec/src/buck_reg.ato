@@ -1,5 +1,5 @@
-import Resistor from "std/resistor.ato"
-import Capacitor from "std/capacitor.ato"
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
 import Vdiv from "vdiv.ato"
 import LV2842XLVDDCR from "LV2842XLVDDCR.ato"
 import CPY201212T_100M_NP from "CPY201212T_100M_NP.ato"

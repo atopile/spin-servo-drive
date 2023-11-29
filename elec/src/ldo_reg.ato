@@ -2,7 +2,7 @@
 # easyeda2kicad --full --lcsc_id=C443854 --output ./lib/lib
 # ato view --root-file adjustable_ldo.ato --root-node adjustable_ldo.ato:adjustable_ldo
 
-import Capacitor from "std/capacitor.ato"
+import Capacitor from "modules/generics.ato"
 import Vdiv from "vdiv.ato"
 import Power from "generics.ato"
 

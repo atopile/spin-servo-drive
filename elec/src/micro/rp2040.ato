@@ -1,6 +1,6 @@
 import Oscillator from "oscillator.ato"
-import Resistor from "std/resistor.ato"
-import Capacitor from "std/capacitor.ato"
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
 # Switch
 import TS_1101_C_W from "TS_1101_C_W.ato"
 # Flash

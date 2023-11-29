@@ -1,5 +1,5 @@
 import KT_0603R from "KT-0603R.ato"
-import Resistor from "std/resistor.ato"
+import Resistor from "modules/generics.ato"
 
 module indicator_led:
     #LED

@@ -1,4 +1,4 @@
-import Capacitor from "std/capacitor.ato"
+import Capacitor from "modules/generics.ato"
 
 import SpinServoDrive from "spin_servo_drive.ato"
 import BuckReg12V from "buck_reg.ato"
