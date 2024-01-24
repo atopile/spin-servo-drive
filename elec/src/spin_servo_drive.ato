@@ -3,6 +3,12 @@ import Capacitor from "generics/capacitors.ato"
 
 import STM32G431CBU6_kit from "stm32g4/stm32g4.ato"
 
+# connectors
+import XT30 from "connectors/xt30.ato"
+
+# interfaces
+import Power from "generics/interfaces.ato"
+
 # # FIXME: this is a hack that won't stick around for long - not recommended
 # Resistor.footprint = "Resistor_SMD:R_0402_1005Metric"
 # Capacitor.footprint = "Capacitor_SMD:C_0402_1005Metric"
@@ -27,23 +33,23 @@ import STM32G431CBU6_kit from "stm32g4/stm32g4.ato"
 # import StemmaQtConnector from "stemma.ato"
 # import Power from "generics.ato"
 
-# module SpinServoDrive:
-#     power_3v3 = new Power
-#     power_5v = new Power
-#     power_gate = new Power
-#     power_vin = new Power
+module SpinServoDrive:
+    power_3v3 = new Power
+    power_5v = new Power
+    power_gate = new Power
+    power_vin = new Power
 
-#     # Common ground for all power rails
-#     signal gnd ~ power_3v3.gnd
-#     gnd ~ power_5v.gnd
-#     gnd ~ power_gate.gnd
-#     gnd ~ power_vin.gnd
+    # Common ground for all power rails
+    signal gnd ~ power_3v3.gnd
+    gnd ~ power_5v.gnd
+    gnd ~ power_gate.gnd
+    gnd ~ power_vin.gnd
 
-#     # Power input connector
-#     xt30 = new XT30
-#     xt30.power ~ power_vin
-#     xt30_2 = new XT30
-#     xt30_2.power ~ power_vin
+    # Power input connector
+    xt30 = new XT30
+    xt30.power ~ power_vin
+    xt30_2 = new XT30
+    xt30_2.power ~ power_vin
 
 #     # Micro
 #     micro = new stm32_kit
