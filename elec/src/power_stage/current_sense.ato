@@ -1,9 +1,9 @@
 #ato view --root-file current_sense.ato --root-node current_sense.ato:CurrentSense
 
 import LMV321IDBVR from "LMV321IDBVR.ato"
-import Resistor from "modules/generics.ato"
-import Capacitor from "modules/generics.ato"
-import Vdiv from "vdiv.ato"
+import Resistor from "generics/resistors.ato"
+import Capacitor from "generics/capacitor.ato"
+import Vdiv from "generics/vdivs.ato"
 import LowPass  from "low_pass.ato"
 import nettie_250u from "nettie.ato"
 
@@ -25,8 +25,8 @@ module CurrentSense:
     # Use C2681063 for 2010 1.0W
     # or C128540 for 0805 0.5W (3x overload rated, probably okay..)
     shunt = new Resistor
-    shunt.value = "3mOhm"
-    shunt.footprint = "Resistor_SMD:R_0805_2012Metric"
+    shunt.value = 3mohm +/- 1%
+    shunt.footprint = "R0805"
     i_in ~ shunt.p1
     shunt.p2 ~ i_out
     nt_p = new nettie_250u
@@ -42,27 +42,27 @@ module CurrentSense:
     feedback_div.input ~ nt_n.p1
     feedback_div.gnd ~ opamp.out
     feedback_div.output ~ opamp.in_n
-    feedback_div.r_top.value = "1k"
-    feedback_div.r_bt.value = "45k"
+    feedback_div.r_top.value = 1kohms +/- 1%
+    feedback_div.r_bt.value = 45kohms +/- 1%
 
     bias_div = new Vdiv
     bias_div.input ~ nt_p.p1
     bias_div.gnd ~ v_ref
     bias_div.output ~ opamp.in_p
-    bias_div.r_top.value = "1k"
-    bias_div.r_bt.value = "45k"
+    bias_div.r_top.value = 1kohms +/- 1%
+    bias_div.r_bt.value = 45kohms +/- 1%
 
     # output filter - cutoff at 1.3MHz
     output_filter = new LowPass
     output_filter.in ~ opamp.out
     output_filter.out ~ out
     output_filter.gnd ~ gnd
-    output_filter.c.value = "2200pf"
-    output_filter.r.value = "56R"
+    output_filter.c.value = 2200pF +/- 5%
+    output_filter.r.value = 55ohm +/- 1%
 
     # bypass cap
     bypass = new Capacitor
-    bypass.value = "100nF"
-    bypass.footprint = "Capacitor_SMD:C_0402_1005Metric"
+    bypass.value = 100nF +/- 10%
+    bypass.footprint = "C0402"
     bypass.p1 ~ vcc
     bypass.p2 ~ gnd

@@ -1,5 +1,5 @@
-import Resistor from "modules/generics.ato"
-import Capacitor from "modules/generics.ato"
+import Resistor from "generics/resistors.ato"
+import Capacitor from "generics/capacitors.ato"
 import DRV8300DRGER from "DRV8300DRGER.ato"
 import CurrentSense from "current_sense.ato"
 import VoltageReference from "voltage_reference.ato"
@@ -89,7 +89,7 @@ module DRV8300PowerStage from GenericPowerStage:
 
     # configured for 3PWM mode, high and low signals tied together, INLX inverted by tieing mode to VDD
     bldc_3pwm = new BLDC_3PWM
-    bldc_3pwm.phase_a ~ drv8300.INHA 
+    bldc_3pwm.phase_a ~ drv8300.INHA
     bldc_3pwm.phase_a ~ drv8300.INLA
     bldc_3pwm.phase_b ~ drv8300.INHB
     bldc_3pwm.phase_b ~ drv8300.INLB

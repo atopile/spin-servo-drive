@@ -1,9 +1,8 @@
 # ato view voltage_reference.ato:VoltageReference
 
 import LMV321IDBVR from "LMV321IDBVR.ato"
-import Resistor from "modules/generics.ato"
-import Capacitor from "modules/generics.ato"
-import VdivFiltered from "vdiv_filter.ato"
+import Resistor from "generics/resistors.ato"
+import Capacitor from "generics/capacitors.ato"
 import Vdiv from "vdiv.ato"
 
 module VoltageReference:
