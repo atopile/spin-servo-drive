@@ -1,6 +1,5 @@
 # LCSC part number: C2909057
-# easyeda2kicad --full --lcsc_id=C2909057 --output elec/lib/lib
-import Power from "generics.ato"
+import Power from "generics/interfaces.ato"
 
 component SK6805SIDE_S:
     # triple SMD RGB LED

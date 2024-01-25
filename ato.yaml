@@ -1,7 +1,9 @@
 ato-version: ^0.2.3
 builds:
   default:
-    entry: spin_servo_nema17.ato:SpinServoNEMA17
+    entry: spin_servo_drive.ato:SpinServoDrive
 dependencies:
 - generics^2.1.0
 - stm32g4
+- usb-connectors^v2.0.0
+- regulators^2.0.3
