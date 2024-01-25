@@ -1,6 +1,7 @@
 component DRV8300DRGER:
     footprint = "VQFN-24_L4.0-W4.0-P0.50-TL-EP2.5"
     lcsc_id = "C3655801"
+    mpn = "C3655801"
 
     # pins
     signal INLA ~ pin 1

@@ -1,8 +1,5 @@
 # LCSC part number: C161798
-# easyeda2kicad --full --lcsc_id=C161798 --output elec/lib/lib
 # https://datasheet.lcsc.com/szlcsc/Monolithic-Power-Systems-MPS-MA730GQ-Z_C161798.pdf
-
-
 
 component ma730:
     signal ssd ~ pin 1
@@ -23,9 +20,7 @@ component ma730:
     signal mgh ~ pin 16
     signal ep ~ pin 17
 
-
+    mpn = "C161798"
 
     footprint = "lib:VQFN-16_L3.0-W3.0-P0.50-BL-EP1.6"
-
-
 

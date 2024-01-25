@@ -1,5 +1,3 @@
-# ato view elec/src/L6387EDPowerStage.ato:L6387EDPowerStage
-
 import Resistor from "modules/generics.ato"
 import Capacitor from "modules/generics.ato"
 
@@ -14,13 +12,13 @@ import VoltageReference from "voltage_reference.ato"
 
 
 component _GateILimResistor from Resistor:
-    value = "5ohm"
-    footprint = "Resistor_SMD:R_0603_1608Metric"
+    value = 5ohm +/- 5%
+    footprint = "R0603"
 
 
 component _BootstrapCap from Capacitor:
-    value = "0.1uF"
-    footprint = "Capacitor_SMD:C_0402_1005Metric"
+    value = 100nF +/- 20%
+    footprint = "C0402"
 
 
 # private half-bridge type that includes everything we need to repeat
@@ -34,8 +32,8 @@ module _Phase:
     signal gnd
 
     _input_bypass = new Capacitor
-    _input_bypass.value = "4.7uF"
-    _input_bypass.footprint = "Capacitor_SMD:C_0805_2012Metric"
+    _input_bypass.value = 4.7uF +/- 20%
+    _input_bypass.footprint = "C0805"
     _input_bypass.p1 ~ vcc_pwr
     _input_bypass.p2 ~ gnd
 

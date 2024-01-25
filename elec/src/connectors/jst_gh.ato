@@ -1,0 +1,19 @@
+import CAN from "generics/interfaces.ato"
+import Power from "generics/interfaces.ato"
+
+component Connector4Pin:
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+
+component JSTGH4Pin from Connector4Pin:
+    can = new CAN
+    can.CANH ~ p2
+    can.CANL ~ p3
+
+    power = new Power
+    power.vcc ~ p1
+    power.gnd ~ p4
+
+    footprint = "lib:CONN-SMD_4P-P1.25_SM04B-GHS-TB-LF-SN"

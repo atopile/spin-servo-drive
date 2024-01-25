@@ -8,11 +8,11 @@ import GenericPowerStage from "generic_power_stage.ato"
 import GenericHalfBridge from "generic_power_stage.ato"
 import BulkCapacitance from "generic_power_stage.ato"
 import DMT3009LDT_7 from "DMT3009LDT_7.ato"
-import BLDC_3PWM from "generics.ato"
-import Power from "generics.ato"
+import BLDC_3PWM from "generics/interfaces.ato"
+import Power from "generics/interfaces.ato"
 
 component _Resistor0402 from Resistor:
-    footprint = "Resistor_SMD:R_0402_1005Metric"
+    footprint = "R0402"
 
 component _GateResistor from _Resistor0402:
     # these resistors are used to limit gate current
@@ -20,11 +20,11 @@ component _GateResistor from _Resistor0402:
     # If we're running 8V vcc_gate, and have a 750mA gate drive current limit
     # we should have a 8/0.75 = 10.6 ohm resistor
     # There's also ~1Ohm of resistance on the FETs themselves, so I'm rounding down to 10Ohm
-    value = "10Ohm"
+    value = 10ohm +/- 5%
 
 component _BootstrapCap from Capacitor:
-    value = "1uF"
-    footprint = "Capacitor_SMD:C_0402_1005Metric"
+    value = 1uF +/- 20%
+    footprint = "C0402"
 
 # private half-bridge type that includes everything we need to repeat
 module _Phase:
@@ -142,7 +142,7 @@ module DRV8300PowerStage from GenericPowerStage:
 
     # deadtime config
     r_dt = new _Resistor0402
-    r_dt.value = "40.2kOhm"
+    r_dt.value = 40.2kohm +/- 1%
     r_dt.p1 ~ drv8300.DT
     r_dt.p2 ~ gnd
 

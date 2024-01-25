@@ -7,9 +7,5 @@ component LMV321IDBVR:
 
     footprint = "Package_TO_SOT_SMD:SOT-23-5"
     designator_prefix = "U"
-
-    vcc.visualizer.location = "top"
-    gnd.visualizer.location = "bottom"
-    out.visualizer.location = "right"
-    in_p.visualizer.location = "left"
-    in_n.visualizer.location = "left"
+    lcsc_id = "C7972"
+    mpn = "C7972"

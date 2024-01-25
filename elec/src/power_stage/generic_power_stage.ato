@@ -7,7 +7,7 @@ module BulkCapacitance:
     signal vcc
     signal gnd
 
-module GenericHalfBridge:
+component GenericHalfBridge:
     signal vcc_pwr
     signal high_gate
     signal out

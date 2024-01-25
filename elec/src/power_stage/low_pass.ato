@@ -1,18 +1,17 @@
 # this is a comment, it should be safely ignored
-import Resistor from "modules/generics.ato"
-import Capacitor from "modules/generics.ato"
+import Resistor from "generics/resistors.ato"
+import Capacitor from "generics/capacitors.ato"
 
 module LowPass:
     signal in
     signal out
     signal gnd
 
-    in.visualizer.location = "left"
-    out.visualizer.location = "right"
-    gnd.visualizer.location = "bottom"
-
     r = new Resistor
     c = new Capacitor
+
+    r.footprint = "R0402"
+    c.footprint = "R0402"
 
     in ~ r.p1
     r.p2 ~ c.p1

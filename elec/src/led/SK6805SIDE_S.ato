@@ -3,6 +3,9 @@ import Power from "generics/interfaces.ato"
 
 component SK6805SIDE_S:
     # triple SMD RGB LED
+    mpn = "C2909057"
+    lcsc_id = "C2909057"
+
     signal vcc ~ pin 1
     signal gnd ~ pin 2
     signal data_out ~ pin 3

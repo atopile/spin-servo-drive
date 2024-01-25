@@ -1,5 +1,4 @@
 # JLC PN: C155503
-# easyeda2kicad --full --lcsc_id=C155503 --output ./lib/lib
 
 import GenericHalfBridge from "generic_power_stage.ato"
 
@@ -15,5 +14,6 @@ component DMT3009LDT_7 from GenericHalfBridge:
     gnd ~ pin 7
     out ~ pin 9
 
-    footprint = "lib:V-DFN3030-8K_L3.0-W3.0-P0.65-BL"
+    footprint = "V-DFN3030-8K_L3.0-W3.0-P0.65-BL"
     lcsc_id = "C155503"
+    mpn = "C155503"

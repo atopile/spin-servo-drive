@@ -1,18 +1,35 @@
-import Capacitor from "modules/generics.ato"
+import Capacitor from "generics/capacitors.ato"
 
 import SpinServoDrive from "spin_servo_drive.ato"
-import BuckReg12V from "buck_reg.ato"
-import BulkCapacitance from "generic_power_stage.ato"
-import DRV8300PowerStage from "DRV8300PowerStage.ato"
+import BulkCapacitance from "power_stage/generic_power_stage.ato"
 
-import DMT3009LDT_7 from "DMT3009LDT_7.ato"
+import Button90Degree from "generics/buttons.ato"
+import ButtonSKRPACE010 from "generics/buttons.ato"
 
-import Button90Degree from "button.ato"
-import ButtonSKRPACE010 from "button.ato"
+module SpinServoNEMA17 from SpinServoDrive:
+    # configure the power stage
+    power_stage.c_in -> _BulkCapacitance
+
+    # configure the gate drive supply
+    # add phase outputs
+    pad_out_a = new PowerPad
+    pad_out_b = new PowerPad
+    pad_out_c = new PowerPad
+
+    power_stage.out_a ~ pad_out_a.p1
+    power_stage.out_b ~ pad_out_b.p1
+    power_stage.out_c ~ pad_out_c.p1
+
+    # Configure the enum button
+    switch -> Button90Degree
+
+component PowerPad:
+    pin p1
+    footprint = "lib:OutputPad"
 
 component _PowerCap from Capacitor:
-    footprint = "Capacitor_SMD:C_0805_2012Metric"
-    value = "10uF"
+    footprint = "C0805"
+    value = 10uF +/- 20%
 
 module _BulkCapacitance from BulkCapacitance:
     c01 = new _PowerCap
@@ -90,25 +107,4 @@ module _BulkCapacitance from BulkCapacitance:
     c19 = new _PowerCap
     c19.p1 ~ vcc
     c19.p2 ~ gnd
-
-component PowerPad:
-    pin p1
-    footprint = "lib:OutputPad"
-
-module SpinServoNEMA17 from SpinServoDrive:
-    # configure the power stage
-    power_stage.c_in -> _BulkCapacitance
-
-    # configure the gate drive supply
-    # add phase outputs
-    pad_out_a = new PowerPad
-    pad_out_b = new PowerPad
-    pad_out_c = new PowerPad
-
-    power_stage.out_a ~ pad_out_a.p1
-    power_stage.out_b ~ pad_out_b.p1
-    power_stage.out_c ~ pad_out_c.p1
-
-    # Configure the enum button
-    switch -> Button90Degree
 

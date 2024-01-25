@@ -1,6 +1,6 @@
-import Resistor from "modules/generics.ato"
-import Power from "generics.ato"
-import I2C from "generics.ato"
+import Resistor from "generics/resistors.ato"
+import Power from "generics/interfaces.ato"
+import I2C from "generics/interfaces.ato"
 
 component StemmaQtConnector:
     signal gnd ~ pin p1
@@ -16,7 +16,9 @@ component StemmaQtConnector:
     power.vcc ~ vcc
     power.gnd ~ gnd
 
-    footprint = "lib:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN"
+    footprint = "CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN"
+    lcsc_id = "C160404"
+    mpn = "C160404"
 
 
 component BSS138:
@@ -26,7 +28,7 @@ component BSS138:
 
     mfg_part_number = "BSS138"
 
-    footprint = "lib:SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR"
+    footprint = "SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR"
 
 
 module I2CLevelShifter:
@@ -44,7 +46,7 @@ module I2CLevelShifter:
 
     pullup_internal = new Resistor
     pullup_internal.value = "10k"
-    pullup_internal.footprint = "Resistor_SMD:R_0402_1005Metric"
+    pullup_internal.footprint = "R0402"
     pullup_internal.p1 ~ vcc_3v3
     pullup_internal.p2 ~ internal
 
