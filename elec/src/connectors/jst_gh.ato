@@ -17,3 +17,5 @@ component JSTGH4Pin from Connector4Pin:
     power.gnd ~ p4
 
     footprint = "lib:CONN-SMD_4P-P1.25_SM04B-GHS-TB-LF-SN"
+    mpn = "C189895"
+    designator_prefix = "J"

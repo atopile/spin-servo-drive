@@ -83,7 +83,7 @@ module SpinServoDrive:
 
     # Temperature sensors
     temp_sensor_fets = new VDiv
-    temp_sensor_fets.r_top.value = 10kohm +/- 1%
+    temp_sensor_fets.r_top.value = 10kohm +/- 10%
     temp_sensor_fets.r_bottom.value = "10k_NTC"
     temp_sensor_fets.r_top.footprint = "R0402"
     temp_sensor_fets.r_bottom.footprint = "R0402"

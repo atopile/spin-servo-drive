@@ -26,6 +26,7 @@ module SpinServoNEMA17 from SpinServoDrive:
 component PowerPad:
     pin p1
     footprint = "lib:OutputPad"
+    mpn = "OutputPad"
 
 component _PowerCap from Capacitor:
     footprint = "C0805"

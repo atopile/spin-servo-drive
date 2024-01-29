@@ -19,6 +19,7 @@ component StemmaQtConnector:
     footprint = "CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN"
     lcsc_id = "C160404"
     mpn = "C160404"
+    designator_prefix = "J"
 
 
 component BSS138:

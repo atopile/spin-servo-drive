@@ -20,7 +20,7 @@ component _GateResistor from _Resistor0402:
     # If we're running 8V vcc_gate, and have a 750mA gate drive current limit
     # we should have a 8/0.75 = 10.6 ohm resistor
     # There's also ~1Ohm of resistance on the FETs themselves, so I'm rounding down to 10Ohm
-    value = 10ohm +/- 5%
+    value = 10ohm +/- 10%
 
 component _BootstrapCap from Capacitor:
     value = 1uF +/- 20%
@@ -142,7 +142,7 @@ module DRV8300PowerStage from GenericPowerStage:
 
     # deadtime config
     r_dt = new _Resistor0402
-    r_dt.value = 40.2kohm +/- 1%
+    r_dt.value = 40.2kohm +/- 10%
     r_dt.p1 ~ drv8300.DT
     r_dt.p2 ~ gnd
 

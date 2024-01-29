@@ -11,9 +11,9 @@ module VoltageSense:
     vdiv.out ~ out
     vdiv.bottom ~ gnd
 
-    vdiv.r_top.value = 10kohm +/- 1%
+    vdiv.r_top.value = 10kohm +/- 10%
     vdiv.r_top.footprint = "R0402"
-    vdiv.r_bottom.value = 10kohm +/- 1%
+    vdiv.r_bottom.value = 10kohm +/- 10%
     vdiv.r_bottom.footprint = "R0402"
 
     # RC filter off the top resistor and this cap

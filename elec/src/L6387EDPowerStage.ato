@@ -11,7 +11,7 @@ import CurrentSense from "current_sense.ato"
 import VoltageReference from "voltage_reference.ato"
 
 component _GateILimResistor from Resistor:
-    value = 5ohm +/- 5%
+    value = 5ohm +/- 10%
     footprint = "R0603"
 
 

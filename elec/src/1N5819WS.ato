@@ -7,3 +7,4 @@ component DIODE_1N5819WS:
     signal cathode ~ pin 1
 
     footprint="SOD-323_L1.8-W1.3-LS2.5-RD"
+    mpn = "C191023"
