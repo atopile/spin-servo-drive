@@ -10,7 +10,6 @@ import PhaseControl from "generic_power_stage.ato"
 import CurrentSense from "current_sense.ato"
 import VoltageReference from "voltage_reference.ato"
 
-
 component _GateILimResistor from Resistor:
     value = 5ohm +/- 5%
     footprint = "R0603"
@@ -20,8 +19,6 @@ component _BootstrapCap from Capacitor:
     value = 100nF +/- 20%
     footprint = "C0402"
 
-
-# private half-bridge type that includes everything we need to repeat
 module _Phase:
     signal vcc_pwr
     signal vcc_gate
