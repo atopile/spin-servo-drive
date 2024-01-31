@@ -11,3 +11,4 @@ component XT30:
     footprint = "CONN-TH_XT30PW-M"
     lcsc_id = "C431092"
     mpn = "C431092"
+    designator_prefix = "J"

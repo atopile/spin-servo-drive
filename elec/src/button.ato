@@ -30,3 +30,5 @@ component Button90Degree from NoButton:
     out ~ pin 2
 
     footprint = "lib:KEY-SMD_SKTDLDE010"
+    mpn = "C115365"
+    
