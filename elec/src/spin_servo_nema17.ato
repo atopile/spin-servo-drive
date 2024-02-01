@@ -5,9 +5,11 @@ import BulkCapacitance from "power_stage/generic_power_stage.ato"
 
 import Button90Degree from "generics/buttons.ato"
 import ButtonSKRPACE010 from "generics/buttons.ato"
+import Resistor from "generics/resistors.ato"
 
 module SpinServoNEMA17 from SpinServoDrive:
     # configure the power stage
+
     power_stage.c_in -> _BulkCapacitance
 
     # configure the gate drive supply
