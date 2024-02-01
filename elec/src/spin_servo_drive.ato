@@ -1,7 +1,7 @@
 import Resistor from "generics/resistors.ato"
 import Capacitor from "generics/capacitors.ato"
 
-import STM32G431CBU6_kit from "stm32g4/stm32g4.ato"
+import STM32G431CBU6_kit from "stm32g4/STM32G4.ato"
 import VDiv from "generics/vdivs.ato"
 import LDOReg5V from "regulators/regulators.ato"
 import LDOReg3V3 from "regulators/regulators.ato"
