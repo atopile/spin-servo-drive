@@ -1,0 +1,40 @@
+import Resistor from "generics/resistors.ato"
+import Capacitor from "generics/capacitors.ato"
+import ma730 from "ma730.ato"
+import SPI from "generics/interfaces.ato"
+import Power from "generics/interfaces.ato"
+
+module PositionSensor:
+    sensor = new ma730
+    signal vin
+    signal gnd
+    signal miso
+    signal mosi
+    signal sck
+    signal cs
+
+    cap_3v3 = new Capacitor
+    cap_3v3.value = 1uF +/- 10%
+    cap_3v3.footprint = "C0402"
+
+    vin ~ sensor.vdd
+    vin ~ cap_3v3.p1
+    gnd ~ sensor.gnd
+    gnd ~ sensor.ep
+    gnd ~ sensor.test
+    gnd ~ cap_3v3.p2
+
+    miso ~ sensor.miso
+    mosi ~ sensor.mosi
+    sck ~ sensor.sclk
+    cs ~ sensor.cs
+
+    power = new Power
+    power.gnd ~ gnd
+    power.vcc ~ vin
+
+    spi = new SPI
+    spi.mosi ~ mosi
+    spi.miso ~ miso
+    spi.sck ~ sck
+    spi.cs ~ cs

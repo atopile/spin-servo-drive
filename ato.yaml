@@ -1,7 +1,9 @@
-ato-version: ^0.0.22
-paths:
-  src: elec/src
-  kicad-project: elec/layouts/${selected_build_name}/
+ato-version: ^0.2.3
 builds:
   default:
-    entry: spin_servo_nema17.ato:SpinServoNEMA17
+    entry: elec/src/spin_servo_nema17.ato:SpinServoNEMA17
+dependencies:
+- generics^2.2.0
+- stm32g4@tim/add_i2c_spi
+- usb-connectors^v2.0.0
+- regulators^2.0.3

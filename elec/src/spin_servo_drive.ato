@@ -1,31 +1,37 @@
-#ato view --root-file servo_drive.ato --root-node servo_drive.ato/Servo_Drive
+import Resistor from "generics/resistors.ato"
+import Capacitor from "generics/capacitors.ato"
 
-import Resistor from "modules/generics.ato"
-import Capacitor from "modules/generics.ato"
-
-# FIXME: this is a hack that won't stick around for long - not recommended
-Resistor.footprint = "Resistor_SMD:R_0402_1005Metric"
-Capacitor.footprint = "Capacitor_SMD:C_0402_1005Metric"
-
-import DRV8300PowerStage from "DRV8300PowerStage.ato"
-import stm32_kit from "micro/stm32.ato"
-import BuckReg12V from "buck_reg.ato"
-import LDOReg3V3 from "ldo_reg.ato"
-import LDOReg5V from "ldo_reg.ato"
-import Vdiv from "vdiv.ato"
-import DMT3009LDT_7 from "DMT3009LDT_7.ato"
+import STM32G431CBU6_kit from "stm32g4/STM32G4.ato"
+import VDiv from "generics/vdivs.ato"
+import LDOReg5V from "regulators/regulators.ato"
+import LDOReg3V3 from "regulators/regulators.ato"
+import DRV8300PowerStage from "power_stage/drv8300_power_stage.ato"
 import VoltageSense from "voltage_sense.ato"
-import PositionSensor from "position_sensor.ato"
-import Usbc from "usbc.ato"
+import PositionSensor from "position_sensor/position_sensor.ato"
 import DIODE_1N5819WS from "1N5819WS.ato"
-import SK6805SIDE_S from "SK6805SIDE_S.ato"
-import XT30 from "xt30.ato"
-import NoButton from "button.ato"
-import LTC4311 from "stemma.ato"
-import JSTGH4Pin from "jst_gh.ato"
-import indicator_led from "indicator_led.ato"
-import StemmaQtConnector from "stemma.ato"
-import Power from "generics.ato"
+# connectors
+import XT30 from "connectors/xt30.ato"
+import USBCConn from "usb-connectors/usb-connectors.ato"
+import JSTGH4Pin from "connectors/jst_gh.ato"
+import StemmaQtConnector from "connectors/stemma.ato"
+
+# buttons
+import NoButton from "generics/buttons.ato"
+
+# led
+import SK6805SIDE_S from "led/SK6805SIDE_S.ato"
+
+# interfaces
+import Power from "generics/interfaces.ato"
+import BLDC_3PWM from "generics/interfaces.ato"
+# import BuckReg12V from "buck_reg.ato"
+
+# import Usbc from "usbc.ato"
+# import SK6805SIDE_S from "SK6805SIDE_S.ato"
+
+# import indicator_led from "indicator_led.ato"
+
+# import Power from "generics.ato"
 
 module SpinServoDrive:
     power_3v3 = new Power
@@ -46,7 +52,7 @@ module SpinServoDrive:
     xt30_2.power ~ power_vin
 
     # Micro
-    micro = new stm32_kit
+    micro = new MicroWithSpinInterfaces
     micro.power ~ power_3v3
 
     # LED
@@ -60,40 +66,37 @@ module SpinServoDrive:
     # Enumeration switch
     switch = new NoButton
     switch_pulldown = new Resistor
-    switch_pulldown.value = "10k"
+    switch_pulldown.value = 10kohm +/- 10%
+    switch_pulldown.footprint = "R0402"
     switch_pulldown.p1 ~ gnd
     switch_pulldown.p2 ~ switch.in
     switch.out ~ power_3v3.vcc
     switch.in ~ micro.enum_sw
 
     # USB-C
-    usbc = new Usbc
-    r_cc1 = new Resistor
-    r_cc1.value = "5.1k"
-    r_cc2 = new Resistor
-    r_cc2.value = "5.1k"
-    usbc.usb ~ micro.usb
-    usbc.power ~ power_5v
+    usbc = new USBCConn
+    diode = new DIODE_1N5819WS
 
-    # CC1 and CC2 so it works with USB C to USB C cables
-    usbc.cc1 ~ r_cc1.p1
-    usbc.cc2 ~ r_cc2.p1
-    r_cc1.p2 ~ gnd
-    r_cc2.p2 ~ gnd
+    diode.anode ~ usbc.power.vcc
+    power_5v.vcc ~ diode.cathode
+    usbc.usb2 ~ micro.usb
 
     # Temperature sensors
-    temp_sensor_fets = new Vdiv
-    temp_sensor_fets.r_top.value = "10k"
-    temp_sensor_fets.r_bt.value = "10k_NTC"
-    temp_sensor_fets.input ~ power_3v3.vcc
-    signal temp_sense ~ temp_sensor_fets.output
-    temp_sensor_fets.output ~ micro.temp_fet
-    temp_sensor_fets.gnd ~ gnd
+    temp_sensor_fets = new VDiv
+    temp_sensor_fets.r_top.value = 10kohm +/- 10%
+    temp_sensor_fets.r_bottom.value = "10k_NTC"
+    temp_sensor_fets.r_top.footprint = "R0402"
+    temp_sensor_fets.r_bottom.footprint = "R0402"
+    temp_sensor_fets.r_bottom.mpn = "C13564"
+    temp_sensor_fets.top ~ power_3v3.vcc
+    signal temp_sense ~ temp_sensor_fets.out
+    temp_sensor_fets.out ~ micro.temp_fet
+    temp_sensor_fets.bottom ~ gnd
 
-    # gate driver regulator
-    gate_reg = new BuckReg12V
-    gate_reg.power_in ~ power_vin
-    gate_reg.power_out ~ power_gate
+#     # gate driver regulator
+#     gate_reg = new BuckReg12V
+#     gate_reg.power_in ~ power_vin
+#     gate_reg.power_out ~ power_gate
 
     # 5v rail LDO - powers micro
     ldo_5v = new LDOReg5V
@@ -124,7 +127,7 @@ module SpinServoDrive:
     voltage_input_vdiv.in ~ xt30.vin
     voltage_input_vdiv.gnd ~ gnd
     voltage_input_vdiv.out ~ micro.vin_sense
-    voltage_input_vdiv.c_filter.value = "100nF"
+    voltage_input_vdiv.c_filter.value = 100nF +/- 10%
 
     # Position sensor - SPI interface
     position_sensor = new PositionSensor
@@ -133,13 +136,44 @@ module SpinServoDrive:
 
     # Following the PixHawk can pinout standard
     canbus_conn_1 = new JSTGH4Pin
-    canbus_conn_1.isocan ~ micro.isocan
+    canbus_conn_1.can ~ micro.can
     canbus_conn_1.power ~ power_5v
     canbus_conn_2 = new JSTGH4Pin
-    canbus_conn_2.isocan ~ micro.isocan
+    canbus_conn_2.can ~ micro.can
     canbus_conn_2.power ~ power_5v
 
     # Stemma QT connector
     stemma = new StemmaQtConnector
     stemma.i2c ~ micro.i2c
     stemma.power ~ power_3v3
+
+
+module MicroWithSpinInterfaces from STM32G431CBU6_kit:
+    # r_usb_pullup = new Resistor
+    # r_usb_pullup.value = "1k5"
+
+    # maybe it should look like this: usb.dp ~ resistor1 ~ micro.PA12
+    # micro.PA12 ~ r_usb_pullup.p1
+    # power.vcc ~ r_usb_pullup.p2
+
+    # led interface
+    signal led_pixel ~ micro.PA7
+
+    # switch
+    signal enum_sw ~ micro.PA5
+
+    # fet temp
+    signal temp_fet ~ micro.PA9
+
+    signal vin_sense ~ micro.PB12
+
+    bldc_3pwm = new BLDC_3PWM
+    bldc_3pwm.phase_a ~ micro.PA0
+    bldc_3pwm.phase_b ~ micro.PA1
+    bldc_3pwm.phase_c ~ micro.PA2
+    bldc_3pwm.enable ~ micro.PA3
+
+    # Current sense
+    signal a_isense ~ micro.PB0
+    signal b_isense ~ micro.PB1
+    signal c_isense ~ micro.PB2
