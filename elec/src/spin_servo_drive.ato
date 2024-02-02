@@ -63,13 +63,8 @@ module SpinServoDrive:
     led2.power ~ power_5v
     led2.data_in ~ led1.data_out
 
-    # Enumeration switch
+    # Enumeration switch - pulldown resistor default from module
     switch = new NoButton
-    switch_pulldown = new Resistor
-    switch_pulldown.value = 10kohm +/- 10%
-    switch_pulldown.footprint = "R0402"
-    switch_pulldown.p1 ~ gnd
-    switch_pulldown.p2 ~ switch.in
     switch.out ~ power_3v3.vcc
     switch.in ~ micro.enum_sw
 
@@ -149,18 +144,11 @@ module SpinServoDrive:
 
 
 module MicroWithSpinInterfaces from STM32G431CBU6_kit:
-    # r_usb_pullup = new Resistor
-    # r_usb_pullup.value = "1k5"
-
-    # maybe it should look like this: usb.dp ~ resistor1 ~ micro.PA12
-    # micro.PA12 ~ r_usb_pullup.p1
-    # power.vcc ~ r_usb_pullup.p2
-
     # led interface
     signal led_pixel ~ micro.PA7
 
-    # switch
-    signal enum_sw ~ micro.PA5
+    # switch - used for programming and enumeration, pullup for programming
+    signal enum_sw ~ micro.PB8_BOOT0
 
     # fet temp
     signal temp_fet ~ micro.PA9
@@ -176,4 +164,5 @@ module MicroWithSpinInterfaces from STM32G431CBU6_kit:
     # Current sense
     signal a_isense ~ micro.PB0
     signal b_isense ~ micro.PB1
-    signal c_isense ~ micro.PB2
+    signal c_isense ~ micro.PB12
+

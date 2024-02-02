@@ -236,7 +236,7 @@
     "last_paths": {
       "gencad": "",
       "idf": "",
-      "netlist": "../../../build/default/spin_servo_nema17.net",
+      "netlist": "../../../build/updated_default.net",
       "specctra_dsn": "",
       "step": "",
       "vrml": ""
