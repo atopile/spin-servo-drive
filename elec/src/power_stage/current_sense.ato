@@ -69,7 +69,7 @@ module CurrentSense:
 
     # bypass cap
     bypass = new Capacitor
-    bypass.value = 100nF +/- 10%
+    bypass.value = 100nF +/- 20%
     bypass.footprint = "C0402"
     bypass.p1 ~ vcc
     bypass.p2 ~ gnd

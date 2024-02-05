@@ -1,7 +1,7 @@
 import Resistor from "generics/resistors.ato"
 import Capacitor from "generics/capacitors.ato"
 
-import STM32G431CBU6_kit from "stm32g4/stm32g4.ato"
+import STM32G431CBU6_kit from "stm32g4/STM32G4.ato"
 import VDiv from "generics/vdivs.ato"
 import LDOReg5V from "regulators/regulators.ato"
 import LDOReg3V3 from "regulators/regulators.ato"
@@ -19,7 +19,7 @@ import StemmaQtConnector from "connectors/stemma.ato"
 import NoButton from "generics/buttons.ato"
 
 # led
-import SK6805SIDE_S from "led/sk6805side_s.ato"
+import SK6805SIDE_S from "led/SK6805SIDE_S.ato"
 
 # interfaces
 import Power from "generics/interfaces.ato"
@@ -122,7 +122,7 @@ module SpinServoDrive:
     voltage_input_vdiv.in ~ xt30.vin
     voltage_input_vdiv.gnd ~ gnd
     voltage_input_vdiv.out ~ micro.vin_sense
-    voltage_input_vdiv.c_filter.value = 100nF +/- 10%
+    voltage_input_vdiv.c_filter.value = 100nF +/- 20%
 
     # Position sensor - SPI interface
     position_sensor = new PositionSensor

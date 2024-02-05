@@ -37,7 +37,7 @@ module VoltageReference:
     bias_div.r_bottom.footprint = "R0402"
 
     c_filter = new Capacitor
-    c_filter.value = 1uF +/- 10%
+    c_filter.value = 1uF +/- 20%
     c_filter.footprint = "C0402"
     vref_unbuf ~ c_filter.p1
     gnd ~ c_filter.p2

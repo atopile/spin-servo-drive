@@ -14,7 +14,7 @@ module PositionSensor:
     signal cs
 
     cap_3v3 = new Capacitor
-    cap_3v3.value = 1uF +/- 10%
+    cap_3v3.value = 1uF +/- 20%
     cap_3v3.footprint = "C0402"
 
     vin ~ sensor.vdd

@@ -110,4 +110,3 @@ module _BulkCapacitance from BulkCapacitance:
     c19 = new _PowerCap
     c19.p1 ~ vcc
     c19.p2 ~ gnd
-
