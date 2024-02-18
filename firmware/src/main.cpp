@@ -1,38 +1,77 @@
 #include <Arduino.h>
 #include <SimpleFOC.h>
+#include <SimpleFOCDrivers.h>
+#include <Wire.h>
+
+#include <settings/stm32/STM32FlashSettingsStorage.h>
+#include <encoders/ma730/MagneticSensorMA730SSI.h>
+#include <encoders/ma730/MagneticSensorMA730.h>
+#include <comms/telemetry/SimpleTelemetry.h>
+#include <comms/telemetry/TeleplotTelemetry.h>
+#include <utilities/stm32math/STM32G4CORDICTrigFunctions.h>
+
+#define SERIAL_SPEED 115200
+
+
+// TODO USB PD
+// TODO current sense
+// TODO voltage sense?
+// TODO temperature sense?
+// TODO CAN bus
 
 // BLDC motor & driver instance
-// BLDCMotor motor = BLDCMotor(pole pair number, phase resistance (optional) );
-// BLDCMotor motor = BLDCMotor(4);
-BLDCMotor motor = BLDCMotor(4, 2.0, 300.0);
-
-// BLDCDriver3PWM driver = BLDCDriver3PWM(pwmA, pwmB, pwmC, Enable(optional));
-BLDCDriver6PWM driver = BLDCDriver6PWM(0, 1, 2, 3, 6, 7);
+BLDCMotor motor = BLDCMotor(4, 2.0f, 300.0f);
+BLDCDriver3PWM driver = BLDCDriver3PWM(PA0, PA1, PA2, PA3);
 
 //Position Sensor
-MagneticSensorI2C sensor = MagneticSensorI2C(0x36, 12, 0x0E, 4);
+MagneticSensorMA730 sensor = MagneticSensorMA730(PB11);
+
+//LowsideCurrentSense current_sense = LowsideCurrentSense(0.003, 46, PB0, PB1, PB12);
+
+// settings
+STM32FlashSettingsStorage settings = STM32FlashSettingsStorage(); // use 1 page at top of flash
 
 // instantiate the commander
 Commander command = Commander(Serial);
-void doTarget(char* cmd) { command.scalar(&motor.target, cmd); }
+void doMotor(char* cmd) { command.motor(&motor, cmd); };
+void doSave(char* cmd) { settings.saveSettings(); };
+void doLoad(char* cmd) { settings.loadSettings(); };
 
-InlineCurrentSense current_sense = InlineCurrentSense(62.0, A2, A1, A0);
-
+// telemetry
+TextIO textIO = TextIO(Serial);
+//SimpleTelemetry telemetry = SimpleTelemetry();
+TeleplotTelemetry telemetry = TeleplotTelemetry();
+void doDownsample(char* cmd) { telemetry.downsample = atoi(cmd); };
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(SERIAL_SPEED);
   while (!Serial);
-  motor.useMonitoring(Serial);
+  SimpleFOCDebug::enable(&Serial);
+  Serial.print("spin servo - firmware version ");
+  Serial.println(SPIN_SERVO_FIRMWARE_VERSION);
 
-  // Wire.setSCL(21);
-  // Wire.setSDA(20);
+  Wire.setSCL(PB8);
+  Wire.setSDA(PB9);
+  Wire.begin();
+  Wire.setClock(400000);
+
+  SPI.setMISO(PB14);
+  SPI.setMOSI(PB15);
+  SPI.setSCLK(PB13);
+
+  SimpleFOC_CORDIC_Config();
 
   // driver config
   // power supply voltage [V]
   driver.voltage_power_supply = 10;
+  driver.voltage_limit = driver.voltage_power_supply*0.95f;
 
   driver.init();
   sensor.init();
+
+  FieldStrength fs = sensor.getFieldStrength();
+  Serial.print("Field strength: 0x");
+  Serial.println(fs, HEX);
 
   // link driver
   motor.linkDriver(&driver);
@@ -40,64 +79,64 @@ void setup() {
 
   // aligning voltage
   motor.voltage_sensor_align = 1;
-  motor.current_limit = 2;   // [V] - if phase resistance not defined
-  // motor.voltage_limit = 2;   // [V] - if phase resistance not defined
-  motor.velocity_limit = 50; // [rad/s] cca 50rpm
+  motor.current_limit = 2;
+  motor.voltage_limit = driver.voltage_limit / 2.0f;
+  motor.velocity_limit = 1000.0f; // 1000rad/s = aprox 9550rpm
 
-  motor.PID_velocity.P = 0.05;
-  motor.PID_velocity.I = 1.0;
-  motor.PID_velocity.D = 0.0;
-  motor.LPF_velocity.Tf = 0.01;
+  // some defaults
+  motor.PID_velocity.P = 0.05f;
+  motor.PID_velocity.I = 0.1f;
+  motor.PID_velocity.D = 0.0f;
+  motor.PID_velocity.output_ramp = 1000;
+  motor.LPF_velocity.Tf = 0.005f;
+  motor.P_angle.P = 20.0f;
+  motor.P_angle.I = 0.0f;
+  motor.P_angle.D = 0.0f;
+  motor.P_angle.output_ramp = 1000;
+  motor.LPF_angle.Tf = 0.005f;
 
-  // current sense
-  current_sense.init();
-  // motor.linkCurrentSense(&current_sense);
-
-  // set motion control loop to be used
   motor.torque_controller = TorqueControlType::voltage;
-  // motor.controller = MotionControlType::torque;
-  motor.controller = MotionControlType::velocity;
-  // motor.controller = MotionControlType::velocity_openloop;
-
-  // add current limit
-  // motor.phase_resistance = 3.52 // [Ohm]
-  // motor.current_limit = 2;   // [Amps] - if phase resistance defined
-
-  // monitoring
-  motor.monitor_downsample = 100; // set downsampling can be even more > 100
-  motor.monitor_variables = _MON_VEL; // set monitoring of d and q current
+  motor.controller = MotionControlType::torque;
+  
+  // load settings
+  settings.addMotor(&motor);
+  SimpleFOCRegister registers[] = { REG_SENSOR_DIRECTION, REG_ZERO_ELECTRIC_ANGLE, REG_VEL_LPF_T, REG_VEL_PID_P, REG_VEL_PID_I, REG_VEL_PID_D, REG_VEL_PID_LIM, REG_VEL_PID_RAMP, REG_ANG_LPF_T, REG_ANG_PID_P, REG_ANG_PID_I, REG_ANG_PID_D, REG_ANG_PID_LIM, REG_ANG_PID_RAMP, REG_CURQ_LPF_T, REG_CURQ_PID_P, REG_CURQ_PID_I, REG_CURQ_PID_D, REG_CURQ_PID_LIM, REG_CURQ_PID_RAMP, REG_CURD_LPF_T, REG_CURD_PID_P, REG_CURD_PID_I, REG_CURD_PID_D, REG_CURD_PID_LIM, REG_CURD_PID_RAMP, REG_VOLTAGE_LIMIT, REG_CURRENT_LIMIT, REG_VELOCITY_LIMIT };
+  settings.setRegisters(registers, sizeof(registers)/sizeof(SimpleFOCRegister));
+  settings.init();
+  settings.loadSettings();
 
   // initialize motor
   motor.init();
 
   // align sensor and start FOC
-  // motor.initFOC(0, Direction::CW);
   Serial.print("Aligning...");
   motor.initFOC();
 
-  // set the initial motor target
-  // motor.target = 0.2; // Amps - if phase resistance defined
-  // motor.target = 1; // Volts
-
-  // add target command T
-  // command.add('T', doTarget, "target current"); // - if phase resistance defined
-  // command.add('T', doTarget, "target voltage");
-  command.add('T', doTarget, "target velocity");
+  // add commands
+  command.add('M', doMotor, "motor commands");
+  command.add('s', doSave, "save settings");
+  command.add('l', doLoad, "load settings");
+  command.add('d', doDownsample, "downsample telemetry");
+  // add telemetry
+  telemetry.addMotor(&motor);
+  telemetry.downsample = 0; // off by default, use register 28 to set
+  uint8_t telemetry_registers[] = { REG_TARGET, REG_ANGLE, REG_VELOCITY, REG_CURRENT_Q, REG_ITERATIONS_SEC };
+  telemetry.setTelemetryRegisters(sizeof(telemetry_registers)/sizeof(SimpleFOCRegister), telemetry_registers);
+  telemetry.init(textIO);
 
   Serial.println(F("Motor ready."));
   Serial.println(F("Set the target using serial terminal:"));
-  _delay(1000);
 }
 
-void loop() {
-  // main FOC algorithm function
-  motor.loopFOC();
 
+
+void loop() {
   // Motion control function
   motor.move();
-
-  // motor.monitor();
-
+  // main FOC algorithm function
+  motor.loopFOC();
   // user communication
   command.run();
+  // telemetry
+  telemetry.run();
 }
