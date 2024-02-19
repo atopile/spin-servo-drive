@@ -1,0 +1,42 @@
+#JLC PN: C516781
+#ato view --root-file MAX17504ATP.ato --root-node MAX17504ATP.ato/MAX17504ATP
+
+component MAX17504ATP:
+    signal EN ~ pin p4
+    signal VIN ~ pin p1
+    VIN ~ pin p2
+    VIN ~ pin p3
+    signal RT ~ pin p10
+    signal SYNC ~ pin p6
+    signal MODE ~ pin p11
+    signal VCC ~ pin p12
+    signal SGND ~ pin p13
+    signal CF ~ pin p8
+    signal SS ~ pin p7
+    signal PGND ~ pin p14
+    signal BST ~ pin p20
+    signal LX ~ pin p17
+    signal FB ~ pin p9
+    signal RESET ~ pin p5
+    PGND ~ pin p15
+    PGND ~ pin p16
+    LX ~ pin p18
+    LX ~ pin p19
+    PGND ~ pin p21 #EP
+
+    VIN.visualizer.location = "top"
+    EN.visualizer.location = "top"
+    RESET.visualizer.location = "right"
+    SYNC.visualizer.location = "left"
+    SS.visualizer.location = "bottom"
+    CF.visualizer.location = "bottom"
+    FB.visualizer.location = "right"
+    RT.visualizer.location = "left"
+    MODE.visualizer.location = "left"
+    VCC.visualizer.location = "left"
+    SGND.visualizer.location = "left"
+    PGND.visualizer.location = "bottom"
+    LX.visualizer.location = "right"
+    BST.visualizer.location = "right"
+
+    footprint = "lib:QFN-20_L5.0-W5.0-P0.65-BL-EP"

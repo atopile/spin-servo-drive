@@ -1,9 +1,15 @@
 import Pair from "generics/interfaces.ato"
+import Power from "generics/interfaces.ato"
+import NFET from "generics/mosfets.ato"
+import Resistor from "generics/resistors.ato"
+import DRV8300 from "drv8300/elec/src/drv8300.ato"
+import HalfBridge from "generics/mosfets.ato"
 
 module PowerStage:
     # External interfaces
     power_batt = new Power
     power_gate = new Power
+    power_vref = new Power
     enable = new Pair
 
     # Phases
@@ -13,18 +19,10 @@ module PowerStage:
 
     gate_driver = new DRV8300
 
-    # Driver - 3PWM mode
-    phase_a.control ~ drv8300.phase_a.control
-    phase_b.control ~ drv8300.phase_b.control
-    phase_c.control ~ drv8300.phase_c.control
-
     #Power connections
     power_batt ~ phase_a.power_batt
     power_batt ~ phase_b.power_batt
     power_batt ~ phase_c.power_batt
-    power_gate ~ phase_c.power_gate
-    power_gate ~ phase_b.power_gate
-    power_gate ~ phase_a.power_gate
     power_vref ~ phase_a.power_vref
     power_vref ~ phase_b.power_vref
     power_vref ~ phase_c.power_vref
@@ -33,24 +31,18 @@ module PowerStage:
 module Phase:
     power_batt = new Power
     power3v3 = new Power
+    power_vref = new Power
     control = new Pair
-    current = new Pair
+    current = new DiffPair
     output = new Pair
 
     # Components
     half_bridge = new HalfBridge
-    current_sense = new LowSideCurrentSense
 
     # Power connections
     power_batt ~ half_bridge.power_batt
 
     # Signal connections
-    current_sense.shunt_input ~ half_bridge.shunt_output
+    # current_sense.shunt_input ~ half_bridge.shunt_output
     half_bridge.fet_high ~ output.high
     half_bridge.fet_low ~ output.low
-
-module HalfBridge:
-    power_batt = new Power
-    shunt = new Shunt
-    fet_high = new NFET
-    fet_low = new NFET

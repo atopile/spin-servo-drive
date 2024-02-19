@@ -1,4 +1,4 @@
-import Microcontroller from "microcontroller.ato"
+import Micro from "micro.ato"
 import PowerStage from "power-stage.ato"
 import PowerSupply from "power-supply.ato"
 import PositionSensor from "position-sensor.ato"
@@ -10,7 +10,7 @@ module SPIN:
     """
     power_stage = new PowerStage
     power_supply = new PowerSupply
-    micro = new Microcontroller
+    micro = new Micro
     position_sensor = new PositionSensor
     ios = new IOs
 
@@ -21,19 +21,19 @@ module SPIN:
     ios.power3v3 ~ power_supply.power3v3
 
     # Phase control
-    power_stage.phasa_a.control ~ micro.phase_a
-    power_stage.phasa_b.control ~ micro.phase_b
-    power_stage.phasa_c.control ~ micro.phase_c
+    power_stage.phase_a.control ~ micro.phase_a
+    power_stage.phase_b.control ~ micro.phase_b
+    power_stage.phase_c.control ~ micro.phase_c
 
     # Current sensing
-    power_stage.phasa_a.current ~ micro.sense_a
-    power_stage.phasa_b.current ~ micro.sense_b
-    power_stage.phasa_c.current ~ micro.sense_c
+    power_stage.phase_a.current ~ micro.current_sense_a
+    power_stage.phase_b.current ~ micro.current_sense_b
+    power_stage.phase_c.current ~ micro.current_sense_c
 
     # Phase outputs
-    ios.out_a ~ power_stage.phasa_a.output
-    ios.out_b ~ power_stage.phasa_b.output
-    ios.out_c ~ power_stage.phasa_c.output
+    ios.out_a ~ power_stage.phase_a.output
+    ios.out_b ~ power_stage.phase_b.output
+    ios.out_c ~ power_stage.phase_c.output
 
     # Position sensing
     position_sensor.spi ~ micro.spi
