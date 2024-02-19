@@ -3,7 +3,10 @@ builds:
   default:
     entry: elec/src/spin_servo_nema17.ato:SpinServoNEMA17
 dependencies:
-- generics^2.2.0
-- stm32g4@tim/add_i2c_spi
-- usb-connectors^v2.0.0
-- regulators^2.0.3
+- generics
+- stm32g4
+- usb-connectors
+
+- lv2842xlvddcr ^v0.0.1
+services:
+  components: https://atopile-component-server-atsuhzfd5a-uc.a.run.app/jlc

@@ -1,0 +1,50 @@
+import Microcontroller from "microcontroller.ato"
+import PowerStage from "power-stage.ato"
+import PowerSupply from "power-supply.ato"
+import PositionSensor from "position-sensor.ato"
+import IOs from "ios.ato"
+
+module SPIN:
+    """
+    Brushless motor controller with current sensing and position feedback.
+    """
+    power_stage = new PowerStage
+    power_supply = new PowerSupply
+    micro = new Microcontroller
+    position_sensor = new PositionSensor
+    ios = new IOs
+
+    # Connect the components
+    micro.power ~ power_supply.power3v3
+    position_sensor.power ~ power_supply.power3v3
+    ios.power5v ~ power_supply.power5v #Power for LEDs
+    ios.power3v3 ~ power_supply.power3v3
+
+    # Phase control
+    power_stage.phasa_a.control ~ micro.phase_a
+    power_stage.phasa_b.control ~ micro.phase_b
+    power_stage.phasa_c.control ~ micro.phase_c
+
+    # Current sensing
+    power_stage.phasa_a.current ~ micro.sense_a
+    power_stage.phasa_b.current ~ micro.sense_b
+    power_stage.phasa_c.current ~ micro.sense_c
+
+    # Phase outputs
+    ios.out_a ~ power_stage.phasa_a.output
+    ios.out_b ~ power_stage.phasa_b.output
+    ios.out_c ~ power_stage.phasa_c.output
+
+    # Position sensing
+    position_sensor.spi ~ micro.spi
+
+    # Connectors
+    ios.i2c ~ micro.i2c
+    ios.can ~ micro.can
+    ios.usb2 ~ micro.usb2
+    ios.power_usb ~ power_supply.power_usb
+    ios.power_batt ~ power_supply.power_batt
+
+    # Button and Addressable LED
+    ios.button ~ micro.button
+    ios.led ~ micro.led

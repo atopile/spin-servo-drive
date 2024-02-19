@@ -1,0 +1,56 @@
+import Pair from "generics/interfaces.ato"
+
+module PowerStage:
+    # External interfaces
+    power_batt = new Power
+    power_gate = new Power
+    enable = new Pair
+
+    # Phases
+    phase_a = new Phase
+    phase_b = new Phase
+    phase_c = new Phase
+
+    gate_driver = new DRV8300
+
+    # Driver - 3PWM mode
+    phase_a.control ~ drv8300.phase_a.control
+    phase_b.control ~ drv8300.phase_b.control
+    phase_c.control ~ drv8300.phase_c.control
+
+    #Power connections
+    power_batt ~ phase_a.power_batt
+    power_batt ~ phase_b.power_batt
+    power_batt ~ phase_c.power_batt
+    power_gate ~ phase_c.power_gate
+    power_gate ~ phase_b.power_gate
+    power_gate ~ phase_a.power_gate
+    power_vref ~ phase_a.power_vref
+    power_vref ~ phase_b.power_vref
+    power_vref ~ phase_c.power_vref
+
+
+module Phase:
+    power_batt = new Power
+    power3v3 = new Power
+    control = new Pair
+    current = new Pair
+    output = new Pair
+
+    # Components
+    half_bridge = new HalfBridge
+    current_sense = new LowSideCurrentSense
+
+    # Power connections
+    power_batt ~ half_bridge.power_batt
+
+    # Signal connections
+    current_sense.shunt_input ~ half_bridge.shunt_output
+    half_bridge.fet_high ~ output.high
+    half_bridge.fet_low ~ output.low
+
+module HalfBridge:
+    power_batt = new Power
+    shunt = new Shunt
+    fet_high = new NFET
+    fet_low = new NFET
