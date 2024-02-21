@@ -4,7 +4,7 @@ builds:
     entry: elec/src/spin.ato:SPIN
 dependencies:
 - generics
-- stm32g4
+- stm32g4 @ refactor
 - usb-connectors
 - lv2842xlvddcr ^v0.0.1
 - ldk220m-r ^v0.0.1
@@ -21,3 +21,5 @@ dependencies:
 
 services:
   components: https://atopile-component-server-atsuhzfd5a-uc.a.run.app/jlc
+project_id: f591f445d2721adf96456e7fa45c86fe086fab4f8cf9e2fb7ff4b639164331d8
+user_id: 660b58a3b3218d2bed3efe031a75373b28097218916a5848ced3ecdcaa56b274
