@@ -1,6 +1,5 @@
-import SPI from "generics/interfaces.ato"
-import Power from "generics/interfaces.ato"
-import MA732 from "ma732/elec/src/ma732.ato"
+from "generics/interfaces.ato" import SPI, Power
+from "ma732/elec/src/ma732.ato" import MA732
 
 module PositionSensor:
     power = new Power

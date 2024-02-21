@@ -8,5 +8,11 @@ dependencies:
 - usb-connectors
 
 - lv2842xlvddcr ^v0.0.1
+- ldk220m-r ^v0.0.1
+- xt-connectors ^v0.0.1
+- qwiic-connectors
+- jst-gh
+- sk6805side
+- sn65hvd230dr
 services:
   components: https://atopile-component-server-atsuhzfd5a-uc.a.run.app/jlc

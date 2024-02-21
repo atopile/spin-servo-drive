@@ -1,22 +1,50 @@
-import Power from "generics/interfaces.ato"
-import CAN from "generics/interfaces.ato"
-import I2C from "generics/interfaces.ato"
-import Pair from "generics/interfaces.ato"
-import USB2 from "generics/interfaces.ato"
-import SPI from "generics/interfaces.ato"
-
+from "generics/interfaces.ato" import Power, CAN, I2C, Pair, USB2, SPI
+from "stm32g4/STM32G4.ato" import STM32G431CBU6_USB2
+# from "sn65hvd230dr/elec/src/sn65hvd230dr.ato " import SN65HVD230DR
 
 module Micro:
     power = new Power
     i2c = new I2C
     led = new Pair
-    button = new Pair
     usb2 = new USB2
     can = new CAN
+    button = new Pair
     spi = new SPI
-    current_sense_a = new Pair
-    current_sense_b = new Pair
-    current_sense_c = new Pair
-    phase_a = new Pair
-    phase_b = new Pair
-    phase_c = new Pair
+
+    # Motor control
+    phase_a_control = new Pair
+    phase_b_control = new Pair
+    phase_c_control = new Pair
+    phase_a_current = new Pair
+    phase_b_current = new Pair
+    phase_c_current = new Pair
+    driver_enable = new Pair
+
+    # Components
+    micro = new STM32G431CBU6_USB2
+    # can_tranciever = new SN65HVD230DR
+
+    # Interfaces
+    i2c ~ micro.i2c1
+    usb2 ~ micro.usb2
+    spi ~ micro.spi2
+    # Seems like we really need a better mechanism for chip select
+
+    # Motor control
+    phase_a_control ~ micro.PA0
+    phase_b_control ~ micro.PA1
+    phase_c_control ~ micro.PA2
+    driver_enable ~ micro.PA3
+    phase_a_current ~ micro.PB0
+    phase_b_current ~ micro.PB1
+    phase_c_current ~ micro.PB12
+
+    # Peripherals
+    led ~ micro.PC6
+    button ~ micro.PB8_BOOT0
+
+    # Internal connections
+    power ~ micro.power
+    # power ~ can_tranciever.power
+
+    # micro.can_ttl ~ can_tranciever.can_ttl
