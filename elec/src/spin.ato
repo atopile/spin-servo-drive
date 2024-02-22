@@ -6,6 +6,9 @@ from "ios.ato" import IOs
 
 # TODO: fix buck power supply, select appropriate inductor and diode manually
 # TODO: refactor STM32G4
+# TODO: voltage sense
+# TODO: temperature sense
+# TODO: CAN transceiver
 
 module SPIN:
     """
