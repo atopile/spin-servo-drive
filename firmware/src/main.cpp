@@ -74,7 +74,7 @@ void setup() {
   SPI.setMOSI(PB15);
   SPI.setSCLK(PB13);
 
-  //SimpleFOC_CORDIC_Config();
+  SimpleFOC_CORDIC_Config();
 
   // driver config
   // power supply voltage [V]
@@ -112,9 +112,9 @@ void setup() {
   motor.LPF_angle.Tf = 0.005f;
 
   motor.torque_controller = TorqueControlType::voltage;
-  motor.controller = MotionControlType::velocity;
+  motor.controller = MotionControlType::angle;
   motor.motion_downsample = 10;
-  
+
   // load settings
   settings.addMotor(&motor);
   SimpleFOCRegister registers[] = { REG_SENSOR_DIRECTION, REG_ZERO_ELECTRIC_ANGLE, REG_VEL_LPF_T, REG_VEL_PID_P, REG_VEL_PID_I, REG_VEL_PID_D, REG_VEL_PID_LIM, REG_VEL_PID_RAMP, REG_ANG_LPF_T, REG_ANG_PID_P, REG_ANG_PID_I, REG_ANG_PID_D, REG_ANG_PID_LIM, REG_ANG_PID_RAMP, REG_CURQ_LPF_T, REG_CURQ_PID_P, REG_CURQ_PID_I, REG_CURQ_PID_D, REG_CURQ_PID_LIM, REG_CURQ_PID_RAMP, REG_CURD_LPF_T, REG_CURD_PID_P, REG_CURD_PID_I, REG_CURD_PID_D, REG_CURD_PID_LIM, REG_CURD_PID_RAMP, REG_VOLTAGE_LIMIT, REG_CURRENT_LIMIT, REG_VELOCITY_LIMIT, REG_MOTION_DOWNSAMPLE, REG_TORQUE_MODE, REG_CONTROL_MODE };
