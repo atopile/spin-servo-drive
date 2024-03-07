@@ -1,0 +1,52 @@
+from "generics/interfaces.ato" import Power
+from "generics/regulators.ato" import LDO, Buck
+from "lv2842xlvddcr/lv2842kit.ato" import LV2842Kit
+
+module PowerSupply:
+    power_batt = new Power
+    power_usb = new Power
+    power_gate = new Power
+    power5v = new Power
+    power3v3 = new Power
+
+    # Components
+    buck = new Buck
+    ldo5V = new LDO
+    ldo3V3 = new LDO
+    power_or = new PowerOR
+
+    # Select components
+    buck -> LV2842Kit
+
+    # Configure components
+    buck.v_in = 12V to 24V
+    buck.v_out = 8V +/- 10%
+    ldo5V.v_in = 8V +/- 10%
+    ldo5V.power_out.voltage = 5V +/- 5%
+    ldo3V3.v_in = 5V +/- 5%
+    ldo3V3.power_out.voltage = 3.3V +/- 5%
+
+
+    # Buck converter
+    power_batt ~ buck.power_in
+    power_gate ~ buck.power_out
+
+
+    # Diode OR (USB or battery)
+    power_usb ~ power_or.power_usb
+    ldo5V.power_out ~ power_or.power_ldo
+    power5v ~ power_or.power_out
+
+    # LDOs
+    power_gate ~ ldo5V.power_in
+    power_gate ~ ldo3V3.power_in
+    power3v3 ~ ldo3V3.power_out
+
+
+module PowerOR:
+    """
+    Diode OR for USB and battery power, single diode on USB side
+    """
+    power_usb = new Power
+    power_ldo = new Power
+    power_out = new Power

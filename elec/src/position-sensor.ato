@@ -1,0 +1,13 @@
+from "generics/interfaces.ato" import SPI, Power
+from "ma732/elec/src/ma732.ato" import MA732
+
+module PositionSensor:
+    power = new Power
+    spi = new SPI
+
+    # Components
+    ma732 = new MA732
+
+    # Internal Connections
+    power ~ ma732.power
+    spi ~ ma732.spi

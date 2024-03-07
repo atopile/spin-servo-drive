@@ -1,9 +1,18 @@
 ato-version: ^0.2.3
 builds:
   default:
-    entry: elec/src/spin_servo_nema17.ato:SpinServoNEMA17
+    entry: elec/src/spin.ato:SPIN
 dependencies:
-- generics^2.2.0
-- stm32g4@tim/add_i2c_spi
-- usb-connectors^v2.0.0
-- regulators^2.0.3
+- generics ^v3.0.1
+- stm32g4 ^v3.0.0
+- usb-connectors
+- lv2842xlvddcr ^v1.0.0
+- ldk220m-r ^v0.0.1
+- xt-connectors ^v0.0.1
+- qwiic-connectors
+- jst-gh
+- sk6805side
+- sn65hvd230dr
+- drv8300
+- lmv321idbvr
+- ma732
