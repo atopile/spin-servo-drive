@@ -16,16 +16,15 @@ module PowerSupply:
     power_or = new PowerOR
 
     # Select components
-    # buck -> LV2842Kit
+    buck -> LV2842Kit
 
     # Configure components
-    # buck.power_out.voltage = 8V +/- 10%
-    buck.feedback_div.r_top.value  = 10kohm +/- 10%
-    buck.feedback_div.r_bottom.value = 10kohm +/- 10%
-    # assert ldo5V.power_out.voltage within 5V +/- 5%
-    # ldo5V.power_out.voltage = 5V +/- 5%
-    # ldo3V3.power_out.voltage = 3.3V +/- 5%
-    # reference.power_out.voltage = 1.65V +/- 2%
+    buck.v_in = 12V to 24V
+    buck.v_out = 8V +/- 10%
+    ldo5V.v_in = 8V +/- 10%
+    ldo5V.power_out.voltage = 5V +/- 5%
+    ldo3V3.v_in = 5V +/- 5%
+    ldo3V3.power_out.voltage = 3.3V +/- 5%
 
 
     # Buck converter

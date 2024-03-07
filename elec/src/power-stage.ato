@@ -6,7 +6,7 @@ from "drv8300/elec/src/drv8300.ato" import DRV8300
 from "lmv321idbvr/elec/src/lmv321idbvr.ato" import LMV321IDBVR
 from "generics/opamps.ato" import Opamp
 from "generics/filters.ato" import LowPassFilter
-from "generics/vdivs.ato" import VDiv, VDivLowPassFilter
+from "generics/vdivs.ato" import _VDiv, VDiv, VDivLowPassFilter
 
 
 module PowerStage:
@@ -59,9 +59,9 @@ module PowerStage:
     voltage_reference.output ~ phase_c.current_sensor.power_vref
 
     # Configure current sense
-    # phase_a.current_sensor.gain = 46 # coming soon!
-    # phase_b.current_sensor.gain = 46
-    # phase_c.current_sensor.gain = 46
+    # phase_a.current_sensor.gain = 46 +/- 5%
+    # phase_b.current_sensor.gain = 46 +/- 5%
+    # phase_c.current_sensor.gain = 46 +/- 5%
 
     # DRV8300 connections
     # Set mode to 3PWM:
@@ -110,11 +110,13 @@ module LowSideCurrentSense:
     # Components
     opamp = new OpAmp
     shunt = new Resistor
-    feedback_div = new VDiv
-    bias_div = new VDiv
+    feedback_div = new _VDiv
+    bias_div = new _VDiv
     output_filter = new LowPassFilter
     net_tie_p = new nettie_250u
     net_tie_n = new nettie_250u
+    gain: None
+
 
     # Configure components
     feedback_div.r_top.value = 1kohm +/- 5%
@@ -123,8 +125,13 @@ module LowSideCurrentSense:
     bias_div.r_top.value = 1kohm +/- 5%
     bias_div.r_bottom.value = 45kohm +/- 5%
 
-    output_filter.capacitor.value = 2.2nF +/- 20%
+    output_filter.capacitor.value = 2.2nF +/- 10%
     output_filter.resistor.value = 55ohm +/- 5%
+    output_filter.cutoff_frequency = 1MHz +/- 25%
+
+    # Connect components
+    power ~ opamp.power
+    #TODO: finish connecting me!
 
 
 module VoltageReference:
@@ -142,13 +149,13 @@ module VoltageReference:
 
     # Configure components
     bypass_cap.value = 1uF +/- 20%
-    bias_div.r_top.value = 10kohm +/- 5%
-    bias_div.r_bottom.value = 10kohm +/- 5%
-    bias_div.cap.value = 1uF +/- 20%
+    bias_div.v_in = 3.3V
+    bias_div.v_out = 1.65V +/- 10%
+    bias_div.cutoff_frequency = 1kHz +/- 20%
+    bias_div.i_q = 10uA to 200mA
 
     # Configure packages
     bypass_cap.package = "0402"
-    bias_div.cap.package = "0402"
     bias_div.r_top.package = "0402"
     bias_div.r_bottom.package = "0402"
 
