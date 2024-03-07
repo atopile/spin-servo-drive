@@ -126,8 +126,8 @@ module LowSideCurrentSense:
     bias_div.r_bottom.value = 45kohm +/- 5%
 
     output_filter.capacitor.value = 2.2nF +/- 10%
-    output_filter.resistor.value = 55ohm +/- 5%
-    output_filter.cutoff_frequency = 1MHz +/- 25%
+    # output_filter.resistor.value = 55ohm +/- 5%
+    output_filter.cutoff_frequency = 1MHz +/- 20%
 
     # Connect components
     power ~ opamp.power

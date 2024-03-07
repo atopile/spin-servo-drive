@@ -71,8 +71,8 @@ module IOs:
     # temperature_sense.v_in = 3.3V +/- 5%
     # temperature_sense.v_out = 1.5V +/- 5%
     # temperature_sense.i_q = 100uA to 200uA
-    voltage_sense_filter.cuttoff_frequency = 1kHz +/- 20%
-    temperature_sense_filter.cuttoff_frequency = 1kHz +/- 20%
+    voltage_sense_filter.cutoff_frequency = 1kHz +/- 20%
+    temperature_sense_filter.cutoff_frequency = 1kHz +/- 20%
 
     # Data connections
     usb2 ~ usbc_connector.usb2
