@@ -10,7 +10,7 @@ The only downside is that they're expensive, like hundreds of dollars.
 
 Introducing spin ✨ - the $30 servo for the masses (designed with atopile)
 
-![spin](docs/showing-off-the-goods.jpg)
+![spin](docs/showing-off-the-very-goods.jpg)
 
 ## Wiggle wiggle wiggle
 

@@ -1,5 +1,0 @@
-component Connector4Pin:
-    signal p1 ~ pin 1
-    signal p2 ~ pin 2
-    signal p3 ~ pin 3
-    signal p4 ~ pin 4
