@@ -1,0 +1,93 @@
+from "interfaces.ato" import Pair, Power
+from "resistors.ato" import Resistor
+
+module NoButton:
+    """
+    Its a little confusing how this works, but the idea is that you might optionally want a button in your design. 
+    To achieve this with our current compiler, we need an empty module 'NoButon' (Normally Open) that can be
+    replaced using the '->' operator with another module that has a button. FOr example the 'ButtonSKRPACE010'.
+
+    Usage example:
+    import ButtonPullup from generics/buttons.ato
+    import ButtonSKRPACE010 from generics/buttons.ato
+
+    module MyMicrocontroller:
+        ...
+        btn_pullup = new ButtonPullup
+        ...
+
+    module MyProject:
+        ...
+        micro = new MyMicrocontroller #instantiate microcontroller (in this case there will be no button in your design)
+        button_pullup.btn -> ButtonSKRPACE010 #replace with class, now there will be a button in your design.
+    """
+    signal in
+    signal out
+
+component _ButtonSKRPACE010:
+    signal in ~ pin 1
+    in ~ pin 2
+    signal out ~ pin 3
+    out ~ pin 4
+    footprint = "KEY-SMD_4P-L4.2-W3.2-P2.20-LS4.6"
+    mpn = "C139797"
+
+module ButtonSKRPACE010 from NoButton:
+    btn = new _ButtonSKRPACE010
+    in ~ btn.in
+    out ~ btn.out
+
+component _ButtonSKTDLDE010:
+    in ~ pin 1
+    out ~ pin 2
+    signal anchor ~ pin 3
+    anchor ~ pin 4
+
+    footprint = "KEY-SMD_SKTDLDE010"
+    mpn = "C115365"
+
+module ButtonSKTDLDE010 from NoButton:
+    """
+    Small SMD right angle button
+    """
+    btn = new _ButtonSKTDLDE010
+    in ~ btn.in
+    out ~ btn.out
+
+module ButtonPullup:
+    btn = new NoButton
+    signal out
+    output = new Pair
+    power = new Power
+    pullup = new Resistor
+
+    signal out # depricated
+
+    output.io ~ out
+    output.gnd ~ power.gnd
+    pullup.value = 10kohms +/- 20%
+    pullup.package = "0402"
+
+    power.vcc ~ pullup.p1; pullup.p2 ~ btn.in; btn.out ~ power.gnd
+    out ~ btn.in
+
+    output.io ~ out
+    output.gnd ~ power.gnd
+
+module ButtonPulldown:
+    btn = new NoButton
+    signal out
+    output = new Pair
+    power = new Power
+    pulldown = new Resistor
+    pulldown.value = 10kohms +/- 20%
+    pulldown.package = "0402"
+
+    power.gnd ~ pulldown.p1; pulldown.p2 ~ btn.in; btn.out ~ power.vcc
+    out ~ btn.in
+
+    output.io ~ out
+    output.gnd ~ power.gnd
+
+module ButtonPullup90Degree from ButtonPullup:
+    btn -> _1TS003B_1400_3500A

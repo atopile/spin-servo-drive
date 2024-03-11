@@ -1,0 +1,8 @@
+component WJ15EDGRC_3_81_2P:
+    # component WJ15EDGRC-3.81-2P
+    footprint = "CONN-TH_2P-P3.81_WJ15EDGRC-3.81-2P"
+    lcsc_id = "C8387"
+    # pins
+    signal _1 ~ pin 1
+    signal _2 ~ pin 2
+

@@ -1,0 +1,22 @@
+import Power from "generics/interfaces.ato"
+
+component Capacitor:
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    designator_prefix = "C"
+    mpn = "generic_capacitor"
+    type = "capacitor"
+
+    power = new Power
+    power.vcc ~ p1
+    power.gnd ~ p2
+
+component CapacitorElectrolytic:
+    signal anode ~ pin 1
+    signal cathode ~ pin 2
+    designator_prefix = "C"
+    mpn = "generic_capacitor"
+
+    power = new Power
+    power.vcc ~ anode
+    power.gnd ~ cathode

@@ -26,19 +26,20 @@ module Micro:
     can_tranciever = new SN65HVD230DR
 
     # Interfaces
-    i2c ~ micro.i2c1
-    usb2 ~ micro.usb2
-    spi ~ micro.spi2
-    # Seems like we really need a better mechanism for chip select
+    i2c ~ micro.i2c1 # (PB7 SDA, PA15 SCL)
+    usb2 ~ micro.usb2 # (PA11 DM, PA12 DP)
+    spi ~ micro.spi2 # (PB15 mosi, PB14 miso, PB13 sck, PB12 cs)
+    can_tranciever.can_ttl ~ micro.can_ttl # (PA12 tx, PA11 rx)
+    can ~ can_tranciever.can
 
     # Motor control
     phase_a_control ~ micro.PA0
     phase_b_control ~ micro.PA1
     phase_c_control ~ micro.PA2
-    driver_enable ~ micro.PA3
+    driver_enable   ~ micro.PA10
     phase_a_current ~ micro.PB0
     phase_b_current ~ micro.PB1
-    phase_c_current ~ micro.PB12
+    phase_c_current ~ micro.PA3
 
     # Peripherals
     led ~ micro.PC6
@@ -47,5 +48,3 @@ module Micro:
     # Internal connections
     power ~ micro.power
     # power ~ can_tranciever.power
-
-    # micro.can_ttl ~ can_tranciever.can_ttl

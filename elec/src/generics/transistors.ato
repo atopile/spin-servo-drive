@@ -1,0 +1,17 @@
+component Transistor_npn:
+    signal base ~ pin 1
+    signal collector ~ pin 2
+    signal emitter ~ pin 3
+    designator_prefix = "Q"
+
+component Transistor_pnp:
+    signal base
+    signal collector
+    signal emitter
+    designator_prefix = "Q"
+
+component Triac:
+    signal MT1
+    signal MT2
+    signal gate
+    designator_prefix = "TR"

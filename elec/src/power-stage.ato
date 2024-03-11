@@ -246,7 +246,6 @@ module CapBank:
     cap17 = new BulkCapacitor
     cap18 = new BulkCapacitor
     cap19 = new BulkCapacitor
-    cap20 = new BulkCapacitor
 
     # Power connections
     power ~ cap1.power
@@ -268,7 +267,6 @@ module CapBank:
     power ~ cap17.power
     power ~ cap18.power
     power ~ cap19.power
-    power ~ cap20.power
 
 component nettie_250u:
     pin 1

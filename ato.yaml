@@ -2,17 +2,3 @@ ato-version: ^0.2.3
 builds:
   default:
     entry: elec/src/spin.ato:SPIN
-dependencies:
-- generics ^v3.0.1
-- stm32g4 ^v3.0.0
-- usb-connectors
-- lv2842xlvddcr ^v1.0.0
-- ldk220m-r ^v0.0.1
-- xt-connectors ^v0.0.1
-- qwiic-connectors
-- jst-gh
-- sk6805side
-- sn65hvd230dr
-- drv8300
-- lmv321idbvr
-- ma732
