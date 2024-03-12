@@ -197,3 +197,29 @@ module SPIN:
     power_stage.bulk_caps.cap17.designator = "C48"
     power_stage.bulk_caps.cap18.designator = "C49"
     power_stage.bulk_caps.cap19.designator = "C39"
+
+
+
+
+# Remove unused footprint R37.
+# Remove unused footprint R33.
+# Remove unused footprint R40.
+# Remove unused footprint R39.
+# Remove unused footprint U29.
+# Remove unused footprint R36.
+# Warning: Via connected to unknown net (power_stage-i_fb_zero-1).
+# Warning: Via connected to unknown net (power_stage-i_fb_zero-1).
+# Warning: Via connected to unknown net (power_stage-i_fb_zero-1).
+# Warning: Via connected to unknown net (power_stage-i_fb_zero-1).
+# Warning: No net found for symbol U15 pin 6.
+# Warning: No net found for symbol U15 pin 5.
+# Warning: No net found for symbol U26 pin 6.
+# Warning: No net found for symbol U26 pin 5.
+# Warning: No net found for symbol U27 pin 6.
+# Warning: No net found for symbol U27 pin 5.
+# Warning: No net found for symbol U14 pin 4.
+# Warning: No net found for symbol U14 pin 3.
+# Warning: No net found for symbol U2 pin 4.
+# Warning: No net found for symbol U2 pin 3.
+# Error: Cannot remove unused footprint U32 (locked).
+# Error: Cannot remove unused footprint J1 (locked).
