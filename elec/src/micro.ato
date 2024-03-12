@@ -37,12 +37,16 @@ module Micro:
     button ~ mux.input_b1
     can_tranciever.can_ttl.rx ~ mux.input_b2
     button ~ micro.PA4 # for enumeration or something while micro is running
-    micro.PB8_BOOT0 ~ mux.output
+    mux.output ~ micro.PB8_BOOT0
     mux.control ~ micro.PA6
 
     # Pulldown reistor to default to boot selction - assert high with PA6 to enable CAN
     select_resistor.1 ~ mux.control.io
     select_resistor.2 ~ power.gnd
+
+    # configure resistor
+    select_resistor.value = 80kohm to 120kohm # something big
+    select_resistor.package = "0402"
 
     # Motor controlxx
     phase_a_control ~ micro.PA0
@@ -55,7 +59,6 @@ module Micro:
 
     # Peripherals
     led ~ micro.PC6
-    button ~ micro.PB8_BOOT0
 
     # Internal connections
     power ~ micro.power
