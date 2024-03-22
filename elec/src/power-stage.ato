@@ -92,9 +92,9 @@ module PowerStage:
     phase_c.half_bridge.gate_low ~ gate_driver.output_low_c
 
     # Output connections
-    phase_a.half_bridge.output ~ gate_driver.output_sense_a
-    phase_b.half_bridge.output ~ gate_driver.output_sense_b
-    phase_c.half_bridge.output ~ gate_driver.output_sense_c
+    phase_a.half_bridge.output.io ~ gate_driver.output_sense_a.io
+    phase_b.half_bridge.output.io ~ gate_driver.output_sense_b.io
+    phase_c.half_bridge.output.io ~ gate_driver.output_sense_c.io
 
 
 module Phase:
@@ -145,8 +145,8 @@ module LowSideCurrentSense:
     power ~ opamp.power
 
     # Connect shunt across input
-    shunt.2 ~ input.p
-    shunt.1 ~ input.n
+    shunt.1 ~ input.p
+    shunt.2 ~ input.n
 
     # connect net ties to shunt pins
     net_tie_p.2 ~ input.p
@@ -167,7 +167,7 @@ module LowSideCurrentSense:
     output_filter.output ~ output
 
     # Tie grounds together
-    # power.gnd ~ power_vref.gnd
+    power.gnd ~ power_vref.gnd
 
 
 module VoltageReference:
@@ -230,8 +230,6 @@ component _DMT3009LDT_7:
     # Signal connections
     gate_high.io ~ pin 1
     gate_low.io ~ pin 8
-    gate_high.gnd ~ power.gnd
-    gate_low.gnd ~ power.gnd
     output.io ~ pin 9
 
     # Power connections
@@ -242,6 +240,8 @@ component _DMT3009LDT_7:
     power.gnd ~ pin 5
     power.gnd ~ pin 6
     power.gnd ~ pin 7
+
+    power.gnd ~ output.gnd
 
     footprint = "V-DFN3030-8K_L3.0-W3.0-P0.65-BL"
     lcsc_id = "C155503"

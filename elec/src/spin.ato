@@ -42,9 +42,9 @@ module SPIN:
     power_stage.phase_c.current_sensor.output ~ micro.phase_c_current
 
     # Phase outputs
-    ios.out_a ~ power_stage.phase_a.half_bridge.output
-    ios.out_b ~ power_stage.phase_b.half_bridge.output
-    ios.out_c ~ power_stage.phase_c.half_bridge.output
+    ios.out_a.io ~ power_stage.phase_a.half_bridge.output.io
+    ios.out_b.io ~ power_stage.phase_b.half_bridge.output.io
+    ios.out_c.io ~ power_stage.phase_c.half_bridge.output.io
 
     # Position sensing
     position_sensor.spi ~ micro.spi
