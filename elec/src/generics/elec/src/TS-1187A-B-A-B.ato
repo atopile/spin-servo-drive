@@ -1,0 +1,10 @@
+component TS_1187A_B_A_B:
+    # component TS-1187A-B-A-B
+    footprint = "SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL-2"
+    lcsc_id = "C318884"
+    # pins
+    signal B ~ pin 2
+    signal A ~ pin 1
+    signal D ~ pin 4
+    signal C ~ pin 3
+

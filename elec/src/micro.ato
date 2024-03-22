@@ -1,0 +1,114 @@
+from "generics/interfaces.ato" import Power, CAN, I2C, Pair, USB2, SPI, Pair
+from "stm32g4/STM32G4.ato" import STM32G431CBU6_USB2
+from "sn65hvd230dr/elec/src/sn65hvd230dr.ato" import SN65HVD230DR
+from "generics/resistors.ato" import Resistor
+from "programming-headers/elec/src/programming-headers.ato" import TC2050
+
+module Micro:
+    power = new Power
+    i2c = new I2C
+    led = new Pair
+    usb2 = new USB2
+    can = new CAN
+    button = new Pair
+    spi = new SPI
+
+    # Motor control
+    phase_a_control = new Pair
+    phase_b_control = new Pair
+    phase_c_control = new Pair
+    phase_a_current = new Pair
+    phase_b_current = new Pair
+    phase_c_current = new Pair
+    driver_enable = new Pair
+
+    # Components
+    micro = new STM32G431CBU6_USB2
+    can_tranciever = new SN65HVD230DR
+    mux = new SN74LVC1G3157DBVR
+    select_resistor = new Resistor
+    tc2050 = new TC2050 # programming header
+
+    # Interfaces
+    i2c ~ micro.i2c2 # (PA8 SDA, PC4 SCL)
+    usb2 ~ micro.usb2 # (PA11 DM, PA12 DP)
+    spi ~ micro.spi2 # (PB15 mosi, PB14 miso, PB13 sck, PB12 cs)
+    can ~ can_tranciever.can
+
+    # CAN RX and Bootpin are shared, need to be multiplexed externally (backup for SW boot option)
+    button ~ mux.input_b1
+    can_tranciever.can_ttl.rx ~ mux.input_b2.io
+    button ~ micro.PB5 # for enumeration or something while micro is running
+    mux.output ~ micro.PB8_BOOT0
+    mux.select ~ micro.PA6
+    can_tranciever.can_ttl.tx ~ micro.PB9.io
+
+    # Pulldown reistor to default to boot selction - assert high with PA6 to enable CAN
+    select_resistor.1 ~ mux.select.io
+    select_resistor.2 ~ power.gnd
+
+    # configure resistor
+    select_resistor.value = 80kohm to 120kohm # something big
+    select_resistor.package = "0402"
+
+    # Motor control
+    phase_a_control ~ micro.PA0
+    phase_b_control ~ micro.PA1
+    phase_c_control ~ micro.PA2
+    driver_enable   ~ micro.PA10
+    phase_a_current ~ micro.PB0
+    phase_b_current ~ micro.PB1
+    phase_c_current ~ micro.PA3
+
+    # JTAG
+    # jtag.tdi ~ ic.PA15
+    # jtag.tdo ~ ic.PB3
+    # jtag.tms ~ ic.PA13
+    # jtag.tck ~ ic.PA14
+    # jtag.reset ~ ic.PG10_NRST # has 40k pullup
+    # jtag.vcc ~ power.vcc
+    # jtag.gnd ~ power.gnd
+
+
+    # Peripherals
+    led ~ micro.PC6
+
+    # Internal connections
+    power ~ micro.power
+    power ~ can_tranciever.power
+    power ~ mux.power
+
+    # Programming
+    tc2050.jtag ~ micro.jtag
+    tc2050.power ~ micro.power
+
+component SN74LVC1G3157DBVR:
+    """
+    Analog multiplexer with two inputs and one output.
+    control L = input_b1 enabled
+    control H = input_b2 enabled
+    """
+    footprint = "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR"
+    lcsc_id = "C10426"
+    description = "15Ω 1 SPDT(SPDT) SOT-23-6 Analog Switches / Multiplexers ROHS"
+    mpn = "C10426"
+
+    power = new Power
+    power.vcc ~ pin 5
+    power.gnd ~ pin 2
+
+    input_b1 = new Pair
+    input_b1.io ~ pin 1
+    input_b1.gnd ~ power.gnd
+
+    input_b2 = new Pair
+    input_b2.io ~ pin 3
+    input_b2.gnd ~ power.gnd
+
+    output = new Pair
+    output.io ~ pin 4
+    output.gnd ~ power.gnd
+
+    select = new Pair
+    select.io ~ pin 6
+    select.gnd ~ power.gnd

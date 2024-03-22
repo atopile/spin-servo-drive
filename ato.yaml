@@ -1,0 +1,6 @@
+ato-version: ^0.2.3
+builds:
+  default:
+    entry: elec/src/spin.ato:SPIN
+  debug:
+    entry: elec/src/debug.ato:Debug

@@ -1,0 +1,13 @@
+component LV2842XLVDDCR:
+    # component LV2842XLVDDCR
+    footprint = "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR"
+    lcsc_id = "C225807"
+    description = "0.6A, 42V, 1.1MHz Buck Regulator"
+    mpn = "C225807"
+    # pins
+    signal CB ~ pin 1
+    signal GND ~ pin 2
+    signal FB ~ pin 3
+    signal SHDN_ ~ pin 4
+    signal VIN ~ pin 5
+    signal SW ~ pin 6

@@ -1,0 +1,19 @@
+from "generics/opamps.ato" import Opamp
+
+component LMV321IDBVR from Opamp:
+    # component LMV321IDBVR
+    footprint = "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR"
+    lcsc_id = "C7972"
+    mpn = "C7972"
+
+    # Connect power
+    power.vcc ~ pin 5
+    power.gnd ~ pin 2
+
+    # Connect signals
+    inverting ~ pin 3
+    non_inverting ~ pin 1
+    output ~ pin 4
+
+module Test:
+    ic = new LMV321IDBVR

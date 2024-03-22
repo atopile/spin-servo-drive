@@ -1,0 +1,97 @@
+import SchottkyDiode from "generics/diodes.ato"
+import Capacitor from "generics/capacitors.ato"
+import Inductor from "generics/inductors.ato"
+import Buck from "generics/regulators.ato"
+import LV2842XLVDDCR from "elec/src/lv2842xlvddcr.ato"
+
+module LV2842Kit from Buck:
+    """
+    LV2842 Kit
+    Vin: 4.5V to 42V
+    Vout: 0.8V to 42V
+    Iout max: 0.6A
+    Switching Frequency: 1.1MHz
+    """
+    ic = new LV2842XLVDDCR
+    diode = new SchottkyDiode
+    input_cap = new Capacitor
+    output_cap = new Capacitor
+    inductor = new Inductor
+    boot_cap = new Capacitor
+
+    # Select deafult components
+    diode -> Diode_1N5819WS
+    inductor -> SWPA4030S100MT
+
+    v_ref = 0.765V
+    assert v_in within 4.5V to 42V
+    assert v_out within 0.8V to 42V
+    assert v_in > v_out
+
+    # connect power input to IC
+    power_in.vcc ~ ic.VIN
+    power_in.gnd ~ ic.GND
+
+    # enable
+    ic.SHDN_ ~ ic.VIN
+
+    # values from calcs.ipynb
+    # boot capacitor
+    boot_cap.value = 100nF to 1uF
+    boot_cap.voltage = 16V to 100V
+    boot_cap.package = "0402"
+    boot_cap.1 ~ ic.CB
+    boot_cap.2 ~ ic.SW
+
+
+    feedback_div.in ~ power_out
+    feedback_div.out ~ ic.FB
+
+    # Input Capacitor
+    power_in ~ input_cap.power
+    input_cap.value = 1uF to 10uF
+    input_cap.voltage = 30V to 69V
+
+    # Output Capacitors
+    power_out ~ output_cap.power
+    output_cap.value = 10uF +/- 20%
+    output_cap.voltage = 16V to 100V
+    output_cap.esr = 0.1ohm to 0.2ohm
+
+    # Inductor
+    ic.SW ~ inductor.1; inductor.2 ~ power_out.vcc
+
+    f_switching = 0.5MHz
+    i_ripple = 0.2A to 0.3A # typically ~ 30% of Iout
+    v_ripple = 0V to 0.2V # typically ~ 10% of Vout
+
+
+    assert inductor.inductance within ((v_in - v_out) * v_out)/(v_in * i_ripple * f_switching)
+    assert i_ripple * (output_cap.esr + (1 / (8 * f_switching * output_cap.value))) within v_ripple
+
+
+    # Diode
+    diode.anode ~ power_out.gnd
+    diode.cathode ~ ic.SW
+
+
+component Diode_1N5819WS from SchottkyDiode:
+    # component 1N5819WS
+    footprint = "SOD-323_L1.8-W1.3-LS2.5-RD"
+    lcsc_id = "C191023"
+    mpn = "C191023"
+    # pins
+    cathode ~ pin 1
+    anode ~ pin 2
+
+component SWPA4030S100MT from Inductor:
+    # component SWPA4030S100MT
+    # footprint = "IND-SMD_L4.0-W4.0"
+    footprint = "R0805" # FIXME: Hack to link design, switch me back!
+    lcsc_id = "C38117"
+    mpn = "C38117"
+    inductance = 10uH +/- 20%
+    # pins
+    signal p2 ~ pin 2
+    signal p1 ~ pin 1
+

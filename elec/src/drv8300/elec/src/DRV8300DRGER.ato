@@ -1,0 +1,91 @@
+import Power from "generics/interfaces.ato"
+import Pair from "generics/interfaces.ato"
+
+component DRV8300DRGER:
+    footprint = "VQFN-24_L4.0-W4.0-P0.50-TL-EP2.5"
+    lcsc_id = "C3655801"
+    mpn = "C3655801"
+
+    # External interfaces
+    # Power
+    power_gate = new Power
+    power_gate.vcc ~ pin 4
+    power_gate.gnd ~ pin 6
+    power_gate.gnd ~ pin 25 # Thermal pad
+    signal gnd
+
+    # Gate driver inputs
+    input_low_a = new Pair
+    input_low_b = new Pair
+    input_low_c = new Pair
+    input_high_a = new Pair
+    input_high_b = new Pair
+    input_high_c = new Pair
+
+    input_low_a.io ~ pin 1
+    input_low_b.io ~ pin 2
+    input_low_c.io ~ pin 3
+    input_high_a.io ~ pin 22
+    input_high_b.io ~ pin 23
+    input_high_c.io ~ pin 24
+
+    gnd ~ input_low_a.gnd
+    gnd ~ input_low_b.gnd
+    gnd ~ input_low_c.gnd
+    gnd ~ input_high_a.gnd
+    gnd ~ input_high_b.gnd
+    gnd ~ input_high_c.gnd
+
+    # Gate driver outputs
+    output_low_a = new Pair
+    output_low_b = new Pair
+    output_low_c = new Pair
+    output_high_a = new Pair
+    output_high_b = new Pair
+    output_high_c = new Pair
+
+    output_low_c.io ~ pin 9
+    output_low_b.io ~ pin 10
+    output_low_a.io ~ pin 11
+    output_high_a.io ~ pin 19
+    output_high_b.io ~ pin 16
+    output_high_c.io ~ pin 13
+
+    gnd ~ output_low_a.gnd
+    gnd ~ output_low_b.gnd
+    gnd ~ output_low_c.gnd
+    gnd ~ output_high_a.gnd
+    gnd ~ output_high_b.gnd
+    gnd ~ output_high_c.gnd
+
+    # Sense
+    output_sense_a = new Pair
+    output_sense_b = new Pair
+    output_sense_c = new Pair
+    output_sense_a.io ~ pin 18
+    output_sense_b.io ~ pin 15
+    output_sense_c.io ~ pin 12
+    gnd ~ output_sense_a.gnd
+    gnd ~ output_sense_b.gnd
+    gnd ~ output_sense_c.gnd
+
+    # Mode
+    mode = new Pair
+    mode.io ~ pin 5
+    gnd ~ mode.gnd
+
+    # Bootstrap and sense
+    boostrap_a = new Pair
+    boostrap_b = new Pair
+    boostrap_c = new Pair
+    boostrap_a.io ~ pin 20
+    boostrap_b.io ~ pin 17
+    boostrap_c.io ~ pin 14
+    gnd ~ boostrap_a.gnd
+    gnd ~ boostrap_b.gnd
+    gnd ~ boostrap_c.gnd
+
+    # Deadtime
+    deadtime = new Pair
+    deadtime.io ~ pin 2
+    gnd ~ deadtime.gnd
