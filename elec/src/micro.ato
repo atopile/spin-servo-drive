@@ -12,6 +12,8 @@ module Micro:
     can = new CAN
     button = new Pair
     spi = new SPI
+    temp_sense = new Pair
+    batt_sense = new Pair
 
     # Motor control
     phase_a_control = new Pair
@@ -69,6 +71,9 @@ module Micro:
     # jtag.vcc ~ power.vcc
     # jtag.gnd ~ power.gnd
 
+    # temp_sense and batt_sense
+    temp_sense ~ micro.PA4
+    batt_sense ~ micro.PA5
 
     # Peripherals
     led ~ micro.PC6

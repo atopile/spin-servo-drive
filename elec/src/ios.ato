@@ -23,6 +23,7 @@ module IOs:
     out_b = new Pair
     out_c = new Pair
     batt_sense = new Pair
+    temp_sense = new Pair
 
     # Connectors
     usbc_connector = new USBCConn
@@ -62,6 +63,8 @@ module IOs:
     power3v3 ~ button_pulldown.power
     power3v3 ~ temperature_sense.power
 
+    power_usb.gnd ~ power3v3.gnd
+
     # Sensor config
     voltage_sense.v_in = 30V
     voltage_sense.v_out = 3V +/- 5%
@@ -78,6 +81,11 @@ module IOs:
     # Filter out switching noise from phases + buck converter (both 10kHz +)
     voltage_sense.cutoff_frequency = 50Hz to 200Hz
     temperature_sense.cutoff_frequency = 100Hz to 200Hz
+
+    voltage_sense.cap.voltage = 30V to 100V
+
+    temp_sense ~ temperature_sense.output
+    batt_sense ~ voltage_sense.output
 
     # Data connections
     usb2 ~ usbc_connector.usb2

@@ -46,6 +46,10 @@ module SPIN:
     ios.out_b.io ~ power_stage.phase_b.half_bridge.output.io
     ios.out_c.io ~ power_stage.phase_c.half_bridge.output.io
 
+    # Voltage and temperature sensing
+    ios.batt_sense ~ micro.batt_sense
+    ios.temp_sense ~ micro.temp_sense
+
     # Position sensing
     position_sensor.spi ~ micro.spi
 

@@ -57,6 +57,7 @@ module LV2842Kit from Buck:
     output_cap.value = 10uF +/- 20%
     output_cap.voltage = 16V to 100V
     output_cap.esr = 0.1ohm to 0.2ohm
+    output_cap.package = "0805"
 
     # Inductor
     ic.SW ~ inductor.1; inductor.2 ~ power_out.vcc
@@ -86,8 +87,8 @@ component Diode_1N5819WS from SchottkyDiode:
 
 component SWPA4030S100MT from Inductor:
     # component SWPA4030S100MT
-    # footprint = "IND-SMD_L4.0-W4.0"
-    footprint = "R0805" # FIXME: Hack to link design, switch me back!
+    footprint = "IND-SMD_L4.0-W4.0"
+    # footprint = "R0805" # FIXME: Hack to link design, switch me back!
     lcsc_id = "C38117"
     mpn = "C38117"
     inductance = 10uH +/- 20%
