@@ -1,0 +1,22 @@
+import CAN from "generics/interfaces.ato"
+import Power from "generics/interfaces.ato"
+import Pair from "generics/interfaces.ato"
+
+component JSTGH4Pin:
+    power = new Power
+    can = new CAN
+
+    power.vcc ~ pin 1
+    can.CANH ~ pin 2
+    can.CANL ~ pin 3
+    power.gnd ~ pin 4
+    power.gnd ~ pin 5
+    power.gnd ~ pin 6
+
+    footprint = "CONN-SMD_4P-P1.25_SM04B-GHS-TB-LF-SN"
+    lcsc_id = "C189895"
+    mpn = "C189895"
+    designator_prefix = "J"
+
+module debug:
+    conn = new JSTGH4Pin
