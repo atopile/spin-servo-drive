@@ -1,0 +1,47 @@
+import Power from "interfaces.ato"
+from "interfaces.ato" import Power, Pair
+from "capacitors.ato" import Capacitor, CapacitorElectrolytic
+from "inductors.ato" import Inductor
+from "resistors.ato" import Resistor
+
+
+module LowPassFilter:
+    # Interfaces
+    input = new Pair
+    output = new Pair
+
+    # Components
+    capacitor = new Capacitor
+    resistor = new Resistor
+
+    # Default values
+    capacitor.package = "0402"
+    resistor.package = "0402"
+
+    # Connections
+    input.io ~ resistor.1
+    output.io ~ resistor.2
+    output.io ~ capacitor.1
+    output.gnd ~ capacitor.2
+    input.gnd ~ output.gnd
+
+    # Default values
+    cutoff_frequency = 1kHz +/- 20%
+    capacitor.value = 100nF +/- 10%
+
+    assert 1 / (2 * 3.14 * resistor.value * capacitor.value) within cutoff_frequency
+
+
+module LowPassPiFilter:
+    C1 = new CapacitorElectrolytic
+    L1 = new Inductor
+    C2 = new CapacitorElectrolytic
+
+    power_in = new Power
+    power_out = new Power
+
+    power_in.vcc ~ C1.anode; C1.anode ~ L1.p1
+    power_out.vcc ~ L1.p2; L1.p2 ~C2.anode
+    C1.cathode ~ power_in.gnd
+    C2.cathode ~ power_out.gnd
+    power_in.gnd ~ power_out.gnd

@@ -1,0 +1,45 @@
+import Power from "generics/interfaces.ato"
+import Pair from "generics/interfaces.ato"
+import Capacitor from "generics/capacitors.ato"
+
+module SK6805SIDE:
+    # External connections
+    power = new Power
+    data_in = new Pair
+    data_out = new Pair
+
+    # Internal components
+    ic = new _SK6805SIDE
+    cap = new Capacitor
+
+    # Configure components
+    cap.value = 1uF +/- 20%
+    cap.package = "0402"
+
+    # Internal Connections
+    power ~ cap.power
+    power ~ ic.power
+    data_in ~ ic.data_in
+    data_out ~ ic.data_out
+
+
+component _SK6805SIDE:
+    # component SK6805SIDE-S
+    footprint = "LED-SMD_4P-L4.0-W1.4_SK6805SIDE-S"
+    lcsc_id = "C2909057"
+    mpn = "C2909057"
+
+    # External connections
+    power = new Power
+    data_in = new Pair
+    data_out = new Pair
+
+    # Map pins
+    power.vcc ~ pin 1
+    power.gnd ~ pin 2
+    data_out.io ~ pin 3
+    data_in.io ~ pin 4
+
+    # Internal connections
+    power.gnd ~ data_out.gnd
+    power.gnd ~ data_in.gnd

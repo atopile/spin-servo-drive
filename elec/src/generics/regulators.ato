@@ -1,0 +1,55 @@
+import Power from "interfaces.ato"
+import _VDiv from "vdivs.ato"
+
+module Regulator:
+    power_in = new Power
+    power_out = new Power
+    # connect grounds (non isolated regulator)
+    power_in.gnd ~ power_out.gnd
+
+module AdjustableRegulator from Regulator:
+    # using vanilla voltage divider without equations
+    feedback_div = new _VDiv
+    v_ref: voltage
+    i_q: current
+    r_total: resistance
+    v_in: voltage
+    v_out: voltage
+
+    # Default value
+    i_q = 100uA to 200uA
+
+    assert v_ref * (1 + feedback_div.r_top.value / feedback_div.r_bottom.value) within v_out
+    assert v_out / (feedback_div.r_top.value + feedback_div.r_bottom.value) within i_q
+
+module Buck from AdjustableRegulator:
+    # regulator parameters
+    type = "Buck"
+
+module Boost from AdjustableRegulator:
+    # regulator parameters
+    type = "Boost"
+
+module LDO from Regulator:
+    # regulator parameters
+    type = "LDO"
+
+module AdjustableLDO from AdjustableRegulator:
+    # regulator parameters
+    type = "AdjustableLDO"
+
+module FixedLDO from Regulator:
+    # regulator parameters
+    type = "FixedLDO"
+
+module AdjustableLDO from AdjustableRegulator:
+    # regulator parameters
+    type = "AdjustableLDO"
+
+module Flyback from AdjustableRegulator:
+    # regulator parameters
+    type = "Flyback"
+
+module Forward from AdjustableRegulator:
+    # regulator parameters
+    type = "Forward"

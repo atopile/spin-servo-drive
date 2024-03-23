@@ -1,0 +1,8 @@
+component NRVA4007T3G:
+    # component NRVA4007T3G
+    footprint = "SMA_L4.3-W2.6-LS5.2-FD"
+    lcsc_id = "C236166"
+    # pins
+    signal _1 ~ pin 1
+    signal _2 ~ pin 2
+

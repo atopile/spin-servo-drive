@@ -1,0 +1,49 @@
+component Diode:
+    signal anode ~ pin 2
+    signal cathode ~ pin 1
+    designator_prefix = "D"
+    mpn = "generic_diode"
+
+component ZenerDiode from Diode:
+    designator_prefix = "DZ"
+    category = "zener"
+
+component SchottkyDiode from Diode:
+    designator_prefix = "DS"
+    category = "schottky"
+
+component TVSDiode from Diode:
+    designator_prefix = "DT"
+    category = "tvs"
+
+component RectifierDiode from Diode:
+    designator_prefix = "DR"
+    category = "rectifier"
+
+import Power from "interfaces.ato"
+module PowerDiodeOr:
+    """
+    A diode or gate that combines two power rails, only dropping the 
+    """
+    diode = new ShottkyDiode
+    power_in1 = new Power
+    power_in2 = new Power
+    power_out = new Power
+
+    power_in2 ~ power_out
+    power_in.vcc ~ diode.anode; diode.cathode ~ power_out.vcc
+    power_in.gnd ~ power_out.gnd
+
+import Power_AC from "interfaces.ato"
+module FULLBRIDGERECTIFIER:
+    power_in = new Power_AC
+    power_out = new Power
+
+    d1 = new Diode
+    d2 = new Diode
+    d3 = new Diode
+    d4 = new Diode
+
+    power_in.line1 ~ d1.anode; d1.cathode ~ power_out.vcc; power_out.vcc~ d2.cathode; d2.anode ~ power_in.neutral
+    power_in.line1 ~ d4.cathode; d4.anode ~ power_out.gnd; power_out.gnd ~ d3.anode; d3.cathode ~ power_in.neutral
+

@@ -1,0 +1,24 @@
+component MA730GQ_Z:
+    # component MA730GQ-Z
+    footprint = "VQFN-16_L3.0-W3.0-P0.50-BL-EP1.6"
+    lcsc_id = "C161798"
+    mpn = "C161798"
+    # pins
+    signal SSD ~ pin 1
+    signal A ~ pin 2
+    signal Z ~ pin 3
+    signal MOSI ~ pin 4
+    signal CS ~ pin 5
+    signal B ~ pin 6
+    signal MISO ~ pin 7
+    signal GND ~ pin 8
+    signal PWM ~ pin 9
+    signal TEST ~ pin 10
+    signal MGL ~ pin 11
+    signal SCLK ~ pin 12
+    signal VDD ~ pin 13
+    signal N_C ~ pin 14
+    signal SSCK ~ pin 15
+    signal MGH ~ pin 16
+    signal EPAD ~ pin 17
+

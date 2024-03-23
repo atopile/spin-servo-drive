@@ -1,0 +1,12 @@
+from "interfaces.ato" import Power, Pair
+
+component TestPoint:
+    signal point ~ pin 1
+    mpn = "TestPoint"
+    footprint = "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm"
+
+    pair = new Pair
+    point ~ pair.io
+
+    power = new Power
+    point ~ power.vcc

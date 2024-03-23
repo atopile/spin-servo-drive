@@ -1,0 +1,10 @@
+component _1TS003B_1400_3500A:
+    # component 1TS003B-1400-3500A
+    footprint = "KEY-SMD_1TS003B"
+    lcsc_id = "C319392"
+    # pins
+    signal _1 ~ pin 1
+    signal _2 ~ pin 2
+    signal _3 ~ pin 3
+    signal _4 ~ pin 4
+

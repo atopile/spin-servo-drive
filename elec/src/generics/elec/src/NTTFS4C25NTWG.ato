@@ -1,0 +1,14 @@
+component NTTFS4C25NTWG:
+    # component NTTFS4C25NTWG
+    footprint = "POWERPAK-1212-8_L3.1-W3.1-P0.65-LS3.3-BL"
+    lcsc_id = "C893914"
+    # pins
+    signal S ~ pin 1
+    S ~ pin 2
+    S ~ pin 3
+    signal G ~ pin 4
+    signal D ~ pin 5
+    D ~ pin 6
+    D ~ pin 7
+    D ~ pin 8
+

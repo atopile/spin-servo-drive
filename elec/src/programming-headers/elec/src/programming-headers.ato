@@ -1,0 +1,68 @@
+import JTAG from "generics/interfaces.ato"
+import Power from "generics/interfaces.ato"
+import SWD from "generics/interfaces.ato"
+
+component HB_PH9_12725PB2GOB:
+    # component HB-PH9-12725PB2GOB
+    footprint = "HDR-SMD_10P-P1.27-V-M-R2-C5-LS5.3"
+    lcsc_id = "C6332249"
+    mpn = "C6332249"
+
+    # pins
+    signal _1 ~ pin 1
+    signal _10 ~ pin 10
+    signal _3 ~ pin 3
+    signal _8 ~ pin 8
+    signal _5 ~ pin 5
+    signal _6 ~ pin 6
+    signal _7 ~ pin 7
+    signal _4 ~ pin 4
+    signal _9 ~ pin 9
+    signal _2 ~ pin 2
+
+
+module JTAG_10PIN:
+    jtag = new JTAG
+    connector = new HB_PH9_12725PB2GOB
+    jtag.tck ~ connector.4
+    jtag.tms ~ connector.2
+    jtag.tdi ~ connector.8
+    jtag.tdo ~ connector.6
+    jtag.reset ~ connector.10
+    jtag.vcc ~ connector.1
+    jtag.gnd ~ connector.3
+    jtag.gnd ~ connector.5
+    jtag.gnd ~ connector.9
+
+    swd = new SWD
+    swd.swdio ~ connector.2
+    swd.swclk ~ connector.4
+    swd.swo ~ connector.6
+    swd.gnd ~ connector.3
+    swd.gnd ~ connector.5
+    swd.gnd ~ connector.9
+
+
+component TC2050:
+    signal tdo ~ pin 6
+    signal tdi ~ pin 8
+    signal tms ~ pin 2
+    signal tck ~ pin 4
+    signal gnd ~ pin 3
+    gnd ~ pin 5
+    signal rst ~ pin 10
+    signal vcc ~ pin 1
+
+    jtag = new JTAG
+    jtag.tdo ~ tdo
+    jtag.tdi ~ tdi
+    jtag.tms ~ tms
+    jtag.tck ~ tck
+    jtag.reset ~ rst
+
+    power = new Power
+    power.vcc ~ vcc
+    power.gnd ~ gnd
+
+    footprint = "TAG-CONNECT_TC2050-IDC"
+    mpn = "DNP"

@@ -1,0 +1,913 @@
+Info: Reading netlist file '/Users/narayanpowderly/Documents/atopile-workspace/servo-drive/build/default.net'.
+
+Info: Using reference designators to match symbols and footprints.
+
+Info: Processing symbol 'U12:lib:VQFN-24_L4.0-W4.0-P0.50-TL-EP2.5'.
+Info: Processing symbol 'C40:lib:C0402'.
+Info: Processing symbol 'C10:lib:C0402'.
+Info: Processing symbol 'C11:lib:C0402'.
+Info: Processing symbol 'C12:lib:C0402'.
+Info: Processing symbol 'C32:lib:C0402'.
+Info: Processing symbol 'C41:lib:C0402'.
+Info: Processing symbol 'C1008:lib:C0402'.
+Info: Processing symbol 'C1009:lib:C0402'.
+Info: Processing symbol 'C1:lib:C0402'.
+Info: Processing symbol 'C7:lib:C0402'.
+Info: Processing symbol 'C44:lib:C0402'.
+Info: Processing symbol 'C43:lib:C0402'.
+Info: Processing symbol 'C45:lib:C0402'.
+Info: Processing symbol 'C1000:lib:C0402'.
+Info: Processing symbol 'C1001:lib:C0402'.
+Info: Processing symbol 'C8:lib:C0402'.
+Info: Processing symbol 'C24:lib:C0402'.
+Info: Processing symbol 'C5:lib:C0402'.
+Info: Processing symbol 'C1003:lib:C0402'.
+Info: Processing symbol 'C42:lib:C0402'.
+Info: Processing symbol 'C1004:lib:C0402'.
+Info: Processing symbol 'C1005:lib:C0402'.
+Info: Processing symbol 'C17:lib:C0402'.
+Info: Processing symbol 'C1006:lib:C0402'.
+Info: Processing symbol 'C50:lib:C0402'.
+Info: Processing symbol 'C51:lib:C0402'.
+Info: Processing symbol 'C1007:lib:C0402'.
+Info: Processing symbol 'C13:lib:C0402'.
+Info: Processing symbol 'C1002:lib:C0603'.
+Info: Processing symbol 'C38:lib:C0805'.
+Info: Processing symbol 'C37:lib:C0805'.
+Info: Processing symbol 'C36:lib:C0805'.
+Info: Processing symbol 'C35:lib:C0805'.
+Info: Processing symbol 'C30:lib:C0805'.
+Info: Processing symbol 'C20:lib:C0805'.
+Info: Processing symbol 'C21:lib:C0805'.
+Info: Processing symbol 'C25:lib:C0805'.
+Info: Processing symbol 'C3:lib:C0805'.
+Info: Processing symbol 'C4:lib:C0805'.
+Info: Processing symbol 'C26:lib:C0805'.
+Info: Processing symbol 'C27:lib:C0805'.
+Info: Processing symbol 'C6:lib:C0805'.
+Info: Processing symbol 'C22:lib:C0805'.
+Info: Processing symbol 'C29:lib:C0805'.
+Info: Processing symbol 'U18:lib:VQFN-16_L3.0-W3.0-P0.50-BL-EP1.6'.
+Info: Processing symbol 'C47:lib:C0805'.
+Info: Processing symbol 'C49:lib:C0805'.
+Info: Processing symbol 'C39:lib:C0805'.
+Info: Processing symbol 'C48:lib:C0805'.
+Info: Processing symbol 'U15:lib:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN'.
+Info: Processing symbol 'U26:lib:CONN-SMD_4P-P1.25_SM04B-GHS-TB-LF-SN'.
+Info: Processing symbol 'U27:lib:CONN-SMD_4P-P1.25_SM04B-GHS-TB-LF-SN'.
+Info: Processing symbol 'U14:lib:CONN-TH_XT30PW-M'.
+Info: Processing symbol 'U2:lib:CONN-TH_XT30PW-M'.
+Info: Processing symbol 'U11:lib:KEY-SMD_SKTDLDE010'.
+Info: Processing symbol 'U5:lib:LED-SMD_4P-L4.0-W1.4_SK6805SIDE-S'.
+Info: Processing symbol 'U32:lib:LED-SMD_4P-L4.0-W1.4_SK6805SIDE-S'.
+Info: Processing symbol 'U19:lib:NetTie-2_SMD_Pad0.25mm'.
+Info: Processing symbol 'U31:lib:NetTie-2_SMD_Pad0.25mm'.
+Info: Processing symbol 'U33:lib:NetTie-2_SMD_Pad0.25mm'.
+Info: Processing symbol 'U34:lib:NetTie-2_SMD_Pad0.25mm'.
+Info: Processing symbol 'U35:lib:NetTie-2_SMD_Pad0.25mm'.
+Info: Processing symbol 'U17:lib:NetTie-2_SMD_Pad0.25mm'.
+Info: Processing symbol 'U37:lib:OSC-SMD_4P-L3.2-W2.5-BL'.
+Info: Processing symbol 'U9:lib:OutputPad'.
+Info: Processing symbol 'U8:lib:OutputPad'.
+Info: Processing symbol 'U7:lib:OutputPad'.
+Info: Processing symbol 'R26:lib:R0402'.
+Info: Processing symbol 'R44:lib:R0402'.
+Info: Processing symbol 'R25:lib:R0402'.
+Info: Processing symbol 'R45:lib:R0402'.
+Info: Processing symbol 'R46:lib:R0402'.
+Info: Processing symbol 'R48:lib:R0402'.
+Info: Processing symbol 'R49:lib:R0402'.
+Info: Processing symbol 'R16:lib:R0402'.
+Info: Processing symbol 'R14:lib:R0402'.
+Info: Processing symbol 'R13:lib:R0402'.
+Info: Processing symbol 'R12:lib:R0402'.
+Info: Processing symbol 'U28:lib:V-DFN3030-8K_L3.0-W3.0-P0.65-BL'.
+Info: Processing symbol 'R6:lib:R0402'.
+Info: Processing symbol 'R1008:lib:R0402'.
+Info: Processing symbol 'R1007:lib:R0402'.
+Info: Processing symbol 'R1006:lib:R0402'.
+Info: Processing symbol 'R1005:lib:R0402'.
+Info: Processing symbol 'R1004:lib:R0402'.
+Info: Processing symbol 'R1003:lib:R0402'.
+Info: Processing symbol 'R1002:lib:R0402'.
+Info: Processing symbol 'R1001:lib:R0402'.
+Info: Processing symbol 'R7:lib:R0402'.
+Info: Processing symbol 'R1000:lib:R0402'.
+Info: Processing symbol 'R22:lib:R0402'.
+Info: Processing symbol 'U1:lib:V-DFN3030-8K_L3.0-W3.0-P0.65-BL'.
+Info: Processing symbol 'R21:lib:R0402'.
+Info: Processing symbol 'R18:lib:R0402'.
+Info: Processing symbol 'R17:lib:R0402'.
+Info: Processing symbol 'R30:lib:R0402'.
+Info: Processing symbol 'R29:lib:R0402'.
+Info: Processing symbol 'R38:lib:R0402'.
+Info: Processing symbol 'R1:lib:R0402'.
+Info: Processing symbol 'R31:lib:R0402'.
+Info: Processing symbol 'R52:lib:R0402'.
+Info: Processing symbol 'R51:lib:R0402'.
+Info: Processing symbol 'R50:lib:R0402'.
+Info: Processing symbol 'U3:lib:V-DFN3030-8K_L3.0-W3.0-P0.65-BL'.
+Info: Processing symbol 'U10:lib:R0805'.
+Info: Processing symbol 'R47:lib:R0805'.
+Info: Processing symbol 'R8:lib:R0805'.
+Info: Processing symbol 'R4:lib:R0805'.
+Info: Processing symbol 'U30:lib:SOD-323_L1.8-W1.3-LS2.5-RD'.
+Info: Processing symbol 'U36:lib:SOD-323_L1.8-W1.3-LS2.5-RD'.
+Info: Processing symbol 'U25:lib:SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL'.
+Info: Processing symbol 'U23:lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BL'.
+Info: Processing symbol 'U22:lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BL'.
+Info: Processing symbol 'U4:lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR'.
+Info: Processing symbol 'U24:lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR'.
+Info: Processing symbol 'J1:lib:USB-C-SMD_KH-TYPE-C-16P'.
+Info: Processing symbol 'U21:lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR'.
+Info: Processing symbol 'U20:lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR'.
+Info: Processing symbol 'U1000:lib:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR'.
+Info: Processing symbol 'U6:lib:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR'.
+Info: Processing symbol 'U16:lib:TAG-CONNECT_TC2050-IDC'.
+Info: Processing symbol 'U13:lib:UFQFPN-48_L7.0-W7.0-P0.50-BL-EP'.
+Reconnect J1 pin B8 from usbc-sbu-1 to sub2.
+Add net dm.
+Reconnect J1 pin B7 from SpinServoNEMA17-dm to dm.
+Add net dp.
+Reconnect J1 pin B6 from SpinServoNEMA17-dp to dp.
+Add net cc2.
+Reconnect J1 pin B5 from SpinServoNEMA17-cc2 to cc2.
+Reconnect J1 pin B4 from usbc-vbus-1 to power_supply-vcc-1.
+Reconnect J1 pin B1 from SpinServoNEMA17-gnd to power_supply-gnd.
+Reconnect J1 pin A12 from SpinServoNEMA17-gnd to power_supply-gnd.
+Reconnect J1 pin A9 from usbc-vbus-1 to power_supply-vcc-1.
+Add net sub1.
+Reconnect J1 pin A8 from usbc-sbu-1 to sub1.
+Reconnect J1 pin A7 from SpinServoNEMA17-dm to dm.
+Reconnect J1 pin A6 from SpinServoNEMA17-dp to dp.
+Add net cc1.
+Reconnect J1 pin A5 from SpinServoNEMA17-cc1 to cc1.
+Reconnect J1 pin A4 from usbc-vbus-1 to power_supply-vcc-1.
+Reconnect J1 pin A1 from SpinServoNEMA17-gnd to power_supply-gnd.
+Reconnect J1 pin 4 from SpinServoNEMA17-gnd to power_supply-gnd.
+Reconnect J1 pin 3 from SpinServoNEMA17-gnd to power_supply-gnd.
+Reconnect J1 pin 2 from SpinServoNEMA17-gnd to power_supply-gnd.
+Reconnect J1 pin 1 from SpinServoNEMA17-gnd to power_supply-gnd.
+Add net sub2.
+Update U13 symbol association from /deda4150-e5d5-3c00-28ea-7251987c38dc/42756231-11c3-0fdd-6596-05d93077c8f4 to /71121c3e-7386-9840-a726-24f040561ff6/71121c3e-7386-9840-a726-24f040561ff6.
+Reconnect U13 pin 49 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect U13 pin 48 from SpinServoNEMA17-vin to power_supply-vcc-4.
+Add net micro.micro-tx.
+Reconnect U13 pin 47 from SpinServoNEMA17-sda to micro.micro-tx.
+Add net micro.micro-io.
+Reconnect U13 pin 46 from SpinServoNEMA17-scl to micro.micro-io.
+Add net micro-sda.
+Reconnect U13 pin 45 from micro-PB7-2 to micro-sda.
+Add net pb6.
+Reconnect U13 pin 44 from micro-tx to pb6.
+Add net micro.micro-mosi-1.
+Reconnect U13 pin 43 from micro-rx to micro.micro-mosi-1.
+Add net micro.micro-miso.
+Reconnect U13 pin 42 from micro-PB4 to micro.micro-miso.
+Add net tdo.
+Reconnect U13 pin 41 from micro-tdo-1 to tdo.
+Add net pc11.
+Reconnect U13 pin 40 from micro-PC11-2 to pc11.
+Add net pc10.
+Reconnect U13 pin 39 from micro-PC10-2 to pc10.
+Add net micro-scl.
+Reconnect U13 pin 38 from micro-tdi-1 to micro-scl.
+Add net tck.
+Reconnect U13 pin 37 from micro-tck to tck.
+Add net tms.
+Reconnect U13 pin 36 from micro-PA13-1 to tms.
+Reconnect U13 pin 35 from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect U13 pin 34 from micro-PA12-1 to dp.
+Reconnect U13 pin 33 from micro-PA11-1 to dm.
+Add net micro-vcc-2.
+Reconnect U13 pin 32 from micro-PA10-2 to micro-vcc-2.
+Add net micro.micro-scl.
+Reconnect U13 pin 31 from SpinServoNEMA17-temp_sense to micro.micro-scl.
+Add net pa8.
+Reconnect U13 pin 30 from micro-PA8-2 to pa8.
+Add net micro-vcc.
+Reconnect U13 pin 29 from micro-PC6-2 to micro-vcc.
+Reconnect U13 pin 28 from SpinServoNEMA17-mosi to micro-mosi.
+Reconnect U13 pin 27 from SpinServoNEMA17-miso to micro-miso.
+Reconnect U13 pin 26 from SpinServoNEMA17-sck to micro-sck.
+Reconnect U13 pin 25 from SpinServoNEMA17-vin_sense to cs.
+Add net pb11.
+Reconnect U13 pin 24 from SpinServoNEMA17-cs to pb11.
+Reconnect U13 pin 23 from SpinServoNEMA17-vin to power_supply-vcc-4.
+Add net pb10.
+Reconnect U13 pin 22 from micro-PB10-2 to pb10.
+Reconnect U13 pin 21 from SpinServoNEMA17-vin to power_supply-vcc-4.
+Disconnect U13 pin 20.
+Add net pb2.
+Reconnect U13 pin 19 from SpinServoNEMA17-c_isense to pb2.
+Add net power_stage.phase_b.current_sensor-vcc.
+Reconnect U13 pin 18 from SpinServoNEMA17-b_isense to power_stage.phase_b.current_sensor-vcc.
+Add net power_stage.phase_a.current_sensor-vcc-1.
+Reconnect U13 pin 17 from SpinServoNEMA17-a_isense to power_stage.phase_a.current_sensor-vcc-1.
+Add net pc4.
+Reconnect U13 pin 16 from micro-PC4-2 to pc4.
+Add net micro.micro-mosi.
+Reconnect U13 pin 15 from SpinServoNEMA17-led_pixel to micro.micro-mosi.
+Add net micro.micro-io-1.
+Reconnect U13 pin 14 from micro-PA6-2 to micro.micro-io-1.
+Add net micro.micro-sck.
+Reconnect U13 pin 13 from SpinServoNEMA17-in to micro.micro-sck.
+Add net micro-vcc-1.
+Reconnect U13 pin 12 from micro-PA4-2 to micro-vcc-1.
+Add net power_stage.phase_c.current_sensor-vcc.
+Reconnect U13 pin 11 from SpinServoNEMA17-enable to power_stage.phase_c.current_sensor-vcc.
+Reconnect U13 pin 10 from SpinServoNEMA17-phase_c to power_stage.phase_c-vcc.
+Reconnect U13 pin 9 from SpinServoNEMA17-phase_b to power_stage.phase_b-vcc.
+Reconnect U13 pin 8 from SpinServoNEMA17-phase_a to power_stage.phase_a-vcc.
+Add net reset.
+Reconnect U13 pin 7 from micro-rst to reset.
+Add net pf1_osc_out.
+Reconnect U13 pin 6 from micro-PF1_OSC_OUT-1 to pf1_osc_out.
+Add net micro.micro.ic-vcc-1.
+Reconnect U13 pin 5 from micro-in to micro.micro.ic-vcc-1.
+Add net pc15_osc32_out.
+Reconnect U13 pin 4 from micro-PC15_OSC32_OUT-2 to pc15_osc32_out.
+Add net pc14_osc32_in.
+Reconnect U13 pin 3 from micro-PC14_OSC32_IN-2 to pc14_osc32_in.
+Add net pc13.
+Reconnect U13 pin 2 from micro-PC13-2 to pc13.
+Add net micro.micro.ic-vcc.
+Reconnect U13 pin 1 from micro-VBAT-2 to micro.micro.ic-vcc.
+Reconnect J1 pin B9 from usbc-vbus-1 to power_supply-vcc-1.
+Update U16 symbol association from /deda4150-e5d5-3c00-28ea-7251987c38dc/c9e14a92-df03-7104-431d-2aaaf7e215a1 to /2ae0905b-778b-030b-b2aa-ba0478fe4388/2ae0905b-778b-030b-b2aa-ba0478fe4388.
+Reconnect U16 pin 10 from micro-rst to reset.
+Remove unused footprint C28.
+Reconnect U16 pin 8 from micro-tdi-1 to micro-scl.
+Remove unused footprint C34.
+Reconnect U16 pin 6 from micro-tdo-1 to tdo.
+Add net micro.tc2050-gnd.
+Reconnect U16 pin 5 from SpinServoNEMA17-gnd to micro.tc2050-gnd.
+Reconnect U16 pin 4 from micro-tck to tck.
+Reconnect U16 pin 3 from SpinServoNEMA17-gnd to micro.tc2050-gnd.
+Reconnect U16 pin 2 from micro-PA13-1 to tms.
+Add net micro.tc2050-vcc.
+Reconnect U16 pin 1 from SpinServoNEMA17-vin to micro.tc2050-vcc.
+Add net power_supply-vcc-1.
+Update U6 symbol association from /98cbf1bd-a366-20d2-6d13-1df736825dde/535e7075-f7cb-c65d-172b-833bd94a4b1a to /b1068e0a-b53b-940c-1ed6-ffc7be0ef7bf/b1068e0a-b53b-940c-1ed6-ffc7be0ef7bf.
+Add net sw.
+Reconnect U6 pin 6 from gate_reg-sw-1 to sw.
+Add net power_supply-vcc.
+Reconnect U6 pin 5 from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect U6 pin 4 from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Add net power_supply.buck.feedback_div-out.
+Reconnect U6 pin 3 from gate_reg-fb to power_supply.buck.feedback_div-out.
+Reconnect U6 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Add net cb.
+Reconnect U6 pin 1 from gate_reg-cb-1 to cb.
+Reconnect J1 pin B12 from SpinServoNEMA17-gnd to power_supply-gnd.
+Add U1000 (footprint 'lib:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR').
+Add net power_supply-gnd.
+Change U20 footprint from 'Package_TO_SOT_SMD:SOT-23-5' to 'lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR'.
+Update J1 symbol association from  to /4586b111-005a-56d6-f7bf-451c876d0425/4586b111-005a-56d6-f7bf-451c876d0425.
+Change U21 footprint from 'Package_TO_SOT_SMD:SOT-23-5' to 'lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR'.
+Reconnect U3 pin 1 from _c-high_gate-2 to power_stage.phase_c.half_bridge-vcc.
+Change U24 footprint from 'Package_TO_SOT_SMD:SOT-23-5' to 'lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR'.
+Reconnect U3 pin 2 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Change U4 footprint from 'Package_TO_SOT_SMD:SOT-23-5' to 'lib:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR'.
+Reconnect U3 pin 3 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Update U22 symbol association from /0bb85205-6ae2-2789-6d45-598eb13e449b/14d27997-418c-256f-ec3d-ffc33daf59a4 to /701f97a7-71dd-da3d-ac5e-26cf7a2d31f6/701f97a7-71dd-da3d-ac5e-26cf7a2d31f6.
+Add net power_supply.ldo5V-vcc.
+Reconnect U22 pin 5 from SpinServoNEMA17-p1 to power_supply.ldo5V-vcc.
+Add net power_supply.ldo5V.feedback_div-out.
+Reconnect U22 pin 4 from ldo_5v-output to power_supply.ldo5V.feedback_div-out.
+Add net power_supply-vcc-2.
+Reconnect U22 pin 3 from SpinServoNEMA17-vin-1 to power_supply-vcc-2.
+Reconnect U22 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect U22 pin 1 from SpinServoNEMA17-vin-1 to power_supply-vcc-2.
+Reconnect U3 pin 4 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Update U23 symbol association from /bf1a624f-2ae2-22fc-5989-d1f7bfc2cf73/a1add5cd-ecba-d021-d51e-1781a05f02e4 to /9f14470c-9502-c210-63a4-086f03ae39d2/9f14470c-9502-c210-63a4-086f03ae39d2.
+Reconnect U23 pin 5 from SpinServoNEMA17-vin to power_supply-vcc-4.
+Add net power_supply.ldo3V3.feedback_div-out.
+Reconnect U23 pin 4 from ldo_3v3-adj-1 to power_supply.ldo3V3.feedback_div-out.
+Reconnect U23 pin 3 from SpinServoNEMA17-p1 to power_supply-vcc-2.
+Reconnect U23 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect U23 pin 1 from SpinServoNEMA17-p1 to power_supply-vcc-2.
+Reconnect U3 pin 5 from _c-i_in-2 to power_stage-gnd-2.
+Update U25 symbol association from /bd87a13f-e123-dde5-2d9b-4480c289ab86/8159343b-85b8-5b83-b026-9d81d3bafde9 to /0e96bc39-05cc-bacd-99a7-ead284532a44/0e96bc39-05cc-bacd-99a7-ead284532a44.
+Reconnect U25 pin 8 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Add net canh.
+Reconnect U25 pin 7 from SpinServoNEMA17-p2 to canh.
+Add net canl.
+Reconnect U25 pin 6 from SpinServoNEMA17-p3 to canl.
+Add net vref.
+Reconnect U25 pin 5 from canbus-v_mid-2 to vref.
+Add net rx.
+Reconnect U25 pin 4 from micro-rx to rx.
+Reconnect U25 pin 3 from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect U25 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Add net micro.can_tranciever-tx.
+Reconnect U25 pin 1 from micro-tx to micro.can_tranciever-tx.
+Reconnect U3 pin 6 from _c-i_in-2 to power_stage-gnd-2.
+Update U36 symbol association from /98cbf1bd-a366-20d2-6d13-1df736825dde/ec840f7d-1f9f-b979-d8dc-f3c0bc61bf01 to /1617a309-f69a-4eb5-50f6-67c1f143f821/1617a309-f69a-4eb5-50f6-67c1f143f821.
+Reconnect U36 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect U36 pin 1 from gate_reg-sw-1 to sw.
+Reconnect U3 pin 7 from _c-i_in-2 to power_stage-gnd-2.
+Update U30 symbol association from /bf5e9fa7-2cc0-31e9-ca59-83ea4e0c00d2/13126961-4cbe-e0b5-644b-55877448a37c to /ecae67e7-7939-ec13-ce78-74c6942affe3/ecae67e7-7939-ec13-ce78-74c6942affe3.
+Add net anode.
+Reconnect U30 pin 2 from usbc-vbus-1 to anode.
+Add net cathode.
+Reconnect U30 pin 1 from SpinServoNEMA17-p1 to cathode.
+Reconnect U3 pin 8 from _c-low_gate-2 to power_stage.phase_c.half_bridge-vcc-1.
+Change R4 footprint from 'Resistor_SMD:R_0805_2012Metric' to 'lib:R0805'.
+Reconnect U3 pin 9 from SpinServoNEMA17-out_c to power_stage-gnd-2.
+Change R8 footprint from 'Resistor_SMD:R_0805_2012Metric' to 'lib:R0805'.
+Reconnect U3 pin 10 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Change R47 footprint from 'Resistor_SMD:R_0805_2012Metric' to 'lib:R0805'.
+Update U3 symbol association from /4ced4223-2180-b862-5978-5b7ae86799e2/5b74e362-04e1-7a98-56b1-2dbf74337ced to /a317cca4-0fd5-113a-bbdb-3a066e3b833d/a317cca4-0fd5-113a-bbdb-3a066e3b833d.
+Change U10 footprint from 'lib:L0805' to 'lib:R0805'.
+Reconnect U1 pin 1 from _b-high_gate-2 to power_stage.phase_b.half_bridge-vcc.
+Change R50 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U1 pin 2 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Change R51 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U1 pin 3 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Change R52 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U1 pin 4 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Change R31 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U1 pin 5 from _b-i_in-2 to power_stage-gnd-2.
+Change R1 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U1 pin 6 from _b-i_in-2 to power_stage-gnd-2.
+Change R38 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U1 pin 7 from _b-i_in-2 to power_stage-gnd-2.
+Change R29 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U1 pin 8 from _b-low_gate-2 to power_stage.phase_b.half_bridge-vcc-1.
+Change R30 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U1 pin 9 from SpinServoNEMA17-out_b to power_stage-gnd-2.
+Change R17 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U1 pin 10 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Change R18 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Update U1 symbol association from /f942f04f-4f59-9a04-0358-1789c7eea128/99ef80de-c239-39f3-d65b-6dd183fcc13b to /0bbdbebc-e3f2-7f89-b6ea-9a7731b47ca0/0bbdbebc-e3f2-7f89-b6ea-9a7731b47ca0.
+Change R21 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U28 pin 1 from _a-high_gate-2 to power_stage.phase_a.half_bridge-vcc.
+Change R22 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U28 pin 2 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Add R1000 (footprint 'lib:R0402').
+Reconnect U28 pin 3 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Change R7 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U28 pin 4 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Add R1001 (footprint 'lib:R0402').
+Reconnect U28 pin 5 from _a-gnd-2 to power_stage-gnd-2.
+Add R1002 (footprint 'lib:R0402').
+Reconnect U28 pin 6 from _a-gnd-2 to power_stage-gnd-2.
+Add R1003 (footprint 'lib:R0402').
+Reconnect U28 pin 7 from _a-gnd-2 to power_stage-gnd-2.
+Add R1004 (footprint 'lib:R0402').
+Reconnect U28 pin 8 from _a-low_gate-2 to power_stage.phase_a.half_bridge-vcc-1.
+Add R1005 (footprint 'lib:R0402').
+Reconnect U28 pin 9 from SpinServoNEMA17-out_a to power_stage-gnd-2.
+Add R1006 (footprint 'lib:R0402').
+Reconnect U28 pin 10 from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Add R1007 (footprint 'lib:R0402').
+Add net power_stage-vcc.
+Add R1008 (footprint 'lib:R0402').
+Update U28 symbol association from /7973fc62-4a0a-3383-c766-228cd0e52f3b/691eb455-8d48-20ea-64e0-4cbbd647e49f to /7288a6e8-ccc3-bd69-94ea-3f2fae48fba6/7288a6e8-ccc3-bd69-94ea-3f2fae48fba6.
+Change R6 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U18 pin 1 from sensor-ssd-2 to ssd.
+Change R12 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Add net ssd.
+Change R13 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U18 pin 2 from sensor-a-2 to position_sensor.ma732-vcc.
+Change R14 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Add net position_sensor.ma732-vcc.
+Change R16 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Connect U18 pin 3 to position_sensor.ma732-vcc-2.
+Change R49 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Add net position_sensor.ma732-vcc-2.
+Change R48 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U18 pin 4 from SpinServoNEMA17-mosi to micro-mosi.
+Change R46 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Add net micro-mosi.
+Change R45 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U18 pin 5 from SpinServoNEMA17-cs to cs.
+Change R25 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Add net cs.
+Change R44 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Reconnect U18 pin 6 from sensor-b-2 to position_sensor.ma732-vcc-1.
+Change R26 footprint from 'Resistor_SMD:R_0402_1005Metric' to 'lib:R0402'.
+Add net position_sensor.ma732-vcc-1.
+Update U7 symbol association from /09815df4-2ee1-c214-8e2b-c1fd2c8edf27/51c92f62-e1cb-5879-26bc-00fbb4cb921e to /41b90c38-7b2f-b4d4-9fd0-30280a93d6b8/41b90c38-7b2f-b4d4-9fd0-30280a93d6b8.
+Add net power_stage.phase_a.half_bridge-vcc-2.
+Reconnect U7 pin 1 from SpinServoNEMA17-out_a to power_stage.phase_a.half_bridge-vcc-2.
+Reconnect U18 pin 7 from SpinServoNEMA17-miso to micro-miso.
+Update U8 symbol association from /09815df4-2ee1-c214-8e2b-c1fd2c8edf27/3fa15c88-5a61-18dd-4cf7-3ce7d15de7c5 to /30b6886c-2848-3b72-4819-13de143700d0/30b6886c-2848-3b72-4819-13de143700d0.
+Add net power_stage.phase_b.half_bridge-vcc-2.
+Reconnect U8 pin 1 from SpinServoNEMA17-out_b to power_stage.phase_b.half_bridge-vcc-2.
+Add net micro-miso.
+Update U9 symbol association from /09815df4-2ee1-c214-8e2b-c1fd2c8edf27/edfbdc32-fe7c-f705-3962-bbd155f527e1 to /7a90fbbd-c363-0ca8-847f-072b25c96ce3/7a90fbbd-c363-0ca8-847f-072b25c96ce3.
+Add net power_stage.phase_c.half_bridge-vcc-2.
+Reconnect U9 pin 1 from SpinServoNEMA17-out_c to power_stage.phase_c.half_bridge-vcc-2.
+Reconnect U18 pin 8 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Change U37 value from 8Mhz to .
+Update U37 symbol association from /deda4150-e5d5-3c00-28ea-7251987c38dc/fd6a93e2-78e9-0672-e333-e6c868aabbc6 to /72c41b80-a231-e960-6d6e-e589cb382e9d/72c41b80-a231-e960-6d6e-e589cb382e9d.
+Reconnect U37 pin 4 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Add net xout.
+Reconnect U37 pin 3 from micro-out-1 to xout.
+Reconnect U37 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect U37 pin 1 from micro-in to micro.micro.ic-vcc-1.
+Reconnect U18 pin 9 from sensor-pwm-2 to pwm.
+Update U17 symbol association from /ead1093e-1b47-68ff-57eb-972d990237e4/b2f8d4fc-3403-537b-d91a-af7f128280c7 to /2353eba9-fb50-5371-db3e-94a5a8e9e9e3/2353eba9-fb50-5371-db3e-94a5a8e9e9e3.
+Reconnect U17 pin 2 from _a-gnd-2 to power_stage-gnd-2.
+Add net power_stage.phase_a.current_sensor.bias_div-vcc.
+Reconnect U17 pin 1 from _i_sense-input-10 to power_stage.phase_a.current_sensor.bias_div-vcc.
+Add net pwm.
+Update U35 symbol association from /7ae3f1b2-d212-007b-9718-401e59f0287f/bf3a4871-3e52-06f6-82e3-4b1791bece43 to /2bd48c5a-08de-01cc-8539-22ea583bbdac/2bd48c5a-08de-01cc-8539-22ea583bbdac.
+Add net power_stage-gnd.
+Reconnect U35 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd.
+Add net power_stage.phase_c.current_sensor.feedback_div-vcc.
+Reconnect U35 pin 1 from _i_sense-input-14 to power_stage.phase_c.current_sensor.feedback_div-vcc.
+Reconnect U18 pin 10 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Update U34 symbol association from /7ae3f1b2-d212-007b-9718-401e59f0287f/0d64b46c-c169-7993-d8fa-69bf894b6d2f to /aa3fbd31-563d-9730-1759-cc04fb8c99d9/aa3fbd31-563d-9730-1759-cc04fb8c99d9.
+Reconnect U34 pin 2 from _c-i_in-2 to power_stage-gnd-2.
+Add net power_stage.phase_c.current_sensor.bias_div-vcc.
+Reconnect U34 pin 1 from _i_sense-input-13 to power_stage.phase_c.current_sensor.bias_div-vcc.
+Reconnect U18 pin 11 from sensor-mgl-2 to mgl.
+Update U33 symbol association from /9328b2e1-717f-bd91-8c01-d88216567fea/d561887c-7fe8-952b-dc7f-0bba23c5c8b6 to /e9bc564f-32e6-8342-8506-f94b370a0496/e9bc564f-32e6-8342-8506-f94b370a0496.
+Reconnect U33 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd.
+Add net power_stage.phase_b.current_sensor.feedback_div-vcc.
+Reconnect U33 pin 1 from _i_sense-input-12 to power_stage.phase_b.current_sensor.feedback_div-vcc.
+Add net mgl.
+Update U31 symbol association from /9328b2e1-717f-bd91-8c01-d88216567fea/f9004eca-2195-f918-a42c-ebf07a7c387c to /84c04b59-5a9a-97a0-d2e5-973a35811038/84c04b59-5a9a-97a0-d2e5-973a35811038.
+Reconnect U31 pin 2 from _b-i_in-2 to power_stage-gnd-2.
+Add net power_stage.phase_b.current_sensor.bias_div-vcc.
+Reconnect U31 pin 1 from _i_sense-p1-4 to power_stage.phase_b.current_sensor.bias_div-vcc.
+Reconnect U18 pin 12 from SpinServoNEMA17-sck to sclk.
+Update U19 symbol association from /ead1093e-1b47-68ff-57eb-972d990237e4/fca544eb-32e6-ee7e-112e-dab5873aea9d to /8ce899eb-c02d-14da-6a89-b5f28d667f16/8ce899eb-c02d-14da-6a89-b5f28d667f16.
+Reconnect U19 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd.
+Add net power_stage.phase_a.current_sensor.feedback_div-vcc.
+Reconnect U19 pin 1 from _i_sense-input-11 to power_stage.phase_a.current_sensor.feedback_div-vcc.
+Add net sclk.
+Update U32 symbol association from  to /8135ed14-4e0e-7a46-c029-f521a1db9b1e/8135ed14-4e0e-7a46-c029-f521a1db9b1e.
+Add net ios.led1-vcc.
+Reconnect U32 pin 4 from SpinServoNEMA17-data_out to ios.led1-vcc.
+Add net ios.led2-vcc.
+Reconnect U32 pin 3 from led2-data_out-1 to ios.led2-vcc.
+Reconnect U32 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Add net power_supply-vcc-3.
+Reconnect U32 pin 1 from SpinServoNEMA17-p1 to power_supply-vcc-3.
+Reconnect U18 pin 13 from SpinServoNEMA17-vin to power_supply-vcc-4.
+Update U5 symbol association from /09815df4-2ee1-c214-8e2b-c1fd2c8edf27/b00c3e25-608b-1d3d-13b7-ba90591f381c to /e5fca251-2b1d-23d5-5ed3-2a1ffda974d6/e5fca251-2b1d-23d5-5ed3-2a1ffda974d6.
+Reconnect U5 pin 4 from SpinServoNEMA17-led_pixel to micro-vcc.
+Reconnect U5 pin 3 from SpinServoNEMA17-data_out to ios.led1-vcc.
+Reconnect U5 pin 2 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect U5 pin 1 from SpinServoNEMA17-p1 to power_supply-vcc-3.
+Add net power_supply-vcc-4.
+Update U11 symbol association from  to /928438d7-2431-9902-7fd3-521d5d0d768f/928438d7-2431-9902-7fd3-521d5d0d768f.
+Reconnect U11 pin 1 from SpinServoNEMA17-in to micro-vcc-1.
+Reconnect U11 pin 2 from SpinServoNEMA17-vin to power_supply-vcc-4.
+Add net anchor.
+Connect U11 pin 3 to anchor.
+Connect U11 pin 4 to anchor.
+Connect U11 pin 4 to anchor.
+Reconnect U18 pin 14 from sensor-nc-2 to n_c.
+Update U2 symbol association from /09815df4-2ee1-c214-8e2b-c1fd2c8edf27/330e51d0-db25-dcc1-eeaa-7bd857a5c946 to /08a6adcb-f0fc-b395-2fde-4cbf602d50cf/08a6adcb-f0fc-b395-2fde-4cbf602d50cf.
+Remove unused footprint R3.
+Remove unused footprint R28.
+Reconnect U2 pin 2 from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect U2 pin 1 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Add net n_c.
+Update U14 symbol association from /09815df4-2ee1-c214-8e2b-c1fd2c8edf27/354f8e0c-570b-8613-ab71-6bc8483dda1e to /ddab95e2-a202-50cc-dc16-fbe357c55841/ddab95e2-a202-50cc-dc16-fbe357c55841.
+Remove unused footprint C15.
+Remove unused footprint C18.
+Reconnect U14 pin 2 from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect U14 pin 1 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect U18 pin 15 from sensor-ssck-2 to micro-sck.
+Update U27 symbol association from /09815df4-2ee1-c214-8e2b-c1fd2c8edf27/e66f2a2a-14f0-f076-4316-d3290d87238f to /94d93651-c5c4-1f1b-0a71-646df38b55a4/94d93651-c5c4-1f1b-0a71-646df38b55a4.
+Remove unused footprint R19.
+Remove unused footprint C33.
+Reconnect U27 pin 4 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect U27 pin 3 from SpinServoNEMA17-p3 to canl.
+Reconnect U27 pin 2 from SpinServoNEMA17-p2 to canh.
+Reconnect U27 pin 1 from SpinServoNEMA17-p1 to power_supply-vcc-3.
+Add net micro-sck.
+Update U26 symbol association from /09815df4-2ee1-c214-8e2b-c1fd2c8edf27/9b03f6bb-19ce-8448-1b12-498744263657 to /503a587f-7f0a-f7c2-dbe8-1a3e20ee7bb0/503a587f-7f0a-f7c2-dbe8-1a3e20ee7bb0.
+Remove unused footprint C19.
+Remove unused footprint R27.
+Reconnect U26 pin 4 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect U26 pin 3 from SpinServoNEMA17-p3 to canl.
+Reconnect U26 pin 2 from SpinServoNEMA17-p2 to canh.
+Reconnect U26 pin 1 from SpinServoNEMA17-p1 to power_supply-vcc-3.
+Reconnect U18 pin 16 from sensor-mgh-2 to position_sensor.ma732-vcc-3.
+Update U15 symbol association from /09815df4-2ee1-c214-8e2b-c1fd2c8edf27/88021e07-1cb5-8b1e-f390-f10bb887c314 to /83220e0f-9fee-1218-7ccc-70aa08e0225f/83220e0f-9fee-1218-7ccc-70aa08e0225f.
+Remove unused footprint C52.
+Remove unused footprint R10.
+Reconnect U15 pin 4 from SpinServoNEMA17-scl to micro-scl.
+Reconnect U15 pin 3 from SpinServoNEMA17-sda to micro-sda.
+Reconnect U15 pin 2 from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect U15 pin 1 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Add net position_sensor.ma732-vcc-3.
+Change C48 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Reconnect U18 pin 17 from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Change C39 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Add net power_stage-gnd-2.
+Change C49 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Update U18 symbol association from /215c64a2-5aa2-06ed-46ec-de8988768414/be554fff-ab1f-bfc5-8f9a-bad5c53c5e6c to /37e3540a-8177-566b-8e8a-edf41793d618/37e3540a-8177-566b-8e8a-edf41793d618.
+Change C47 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Reconnect U12 pin 1 from SpinServoNEMA17-phase_a to power_stage.phase_a-vcc.
+Change C29 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Reconnect U12 pin 2 from SpinServoNEMA17-phase_b to power_stage.phase_b-vcc.
+Change C22 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Reconnect U12 pin 3 from SpinServoNEMA17-phase_c to power_stage.phase_c-vcc.
+Change C6 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Reconnect U12 pin 4 from SpinServoNEMA17-vin-1 to power_stage.gate_driver.ic-vcc.
+Change C27 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Add net power_stage.gate_driver.ic-vcc.
+Change C26 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Reconnect U12 pin 5 from SpinServoNEMA17-vin to power_stage-gnd-1.
+Change C4 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Add net power_stage-gnd-1.
+Change C3 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Reconnect U12 pin 6 from SpinServoNEMA17-gnd to power_stage.gate_driver.ic-gnd.
+Change C25 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Disconnect U12 pin 7.
+Change C21 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Disconnect U12 pin 8.
+Change C20 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Reconnect U12 pin 9 from power_stage-GLC-1 to power_stage.phase_c.half_bridge-vcc-1.
+Change C30 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Add net power_stage.phase_c.half_bridge-vcc-1.
+Change C35 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Reconnect U12 pin 10 from power_stage-GLB-1 to power_stage.phase_b.half_bridge-vcc-1.
+Change C36 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Add net power_stage.phase_b.half_bridge-vcc-1.
+Change C37 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Reconnect U12 pin 11 from power_stage-GLA-1 to power_stage.phase_a.half_bridge-vcc-1.
+Change C38 footprint from 'Capacitor_SMD:C_0805_2012Metric' to 'lib:C0805'.
+Add net power_stage.phase_a.half_bridge-vcc-1.
+Add C1002 (footprint 'lib:C0603').
+Reconnect U12 pin 12 from SpinServoNEMA17-out_c to power_stage.gate_driver-vcc-4.
+Change C13 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Add net power_stage.gate_driver-vcc-4.
+Add C1007 (footprint 'lib:C0402').
+Reconnect U12 pin 13 from power_stage-GHC-1 to power_stage.phase_c.half_bridge-vcc.
+Change C51 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Add net power_stage.phase_c.half_bridge-vcc.
+Change C50 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Reconnect U12 pin 14 from power_stage-bs-1 to power_stage.gate_driver.ic-vcc-3.
+Add C1006 (footprint 'lib:C0402').
+Add net power_stage.gate_driver.ic-vcc-3.
+Change C17 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Reconnect U12 pin 15 from SpinServoNEMA17-out_b to power_stage.gate_driver-vcc-3.
+Add C1005 (footprint 'lib:C0402').
+Add net power_stage.gate_driver-vcc-3.
+Add C1004 (footprint 'lib:C0402').
+Reconnect U12 pin 16 from power_stage-GHB-1 to power_stage.phase_b.half_bridge-vcc.
+Change C42 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Add net power_stage.phase_b.half_bridge-vcc.
+Add C1003 (footprint 'lib:C0402').
+Reconnect U12 pin 17 from power_stage-BSTB-1 to power_stage.gate_driver.ic-vcc-2.
+Change C5 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Add net power_stage.gate_driver.ic-vcc-2.
+Change C24 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Reconnect U12 pin 18 from SpinServoNEMA17-out_a to power_stage.gate_driver-vcc-2.
+Change C8 footprint from 'Capacitor_SMD:C_0603_1608Metric' to 'lib:C0402'.
+Add net power_stage.gate_driver-vcc-2.
+Add C1001 (footprint 'lib:C0402').
+Reconnect U12 pin 19 from power_stage-GHA-1 to power_stage.phase_a.half_bridge-vcc.
+Add C1000 (footprint 'lib:C0402').
+Add net power_stage.phase_a.half_bridge-vcc.
+Change C45 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Reconnect U12 pin 20 from power_stage-BSTA to power_stage.gate_driver.ic-vcc-1.
+Change C43 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Add net power_stage.gate_driver.ic-vcc-1.
+Change C44 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Disconnect U12 pin 21.
+Change C7 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Reconnect U12 pin 22 from SpinServoNEMA17-phase_a to power_stage.phase_a-vcc.
+Change C1 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Add net power_stage.phase_a-vcc.
+Add C1009 (footprint 'lib:C0402').
+Reconnect U12 pin 23 from SpinServoNEMA17-phase_b to power_stage.phase_b-vcc.
+Add C1008 (footprint 'lib:C0402').
+Add net power_stage.phase_b-vcc.
+Change C41 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Reconnect U12 pin 24 from SpinServoNEMA17-phase_c to power_stage.phase_c-vcc.
+Change C32 footprint from 'Capacitor_SMD:C_0603_1608Metric' to 'lib:C0402'.
+Add net power_stage.phase_c-vcc.
+Change C12 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Reconnect U12 pin 25 from SpinServoNEMA17-gnd to power_stage.gate_driver.ic-gnd.
+Change C11 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Add net power_stage.gate_driver.ic-gnd.
+Change C10 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Update U12 symbol association from /737bc1e8-1277-332a-8c63-c690624a360c/a37d16e5-e4c3-1d3b-14c9-9bc7a2784ae8 to /1c1e8f4f-ec78-6b1f-0ce8-181efe3a4a51/1c1e8f4f-ec78-6b1f-0ce8-181efe3a4a51.
+Change C40 footprint from 'Capacitor_SMD:C_0402_1005Metric' to 'lib:C0402'.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect via from usbc-vbus-1 to anode.
+Reconnect via from micro-tx to micro.can_tranciever-tx.
+Reconnect via from micro-tx to micro.can_tranciever-tx.
+Reconnect via from micro-tdo-1 to tdo.
+Reconnect via from micro-tdo-1 to tdo.
+Reconnect via from micro-tdi-1 to micro-scl.
+Reconnect via from micro-tck to tck.
+Reconnect via from micro-rx to rx.
+Reconnect via from micro-rx to rx.
+Reconnect via from micro-rst to reset.
+Reconnect via from micro-rst to reset.
+Reconnect via from micro-PA13-1 to tms.
+Reconnect via from _c-low_gate-2 to power_stage.phase_c.half_bridge-vcc-1.
+Reconnect via from _c-low_gate-2 to power_stage.phase_c.half_bridge-vcc-1.
+Reconnect via from _b-low_gate-2 to power_stage.phase_b.half_bridge-vcc-1.
+Reconnect via from _b-low_gate-2 to power_stage.phase_b.half_bridge-vcc-1.
+Reconnect via from _a-low_gate-2 to power_stage.phase_a.half_bridge-vcc-1.
+Reconnect via from _a-low_gate-2 to power_stage.phase_a.half_bridge-vcc-1.
+Reconnect via from SpinServoNEMA17-vin_sense to cs.
+Reconnect via from SpinServoNEMA17-vin_sense to cs.
+Reconnect via from SpinServoNEMA17-sda to micro-sda.
+Reconnect via from SpinServoNEMA17-sda to micro-sda.
+Reconnect via from SpinServoNEMA17-scl to micro-scl.
+Reconnect via from SpinServoNEMA17-scl to micro-scl.
+Reconnect via from SpinServoNEMA17-sck to micro-sck.
+Reconnect via from SpinServoNEMA17-sck to micro-sck.
+Reconnect via from SpinServoNEMA17-phase_c to power_stage.phase_c-vcc.
+Reconnect via from SpinServoNEMA17-phase_c to power_stage.phase_c-vcc.
+Reconnect via from SpinServoNEMA17-phase_c to power_stage.phase_c-vcc.
+Reconnect via from SpinServoNEMA17-phase_b to power_stage.phase_b-vcc.
+Reconnect via from SpinServoNEMA17-phase_b to power_stage.phase_b-vcc.
+Reconnect via from SpinServoNEMA17-phase_b to power_stage.phase_b-vcc.
+Reconnect via from SpinServoNEMA17-phase_a to power_stage.phase_a-vcc.
+Reconnect via from SpinServoNEMA17-phase_a to power_stage.phase_a-vcc.
+Reconnect via from SpinServoNEMA17-phase_a to power_stage.phase_a-vcc.
+Reconnect via from SpinServoNEMA17-p3 to canl.
+Reconnect via from SpinServoNEMA17-p3 to canl.
+Remove unused footprint C46.
+Remove unused footprint R20.
+Remove unused footprint R11.
+Remove unused footprint C14.
+Reconnect via from power_stage-bs-1 to power_stage.gate_driver.ic-vcc-3.
+Reconnect via from power_stage-bs-1 to power_stage.gate_driver.ic-vcc-3.
+Reconnect via from micro-in to micro.micro.ic-vcc-1.
+Reconnect via from micro-in to micro.micro.ic-vcc-1.
+Reconnect via from micro-PB4 to micro.micro-miso.
+Reconnect via from micro-PA12-1 to dp.
+Reconnect via from micro-PA12-1 to dp.
+Reconnect via from micro-PA11-1 to dm.
+Reconnect via from micro-PA11-1 to dm.
+Reconnect via from canbus-v_mid-2 to vref.
+Reconnect via from canbus-v_mid-2 to vref.
+Reconnect via from _i_sense-p1-4 to power_stage.phase_b.current_sensor.bias_div-vcc.
+Reconnect via from _i_sense-p1-4 to power_stage.phase_b.current_sensor.bias_div-vcc.
+Reconnect via from _i_sense-input-14 to power_stage.phase_c.current_sensor.feedback_div-vcc.
+Reconnect via from _i_sense-input-14 to power_stage.phase_c.current_sensor.feedback_div-vcc.
+Reconnect via from _i_sense-input-13 to power_stage.phase_c.current_sensor.bias_div-vcc.
+Reconnect via from _i_sense-input-13 to power_stage.phase_c.current_sensor.bias_div-vcc.
+Reconnect via from _i_sense-input-12 to power_stage.phase_b.current_sensor.feedback_div-vcc.
+Reconnect via from _i_sense-input-12 to power_stage.phase_b.current_sensor.feedback_div-vcc.
+Reconnect via from _i_sense-input-11 to power_stage.phase_a.current_sensor.feedback_div-vcc.
+Reconnect via from _i_sense-input-10 to power_stage.phase_a.current_sensor.bias_div-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect via from SpinServoNEMA17-temp_sense to micro.micro-scl.
+Reconnect via from SpinServoNEMA17-temp_sense to micro.micro-scl.
+Reconnect via from SpinServoNEMA17-p2 to canh.
+Reconnect via from SpinServoNEMA17-p2 to canh.
+Reconnect via from SpinServoNEMA17-p2 to canh.
+Reconnect via from SpinServoNEMA17-p2 to canh.
+Reconnect via from SpinServoNEMA17-p1 to power_supply-vcc-3.
+Reconnect via from SpinServoNEMA17-p1 to power_supply-vcc-3.
+Reconnect via from SpinServoNEMA17-p1 to power_supply-vcc-3.
+Reconnect via from SpinServoNEMA17-p1 to power_supply-vcc-3.
+Reconnect via from SpinServoNEMA17-out_b to power_stage.phase_b.half_bridge-vcc-2.
+Reconnect via from SpinServoNEMA17-out_a to power_stage.phase_a.half_bridge-vcc-2.
+Reconnect via from SpinServoNEMA17-out_a to power_stage.phase_a.half_bridge-vcc-2.
+Reconnect via from SpinServoNEMA17-out_a to power_stage.phase_a.half_bridge-vcc-2.
+Reconnect via from SpinServoNEMA17-led_pixel to micro-vcc.
+Reconnect via from SpinServoNEMA17-led_pixel to micro-vcc.
+Reconnect via from SpinServoNEMA17-in to micro-vcc-1.
+Reconnect via from SpinServoNEMA17-in to micro-vcc-1.
+Reconnect via from SpinServoNEMA17-c_isense to pb2.
+Reconnect via from SpinServoNEMA17-c_isense to pb2.
+Reconnect via from SpinServoNEMA17-b_isense to power_stage.phase_b.current_sensor-vcc.
+Reconnect via from SpinServoNEMA17-b_isense to power_stage.phase_b.current_sensor-vcc.
+Reconnect via from SpinServoNEMA17-a_isense to power_stage.phase_a.current_sensor-vcc-1.
+Reconnect via from SpinServoNEMA17-a_isense to power_stage.phase_a.current_sensor-vcc-1.
+Reconnect via from SpinServoNEMA17-mosi to micro-mosi.
+Reconnect via from SpinServoNEMA17-mosi to micro-mosi.
+Reconnect via from SpinServoNEMA17-miso to micro-miso.
+Reconnect via from SpinServoNEMA17-miso to micro-miso.
+Reconnect via from SpinServoNEMA17-cs to pb11.
+Reconnect via from SpinServoNEMA17-cs to pb11.
+Reconnect copper zone from _b-i_in-2 to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from gate_reg-sw-1 to sw.
+Reconnect copper zone from gate_reg-sw-1 to sw.
+Reconnect copper zone from _b-i_in-2 to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd.
+Reconnect copper zone from _a-gnd-2 to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd.
+Reconnect copper zone from SpinServoNEMA17-out_b to power_stage.phase_b.half_bridge-vcc-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-out_a to power_stage.phase_a.half_bridge-vcc-2.
+Reconnect copper zone from _c-i_in-2 to power_stage-gnd-2.
+Reconnect copper zone from _b-i_in-2 to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-out_c to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone 'Ground' from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Reconnect copper zone from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Reconnect copper zone from SpinServoNEMA17-vin-2 to power_stage-vcc.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect copper zone '3V3' from SpinServoNEMA17-vin to power_supply-vcc-4.
+Reconnect copper zone from SpinServoNEMA17-vin-2 to power_supply-vcc.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Reconnect copper zone from SpinServoNEMA17-gnd to power_stage-gnd-2.
+Remove unused footprint R37.
+Remove unused footprint C31.
+Remove unused footprint R33.
+Remove unused footprint C2.
+Remove unused footprint R40.
+Remove unused footprint R39.
+Remove unused footprint C23.
+Remove unused footprint U29.
+Remove unused footprint R36.
+Remove unused footprint R5.
+Remove unused footprint R34.
+Remove unused footprint R23.
+Remove unused footprint R15.
+Remove unused footprint C16.
+Remove unused footprint R32.
+Remove unused footprint R24.
+Remove unused footprint R2.
+Remove unused footprint C9.
+Remove unused footprint R35.
+Remove unused footprint R9.
+Warning: Via connected to unknown net (power_stage-i_fb_zero-1).
+Warning: Via connected to unknown net (power_stage-i_fb_zero-1).
+Warning: Via connected to unknown net (power_stage-i_fb_zero-1).
+Warning: Via connected to unknown net (power_stage-i_fb_zero-1).
+Warning: No net found for symbol U15 pin 5.
+Warning: No net found for symbol U15 pin 6.
+Warning: No net found for symbol U26 pin 5.
+Warning: No net found for symbol U26 pin 6.
+Warning: No net found for symbol U27 pin 5.
+Warning: No net found for symbol U27 pin 6.
+Warning: No net found for symbol U14 pin 3.
+Warning: No net found for symbol U14 pin 4.
+Warning: No net found for symbol U2 pin 3.
+Warning: No net found for symbol U2 pin 4.
+Warning: No net found for symbol U16 pin 7.
+Warning: No net found for symbol U16 pin 9.
+
+
+Info: Total warnings: 16, errors: 0.

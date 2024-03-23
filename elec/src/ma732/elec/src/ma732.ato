@@ -1,0 +1,79 @@
+import Power from "generics/interfaces.ato"
+import SPI from "generics/interfaces.ato"
+import Pair from "generics/interfaces.ato"
+
+import Capacitor from "generics/capacitors.ato"
+
+module MA732:
+    power = new Power
+    spi = new SPI
+    encoder_a = new Pair
+    encoder_b = new Pair
+    encoder_z = new Pair
+    mag_high = new Pair
+
+    # # Components
+    ic = new _MA732
+    cap = new Capacitor
+
+    # Configure components
+    cap.value = 1uF +/- 10%
+    cap.package = "0402"
+
+    # Internal connections
+    power ~ ic.power
+    power ~ cap.power
+    spi ~ ic.spi
+    encoder_a.io ~ ic.A
+    encoder_b.io ~ ic.B
+    encoder_z.io ~ ic.Z
+    mag_high.io ~ ic.MGH
+
+    # Connect pair grounds
+    power.gnd ~ encoder_a.gnd
+    power.gnd ~ encoder_b.gnd
+    power.gnd ~ encoder_z.gnd
+    power.gnd ~ mag_high.gnd
+
+
+component _MA732:
+    # component MA732GQ-Z
+    footprint = "VQFN-16_L3.0-W3.0-P0.50-BL-EP1.6"
+    lcsc_id = "C3824836"
+    mpn = "C3824836"
+    designator_prefix = "U"
+    # pins
+    signal SSD ~ pin 1
+    signal A ~ pin 2
+    signal Z ~ pin 3
+    signal MOSI ~ pin 4
+    signal CS ~ pin 5
+    signal B ~ pin 6
+    signal MISO ~ pin 7
+    signal GND ~ pin 8
+    signal PWM ~ pin 9
+    signal TEST ~ pin 10
+    signal MGL ~ pin 11
+    signal SCLK ~ pin 12
+    signal VDD ~ pin 13
+    signal N_C ~ pin 14
+    signal SSCK ~ pin 15
+    signal MGH ~ pin 16
+    signal EPAD ~ pin 17
+
+    spi = new SPI
+    spi.miso ~ MISO
+    spi.mosi ~ MOSI
+    spi.sck ~ SCLK
+    spi.cs ~ CS
+
+    power = new Power
+    power.vcc ~ VDD
+    power.gnd ~ GND
+    power.gnd ~ EPAD
+
+    # Factory test mode pin, short to GND for normal operation
+    power.gnd ~ TEST
+
+    # TODO: add SSI interface
+    # TODO: add PWM outputs

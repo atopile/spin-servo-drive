@@ -1,0 +1,10 @@
+import LED from "led.ato"
+
+component KT_0603B from LED:
+    # component Blue light 0603
+    footprint = "LED0603-RD"
+    mpn = "C2288"
+    # pins
+    signal cathode ~ pin 1
+    signal anode ~ pin 2
+

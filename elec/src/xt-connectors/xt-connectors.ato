@@ -1,0 +1,59 @@
+#C431092
+import Power from "generics/interfaces.ato"
+
+component XT30_Male_Right_Angle:
+    """Male XT30 connector with right angle pins. This side would go on the device typically"""
+    signal gnd ~ pin 1
+    signal vin ~ pin 2
+
+    # Mounting pads
+    signal gnd ~ pin 3
+    signal gnd ~ pin 4
+    power = new Power
+    power.vcc ~ vin
+    power.gnd ~ gnd
+
+    footprint = "CONN-TH_XT30PW-M"
+    lcsc_id = "C431092"
+    mpn = "C431092"
+    designator_prefix = "J"
+
+component XT30_Male_Vertical:
+    """Male XT30 connector with vertical pins. This side would go on the device typically"""
+    signal gnd ~ pin 1
+    signal vin ~ pin 2
+    power = new Power
+    power.vcc ~ vin
+    power.gnd ~ gnd
+
+    # component XT30U-M
+    footprint = "CONN-TH_XT30U-M"
+    lcsc_id = "C99101"
+    mpn = "C99101"
+    designator_prefix = "J"
+
+component XT30_Female_Right_Angle:
+    """Female XT30 connector with right angle pins. This side would go on the battery typically"""
+    signal gnd ~ pin 1
+    signal vin ~ pin 2
+    power = new Power
+    power.vcc ~ vin
+    power.gnd ~ gnd
+
+    # component XT30PW-F
+    footprint = "CONN-TH_XT30PW-F-1"
+    lcsc_id = "C2913282"
+    mpn = "C2913282"
+
+component XT30_Female_Vertical:
+    """Female XT30 connector with vertical pins. This side would go on the battery typically"""
+    signal gnd ~ pin 2
+    signal vin ~ pin 1
+    power = new Power
+    power.vcc ~ vin
+    power.gnd ~ gnd
+
+    # component XT30UPB-F
+    footprint = "CONN-TH_XT30UPB-F"
+    lcsc_id = "C108769"
+    mpn = "C108769"

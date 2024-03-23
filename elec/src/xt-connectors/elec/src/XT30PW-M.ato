@@ -1,0 +1,11 @@
+component XT30PW_M:
+    # component XT30PW-M
+    footprint = "CONN-TH_XT30PW-M"
+    lcsc_id = "C431092"
+    mpn = "C431092"
+    # pins
+    signal _1 ~ pin 1
+    signal _2 ~ pin 2
+    signal _3 ~ pin 3
+    signal _4 ~ pin 4
+

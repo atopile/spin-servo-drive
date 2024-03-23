@@ -1,0 +1,9 @@
+component KT_0603G:
+    # component 0603 Green 509-620mcd
+    footprint = "LED0603-RD"
+    lcsc_id = "C12624"
+    designator_prefix = "LED"
+    # pins
+    signal anode ~ pin 2
+    signal cathode ~ pin 1
+

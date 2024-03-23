@@ -1,0 +1,8 @@
+component KT_0603R:
+    # component KT-0603R
+    footprint = "LED0603-RD"
+    lcsc_id = "C2286"
+    # pins
+    signal cathode ~ pin 1
+    signal anode ~ pin 2
+
