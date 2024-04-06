@@ -1,0 +1,99 @@
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
+
+import L6387ED from "L6387ED.ato"
+
+import GenericPowerStage from "generic_power_stage.ato"
+import GenericHalfBridge from "generic_power_stage.ato"
+import PhaseControl from "generic_power_stage.ato"
+
+import CurrentSense from "current_sense.ato"
+import VoltageReference from "voltage_reference.ato"
+
+component _GateILimResistor from Resistor:
+    value = 5ohm +/- 10%
+    footprint = "R0603"
+
+
+component _BootstrapCap from Capacitor:
+    value = 100nF +/- 20%
+    footprint = "C0402"
+
+module _Phase:
+    signal vcc_pwr
+    signal vcc_gate
+    signal vcc_3v3
+    ctrl = new PhaseControl
+    signal i_fb_zero
+    signal out
+    signal gnd
+
+    _input_bypass = new Capacitor
+    _input_bypass.value = 4.7uF +/- 20%
+    _input_bypass.footprint = "C0805"
+    _input_bypass.p1 ~ vcc_pwr
+    _input_bypass.p2 ~ gnd
+
+    gate_driver = new L6387ED
+    vcc_gate ~ gate_driver.vcc
+    gnd ~ gate_driver.gnd
+    ctrl.high ~ gate_driver.hin
+    ctrl.low ~ gate_driver.lin
+    out ~ gate_driver.out
+
+    _hb = new GenericHalfBridge
+
+    bs_cap = new _BootstrapCap
+    gate_driver.vboot ~ bs_cap.p1
+    bs_cap.p2 ~ out
+
+    _r_high_gate_ilim = new _GateILimResistor
+    gate_driver.hvg ~ _r_high_gate_ilim.p1
+    _r_high_gate_ilim.p2 ~ _hb.high_gate
+
+    _r_low_gate_ilim = new _GateILimResistor
+    gate_driver.lvg ~ _r_low_gate_ilim.p1
+    _r_low_gate_ilim.p2 ~ _hb.low_gate
+
+    _i_sense = new CurrentSense
+    _hb.gnd ~ _i_sense.i_in
+    _i_sense.i_out ~ gnd
+
+    _i_sense.vcc ~ vcc_3v3
+    _i_sense.gnd ~ gnd
+
+    _i_sense.v_ref ~ i_fb_zero
+    _i_sense.out ~ ctrl.i_fb
+
+module L6387EDPowerStage from GenericPowerStage:
+    vref_1V65 = new VoltageReference
+    vcc_3v3 ~ vref_1V65.vcc
+    gnd ~ vref_1V65.gnd
+    vref_1V65.v_ref ~ i_fb_zero
+
+    _a = new _Phase
+    ctrl_a ~ _a.ctrl
+    vcc_pwr ~ _a.vcc_pwr
+    vcc_gate ~ _a.vcc_gate
+    vcc_3v3 ~ _a.vcc_3v3
+    i_fb_zero ~ _a.i_fb_zero
+    gnd ~ _a.gnd
+    _a.out ~ out_a
+
+    _b = new _Phase
+    ctrl_b ~ _b.ctrl
+    vcc_pwr ~ _b.vcc_pwr
+    vcc_gate ~ _b.vcc_gate
+    vcc_3v3 ~ _b.vcc_3v3
+    i_fb_zero ~ _b.i_fb_zero
+    gnd ~ _b.gnd
+    _b.out ~ out_b
+
+    _c = new _Phase
+    ctrl_c ~ _c.ctrl
+    vcc_pwr ~ _c.vcc_pwr
+    vcc_gate ~ _c.vcc_gate
+    vcc_3v3 ~ _c.vcc_3v3
+    i_fb_zero ~ _c.i_fb_zero
+    gnd ~ _c.gnd
+    _c.out ~ out_c

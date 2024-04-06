@@ -1,0 +1,24 @@
+# this is a comment, it should be safely ignored
+import Resistor from "modules/generics.ato"
+import Capacitor from "modules/generics.ato"
+
+
+module VdivFiltered:
+    signal input
+    signal output
+    signal gnd
+
+    input.visualizer.location = "top"
+    output.visualizer.location = "right"
+    gnd.visualizer.location = "bottom"
+
+    r_top = new Resistor
+    r_bt = new Resistor
+    c_filter = new Capacitor
+
+    r_top.p1 ~ input
+    r_top.p2 ~ output
+    r_bt.p1 ~ output
+    r_bt.p2 ~ gnd
+    c_filter.p1 ~ output
+    c_filter.p2 ~ gnd

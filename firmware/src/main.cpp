@@ -29,7 +29,7 @@ BLDCDriver3PWM driver = BLDCDriver3PWM(PA0, PA1, PA2, PA3);
 MagneticSensorMA730 sensor = MagneticSensorMA730(PB11);
 HysteresisSensor hysteresisSensor = HysteresisSensor(sensor, 0.001f);
 
-//LowsideCurrentSense current_sense = LowsideCurrentSense(0.003, 46, PB0, PB1, PB12);
+LowsideCurrentSense current_sense = LowsideCurrentSense(0.003, 46, PB0, PB1, PA3);
 
 // settings
 STM32FlashSettingsStorage settings = STM32FlashSettingsStorage(); // use 1 page at top of flash
@@ -93,6 +93,15 @@ void setup() {
   motor.linkDriver(&driver);
   motor.linkSensor(&hysteresisSensor);
 
+  // link current sense and the driver
+  current_sense.linkDriver(&driver);
+
+  // current sensing
+  current_sense.init();
+  motor.linkCurrentSense(&current_sense);
+
+
+
   // aligning voltage
   motor.voltage_sensor_align = 1;
   motor.current_limit = 2;
@@ -111,7 +120,7 @@ void setup() {
   motor.P_angle.output_ramp = 1000;
   motor.LPF_angle.Tf = 0.005f;
 
-  motor.torque_controller = TorqueControlType::voltage;
+  motor.torque_controller = TorqueControlType::foc_current;
   motor.controller = MotionControlType::angle;
   motor.motion_downsample = 10;
 

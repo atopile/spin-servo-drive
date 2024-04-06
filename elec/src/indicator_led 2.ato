@@ -1,0 +1,19 @@
+import KT_0603R from "KT-0603R.ato"
+import Resistor from "modules/generics.ato"
+
+module indicator_led:
+    #LED
+    led = new KT_0603R
+
+    #resistor
+    resistor = new Resistor
+    resistor.value = "1k"
+
+    signal input
+    signal gnd
+
+    #connect
+    led.K ~ input
+    led.A ~ resistor.p1
+    resistor.p2 ~ gnd
+
