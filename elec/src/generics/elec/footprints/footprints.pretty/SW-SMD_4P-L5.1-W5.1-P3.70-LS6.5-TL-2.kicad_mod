@@ -31,7 +31,7 @@
 	(pad 4 smd rect (at 3.30 1.85 0.00) (size 1.70 1.00) (layers F.Cu F.Paste F.Mask))
 	(fp_circle (center -3.25 -2.55) (end -3.22 -2.55) (layer F.Fab) (width 0.06))
 	(fp_circle (center 0.00 0.00) (end 1.28 0.00) (layer F.SilkS) (width 0.25))
-	(model "/Users/narayanpowderly/Documents/atopile-workspace/blinky/.ato/modules/generics/elec/footprints/footprints.3dshapes/SW-SMD_4P-L5.2-W5.2-H1.5-LS6.4-P3.70.wrl"
+	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/SW-SMD_4P-L5.2-W5.2-H1.5-LS6.4-P3.70.step"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

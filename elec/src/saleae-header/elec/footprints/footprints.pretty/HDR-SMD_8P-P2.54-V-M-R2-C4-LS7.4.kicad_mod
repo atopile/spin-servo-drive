@@ -31,7 +31,7 @@
 	(pad 8 smd rect (at 3.81 -2.79 0.00) (size 1.27 2.80) (layers F.Cu F.Paste F.Mask))
 	(fp_circle (center -5.08 3.70) (end -5.05 3.70) (layer F.Fab) (width 0.06))
 	(fp_circle (center -4.95 3.17) (end -4.82 3.17) (layer F.SilkS) (width 0.25))
-	(model "/Users/narayanpowderly/Documents/atopile-workspace/spin-dev-board/.ato/modules/saleae-header/elec/footprints/footprints.3dshapes/HDR-SMD_8P-P2.54-V-M-R2-C4-LS7.4.wrl"
+	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/HDR-SMD_8P-P2.54-V-M-R2-C4-LS7.4.step"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

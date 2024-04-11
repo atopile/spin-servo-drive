@@ -30,7 +30,7 @@
 	(fp_circle (center 0.14 1.80) (end 0.24 1.80) (layer F.Fab) (width 0.20))
 	(fp_circle (center 0.14 3.00) (end 0.24 3.00) (layer F.Fab) (width 0.20))
 	(fp_circle (center -1.73 -4.83) (end -1.70 -4.83) (layer F.Fab) (width 0.06))
-	(model "elec/lib/lib.3dshapes/USB-TYPE-C-TH_6P-L8.9-W3.2-H10.5-P1.2.wrl"
+	(model "elec/lib/lib.3dshapes/USB-TYPE-C-TH_6P-L8.9-W3.2-H10.5-P1.2.step"
 		(offset (xyz 0.150 -0.000 1.600))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 270))

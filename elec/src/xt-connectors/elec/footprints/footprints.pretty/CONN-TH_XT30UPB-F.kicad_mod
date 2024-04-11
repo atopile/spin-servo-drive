@@ -31,7 +31,7 @@
 	(fp_arc (start -4.50 -2.00) (end -5.10 -2.00) (angle 90.00) (layer F.SilkS) (width 0.25))
 	(fp_arc (start 2.58 -0.00) (end 3.48 -2.60) (angle 47.33) (layer F.SilkS) (width 0.25))
 	(fp_arc (start 2.58 0.00) (end 5.10 1.10) (angle 47.33) (layer F.SilkS) (width 0.25))
-	(model "/Users/narayanpowderly/Documents/atopile-workspace/spin-dev-board/.ato/modules/xt-connectors/elec/footprints/footprints.3dshapes/CONN-TH_XT30UPB-F.wrl"
+	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/CONN-TH_XT30UPB-F.step"
 		(offset (xyz -0.000 -0.000 0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

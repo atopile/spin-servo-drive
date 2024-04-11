@@ -81,7 +81,7 @@
 	(fp_circle (center -3.50 -3.50) (end -3.47 -3.50) (layer F.Fab) (width 0.06))
 	(fp_circle (center -3.90 -2.60) (end -3.77 -2.60) (layer Cmts.User) (width 0.25))
 	(fp_circle (center -4.00 -3.70) (end -3.87 -3.70) (layer F.SilkS) (width 0.25))
-	(model "./lib/lib.3dshapes/LQFN-56_L7.0-W7.0-P0.4-EP.wrl"
+	(model "./lib/lib.3dshapes/LQFN-56_L7.0-W7.0-P0.4-EP.step"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

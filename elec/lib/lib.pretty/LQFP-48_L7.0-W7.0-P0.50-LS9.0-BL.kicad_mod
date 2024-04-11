@@ -66,7 +66,7 @@
 	(fp_circle (center -2.62 2.83) (end -2.45 2.83) (layer F.SilkS) (width 0.25))
 	(fp_circle (center -2.75 4.75) (end -2.60 4.75) (layer Cmts.User) (width 0.30))
 	(fp_arc (start -3.39 4.26) (end -3.38 4.06) (angle 357.13) (layer F.SilkS) (width 0.40))
-	(model "/libs/.3dshapes/LQFP-48_L7.0-W7.0-H1.4-LS9.0-P0.50.wrl"
+	(model "/libs/.3dshapes/LQFP-48_L7.0-W7.0-H1.4-LS9.0-P0.50.step"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

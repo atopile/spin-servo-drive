@@ -41,7 +41,7 @@
 	(fp_circle (center 5.50 2.50) (end 5.70 2.50) (layer F.Fab) (width 0.40))
 	(fp_circle (center 2.50 -2.50) (end 2.87 -2.50) (layer F.Fab) (width 0.75))
 	(fp_circle (center -2.50 -2.50) (end -2.13 -2.50) (layer F.Fab) (width 0.75))
-	(model "/Users/narayanpowderly/Documents/atopile-workspace/spin-dev-board/.ato/modules/xt-connectors/elec/footprints/footprints.3dshapes/CONN-TH_XT30PW-F-1.wrl"
+	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/CONN-TH_XT30PW-F-1.step"
 		(offset (xyz 0.000 -3.950 0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))
