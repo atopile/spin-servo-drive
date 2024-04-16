@@ -1,8 +1,0 @@
-from "spin.ato" import SPIN
-
-
-module Debug:
-	spin = new SPIN
-
-
-
