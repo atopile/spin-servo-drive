@@ -34,7 +34,7 @@
 	(pad 2 smd rect (at -5.08 -2.69 0.00) (size 1.02 3.12) (layers F.Cu F.Paste F.Mask))
 	(pad 1 smd rect (at -5.08 2.69 0.00) (size 1.02 3.12) (layers F.Cu F.Paste F.Mask))
 	(fp_circle (center -6.35 3.75) (end -6.32 3.75) (layer F.Fab) (width 0.06))
-	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/HDR-SMD_10P-P2.54-V-M-R2-C5-LS7.5.step"
+	(model "{build_dir}/HDR-SMD_10P-P2.54-V-M-R2-C5-LS7.5.step"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

@@ -23,7 +23,7 @@
 	(fp_circle (center -3.00 -2.46) (end -2.97 -2.46) (layer F.Fab) (width 0.06))
 	(fp_circle (center -1.54 -2.38) (end -1.39 -2.38) (layer Cmts.User) (width 0.30))
 	(fp_circle (center -2.50 -1.31) (end -2.38 -1.31) (layer F.SilkS) (width 0.25))
-	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/CONN-SMD_SR1.00-WS-4P.step"
+	(model "{build_dir}/CONN-SMD_SR1.00-WS-4P.step"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

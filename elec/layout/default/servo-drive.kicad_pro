@@ -280,7 +280,7 @@
       "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "servo-drive.step",
       "svg": "",
       "vrml": ""
     },

@@ -16,7 +16,7 @@
 	(pad 1 thru_hole rect (at -1.90 0.00 0.00) (size 2.20 2.20) (layers *.Cu *.Mask)(drill 1.2599924))
 	(pad 2 thru_hole circle (at 1.91 0.00 0.00) (size 2.20 2.20) (layers *.Cu *.Mask)(drill 1.2599924))
 	(fp_circle (center -4.25 7.55) (end -4.22 7.55) (layer F.Fab) (width 0.06))
-	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/CONN-TH_2P_L8.5-W9.2-H7.0-P3.81.step"
+	(model "{build_dir}/CONN-TH_2P_L8.5-W9.2-H7.0-P3.81.step"
 		(offset (xyz 0.000 -3.000 0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

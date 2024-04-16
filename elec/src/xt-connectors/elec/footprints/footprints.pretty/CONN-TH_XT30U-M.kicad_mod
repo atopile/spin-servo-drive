@@ -26,7 +26,7 @@
 	(fp_circle (center -2.50 0.00) (end -2.00 0.00) (layer F.Fab) (width 1.00))
 	(fp_arc (start 2.51 0.00) (end 2.51 -2.60) (angle -359.00) (layer F.SilkS) (width 0.25))
 	(fp_arc (start 2.50 0.00) (end 2.50 -2.20) (angle -359.00) (layer F.SilkS) (width 0.25))
-	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/CONN-TH_XT30U-M.step"
+	(model "{build_dir}/CONN-TH_XT30U-M.step"
 		(offset (xyz -0.000 -0.000 0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 180))

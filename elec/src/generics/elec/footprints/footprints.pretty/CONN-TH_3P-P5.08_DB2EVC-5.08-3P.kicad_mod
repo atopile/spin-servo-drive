@@ -28,7 +28,7 @@
 	(fp_arc (start -5.18 -1.07) (end -3.05 1.90) (angle 67.62) (layer F.SilkS) (width 0.25))
 	(fp_arc (start -0.09 -1.19) (end 2.03 1.78) (angle 67.62) (layer F.SilkS) (width 0.25))
 	(fp_arc (start 4.98 -1.32) (end 7.11 1.65) (angle 67.62) (layer F.SilkS) (width 0.25))
-	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/CONN-TH_3P-P5.08_DB2EVC-5.08-3P.step"
+	(model "{build_dir}/CONN-TH_3P-P5.08_DB2EVC-5.08-3P.step"
 		(offset (xyz 0.000 0.500 0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

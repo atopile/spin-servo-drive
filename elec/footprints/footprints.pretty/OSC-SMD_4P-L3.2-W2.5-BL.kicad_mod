@@ -23,7 +23,7 @@
 	(pad 4 smd rect (at -1.10 -0.88 0.00) (size 1.40 1.20) (layers F.Cu F.Paste F.Mask))
 	(fp_circle (center -1.60 1.25) (end -1.57 1.25) (layer F.Fab) (width 0.06))
 	(fp_circle (center -1.09 1.57) (end -0.96 1.57) (layer Cmts.User) (width 0.25))
-	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/OSC-SMD_4P-L3.2-W2.5-H1.0.step"
+	(model "{build_dir}/OSC-SMD_4P-L3.2-W2.5-H1.0.step"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

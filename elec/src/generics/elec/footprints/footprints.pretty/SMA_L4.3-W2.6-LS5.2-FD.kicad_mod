@@ -17,7 +17,7 @@
 	(pad 1 smd rect (at -2.39 0.00 0.00) (size 2.11 1.57) (layers F.Cu F.Paste F.Mask))
 	(pad 2 smd rect (at 2.39 0.00 0.00) (size 2.11 1.57) (layers F.Cu F.Paste F.Mask))
 	(fp_circle (center -2.60 1.30) (end -2.57 1.30) (layer F.Fab) (width 0.06))
-	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/SMA_L4.3-W2.6--H2.1-LS5.2.step"
+	(model "{build_dir}/SMA_L4.3-W2.6--H2.1-LS5.2.step"
 		(offset (xyz -0.150 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

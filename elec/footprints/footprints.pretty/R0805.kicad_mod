@@ -18,7 +18,7 @@
 	(pad 2 smd rect (at 1.00 0.00 0.00) (size 1.13 1.38) (layers F.Cu F.Paste F.Mask))
 	(pad 1 smd rect (at -1.00 0.00 0.00) (size 1.13 1.38) (layers F.Cu F.Paste F.Mask))
 	(fp_circle (center -1.00 0.64) (end -0.97 0.64) (layer F.Fab) (width 0.06))
-	(model "${KIPRJMOD}/../../../build/footprints/footprints.3dshapes/R0805_L2.0-W1.3-H0.6.step"
+	(model "{build_dir}/R0805_L2.0-W1.3-H0.6.step"
 		(offset (xyz -1.410 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))
