@@ -27,7 +27,6 @@ module HalfBridge:
     power = new Power
     gate_high = new Pair
     gate_low = new Pair
-    shunt_output = new DiffPair
     output = new Pair
 
     # this doesnt work until we have replace with instance.
