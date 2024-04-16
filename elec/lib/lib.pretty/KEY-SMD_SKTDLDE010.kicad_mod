@@ -28,7 +28,7 @@
 	(fp_circle (center 2.05 0.81) (end 2.08 0.81) (layer F.Fab) (width 0.06))
 	(fp_circle (center 1.85 -0.75) (end 1.95 -0.75) (layer F.Fab) (width 0.20))
 	(fp_circle (center -1.85 -0.75) (end -1.75 -0.75) (layer F.Fab) (width 0.20))
-	(model "/lib/lib.3dshapes/KEY-SMD_SKTDLDE010.wrl"
+	(model "/lib/lib.3dshapes/KEY-SMD_SKTDLDE010.step"
 		(offset (xyz 0.000 0.720 0.500))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

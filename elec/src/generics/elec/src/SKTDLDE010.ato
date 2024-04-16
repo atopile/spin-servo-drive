@@ -1,0 +1,10 @@
+component SKTDLDE010:
+    # component SKTDLDE010
+    footprint = "KEY-SMD_SKTDLDE010"
+    lcsc_id = "C115365"
+    # pins
+    signal _1 ~ pin 1
+    signal _2 ~ pin 2
+    signal _3 ~ pin 3
+    signal _4 ~ pin 4
+

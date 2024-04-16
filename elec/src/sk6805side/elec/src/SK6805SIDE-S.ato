@@ -1,0 +1,11 @@
+component SK6805SIDE_S:
+    # component SK6805SIDE-S
+    footprint = "LED-SMD_4P-L4.0-W1.4_SK6805SIDE-S"
+    lcsc_id = "C2909057"
+    mpn = "C2909057"
+    # pins
+    signal VDD ~ pin 1
+    signal GND ~ pin 2
+    signal DOUT ~ pin 3
+    signal DIN ~ pin 4
+

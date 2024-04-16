@@ -1,0 +1,9 @@
+component DB2EVC_5_08_3P:
+    # component DB2EVC-5.08-3P
+    footprint = "CONN-TH_3P-P5.08_DB2EVC-5.08-3P"
+    lcsc_id = "C395743"
+    # pins
+    signal _1 ~ pin 1
+    signal _2 ~ pin 2
+    signal _3 ~ pin 3
+

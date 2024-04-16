@@ -1,0 +1,69 @@
+import PZ254_2_04_S from "elec/src/PZ254-2-04-S.ato"
+import Pair from "generics/interfaces.ato"
+import TVSDiode from "generics/diodes.ato"
+import Resistor from "generics/resistors.ato"
+import SPI from "generics/interfaces.ato"
+import I2C from "generics/interfaces.ato"
+import UART from "generics/interfaces.ato"
+import USB2 from "generics/interfaces.ato"
+
+component _protection_resistor from Resistor:
+    value = 1kohm +/- 5%
+    package = "0402"
+
+module SaleaeHeader:
+    header = new PZ254_2_04_S
+    ch0 = new Pair
+    ch1 = new Pair
+    ch2 = new Pair
+    ch3 = new Pair
+
+    # Connect the grounds together
+    signal gnd
+    gnd ~ ch0.gnd
+    gnd ~ ch1.gnd
+    gnd ~ ch2.gnd
+    gnd ~ ch3.gnd
+
+    # protection resistors
+    r1 = new _protection_resistor
+    r2 = new _protection_resistor
+    r3 = new _protection_resistor
+    r4 = new _protection_resistor
+
+    # connect ios via resistors to the header
+    ch0.io ~ r1.1; r1.2 ~ header.1
+    ch1.io ~ r2.1; r2.2 ~ header.3
+    ch2.io ~ r3.1; r3.2 ~ header.5
+    ch3.io ~ r4.1; r4.2 ~ header.7
+
+    # connect the grounds together
+    gnd ~ header.2
+    gnd ~ header.4
+    gnd ~ header.6
+    gnd ~ header.8
+
+    # SPI
+    spi = new SPI
+    spi.mosi ~ ch0.io
+    spi.miso ~ ch1.io
+    spi.sck ~ ch2.io
+    spi.cs ~ ch3.io
+    spi.gnd ~ gnd
+
+    # I2C
+    i2c = new I2C
+    i2c.scl ~ ch0.io
+    i2c.sda ~ ch1.io
+    i2c.gnd ~ gnd
+
+    # UART
+    uart = new UART
+    uart.tx ~ ch2.io
+    uart.rx ~ ch3.io
+    uart.gnd ~ gnd
+
+    # USB2
+    usb2 = new USB2
+    usb2.dp ~ ch2.io
+    usb2.dm ~ ch3.io

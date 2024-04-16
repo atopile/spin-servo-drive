@@ -5,8 +5,8 @@ from "qwiic-connectors/elec/src/qwiic-connectors.ato" import QwiicConnector
 from "jst-gh/elec/src/jst-gh.ato" import JSTGH4Pin
 from "sk6805side/elec/src/sk6805side.ato" import SK6805SIDE
 from "generics/buttons.ato" import ButtonPulldown, ButtonSKTDLDE010
-from "generics/vdivs.ato" import VDiv
-from "generics/filters.ato" import LowPassFilter
+from "generics/vdivs.ato" import VDiv, VDivLowPassFilter
+from "generics/resistors.ato" import Resistor
 
 
 module IOs:
@@ -23,6 +23,7 @@ module IOs:
     out_b = new Pair
     out_c = new Pair
     batt_sense = new Pair
+    temp_sense = new Pair
 
     # Connectors
     usbc_connector = new USBCConn
@@ -33,10 +34,8 @@ module IOs:
     can_connector_2 = new JSTGH4Pin
 
     #Sensors
-    # voltage_sense = new VDiv
-    voltage_sense_filter = new LowPassFilter
-    # temperature_sense = new VDiv
-    temperature_sense_filter = new LowPassFilter
+    voltage_sense = new VDivLowPassFilter
+    temperature_sense = new VDivLowPassFilter
 
     # Phase outputs
     pad_out_a = new PowerPad
@@ -49,12 +48,12 @@ module IOs:
 
     # Button
     button_pulldown = new ButtonPulldown
-    button_pulldown.btn.btn -> ButtonSKTDLDE010
+    button_pulldown.btn -> ButtonSKTDLDE010
 
     # Power connections
     power_batt ~ xt30_connector_1.power
     power_batt ~ xt30_connector_2.power
-    # power_batt ~ voltage_sense.power
+    power_batt ~ voltage_sense.power
     power_usb ~ usbc_connector.power
     power5v ~ led1.power
     power5v ~ led2.power
@@ -62,17 +61,31 @@ module IOs:
     power5v ~ can_connector_2.power
     power3v3 ~ i2c_connector.power
     power3v3 ~ button_pulldown.power
-    # power3v3 ~ temperature_sense.power
+    power3v3 ~ temperature_sense.power
+
+    power_usb.gnd ~ power3v3.gnd
 
     # Sensor config
-    # voltage_sense.v_in = 30V
-    # voltage_sense.v_out = 3V +/- 5%
-    # voltage_sense.i_q = 100uA to 200uA
-    # temperature_sense.v_in = 3.3V +/- 5%
-    # temperature_sense.v_out = 1.5V +/- 5%
-    # temperature_sense.i_q = 100uA to 200uA
-    voltage_sense_filter.cutoff_frequency = 1kHz +/- 20%
-    temperature_sense_filter.cutoff_frequency = 1kHz +/- 20%
+    voltage_sense.v_in = 30V
+    voltage_sense.v_out = 3V +/- 5%
+
+    # Manually selecting parts, but providing values for checks
+    temperature_sense.v_in = 3.3V
+    temperature_sense.v_out = 1.65V +/- 5%
+    temperature_sense.r_top.value = 10kohm +/- 1%
+    temperature_sense.r_bottom -> NCP15XH103F03RC # NTC Thermistor
+
+    voltage_sense.i_q = 10uA to 1mA
+    temperature_sense.i_q = 10uA to 1mA
+
+    # Filter out switching noise from phases + buck converter (both 10kHz +)
+    voltage_sense.cutoff_frequency = 50Hz to 200Hz
+    temperature_sense.cutoff_frequency = 100Hz to 200Hz
+
+    voltage_sense.cap.voltage = 30V to 100V
+
+    temp_sense ~ temperature_sense.output
+    batt_sense ~ voltage_sense.output
 
     # Data connections
     usb2 ~ usbc_connector.usb2
@@ -98,3 +111,18 @@ component PowerPad:
     output.io ~ pin 1
     footprint = "lib:OutputPad"
     mpn = "OutputPad"
+
+component NCP15XH103F03RC from Resistor:
+    """
+    Thermistor NTC
+    """
+    footprint = "R0402"
+    # mpn = "NCP15XH103F03RC"
+    mpn = "C77131"
+    lcsc = "C77131"
+    beta = 3380K
+    value = 10kohm +/- 1%
+
+
+
+

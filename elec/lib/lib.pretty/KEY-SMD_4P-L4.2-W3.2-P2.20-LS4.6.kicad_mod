@@ -22,7 +22,7 @@
 	(fp_circle (center -2.30 -1.60) (end -2.27 -1.60) (layer F.Fab) (width 0.06))
 	(fp_arc (start 0.51 0.00) (end 0.51 1.02) (angle -180.00) (layer F.SilkS) (width 0.25))
 	(fp_arc (start -0.51 0.00) (end -0.51 -1.02) (angle -180.00) (layer F.SilkS) (width 0.25))
-	(model "elec/lib/lib.3dshapes/KEY-SMD_4P-L4.2-W3.2-H2.5-LS4.6-P2.2.wrl"
+	(model "elec/lib/lib.3dshapes/KEY-SMD_4P-L4.2-W3.2-H2.5-LS4.6-P2.2.step"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

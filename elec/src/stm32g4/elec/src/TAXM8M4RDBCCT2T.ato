@@ -1,0 +1,12 @@
+from "generics/oscillators.ato" import Oscillator, Crystal
+
+component TAXM8M4RDBCCT2T from Crystal:
+    # component TAXM8M4RDBCCT2T
+    footprint = "OSC-SMD_4P-L3.2-W2.5-BL"
+    lcsc_id = "C400090"
+    mpn = "C400090"
+    # pins
+    gnd ~ pin 4
+    gnd ~ pin 2
+    xout ~ pin 3
+    xin ~ pin 1

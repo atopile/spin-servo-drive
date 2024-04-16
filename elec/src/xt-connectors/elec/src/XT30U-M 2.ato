@@ -1,0 +1,9 @@
+component XT30U_M:
+    # component XT30U-M
+    footprint = "CONN-TH_XT30U-M"
+    lcsc_id = "C99101"
+    mpn = "C99101"
+    # pins
+    signal _1 ~ pin 1
+    signal _2 ~ pin 2
+

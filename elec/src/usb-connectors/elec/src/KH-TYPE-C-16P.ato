@@ -1,0 +1,29 @@
+component KH_TYPE_C_16P:
+    # component KH-TYPE-C-16P
+    footprint = "USB-C-SMD_KH-TYPE-C-16P"
+    mpn = "C709357"
+    # pins
+    signal GND ~ pin A12
+    signal VBUS ~ pin A9
+    signal SUB1 ~ pin A8
+    signal DN1 ~ pin A7
+    signal DP1 ~ pin A6
+    signal CC1 ~ pin A5
+    VBUS ~ pin A4
+    GND ~ pin A1
+    GND ~ pin B12
+    VBUS ~ pin B9
+    signal SUB2 ~ pin B8
+    signal DN2 ~ pin B7
+    signal DP2 ~ pin B6
+    signal CC2 ~ pin B5
+    VBUS ~ pin B4
+    GND ~ pin B1
+    signal EP ~ pin 1
+    EP ~ pin 2
+    EP ~ pin 3
+    EP ~ pin 4
+
+    # Mounding pads to GND
+    EP ~ GND
+

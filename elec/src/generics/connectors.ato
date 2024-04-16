@@ -1,0 +1,71 @@
+component Connector2Pin:
+    signal p1
+    signal p2
+
+component Connector3Pin:
+    signal p1
+    signal p2
+    signal p3
+
+component Connector4Pin:
+    signal p1
+    signal p2
+    signal p3
+    signal p4
+
+component Connector5Pin:
+    signal p1
+    signal p2
+    signal p3
+    signal p4
+    signal p5
+
+component Connector6Pin:
+    signal p1
+    signal p2
+    signal p3
+    signal p4
+    signal p5
+    signal p6
+
+component Connector7Pin:
+    signal p1
+    signal p2
+    signal p3
+    signal p4
+    signal p5
+    signal p6
+    signal p7
+
+component Connector8Pin:
+    signal p1
+    signal p2
+    signal p3
+    signal p4
+    signal p5
+    signal p6
+    signal p7
+    signal p8
+
+component Connector9Pin:
+    signal p1
+    signal p2
+    signal p3
+    signal p4
+    signal p5
+    signal p6
+    signal p7
+    signal p8
+    signal p9
+
+component Connector10Pin:
+    signal p1
+    signal p2
+    signal p3
+    signal p4
+    signal p5
+    signal p6
+    signal p7
+    signal p8
+    signal p9
+    signal p10

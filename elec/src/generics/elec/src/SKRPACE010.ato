@@ -1,0 +1,10 @@
+component SKRPACE010:
+    # component SKRPACE010
+    footprint = "KEY-SMD_4P-L4.2-W3.2-P2.20-LS4.6"
+    lcsc_id = "C139797"
+    # pins
+    signal _1 ~ pin 1
+    signal _2 ~ pin 2
+    signal _3 ~ pin 3
+    signal _4 ~ pin 4
+

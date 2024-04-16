@@ -1,0 +1,9 @@
+component XT30UPB_F:
+    # component XT30UPB-F
+    footprint = "CONN-TH_XT30UPB-F"
+    lcsc_id = "C108769"
+    mpn = "C108769"
+    # pins
+    signal _ ~ pin 1
+    _ ~ pin 2
+

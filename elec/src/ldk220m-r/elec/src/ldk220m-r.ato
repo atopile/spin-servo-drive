@@ -1,0 +1,47 @@
+import AdjustableLDO from "generics/regulators.ato"
+import Capacitor from "generics/capacitors.ato"
+
+component _LDK220M_R:
+    # component LDK220M-R
+    footprint = "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BL"
+    lcsc_id = "C443854"
+    mpn = "C443854"
+    # pins
+    signal IN ~ pin 1
+    signal GND ~ pin 2
+    signal EN ~ pin 3
+    signal ADJ_NC ~ pin 4
+    signal OUT ~ pin 5
+
+
+module LDK220M_R from AdjustableLDO:
+    """Adjustable LDO with 1.185V reference voltage,
+    max 200mA output current and max 13.2V input voltage"""
+    v_ref = 1.185V
+    assert v_in within 2.5V to 13.2V
+    # Vo = Vadj * (1 + R1 / R2) = 1.185V * (1 + R1 / R2)
+
+
+    ldo = new _LDK220M_R
+    power_in.vcc ~ ldo.IN
+    power_in.gnd ~ ldo.GND
+    power_in.vcc ~ ldo.EN
+    ldo.OUT ~ power_out.vcc
+
+    # input cap
+    input_bypass = new Capacitor
+    power_in ~ input_bypass.power
+    input_bypass.value = 1uF +/- 20%
+    input_bypass.footprint = "C0402"
+
+    # output cap
+    output_bypass = new Capacitor
+    power_out ~ output_bypass.power
+    output_bypass.value = 1uF +/- 20%
+    output_bypass.footprint = "C0402"
+
+    # voltage divider
+    power_out ~ feedback_div.in
+    feedback_div.out ~ ldo.ADJ_NC
+
+
