@@ -2,4 +2,60 @@ ato-version: ^0.2.3
 builds:
   default:
     entry: elec/src/spin.ato:SPIN
-dependencies: []
+dependencies:
+- name: drv8300
+  version_spec:
+  link_broken: true
+  path: elec/src/drv8300
+- name: generics
+  version_spec: '@09ad6baeaab93d53b9b6c90069ac750f4161d76f'
+  link_broken: true
+  path: elec/src/generics
+- name: jst-gh
+  version_spec:
+  link_broken: true
+  path: elec/src/jst-gh
+- name: ldk220m-r
+  version_spec: '@8dd936e3fa3773448ae44bc17e7412daf7bff4d7'
+  link_broken: true
+  path: elec/src/ldk220m-r
+- name: lmv321idbvr
+  version_spec:
+  link_broken: true
+  path: elec/src/lmv321idbvr
+- name: ma732
+  version_spec:
+  link_broken: true
+  path: elec/src/ma732
+- name: programming-headers
+  version_spec: '@e3a6ca6b5b93e3c2db899aa7cc5a8fde17920abc'
+  link_broken: true
+  path: elec/src/programming-headers
+- name: qwiic-connectors
+  version_spec:
+  link_broken: true
+  path: elec/src/qwiic-connectors
+- name: saleae-header
+  version_spec: '@c2893ddaad84cd03553cd29747d3bb9e0655ef20'
+  link_broken: true
+  path: elec/src/saleae-header
+- name: sk6805side
+  version_spec:
+  link_broken: true
+  path: elec/src/sk6805side
+- name: sn65hvd230dr
+  version_spec:
+  link_broken: true
+  path: elec/src/sn65hvd230dr
+- name: stm32g4
+  version_spec: '@a9bc204ed48c5f18448060b41e8aebfd3b614efb'
+  link_broken: true
+  path: elec/src/stm32g4
+- name: usb-connectors
+  version_spec: '@53496dede5b600bd799a0afe199eaa514ebdc5f6'
+  link_broken: true
+  path: elec/src/usb-connectors
+- name: xt-connectors
+  version_spec: '@3719ec970da96df05b6763671993ca2276df968b'
+  link_broken: true
+  path: elec/src/xt-connectors
