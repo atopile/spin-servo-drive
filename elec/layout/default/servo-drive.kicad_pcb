@@ -20743,6 +20743,7 @@
 		(property "Reference" "U29"
 			(at 0 6.87 90)
 			(layer "B.SilkS")
+			(hide yes)
 			(uuid "0de85a86-85d5-4b6b-a282-c6c9d201be7e")
 			(effects
 				(font
@@ -20755,6 +20756,7 @@
 		(property "Value" ""
 			(at 0 -6.87 90)
 			(layer "B.Fab")
+			(hide yes)
 			(uuid "5b90fce6-42ff-4183-8dd2-25d4b37b0cfc")
 			(effects
 				(font
@@ -20889,18 +20891,6 @@
 			(layer "B.Fab")
 			(uuid "305f08b5-2f3a-4761-9119-de9153d10585")
 		)
-		(fp_text user "${REFERENCE}"
-			(at 0 0 90)
-			(layer "B.Fab")
-			(uuid "d1ecfc99-b39b-40f8-b19a-8db109addedb")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
 		(pad "1" smd oval
 			(at -2.28 -2.87 270)
 			(size 0.34 1.73)
@@ -21015,7 +21005,7 @@
 			(layers "B.Cu" "B.Paste" "B.Mask")
 			(uuid "64d821cc-b218-4fce-b3c1-daa30d1fe51b")
 		)
-		(model "/Users/narayanpowderly/Documents/atopile-workspace/spin-servo-drive/build/footprints/footprints.3dshapes/TSSOP-16_L5.0-W4.4-H1.0-LS6.4-P0.65.step"
+		(model "/Users/narayanpowderly/Documents/atopile-workspace/spin-servo-drive/build/footprints/footprints.3dshapes/TSSOP-16_L5.0-W4.4-H1.0-LS6.4-P0.65.wrl"
 			(offset
 				(xyz -914.46 685.51 -0)
 			)
@@ -23875,6 +23865,7 @@
 		(property "Reference" "C18"
 			(at 0 0 180)
 			(layer "B.SilkS")
+			(hide yes)
 			(uuid "8c76a245-0237-412b-847e-f50fed256c6f")
 			(effects
 				(font
@@ -23887,6 +23878,7 @@
 		(property "Value" "16V 100nF X7R ±10% 0402  Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
 			(at 0 -1.16 180)
 			(layer "B.Fab")
+			(hide yes)
 			(uuid "9903a065-7b49-4977-a54b-8da77f900989")
 			(effects
 				(font
