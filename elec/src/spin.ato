@@ -99,9 +99,6 @@ module SPIN:
     ios.button_pulldown.designator = "R3"
     ios.button_pulldown.btn.btn.designator = "U11"
 
-    # Position sensor
-    position_sensor.ma732.ic.designator = "U18"
-    position_sensor.ma732.cap.designator = "C1"
 
     # Power supply
     power_supply.buck.ic.designator = "U6"
