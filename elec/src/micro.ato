@@ -45,7 +45,7 @@ module Micro:
     mux.select ~ micro.PA6
     can_tranciever.can_ttl.tx ~ micro.PB9.io
 
-    # Pullup reistor to default to boot selction - assert high with PA6 to enable CAN
+    # Pullup reistor to default to boot selction - assert low with PA6 to enable CAN
     select_resistor.1 ~ mux.select.io
     select_resistor.2 ~ power.vcc
 
