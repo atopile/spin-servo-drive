@@ -141,7 +141,7 @@ module LowSideCurrentSense:
     max_power_dissapation = 3W  # The heat we're budgeting to sink from the circuit
     max_current = 10A  # Max current we can detect without railing
     output_voltage = 0 to 3.3V
-    output_range_utilisation = 0.6 to 0.95  # How much of the output voltage range we're using
+    output_range_utilisation = 0.6 to 0.99  # How much of the output voltage range we're using
     reference_voltage = 1.65V +/- 3%  # The voltage at which the output is zero
 
     # Shunt resistor for the input
