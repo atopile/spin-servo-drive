@@ -117,7 +117,18 @@ module LowSideCurrentSense:
     """
     Low side current sense with opamp and filter.
 
-    Usage: TODO:
+    Usage:
+    - Update the parameters under "External interfaces" to match the requirements
+    - Run current through "input"
+    - Measure the output voltage at "output"
+    - Offset the output voltage by the reference voltage at "power_vref"
+    - Connect LV / opamp vcc power to "power"
+
+    Currently, the assertion solver isn't able to find approproate resistor values
+    for the feedback divider, so you need to manually set:
+    - shunt.value
+    - feedback_div.r_top.value
+    - feedback_div.r_bottom.value
     """
     # External interfaces
     power = new Power  # LV (eg. 3.3V) power for the active filter/amp
