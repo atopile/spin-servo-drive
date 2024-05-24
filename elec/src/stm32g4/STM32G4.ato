@@ -44,6 +44,7 @@ module STM32G431CBU6_BASE:
     power ~ ic.power_vdd
     power ~ ic.power_vdda
     power ~ ic.power_vref
+    power ~ ic.power_adc_ref
     # power ~ ic.power_vbat # TODO: Check this
 
     ###### SPI 1 #####

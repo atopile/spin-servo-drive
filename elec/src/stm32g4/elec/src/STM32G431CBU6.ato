@@ -11,6 +11,7 @@ component _STM32G431CBU6:
     power_vdda = new Power
     power_vdd = new Power
     power_vref = new Power
+    power_adc_ref = new Power
 
     # signal VREF_ ~ pin 20 # what dis?
     signal gnd
@@ -21,12 +22,14 @@ component _STM32G431CBU6:
     power_vdd.vcc ~ pin 35
     power_vref.vcc ~ pin 23
     power_vbat.vcc ~ pin 1
+    power_adc_ref.vcc ~ pin 20
 
     # Grounds together
     gnd ~ power_vdd.gnd
     gnd ~ power_vdda.gnd
     gnd ~ power_vref.gnd
     gnd ~ power_vbat.gnd
+    gnd ~ power_adc_ref.gnd
     gnd ~ pin 49 # EP
 
     # GPIO - Port A
