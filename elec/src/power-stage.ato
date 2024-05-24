@@ -10,45 +10,57 @@ from "generics/vdivs.ato" import _VDiv, VDiv, VDivLowPassFilter
 
 
 module PowerStage:
-    # External interfaces
+    """
+    Usage:  # TODO:
+    """
+    ################
+    ## Configure Me!
+    ################
+
+    # Connect to us!
     power_batt = new Power
     power_gate = new Power
-    power3v3 = new Power
+    power_3v3 = new Power
+    power3v3 = new Power  # Deprecated name change
+
     enable = new Pair
+    phase_a_control = new Pair
+    phase_b_control = new Pair
+    phase_c_control = new Pair
 
-    # Phases
-    # Basically just a class to hold all the signals
-    phase_a = new Phase
-    phase_b = new Phase
-    phase_c = new Phase
+    phase_a_current = new Pair
+    phase_b_current = new Pair
+    phase_c_current = new Pair
 
-    # Components
+    signal phase_a_output
+    signal phase_b_output
+    signal phase_c_output
+
+    # Set me!
+    phase_current: current
+
+    ################
+    #
+    ################
+    phase_a = new _Phase
+    phase_b = new _Phase
+    phase_c = new _Phase
+
     gate_driver = new DRV8300
     voltage_reference = new VoltageReference
-    bulk_caps = new CapBank
+    bulk_caps = new Capacitor
+
+    phase_a.current_sensor.max_current = phase_current
+    phase_b.current_sensor.max_current = phase_current
+    phase_c.current_sensor.max_current = phase_current
 
     # Power connections
     power_gate ~ gate_driver.power_gate
     power3v3 ~ voltage_reference.power
+    power3v3 ~ power_3v3
 
     # Enable
     enable ~ gate_driver.enable
-
-    # Select mosfets
-    phase_a.half_bridge -> DMT3009LDT_7
-    phase_b.half_bridge -> DMT3009LDT_7
-    phase_c.half_bridge -> DMT3009LDT_7
-
-    # Select current sense opamps
-    phase_a.current_sensor.opamp -> LMV321IDBVR
-    phase_b.current_sensor.opamp -> LMV321IDBVR
-    phase_c.current_sensor.opamp -> LMV321IDBVR
-    voltage_reference.opamp -> LMV321IDBVR
-
-    # Select shunts
-    phase_a.current_sensor.shunt -> _shunt
-    phase_b.current_sensor.shunt -> _shunt
-    phase_c.current_sensor.shunt -> _shunt
 
     # Power connections
     power_batt ~ phase_a.power
@@ -66,16 +78,14 @@ module PowerStage:
     voltage_reference.output ~ phase_b.current_sensor.power_vref
     voltage_reference.output ~ phase_c.current_sensor.power_vref
 
-    # Configure current sense
-    # phase_a.current_sensor.gain = 46 +/- 5%
-    # phase_b.current_sensor.gain = 46 +/- 5%
-    # phase_c.current_sensor.gain = 46 +/- 5%
-
     # DRV8300 connections
     # Set mode to 3PWM:
-    gate_driver.mode.io ~ power3v3.vcc
+    power3v3.vcc ~ gate_driver.mode.io
 
     # Phase inputs - connect both high and low inputs for 3PWM
+    phase_a_control ~ phase_a.control
+    phase_b_control ~ phase_b.control
+    phase_c_control ~ phase_c.control
     phase_a.control ~ gate_driver.input_low_a
     phase_a.control ~ gate_driver.input_high_a
     phase_b.control ~ gate_driver.input_low_b
@@ -84,20 +94,59 @@ module PowerStage:
     phase_c.control ~ gate_driver.input_high_c
 
     # Gate drive outputs
-    phase_a.half_bridge.gate_high ~ gate_driver.output_high_a
-    phase_a.half_bridge.gate_low ~ gate_driver.output_low_a
-    phase_b.half_bridge.gate_high ~ gate_driver.output_high_b
-    phase_b.half_bridge.gate_low ~ gate_driver.output_low_b
-    phase_c.half_bridge.gate_high ~ gate_driver.output_high_c
-    phase_c.half_bridge.gate_low ~ gate_driver.output_low_c
+    gate_driver.output_high_a ~ phase_a.half_bridge.gate_high
+    gate_driver.output_low_a ~ phase_a.half_bridge.gate_low
+    gate_driver.output_high_b ~ phase_b.half_bridge.gate_high
+    gate_driver.output_low_b ~ phase_b.half_bridge.gate_low
+    gate_driver.output_high_c ~ phase_c.half_bridge.gate_high
+    gate_driver.output_low_c ~ phase_c.half_bridge.gate_low
 
     # Output connections
     phase_a.half_bridge.output.io ~ gate_driver.output_sense_a.io
     phase_b.half_bridge.output.io ~ gate_driver.output_sense_b.io
     phase_c.half_bridge.output.io ~ gate_driver.output_sense_c.io
 
+    phase_a.half_bridge.output.io ~ phase_a_output
+    phase_b.half_bridge.output.io ~ phase_b_output
+    phase_c.half_bridge.output.io ~ phase_c_output
+    phase_a.current_sensor.output ~ phase_a_current
+    phase_b.current_sensor.output ~ phase_b_current
+    phase_c.current_sensor.output ~ phase_c_current
 
-module Phase:
+    ###################
+    # Guards for replacements
+    ###################
+    bulk_caps -> _NotImplementedCapacitor
+
+    # Select mosfets
+    phase_a.half_bridge -> _NotImplementedHalfBridge
+    phase_b.half_bridge -> _NotImplementedHalfBridge
+    phase_c.half_bridge -> _NotImplementedHalfBridge
+
+    # Select shunts
+    phase_a.current_sensor.shunt -> _NotImplementedResistor
+    phase_b.current_sensor.shunt -> _NotImplementedResistor
+    phase_c.current_sensor.shunt -> _NotImplementedResistor
+
+
+module SpinPowerStage from PowerStage:
+    # Some big ol' caps
+    bulk_caps -> CapBank
+
+    # Select mosfets
+    phase_a.half_bridge -> DMT3009LDT_7
+    phase_b.half_bridge -> DMT3009LDT_7
+    phase_c.half_bridge -> DMT3009LDT_7
+
+    # Select shunts
+    phase_a.current_sensor.shunt -> _shunt
+    phase_b.current_sensor.shunt -> _shunt
+    phase_c.current_sensor.shunt -> _shunt
+
+    phase_current = 10A
+
+
+module _Phase:
     # External interfaces
     power = new Power
     control = new Pair  # Not internally used. It's only a shim
@@ -160,7 +209,7 @@ module LowSideCurrentSense:
     shunt_voltage = (-1 to 1) * max_current * shunt.value
 
     # Opamp gain
-    opamp = new Opamp
+    opamp = new LMV321IDBVR
     power ~ opamp.power
     feedback_div = new _VDiv
     _shunt_n ~ feedback_div.top
@@ -210,7 +259,7 @@ module VoltageReference:
     output = new Power
 
     # Components
-    opamp = new Opamp
+    opamp = new LMV321IDBVR
     bias_div = new VDivLowPassFilter
     bypass_cap = new Capacitor
 
@@ -341,3 +390,18 @@ component nettie_250u:
     pin 2
     footprint = "NetTie-2_SMD_Pad0.25mm"
     mpn = "NetTie_250u"
+
+
+component _NotImplementedResistor from Resistor:
+    """If this is failing within your code, you forgot to replace something!"""
+    assert 1 within 0  # This is a hack to cause a failed assertion
+
+
+component _NotImplementedCapacitor from Capacitor:
+    """If this is failing within your code, you forgot to replace something!"""
+    assert 1 within 0  # This is a hack to cause a failed assertion
+
+
+module _NotImplementedHalfBridge from HalfBridge:
+    """If this is failing within your code, you forgot to replace something!"""
+    assert 1 within 0  # This is a hack to cause a failed assertion

@@ -1,5 +1,5 @@
 from "micro.ato" import Micro
-from "power-stage.ato" import PowerStage
+from "power-stage.ato" import SpinPowerStage
 from "power-supply.ato" import PowerSupply
 from "position-sensor.ato" import PositionSensor
 from "ios.ato" import IOs
@@ -14,7 +14,7 @@ module SPIN:
     """
     Brushless motor controller with current sensing and position feedback.
     """
-    power_stage = new PowerStage
+    power_stage = new SpinPowerStage
     power_supply = new PowerSupply
     micro = new Micro
     position_sensor = new PositionSensor
