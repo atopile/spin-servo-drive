@@ -11,7 +11,8 @@ from "generics/vdivs.ato" import _VDiv, VDiv, VDivLowPassFilter
 
 module PowerStage:
     """
-    Usage:  # TODO:
+    Usage:
+    - Do everything in the "Configure Me!" section
     """
     ################
     ## Configure Me!
@@ -38,6 +39,12 @@ module PowerStage:
 
     # Set me!
     phase_current: current
+    # phase_a.current_sensor.feedback_div.r_top.value
+    # phase_a.current_sensor.feedback_div.r_bottom.value
+    # phase_b.current_sensor.feedback_div.r_top.value
+    # phase_b.current_sensor.feedback_div.r_bottom.value
+    # phase_c.current_sensor.feedback_div.r_top.value
+    # phase_c.current_sensor.feedback_div.r_bottom.value
 
     ################
     #
@@ -145,6 +152,15 @@ module SpinPowerStage from PowerStage:
 
     phase_current = 10A
 
+    # FIXME: We have the select these manually because
+    # the solver isn't reliably finding them for us
+    phase_a.current_sensor.feedback_div.r_top.value = 1kohm +/- 5%
+    phase_a.current_sensor.feedback_div.r_bottom.value = 45kohm +/- 5%
+    phase_b.current_sensor.feedback_div.r_top.value = 1kohm +/- 5%
+    phase_b.current_sensor.feedback_div.r_bottom.value = 45kohm +/- 5%
+    phase_c.current_sensor.feedback_div.r_top.value = 1kohm +/- 5%
+    phase_c.current_sensor.feedback_div.r_bottom.value = 45kohm +/- 5%
+
 
 module _Phase:
     # External interfaces
@@ -242,13 +258,6 @@ module LowSideCurrentSense:
     # Tie grounds together
     power.gnd ~ power_vref.gnd
 
-    # Final component values
-    # FIXME: We have the select these manually because
-    # the solver isn't reliably finding them for us
-    shunt.value = 3mΩ +/- 1%
-    feedback_div.r_top.value = 1kohm +/- 5%
-    feedback_div.r_bottom.value = 45kohm +/- 5%
-
 
 module VoltageReference:
     """
@@ -333,6 +342,7 @@ component _shunt from Resistor:
     """
     mpn = "C128540"
     footprint = "R0805"
+    value = 3mΩ +/- 1%
 
 component BulkCapacitor from Capacitor:
     # value = 10uF
