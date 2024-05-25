@@ -27,6 +27,7 @@ module SPIN:
     power_supply.power5v ~ ios.power5v
     power_supply.power3v3 ~ ios.power3v3
     power_supply.power_gate ~ power_stage.power_gate
+    power_stage.gate_drive_voltage = power_supply.buck.v_out
     ios.power_batt ~ power_stage.power_batt
     ios.power_batt ~ power_supply.power_batt
 

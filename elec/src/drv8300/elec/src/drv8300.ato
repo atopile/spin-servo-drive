@@ -3,10 +3,11 @@ from "generics/resistors.ato" import Resistor
 from "generics/capacitors.ato" import Capacitor
 
 module DRV8300:
+    ###################
     # External interfaces
+    ###################
     power_gate = new Power
     enable = new Pair
-
 
     # Gate driver inputs
     input_low_a = new Pair
@@ -33,44 +34,64 @@ module DRV8300:
     mode = new Pair
     mode.gnd ~ power_gate.gnd
 
+    # Set me!
+    mosfet_gate_charge: charge
+    gate_drive_voltage: voltage
+    switching_frequency: frequency
+    target_bootstrap_ripple = 0.5V to 1V
+    deadtime = 200ns to 240ns
+
+    #######################
+
     # Components
     ic = new _DRV8300DRGER
+    ic.power_gate ~ power_gate
+
+    # 7.3 Recommended Operating Conditions
+    assert gate_drive_voltage within 5V to 20V
+    assert switching_frequency within 0Hz to 200kHz
+
+    # 8.3.1.1.2 Deadtime and Cross-Conduction Prevention
+    r_deadtime = new Resistor
+    assert deadtime within 200ns to 2000ns
+    r_deadtime.package = "0402"
+    r_deadtime.value = deadtime / 1ns / 5 * 1kΩ
+    ic.deadtime.io ~ r_deadtime.1; r_deadtime.2 ~ power_gate.gnd
+
+    # 9.2.2 Bootstrap Capacitor and GVDD Capacitor Selection
+    # Bootstrap capacitor selection
+    assert target_bootstrap_ripple <= 1V
+    bootstrap_leakage_current = 220uA  # From the DRV8300 datasheet
+    charge_per_cycle = mosfet_gate_charge + bootstrap_leakage_current / switching_frequency
+    c_boostrap_a = new Capacitor
+    c_boostrap_b = new Capacitor
+    c_boostrap_c = new Capacitor
+    c_boostrap_a.package = "0402"
+    c_boostrap_b.package = "0402"
+    c_boostrap_c.package = "0402"
+    c_boostrap_a.value = charge_per_cycle / target_bootstrap_ripple
+    c_boostrap_b.value = charge_per_cycle / target_bootstrap_ripple
+    c_boostrap_c.value = charge_per_cycle / target_bootstrap_ripple
+    ic.boostrap_a.io ~ c_boostrap_a.1
+    ic.boostrap_b.io ~ c_boostrap_b.1
+    ic.boostrap_c.io ~ c_boostrap_c.1
+    ic.output_sense_a.io ~ c_boostrap_a.2
+    ic.output_sense_b.io ~ c_boostrap_b.2
+    ic.output_sense_c.io ~ c_boostrap_c.2
+
+    # Bypass capacitor selection
     bypass_cap_1 = new Capacitor
     bypass_cap_2 = new Capacitor
     bypass_cap_3 = new Capacitor
-    c_boostrap_a = new _BypassCap
-    c_boostrap_b = new _BypassCap
-    c_boostrap_c = new _BypassCap
-    r_deadtime = new Resistor
-
-    ic.power_gate ~ power_gate
-    power_gate ~ bypass_cap_1.power
-    power_gate ~ bypass_cap_2.power
-    power_gate ~ bypass_cap_3.power
-
-    # Configure bypass caps
-    bypass_cap_1.value = 4.7uF +/- 20%
-    bypass_cap_2.value = 4.7uF +/- 20%
-    bypass_cap_3.value = 4.7uF +/- 20%
     bypass_cap_1.package = "0603"
     bypass_cap_2.package = "0603"
     bypass_cap_3.package = "0603"
-
-    # Boot strap cap connections
-    ic.boostrap_a.io ~ c_boostrap_a.1
-    ic.output_sense_a.io ~ c_boostrap_a.2
-
-    ic.boostrap_b.io ~ c_boostrap_b.1
-    ic.output_sense_b.io ~ c_boostrap_b.2
-
-    ic.boostrap_c.io ~ c_boostrap_c.1
-    ic.output_sense_c.io ~ c_boostrap_c.2
-
-    # deadtime config and connections
-    r_deadtime.package = "0402"
-    r_deadtime.value = 40.2kohm +/- 10%
-    r_deadtime.1 ~ ic.deadtime.io
-    r_deadtime.2 ~ power_gate.gnd
+    bypass_cap_1.value = c_boostrap_a.value * (10 to 20)
+    bypass_cap_2.value = c_boostrap_a.value * (10 to 20)
+    bypass_cap_3.value = c_boostrap_a.value * (10 to 20)
+    power_gate ~ bypass_cap_1.power
+    power_gate ~ bypass_cap_2.power
+    power_gate ~ bypass_cap_3.power
 
     # Connect IC
     # Gate driver inputs
@@ -97,13 +118,6 @@ module DRV8300:
     # Mode
     mode ~ ic.mode
 
-module _BypassCap from Capacitor:
-    package = "0402"
-    value = 1uF +/- 10%
-
-module _GateResistor from Resistor:
-    package = "0402"
-    value = 10ohm +/- 10%
 
 component _DRV8300DRGER:
     footprint = "VQFN-24_L4.0-W4.0-P0.50-TL-EP2.5"

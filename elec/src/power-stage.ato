@@ -39,6 +39,8 @@ module PowerStage:
 
     # Set me!
     phase_current: current
+    switching_frequency: frequency
+    gate_drive_voltage: voltage
     # phase_a.current_sensor.feedback_div.r_top.value
     # phase_a.current_sensor.feedback_div.r_bottom.value
     # phase_b.current_sensor.feedback_div.r_top.value
@@ -49,17 +51,21 @@ module PowerStage:
     ################
     #
     ################
+
+    gate_driver = new DRV8300
+    gate_driver.mosfet_gate_charge = phase_a.half_bridge.gate_charge
+    gate_driver.gate_drive_voltage = gate_drive_voltage
+    gate_driver.switching_frequency = switching_frequency
+
     phase_a = new _Phase
     phase_b = new _Phase
     phase_c = new _Phase
-
-    gate_driver = new DRV8300
-    voltage_reference = new VoltageReference
-    bulk_caps = new Capacitor
-
     phase_a.current_sensor.max_current = phase_current
     phase_b.current_sensor.max_current = phase_current
     phase_c.current_sensor.max_current = phase_current
+
+    voltage_reference = new VoltageReference
+    bulk_caps = new Capacitor
 
     # Power connections
     power_gate ~ gate_driver.power_gate
@@ -109,6 +115,7 @@ module PowerStage:
     gate_driver.output_low_c ~ phase_c.half_bridge.gate_low
 
     # Output connections
+    # DO NOT CONNECT OUTPUT PAIRS TO NORMAL GROUND.
     phase_a.half_bridge.output.io ~ gate_driver.output_sense_a.io
     phase_b.half_bridge.output.io ~ gate_driver.output_sense_b.io
     phase_c.half_bridge.output.io ~ gate_driver.output_sense_c.io
@@ -151,7 +158,7 @@ module SpinPowerStage from PowerStage:
     phase_c.current_sensor.shunt -> _shunt
 
     phase_current = 10A
-
+    switching_frequency = 25kHz
     # FIXME: We have the select these manually because
     # the solver isn't reliably finding them for us
     phase_a.current_sensor.feedback_div.r_top.value = 1kohm +/- 5%
@@ -301,12 +308,16 @@ module DMT3009LDT_7 from HalfBridge:
     """
     30V 30A 11.1mΩ@10V,14.4A 1.2W 2 N-Channel(Half Bridge)
     Generally pretty sick for 36 cents
+
+    Shim to map the component into a module.
     """
     ic = new _DMT3009LDT_7
     power ~ ic.power
     output ~ ic.output
     gate_high ~ ic.gate_high
     gate_low ~ ic.gate_low
+    gate_charge = ic.gate_charge
+
 
 # Custom parts
 
@@ -336,6 +347,9 @@ component _DMT3009LDT_7:
     lcsc_id = "C155503"
     mpn = "C155503"
 
+    gate_charge = 14nC to 20nC
+
+
 component _shunt from Resistor:
     """
     3mohm, 0805, 0.5W
@@ -344,12 +358,14 @@ component _shunt from Resistor:
     footprint = "R0805"
     value = 3mΩ +/- 1%
 
+
 component BulkCapacitor from Capacitor:
     # value = 10uF
     # package = "0805"
     # voltage = 40V to 100V
     footprint = "C0805"
     mpn = "C440198"
+
 
 module CapBank:
     # maybe we need a for loop...
@@ -394,6 +410,7 @@ module CapBank:
     power ~ cap17.power
     power ~ cap18.power
     power ~ cap19.power
+
 
 component nettie_250u:
     pin 1
