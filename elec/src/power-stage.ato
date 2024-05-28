@@ -48,6 +48,15 @@ module PowerStage:
     # phase_c.current_sensor.feedback_div.r_top.value
     # phase_c.current_sensor.feedback_div.r_bottom.value
 
+    # Replace me!
+    # bulk_caps
+    # phase_a.half_bridge
+    # phase_b.half_bridge
+    # phase_c.half_bridge
+    # phase_a.current_sensor.shunt
+    # phase_b.current_sensor.shunt
+    # phase_c.current_sensor.shunt
+
     ################
     #
     ################
