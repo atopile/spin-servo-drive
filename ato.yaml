@@ -1,4 +1,4 @@
-ato-version: ^0.2.3
+ato-version: ^0.2.53
 builds:
   default:
     entry: elec/src/spin.ato:SPIN
