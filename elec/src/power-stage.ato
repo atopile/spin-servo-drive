@@ -152,8 +152,8 @@ module LowSideCurrentSense:
     # and there's a lot of noise in it's neighborhood
     net_tie_p = new nettie_250u
     net_tie_n = new nettie_250u
-    shunt.1 ~ net_tie_p.1; net_tie_p.2 ~ signal _shunt_p
-    shunt.2 ~ net_tie_n.1; net_tie_n.2 ~ signal _shunt_n
+    shunt.1 ~ net_tie_p.2; net_tie_p.1 ~ signal _shunt_p
+    shunt.2 ~ net_tie_n.2; net_tie_n.1 ~ signal _shunt_n
 
     shunt_heat_power = (max_current ** 2) * shunt.value * duty_cycle
     assert shunt_heat_power < max_power_dissapation
