@@ -2,7 +2,6 @@
 #include <SimpleFOC.h>
 #include <SimpleFOCDrivers.h>
 #include <Wire.h>
-
 #include <settings/stm32/STM32FlashSettingsStorage.h>
 #include <encoders/ma730/MagneticSensorMA730SSI.h>
 #include <encoders/ma730/MagneticSensorMA730.h>
@@ -14,22 +13,26 @@
 
 #define SERIAL_SPEED 115200
 
+#define MUX_SELECT PA6
+#define BUTTON PB5
+#define BATT_VOLTAGE_SENSE PA4
+#define TEMP_SENSE PA5
+#define LED PC6
 
-// TODO USB PD
-// TODO current sense
-// TODO voltage sense?
-// TODO temperature sense?
-// TODO CAN bus
+// Define CAN bus pins
+#define CAN_TX_PIN PB9
+#define CAN_RX_PIN PB8
+
 
 // BLDC motor & driver instance
 BLDCMotor motor = BLDCMotor(4, 2.0f, 300.0f);
-BLDCDriver3PWM driver = BLDCDriver3PWM(PA0, PA1, PA2, PA3);
+BLDCDriver3PWM driver = BLDCDriver3PWM(PA0, PA1, PA2);
 
 //Position Sensor
-MagneticSensorMA730 sensor = MagneticSensorMA730(PB11);
+MagneticSensorMA730 sensor = MagneticSensorMA730(PB12);
 HysteresisSensor hysteresisSensor = HysteresisSensor(sensor, 0.001f);
 
-//LowsideCurrentSense current_sense = LowsideCurrentSense(0.003, 46, PB0, PB1, PB12);
+LowsideCurrentSense current_sense = LowsideCurrentSense(0.003, 46, PB0, PB1, PA3);
 
 // settings
 STM32FlashSettingsStorage settings = STM32FlashSettingsStorage(); // use 1 page at top of flash
@@ -62,17 +65,19 @@ void setup() {
   Serial.begin(SERIAL_SPEED);
   while (!Serial);
   SimpleFOCDebug::enable(&Serial);
+
   Serial.print("spin servo - firmware version ");
   Serial.println(SPIN_SERVO_FIRMWARE_VERSION);
 
-  Wire.setSCL(PB8);
-  Wire.setSDA(PB9);
-  Wire.begin();
-  Wire.setClock(400000);
+  // Wire.setSCL(PB8);
+  // Wire.setSDA(PB9);
+  // Wire.begin();
+  // Wire.setClock(400000);
 
   SPI.setMISO(PB14);
   SPI.setMOSI(PB15);
   SPI.setSCLK(PB13);
+
 
   SimpleFOC_CORDIC_Config();
 
@@ -80,10 +85,12 @@ void setup() {
   // power supply voltage [V]
   driver.voltage_power_supply = 10;
   driver.voltage_limit = driver.voltage_power_supply*0.95f;
+  driver.pwm_frequency	= 20000;
 
   driver.init();
   sensor.init();
   hysteresisSensor.init();
+
 
   FieldStrength fs = sensor.getFieldStrength();
   Serial.print("Field strength: 0x");
@@ -93,9 +100,14 @@ void setup() {
   motor.linkDriver(&driver);
   motor.linkSensor(&hysteresisSensor);
 
+  // current sense
+  current_sense.linkDriver(&driver);
+  current_sense.init();
+  motor.linkCurrentSense(&current_sense);
+
   // aligning voltage
-  motor.voltage_sensor_align = 1;
-  motor.current_limit = 2;
+  motor.voltage_sensor_align = 2;
+  motor.current_limit = 3;
   motor.voltage_limit = driver.voltage_limit / 2.0f;
   motor.velocity_limit = 1000.0f; // 1000rad/s = aprox 9550rpm
 
@@ -111,7 +123,7 @@ void setup() {
   motor.P_angle.output_ramp = 1000;
   motor.LPF_angle.Tf = 0.005f;
 
-  motor.torque_controller = TorqueControlType::voltage;
+  motor.torque_controller = TorqueControlType::foc_current;
   motor.controller = MotionControlType::angle;
   motor.motion_downsample = 10;
 
@@ -149,7 +161,6 @@ void setup() {
   Serial.println(F("Motor ready."));
   Serial.println(F("Set the target using serial terminal:"));
 }
-
 
 
 void loop() {
