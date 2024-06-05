@@ -1,4 +1,4 @@
-****# Servos are dope.
+# Servos are dope.
 
 Compared to the steppers we stick on our 3D printers, CNC machines and paintball turrets:
  - They're way faster 🏃
