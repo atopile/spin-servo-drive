@@ -25,7 +25,7 @@
 
 
 // BLDC motor & driver instance
-BLDCMotor motor = BLDCMotor(4, 2.0f, 300.0f);
+BLDCMotor motor = BLDCMotor(5, 2.0f, 300.0f);
 BLDCDriver3PWM driver = BLDCDriver3PWM(PA0, PA1, PA2);
 
 //Position Sensor
