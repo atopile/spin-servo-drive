@@ -25,7 +25,7 @@
 
 
 // BLDC motor & driver instance
-BLDCMotor motor = BLDCMotor(5, 2.0f, 300.0f);
+BLDCMotor motor = BLDCMotor(5, 5.2f, 120.0f, 0.000831f); // int pp,  float R = NOT_SET, float KV = NOT_SET, float L = NOT_SET
 BLDCDriver3PWM driver = BLDCDriver3PWM(PA0, PA1, PA2);
 
 //Position Sensor
