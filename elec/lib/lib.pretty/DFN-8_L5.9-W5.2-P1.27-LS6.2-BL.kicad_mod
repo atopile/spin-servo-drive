@@ -33,7 +33,7 @@
 	(fp_circle (center -2.60 3.08) (end -2.57 3.08) (layer F.Fab) (width 0.06))
 	(fp_circle (center -2.70 3.38) (end -2.55 3.38) (layer F.SilkS) (width 0.30))
 	(fp_circle (center -1.95 3.08) (end -1.80 3.08) (layer Cmts.User) (width 0.30))
-	(model "./libs/lib.3dshapes/DFN-8_L5.9-W5.2-P1.27-LS6.2-BL.wrl"
+	(model "./libs/lib.3dshapes/DFN-8_L5.9-W5.2-P1.27-LS6.2-BL.step"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

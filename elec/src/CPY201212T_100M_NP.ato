@@ -1,8 +1,0 @@
-# JLCPN: C285963
-# easyeda2kicad --full --lcsc_id=C285963 --output elec/lib/lib
-# 400mA 10uH ±20% 0805 Inductors (SMD) ROHS Copy
-
-component CPY201212T_100M_NP:
-    pin 1
-    pin 2
-    footprint = "L0805"

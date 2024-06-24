@@ -1,0 +1,343 @@
+from "generics/interfaces.ato" import Pair, Power, DiffPair
+from "generics/mosfets.ato" import NFET, HalfBridge
+from "generics/resistors.ato" import Resistor
+from "generics/capacitors.ato" import Capacitor
+from "drv8300/elec/src/drv8300.ato" import DRV8300
+from "lmv321idbvr/elec/src/lmv321idbvr.ato" import LMV321IDBVR
+from "generics/opamps.ato" import Opamp
+from "generics/filters.ato" import LowPassFilter
+from "generics/vdivs.ato" import _VDiv, VDiv, VDivLowPassFilter
+
+
+module PowerStage:
+    # External interfaces
+    power_batt = new Power
+    power_gate = new Power
+    power3v3 = new Power
+    enable = new Pair
+
+    # Phases
+    # Basically just a class to hold all the signals
+    phase_a = new Phase
+    phase_b = new Phase
+    phase_c = new Phase
+
+    # Components
+    gate_driver = new DRV8300
+    voltage_reference = new VoltageReference
+    bulk_caps = new CapBank
+
+    # Power connections
+    power_gate ~ gate_driver.power_gate
+    power3v3 ~ voltage_reference.power
+
+    # Enable
+    enable ~ gate_driver.enable
+
+    # Select mosfets
+    phase_a.half_bridge -> DMT3009LDT_7
+    phase_b.half_bridge -> DMT3009LDT_7
+    phase_c.half_bridge -> DMT3009LDT_7
+
+    # Select current sense opamps
+    phase_a.current_sensor.opamp -> LMV321IDBVR
+    phase_b.current_sensor.opamp -> LMV321IDBVR
+    phase_c.current_sensor.opamp -> LMV321IDBVR
+    voltage_reference.opamp -> LMV321IDBVR
+
+    # Select shunts
+    phase_a.current_sensor.shunt -> _shunt
+    phase_b.current_sensor.shunt -> _shunt
+    phase_c.current_sensor.shunt -> _shunt
+
+    # Power connections
+    power_batt ~ phase_a.power
+    power_batt ~ phase_b.power
+    power_batt ~ phase_c.power
+    power_batt ~ bulk_caps.power
+
+    # Power for current sensors
+    power3v3 ~ phase_a.current_sensor.power
+    power3v3 ~ phase_b.current_sensor.power
+    power3v3 ~ phase_c.current_sensor.power
+
+    # Reference voltage for current sensors
+    voltage_reference.output ~ phase_a.current_sensor.power_vref
+    voltage_reference.output ~ phase_b.current_sensor.power_vref
+    voltage_reference.output ~ phase_c.current_sensor.power_vref
+
+    # Configure current sense
+    # phase_a.current_sensor.gain = 46 +/- 5%
+    # phase_b.current_sensor.gain = 46 +/- 5%
+    # phase_c.current_sensor.gain = 46 +/- 5%
+
+    # DRV8300 connections
+    # Set mode to 3PWM:
+    gate_driver.mode.io ~ power3v3.vcc
+
+    # Phase inputs - connect both high and low inputs for 3PWM
+    phase_a.control ~ gate_driver.input_low_a
+    phase_a.control ~ gate_driver.input_high_a
+    phase_b.control ~ gate_driver.input_low_b
+    phase_b.control ~ gate_driver.input_high_b
+    phase_c.control ~ gate_driver.input_low_c
+    phase_c.control ~ gate_driver.input_high_c
+
+    # Gate drive outputs
+    phase_a.half_bridge.gate_high ~ gate_driver.output_high_a
+    phase_a.half_bridge.gate_low ~ gate_driver.output_low_a
+    phase_b.half_bridge.gate_high ~ gate_driver.output_high_b
+    phase_b.half_bridge.gate_low ~ gate_driver.output_low_b
+    phase_c.half_bridge.gate_high ~ gate_driver.output_high_c
+    phase_c.half_bridge.gate_low ~ gate_driver.output_low_c
+
+    # Output connections
+    phase_a.half_bridge.output.io ~ gate_driver.output_sense_a.io
+    phase_b.half_bridge.output.io ~ gate_driver.output_sense_b.io
+    phase_c.half_bridge.output.io ~ gate_driver.output_sense_c.io
+
+
+module Phase:
+    # External interfaces
+    power = new Power
+    control = new Pair  # Not internally used. It's only a shim
+
+    # Components
+    half_bridge = new HalfBridge
+    current_sensor = new LowSideCurrentSense
+
+    # Power connections - half bridge in series with current sensor
+    # VCC ~ Half bridge ~ shunt ~ GND
+    power.vcc ~ half_bridge.power.vcc
+    half_bridge.power.gnd ~ current_sensor.input.p
+    current_sensor.input.n ~ power.gnd
+
+
+module LowSideCurrentSense:
+    """
+    Low side current sense with opamp and filter.
+
+    Usage:
+    - Update the parameters under "External interfaces" to match the requirements
+    - Run current through "input"
+    - Measure the output voltage at "output"
+    - Offset the output voltage by the reference voltage at "power_vref"
+    - Connect LV / opamp vcc power to "power"
+
+    Currently, the assertion solver isn't able to find approproate resistor values
+    for the feedback divider, so you need to manually set:
+    - shunt.value
+    - feedback_div.r_top.value
+    - feedback_div.r_bottom.value
+    """
+    # External interfaces
+    power = new Power  # LV (eg. 3.3V) power for the active filter/amp
+    power_vref = new Power  # Reference voltage for the amp - sets the zero-point for the output
+    output = new Pair  # output voltage - reference voltage is proportional to current flowing
+    input = new DiffPair  # run current through this to measure it
+
+    switching_speed = 10kHz to 25kHz
+    duty_cycle = 0.05 to 0.9
+    max_power_dissapation = 3W  # The heat we're budgeting to sink from the circuit
+    max_current = 10A  # Max current we can detect without railing
+    output_voltage = 0 to 3.3V
+    output_range_utilisation = 0.6 to 0.99  # How much of the output voltage range we're using
+    reference_voltage = 1.65V +/- 3%  # The voltage at which the output is zero
+
+    # Shunt resistor for the input
+    shunt = new Resistor
+    input.p ~ shunt.1; shunt.2 ~ input.n
+    # These net-ties are used to ensure we have a clean signal
+    # from the shunt, since the voltage across it is very small,
+    # and there's a lot of noise in it's neighborhood
+    net_tie_p = new nettie_250u
+    net_tie_n = new nettie_250u
+    shunt.1 ~ net_tie_p.2; net_tie_p.1 ~ signal _shunt_p
+    shunt.2 ~ net_tie_n.2; net_tie_n.1 ~ signal _shunt_n
+
+    shunt_heat_power = (max_current ** 2) * shunt.value * duty_cycle
+    assert shunt_heat_power < max_power_dissapation
+    shunt_voltage = (-1 to 1) * max_current * shunt.value
+
+    # Opamp gain
+    opamp = new Opamp
+    power ~ opamp.power
+    feedback_div = new _VDiv
+    _shunt_n ~ feedback_div.top
+    feedback_div.bottom ~ opamp.output
+    feedback_div.out ~ opamp.inverting
+    gain = 1 + (feedback_div.r_bottom.value / feedback_div.r_top.value)
+    # This sets a reasonable scale for the resistors
+    assert feedback_div.r_top.value + feedback_div.r_bottom.value within 20kΩ to 1MΩ
+    _actual_output_voltage = shunt_voltage * gain + reference_voltage
+    assert _actual_output_voltage within output_voltage * max(output_range_utilisation)  # Make sure we don't rail
+    assert output_voltage * min(output_range_utilisation) * (-0.5 to 0.5) + reference_voltage within _actual_output_voltage  # Make sure we utilise enough of the output range
+
+    # Biasing for voltage reference / zero-point offset
+    bias_div = new _VDiv
+    _shunt_p ~ bias_div.top
+    bias_div.bottom ~ power_vref.vcc
+    bias_div.out ~ opamp.non_inverting
+    # Hopefully these are always the same 🤷‍♂️
+    bias_div.r_top.value = feedback_div.r_top.value
+    bias_div.r_bottom.value = feedback_div.r_bottom.value
+
+    # Output filter
+    output_filter = new LowPassFilter
+    output_filter.input.io ~ opamp.output
+    output_filter.output ~ output
+    output_filter.capacitor.value = 2.2nF +/- 10%
+    effective_switching_frequency = switching_speed / duty_cycle * 2  # We still want a clean signal at a 1% duty cycle, which is effectively a much higher frequency
+    output_filter.cutoff_frequency = max(effective_switching_frequency) * (10 to 15)  # >10x the effective switching frequency to maintain a reasonable signal
+
+    # Tie grounds together
+    power.gnd ~ power_vref.gnd
+
+    # Final component values
+    # FIXME: We have the select these manually because
+    # the solver isn't reliably finding them for us
+    shunt.value = 3mΩ +/- 1%
+    feedback_div.r_top.value = 1kohm +/- 5%
+    feedback_div.r_bottom.value = 45kohm +/- 5%
+
+
+module VoltageReference:
+    """
+    Generates a scaled reference voltage for the current sense opamps.
+    Configured for 1.65V output from 3.3V input.
+    """
+    power = new Power
+    output = new Power
+
+    # Components
+    opamp = new Opamp
+    bias_div = new VDivLowPassFilter
+    bypass_cap = new Capacitor
+
+    # Configure components
+    bypass_cap.value = 1uF +/- 20%
+    bias_div.v_in = 3.3V
+    bias_div.v_out = 1.65V +/- 15%
+    bias_div.cutoff_frequency = 160Hz +/- 20%
+    bias_div.r_top.value = 10kohm +/- 1%
+    bias_div.r_bottom.value = 10kohm +/- 1%
+
+    # Configure packages
+    bypass_cap.package = "0402"
+    bias_div.r_top.package = "0402"
+    bias_div.r_bottom.package = "0402"
+    bias_div.cap.package = "0402"
+
+    # Connect components
+    power ~ opamp.power
+    power ~ bias_div.power
+    power ~ bypass_cap.power
+
+    # Connect opamp in unity gain configuration
+    opamp.output ~ opamp.inverting
+    opamp.non_inverting ~ bias_div.output.io
+    output.vcc ~ opamp.output
+
+
+module DMT3009LDT_7 from HalfBridge:
+    """
+    30V 30A 11.1mΩ@10V,14.4A 1.2W 2 N-Channel(Half Bridge)
+    Generally pretty sick for 36 cents
+    """
+    ic = new _DMT3009LDT_7
+    power ~ ic.power
+    output ~ ic.output
+    gate_high ~ ic.gate_high
+    gate_low ~ ic.gate_low
+
+# Custom parts
+
+component _DMT3009LDT_7:
+    power = new Power
+    output = new Pair
+    gate_high = new Pair
+    gate_low = new Pair
+
+    # Signal connections
+    gate_high.io ~ pin 1
+    gate_low.io ~ pin 8
+    output.io ~ pin 9
+
+    # Power connections
+    power.vcc ~ pin 2
+    power.vcc ~ pin 3
+    power.vcc ~ pin 4
+    power.vcc ~ pin 10
+    power.gnd ~ pin 5
+    power.gnd ~ pin 6
+    power.gnd ~ pin 7
+
+    power.gnd ~ output.gnd
+
+    footprint = "V-DFN3030-8K_L3.0-W3.0-P0.65-BL"
+    lcsc_id = "C155503"
+    mpn = "C155503"
+
+component _shunt from Resistor:
+    """
+    3mohm, 0805, 0.5W
+    """
+    mpn = "C128540"
+    footprint = "R0805"
+
+component BulkCapacitor from Capacitor:
+    # value = 10uF
+    # package = "0805"
+    # voltage = 40V to 100V
+    footprint = "C0805"
+    mpn = "C440198"
+
+module CapBank:
+    # maybe we need a for loop...
+    power = new Power
+    cap1 = new BulkCapacitor
+    cap2 = new BulkCapacitor
+    cap3 = new BulkCapacitor
+    cap4 = new BulkCapacitor
+    cap5 = new BulkCapacitor
+    cap6 = new BulkCapacitor
+    cap7 = new BulkCapacitor
+    cap8 = new BulkCapacitor
+    cap9 = new BulkCapacitor
+    cap10 = new BulkCapacitor
+    cap11 = new BulkCapacitor
+    cap12 = new BulkCapacitor
+    cap13 = new BulkCapacitor
+    cap14 = new BulkCapacitor
+    cap15 = new BulkCapacitor
+    cap16 = new BulkCapacitor
+    cap17 = new BulkCapacitor
+    cap18 = new BulkCapacitor
+    cap19 = new BulkCapacitor
+
+    # Power connections
+    power ~ cap1.power
+    power ~ cap2.power
+    power ~ cap3.power
+    power ~ cap4.power
+    power ~ cap5.power
+    power ~ cap6.power
+    power ~ cap7.power
+    power ~ cap8.power
+    power ~ cap9.power
+    power ~ cap10.power
+    power ~ cap11.power
+    power ~ cap12.power
+    power ~ cap13.power
+    power ~ cap14.power
+    power ~ cap15.power
+    power ~ cap16.power
+    power ~ cap17.power
+    power ~ cap18.power
+    power ~ cap19.power
+
+component nettie_250u:
+    pin 1
+    pin 2
+    footprint = "NetTie-2_SMD_Pad0.25mm"
+    mpn = "NetTie_250u"

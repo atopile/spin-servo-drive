@@ -1,0 +1,8 @@
+component SS34_C8678:
+    # component SS34_C8678
+    footprint = "SMA_L4.3-W2.6-LS5.2-RD"
+    lcsc_id = "C8678"
+    # pins
+    signal A ~ pin 2
+    signal K ~ pin 1
+

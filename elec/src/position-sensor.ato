@@ -1,0 +1,53 @@
+from "generics/interfaces.ato" import SPI, Power
+from "ma732/elec/src/ma732.ato" import MA732
+from "generics/capacitors.ato" import Capacitor
+
+module PositionSensor:
+    power = new Power
+    spi = new SPI
+
+    # Components
+    sensor = new MT6835GT
+
+    # Internal Connections
+    power ~ sensor.power
+    spi ~ sensor.spi
+
+module MT6835GT:
+    ic = new _MT6835GT
+    power = new Power
+    spi = new SPI
+
+    power ~ ic.power
+    spi ~ ic.spi
+
+    cap = new Capacitor
+    cap.value = 100nF +/- 20%
+    cap.package = "0402"
+    cap.power ~ power
+
+component _MT6835GT:
+    # component MT6835GT_minus_STD
+    footprint = "TSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL"
+    lcsc_id = "C2932578"
+    mpn = "C2932578"
+    # pins
+
+    power = new Power
+    power.vcc ~ pin 9
+    power.gnd ~ pin 12
+
+    spi = new SPI
+    spi.miso ~ pin 5
+    spi.mosi ~ pin 6
+    spi.sck ~ pin 7
+    spi.cs ~ pin 8
+
+    signal CAL_EN ~ pin 4
+    signal TEST ~ pin 11
+    signal TEST_EN ~ pin 13
+
+    CAL_EN ~ power.gnd
+    TEST ~ power.gnd
+    TEST_EN ~ power.gnd
+

@@ -18,7 +18,7 @@
 	(pad 1 smd rect (at 2.28 0.00 0.00) (size 1.72 1.92) (layers F.Cu F.Paste F.Mask))
 	(pad 2 smd rect (at -2.28 0.00 0.00) (size 1.72 1.92) (layers F.Cu F.Paste F.Mask))
 	(fp_circle (center 2.25 -2.25) (end 2.28 -2.25) (layer F.Fab) (width 0.06))
-	(model "/elec/lib/lib.3dshapes/IND-SMD_L4.8-W4.5-H2.0_SMMS0420.wrl"
+	(model "/elec/lib/lib.3dshapes/IND-SMD_L4.8-W4.5-H2.0_SMMS0420.step"
 		(offset (xyz -939.800 660.400 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

@@ -1,0 +1,9 @@
+component AO3400A:
+    # component AO3400A
+    footprint = "SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR"
+    lcsc_id = "C20917"
+    # pins
+    signal D ~ pin 3
+    signal G ~ pin 1
+    signal S ~ pin 2
+

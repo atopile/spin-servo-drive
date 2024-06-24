@@ -69,7 +69,7 @@
 	(fp_circle (center -3.00 4.00) (end -2.85 4.00) (layer Cmts.User) (width 0.30))
 	(fp_circle (center -3.50 3.50) (end -3.45 3.50) (layer F.Fab) (width 0.10))
 	(fp_arc (start -3.55 4.20) (end -3.55 4.20) (angle -359.00) (layer F.SilkS) (width 0.30))
-	(model "/servo-drive/elec/lib/.3dshapes/UFQFPN-48_L7.0-W7.0-H0.6-P0.50.wrl"
+	(model "/servo-drive/elec/lib/.3dshapes/UFQFPN-48_L7.0-W7.0-H0.6-P0.50.step"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 270))

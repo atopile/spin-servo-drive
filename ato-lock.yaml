@@ -1,0 +1,100 @@
+poses:
+  schematic:
+    22fcc8bd:
+      mirror_x: false
+      mirror_y: true
+      position:
+        x: -256.36094264116434
+        y: -29.089393161405802
+      rotation: 0
+    8ccd229c:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 191.5
+        y: 54.5
+      rotation: 0
+    8f07ed1b:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -272.09318896320616
+        y: -29.371921037988137
+      rotation: 0
+    90808e70:
+      mirror_x: false
+      mirror_y: true
+      position:
+        x: -274.4363708528879
+        y: 82.69398434311643
+      rotation: 0
+    ba33fca1:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -289.670583914351
+        y: 82.91254577848024
+      rotation: 0
+    elec/src/spin.ato:SPIN::power_stage.phase_a.current_sensor.bias_div.r_bottom:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -95.36152310043477
+        y: 18.383958019083337
+      rotation: 0
+    elec/src/spin.ato:SPIN::power_stage.phase_a.current_sensor.bias_div.r_top:
+      mirror_x: false
+      mirror_y: true
+      position:
+        x: -202.8178450910536
+        y: 18.61257501979427
+      rotation: 0
+    elec/src/spin.ato:SPIN::power_stage.phase_a.current_sensor.feedback_div.r_bottom:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -104.72130708561684
+        y: 149.93500206521406
+      rotation: 0
+    elec/src/spin.ato:SPIN::power_stage.phase_a.current_sensor.feedback_div.r_top:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -203.29099837320993
+        y: 107.2700955652949
+      rotation: 0
+    elec/src/spin.ato:SPIN::power_stage.phase_a.current_sensor.opamp:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -62.965977290722066
+        y: 98.51834549773295
+      rotation: 0
+    elec/src/spin.ato:SPIN::power_stage.phase_a.current_sensor.output_filter.capacitor:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 146.55687533603904
+        y: 158.36359529995036
+      rotation: 90
+    elec/src/spin.ato:SPIN::power_stage.phase_a.current_sensor.output_filter.resistor:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 77.40142184611057
+        y: 98.77108992319597
+      rotation: 0
+    elec/src/spin.ato:SPIN::power_stage.phase_a.current_sensor.shunt:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -350.317426131808
+        y: 8.365618175832552
+      rotation: 90
+    elec/src/spin.ato:SPIN::power_supply.ldo5V.output_bypass:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 52.0
+        y: -139.5
+      rotation: 0

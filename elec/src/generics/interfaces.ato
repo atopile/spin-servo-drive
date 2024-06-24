@@ -1,0 +1,146 @@
+interface Power:
+    signal vcc
+    signal gnd
+
+interface FloatPower:
+    signal v_pos
+    signal v_neg
+
+interface PowerAC:
+    signal l1
+    signal n
+    signal gnd
+
+interface STEP_DIR:
+    signal step
+    signal dir
+    signal enable
+    signal gnd
+
+interface STEPPER_MOTOR:
+    signal a1
+    signal a2
+    signal b1
+    signal b2
+
+interface DcMotor:
+    signal a
+    signal b
+
+interface GPIO:
+    signal io
+    signal gnd
+
+interface I2C:
+    signal sda
+    signal scl
+    signal gnd
+
+interface SWD:
+    signal swclk
+    signal swdio
+    signal swo
+    signal gnd
+
+interface SPI:
+    signal mosi
+    signal miso
+    signal sck
+    signal cs
+    signal gnd
+
+interface LCDSPI:
+    signal mosi
+    signal sck
+    signal cs
+    signal dc
+    signal reset
+    signal backlightEN
+
+interface UART:
+    signal tx
+    signal rx
+    signal gnd
+
+interface CAN_TTL:
+    signal tx
+    signal rx
+
+interface CAN:
+    signal CANH
+    signal CANL
+
+interface Ethernet:
+    signal tx_p
+    signal rx_p
+    signal tx_n
+    signal rx_n
+
+interface USB2:
+    signal dp
+    signal dm
+    signal gnd
+
+interface USB_PD:
+    signal dp
+    signal dm
+    signal cc1
+    signal cc2
+    signal vbusADC
+    signal gnd
+    signal vbus
+
+interface QSPI:
+    signal cs
+    signal sck
+    signal io0
+    signal io1
+    signal io2
+    signal io3
+
+interface SDIO:
+    signal cmd
+    signal clk
+    signal dat0
+    signal dat1
+    signal dat2
+    signal dat3
+
+interface JTAG:
+    signal tck
+    signal tms
+    signal tdi
+    signal tdo
+    signal reset
+    signal vcc
+    signal gnd
+
+interface BLDC_3PWM:
+    signal phase_a
+    signal phase_b
+    signal phase_c
+    signal enable
+
+interface DiffPair:
+    signal p
+    signal n
+
+interface Load:
+    signal p
+    signal n
+
+interface Pair:
+    signal vcc
+    signal io
+    vcc ~ io
+    signal gnd
+
+interface Analog:
+    signal io
+    signal gnd
+
+interface I2S:
+    signal ws
+    signal sck
+    signal sd
+    signal gnd

@@ -1,0 +1,195 @@
+from "generics/interfaces.ato" import Power, DiffPair, Pair
+from "generics/resistors.ato" import Resistor
+from "generics/capacitors.ato" import Capacitor
+
+module DRV8300:
+    # External interfaces
+    power_gate = new Power
+    enable = new Pair
+
+
+    # Gate driver inputs
+    input_low_a = new Pair
+    input_low_b = new Pair
+    input_low_c = new Pair
+    input_high_a = new Pair
+    input_high_b = new Pair
+    input_high_c = new Pair
+
+    # Gate driver outputs
+    output_low_a = new Pair
+    output_low_b = new Pair
+    output_low_c = new Pair
+    output_high_a = new Pair
+    output_high_b = new Pair
+    output_high_c = new Pair
+
+    # Phase sense inputs
+    output_sense_a = new Pair
+    output_sense_b = new Pair
+    output_sense_c = new Pair
+
+    # Set mode: 3PWM: MODE = 0, 6PWM: MODE = GVDD
+    mode = new Pair
+    mode.gnd ~ power_gate.gnd
+
+    # Components
+    ic = new _DRV8300DRGER
+    bypass_cap_1 = new Capacitor
+    bypass_cap_2 = new Capacitor
+    bypass_cap_3 = new Capacitor
+    c_boostrap_a = new _BypassCap
+    c_boostrap_b = new _BypassCap
+    c_boostrap_c = new _BypassCap
+    r_deadtime = new Resistor
+
+    ic.power_gate ~ power_gate
+    power_gate ~ bypass_cap_1.power
+    power_gate ~ bypass_cap_2.power
+    power_gate ~ bypass_cap_3.power
+
+    # Configure bypass caps
+    bypass_cap_1.value = 4.7uF +/- 20%
+    bypass_cap_2.value = 4.7uF +/- 20%
+    bypass_cap_3.value = 4.7uF +/- 20%
+    bypass_cap_1.package = "0603"
+    bypass_cap_2.package = "0603"
+    bypass_cap_3.package = "0603"
+
+    # Boot strap cap connections
+    ic.boostrap_a.io ~ c_boostrap_a.1
+    ic.output_sense_a.io ~ c_boostrap_a.2
+
+    ic.boostrap_b.io ~ c_boostrap_b.1
+    ic.output_sense_b.io ~ c_boostrap_b.2
+
+    ic.boostrap_c.io ~ c_boostrap_c.1
+    ic.output_sense_c.io ~ c_boostrap_c.2
+
+    # deadtime config and connections
+    r_deadtime.package = "0402"
+    r_deadtime.value = 40.2kohm +/- 10%
+    r_deadtime.1 ~ ic.deadtime.io
+    r_deadtime.2 ~ power_gate.gnd
+
+    # Connect IC
+    # Gate driver inputs
+    input_low_a ~ ic.input_low_a
+    input_low_b ~ ic.input_low_b
+    input_low_c ~ ic.input_low_c
+    input_high_a ~ ic.input_high_a
+    input_high_b ~ ic.input_high_b
+    input_high_c ~ ic.input_high_c
+
+    # Gate driver outputs
+    output_low_a ~ ic.output_low_a
+    output_low_b ~ ic.output_low_b
+    output_low_c ~ ic.output_low_c
+    output_high_a ~ ic.output_high_a
+    output_high_b ~ ic.output_high_b
+    output_high_c ~ ic.output_high_c
+
+    # Phase sense inputs
+    output_sense_a ~ ic.output_sense_a
+    output_sense_b ~ ic.output_sense_b
+    output_sense_c ~ ic.output_sense_c
+
+    # Mode
+    mode ~ ic.mode
+
+module _BypassCap from Capacitor:
+    package = "0402"
+    value = 1uF +/- 10%
+
+module _GateResistor from Resistor:
+    package = "0402"
+    value = 10ohm +/- 10%
+
+component _DRV8300DRGER:
+    footprint = "VQFN-24_L4.0-W4.0-P0.50-TL-EP2.5"
+    lcsc_id = "C3655801"
+    mpn = "C3655801"
+
+    # External interfaces
+    # Power
+    power_gate = new Power
+    power_gate.vcc ~ pin 4
+    power_gate.gnd ~ pin 6
+    power_gate.gnd ~ pin 25 # Thermal pad
+    signal gnd
+
+    # Gate driver inputs
+    input_low_a = new Pair
+    input_low_b = new Pair
+    input_low_c = new Pair
+    input_high_a = new Pair
+    input_high_b = new Pair
+    input_high_c = new Pair
+
+    input_low_a.io ~ pin 1
+    input_low_b.io ~ pin 2
+    input_low_c.io ~ pin 3
+    input_high_a.io ~ pin 22
+    input_high_b.io ~ pin 23
+    input_high_c.io ~ pin 24
+
+    gnd ~ input_low_a.gnd
+    gnd ~ input_low_b.gnd
+    gnd ~ input_low_c.gnd
+    gnd ~ input_high_a.gnd
+    gnd ~ input_high_b.gnd
+    gnd ~ input_high_c.gnd
+
+    # Gate driver outputs
+    output_low_a = new Pair
+    output_low_b = new Pair
+    output_low_c = new Pair
+    output_high_a = new Pair
+    output_high_b = new Pair
+    output_high_c = new Pair
+
+    output_low_c.io ~ pin 9
+    output_low_b.io ~ pin 10
+    output_low_a.io ~ pin 11
+    output_high_a.io ~ pin 19
+    output_high_b.io ~ pin 16
+    output_high_c.io ~ pin 13
+
+    gnd ~ output_low_a.gnd
+    gnd ~ output_low_b.gnd
+    gnd ~ output_low_c.gnd
+    gnd ~ output_high_a.gnd
+    gnd ~ output_high_b.gnd
+    gnd ~ output_high_c.gnd
+
+    # Sense
+    output_sense_a = new Pair
+    output_sense_b = new Pair
+    output_sense_c = new Pair
+    output_sense_a.io ~ pin 18
+    output_sense_b.io ~ pin 15
+    output_sense_c.io ~ pin 12
+    gnd ~ output_sense_a.gnd
+    gnd ~ output_sense_b.gnd
+    gnd ~ output_sense_c.gnd
+
+    # Mode
+    mode = new Pair
+    mode.io ~ pin 5
+    gnd ~ mode.gnd
+
+    # Bootstrap and sense
+    boostrap_a = new Pair
+    boostrap_b = new Pair
+    boostrap_c = new Pair
+    boostrap_a.io ~ pin 20
+    boostrap_b.io ~ pin 17
+    boostrap_c.io ~ pin 14
+    gnd ~ boostrap_a.gnd
+    gnd ~ boostrap_b.gnd
+    gnd ~ boostrap_c.gnd
+
+    # Deadtime
+    deadtime = new Pair
+    deadtime.io ~ pin 21
+    gnd ~ deadtime.gnd

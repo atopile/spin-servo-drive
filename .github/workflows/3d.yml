@@ -1,0 +1,46 @@
+name: 3D files CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Search for STEP files and move to artifacts
+      run: |
+        mkdir -p 3D_files
+        find ./mech -type f \( -name "*.step" -o -name "*.stp" -o -name "*.stl" -o -name "*.dxf" -o -name "*.pdf" \) -exec mv {} 3D_files/ \;
+
+    - name: Zip 3D files
+      run: |
+        mkdir -p artifacts
+        zip -r artifacts/3D_files.zip 3D_files
+
+    - name: Upload Combined Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: 3D_files
+        path: artifacts/3D_files.zip
+        if-no-files-found: warn
+
+    - name: Configure AWS Credentials
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Sync artifacts to S3
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        aws s3 sync artifacts s3://atopile/spin/mechanics --delete --cache-control max-age=0,no-cache

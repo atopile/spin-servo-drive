@@ -25,7 +25,7 @@
 	(fp_circle (center -2.67 3.53) (end -2.52 3.53) (layer F.SilkS) (width 0.30))
 	(fp_circle (center -1.91 4.35) (end -1.76 4.35) (layer Cmts.User) (width 0.30))
 	(fp_circle (center -2.59 3.92) (end -2.56 3.92) (layer F.Fab) (width 0.06))
-	(model "elec/lib/lib.3dshapes/SOIC-8_L5.3-W5.3-H1.9-LS7.9-P1.27.wrl"
+	(model "elec/lib/lib.3dshapes/SOIC-8_L5.3-W5.3-H1.9-LS7.9-P1.27.step"
 		(offset (xyz 1.650 -2.840 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

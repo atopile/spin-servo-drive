@@ -1,0 +1,356 @@
+from "generics/interfaces.ato" import Power, Pair, SWD, SPI, I2C, USB_PD, USB2, CAN_TTL, JTAG
+from "generics/resistors.ato" import Resistor
+from "generics/capacitors.ato" import Capacitor
+from "elec/src/STM32G431CBU6.ato" import _STM32G431CBU6
+from "elec/src/TAXM8M4RDBCCT2T.ato" import TAXM8M4RDBCCT2T
+
+module STM32G431CBU6_USBPD from STM32G431CBU6_BASE:
+    usb_pd = new USB_PD
+    usb_pd.gnd ~ power.gnd
+    usb_pd.dp ~ ic.PA12
+    usb_pd.dm ~ ic.PA11
+    # USB-PD stuff
+    usb.cc1 ~ ic.PB6 #CC1 needed for PD comms
+    usb.cc1 ~ ic.PA9 #DBCC1 only needed to power up with no other voltage source
+    usb.cc2 ~ ic.PB4 #CC2 needed for PD comms
+    usb.cc2 ~ ic.PA10 #DBCC2 only needed to power up with no other voltage source
+
+module STM32G431CBU6_USB2 from STM32G431CBU6_BASE:
+    usb2 = new USB2
+    usb2.dp ~ ic.PA12
+    usb2.dm ~ ic.PA11
+
+module STM32G431CBU6_BASE:
+    # Power
+    power = new Power
+
+    # Interfaces
+    can_ttl = new CAN_TTL
+    swd = new SWD
+    jtag = new JTAG
+    spi1 = new SPI
+    spi2 = new SPI
+    spi3 = new SPI
+    i2c1 = new I2C
+    i2c2 = new I2C
+    i2c3 = new I2C
+
+    # Components
+    ic = new _STM32G431CBU6
+
+    # Connect interfaces
+
+    # Power
+    power ~ ic.power_vdd
+    power ~ ic.power_vdda
+    power ~ ic.power_vref
+    power ~ ic.power_adc_ref
+    # power ~ ic.power_vbat # TODO: Check this
+
+    ###### SPI 1 #####
+    spi1.mosi ~ ic.PA7
+    spi1.miso ~ ic.PA6
+    spi1.sck ~ ic.PA5
+    spi1.cs ~ ic.PA4
+    spi1.gnd ~ power.gnd
+
+    # alternate pins #
+    # spi1.cs ~ ic.PA15
+    # spi1.sck ~ ic.PB3
+    # spi1.miso ~ ic.PB4
+    # spi1.mosi ~ ic.PB5
+
+    ###### SPI 2 ######
+    spi2.mosi ~ ic.PB15
+    spi2.miso ~ ic.PB14
+    spi2.sck ~ ic.PB13
+    spi2.cs ~ ic.PB12
+    spi2.gnd ~ power.gnd
+
+    # alternate pins #
+    # spi2.mosi ~ ic.PA11
+    # spi2.miso ~ ic.PA10
+    # spi2.sck ~ ic.PF1
+    # spi2.cs ~ ic.PF0
+
+    ###### SPI 3 ######
+    spi3.mosi ~ ic.PB5
+    spi3.miso ~ ic.PB4
+    spi3.sck ~ ic.PB3
+    spi3.cs ~ ic.PA4
+    spi3.gnd ~ power.gnd
+
+    # alternative pins #
+    # spi3.miso ~ ic.PC11
+    # spi3.cs ~ ic.PA15
+    # spi3.sck ~ ic.PC10
+
+    ###### I2C1 ######
+    i2c1.sda ~ ic.PB7
+    i2c1.scl ~ ic.PA15
+    i2c1.gnd ~ power.gnd
+
+    # alternative pins
+    # i2c1.sda ~ ic.PB9
+    # i2c1.sda ~ ic.PA14
+    # i2c1.scl ~ ic.PB8
+    # i2c1.scl ~ ic.PA13
+
+    ###### I2C2 ######
+    # i2c2.sda ~ ic.PF0
+    # i2c2.scl ~ ic.PA9
+    i2c2.gnd ~ power.gnd
+
+    # alternative pins
+    i2c2.sda ~ ic.PA8
+    i2c2.scl ~ ic.PC4
+
+    ###### I2C3 ######
+    i2c3.sda ~ ic.PB5
+    i2c3.scl ~ ic.PB3
+    i2c3.gnd ~ power.gnd
+
+    # alternative pins
+    # i2c3.sda ~ ic.PC9
+    # i2c3.sda ~ ic.PC11
+    # i2c3.scl ~ ic.PA8
+
+
+    # CANBUS Comms
+    can_ttl.rx ~ ic.PB8_BOOT0
+    can_ttl.tx ~ ic.PB9
+
+    # JTAG
+    jtag.tdi ~ ic.PA15
+    jtag.tdo ~ ic.PB3
+    jtag.tms ~ ic.PA13
+    jtag.tck ~ ic.PA14
+    jtag.reset ~ ic.PG10_NRST # has 40k pullup
+    jtag.vcc ~ power.vcc
+    jtag.gnd ~ power.gnd
+
+
+    # SWD
+    swd.swdio ~ ic.PA13
+    swd.swclk ~ ic.PA14
+    swd.gnd ~ power.gnd
+
+
+    # Internal components
+    bypass_cap_1 = new Capacitor
+    bypass_cap_2 = new Capacitor
+    bypass_cap_3 = new Capacitor
+    bypass_cap_4 = new Capacitor
+    bypass_cap_5 = new Capacitor
+    boot0_pulldown = new Resistor
+    osc = new TAXM8M4RDBCCT2T
+    c_osc_1 = new Capacitor
+    c_osc_2 = new Capacitor
+    r_osc = new Resistor
+
+    c_osc_1.package = "0402"
+    c_osc_2.package = "0402"
+    r_osc.package = "0402"
+
+
+    # Configure bypass caps
+    bypass_cap_1.value = 100nF +/- 25%
+    bypass_cap_2.value = 100nF +/- 25%
+    bypass_cap_3.value = 100nF +/- 25%
+    bypass_cap_4.value = 100nF +/- 25%
+    bypass_cap_5.value = 1uF +/- 25%
+    bypass_cap_1.package = "0402"
+    bypass_cap_2.package = "0402"
+    bypass_cap_3.package = "0402"
+    bypass_cap_4.package = "0402"
+    bypass_cap_5.package = "0402"
+
+    boot0_pulldown.value = 1kohm +/- 10%
+    boot0_pulldown.package = "0402"
+
+    # Connect caps
+    power ~ bypass_cap_1.power
+    power ~ bypass_cap_2.power
+    power ~ bypass_cap_3.power
+    power ~ bypass_cap_4.power
+    power ~ bypass_cap_5.power
+
+    # Configure internal components
+    boot0_pulldown.p1 ~ ic.PB8_BOOT0
+    boot0_pulldown.p2 ~ power.gnd
+
+    # c_bp_3v_1uf.value = 1uF +/- 25%
+
+    # Oscillator
+    c_osc_1.value = 20pF +/- 10%
+    c_osc_2.value = 20pF +/- 10%
+    r_osc.value = 220ohm +/- 10%
+
+    ic.PF0_OSC_IN ~ osc.xin
+    ic.PF1_OSC_OUT ~ r_osc.p1
+    r_osc.p2 ~ osc.xout
+    osc.gnd ~ power.gnd
+
+    osc.xin ~ c_osc_1.p1
+    osc.xout ~ c_osc_2.p1
+
+    c_osc_1.p2 ~ power.gnd
+    c_osc_2.p2 ~ power.gnd
+
+    ###### Make some GPIO pairs #######
+    # Hopefully we depricate this...
+
+    # Port A
+    PA0 = new Pair
+    PA1 = new Pair
+    PA2 = new Pair
+    PA3 = new Pair
+    PA4 = new Pair
+    PA5 = new Pair
+    PA6 = new Pair
+    PA7 = new Pair
+    PA8 = new Pair
+    PA9 = new Pair
+    PA10 = new Pair
+    PA11 = new Pair
+    PA12 = new Pair
+    PA13 = new Pair
+    PA14 = new Pair
+    PA15 = new Pair
+
+    PA0.io ~ ic.PA0
+    PA1.io ~ ic.PA1
+    PA2.io ~ ic.PA2
+    PA3.io ~ ic.PA3
+    PA4.io ~ ic.PA4
+    PA5.io ~ ic.PA5
+    PA6.io ~ ic.PA6
+    PA7.io ~ ic.PA7
+    PA8.io ~ ic.PA8
+    PA9.io ~ ic.PA9
+    PA10.io ~ ic.PA10
+    PA11.io ~ ic.PA11
+    PA12.io ~ ic.PA12
+    PA13.io ~ ic.PA13
+    PA14.io ~ ic.PA14
+    PA15.io ~ ic.PA15
+
+    power.gnd ~ PA0.gnd
+    power.gnd ~ PA1.gnd
+    power.gnd ~ PA2.gnd
+    power.gnd ~ PA3.gnd
+    power.gnd ~ PA4.gnd
+    power.gnd ~ PA5.gnd
+    power.gnd ~ PA6.gnd
+    power.gnd ~ PA7.gnd
+    power.gnd ~ PA8.gnd
+    power.gnd ~ PA9.gnd
+    power.gnd ~ PA10.gnd
+    power.gnd ~ PA11.gnd
+    power.gnd ~ PA12.gnd
+    power.gnd ~ PA13.gnd
+    power.gnd ~ PA14.gnd
+    power.gnd ~ PA15.gnd
+
+    # GPIO - Port B
+    PB0 = new Pair
+    PB1 = new Pair
+    PB2 = new Pair
+    PB3 = new Pair
+    PB4 = new Pair
+    PB5 = new Pair
+    PB6 = new Pair
+    PB7 = new Pair
+    PB8_BOOT0 = new Pair
+    PB9 = new Pair
+    PB10 = new Pair
+    PB11 = new Pair
+    PB12 = new Pair
+    PB13 = new Pair
+    PB14 = new Pair
+    PB15 = new Pair
+
+    PB0.io ~ ic.PB0
+    PB1.io ~ ic.PB1
+    PB2.io ~ ic.PB2
+    PB3.io ~ ic.PB3
+    PB4.io ~ ic.PB4
+    PB5.io ~ ic.PB5
+    PB6.io ~ ic.PB6
+    PB7.io ~ ic.PB7
+    PB8_BOOT0.io ~ ic.PB8_BOOT0
+    PB9.io ~ ic.PB9
+    PB10.io ~ ic.PB10
+    PB11.io ~ ic.PB11
+    PB12.io ~ ic.PB12
+    PB13.io ~ ic.PB13
+    PB14.io ~ ic.PB14
+    PB15.io ~ ic.PB15
+
+    power.gnd ~ PB0.gnd
+    power.gnd ~ PB1.gnd
+    power.gnd ~ PB2.gnd
+    power.gnd ~ PB3.gnd
+    power.gnd ~ PB4.gnd
+    power.gnd ~ PB5.gnd
+    power.gnd ~ PB6.gnd
+    power.gnd ~ PB7.gnd
+    power.gnd ~ PB8_BOOT0.gnd
+    power.gnd ~ PB9.gnd
+    power.gnd ~ PB10.gnd
+    power.gnd ~ PB11.gnd
+    power.gnd ~ PB12.gnd
+    power.gnd ~ PB13.gnd
+    power.gnd ~ PB14.gnd
+    power.gnd ~ PB15.gnd
+
+    # GPIO - Port C
+    PC4 = new Pair
+    PC6 = new Pair
+    PC10 = new Pair
+    PC11 = new Pair
+    PC13 = new Pair
+    PC14_OSC32_IN = new Pair
+    PC15_OSC32_OUT = new Pair
+
+    PC4.io ~ ic.PC4
+    PC6.io ~ ic.PC6
+    PC10.io ~ ic.PC10
+    PC11.io ~ ic.PC11
+    PC13.io ~ ic.PC13
+    PC14_OSC32_IN.io ~ ic.PC14_OSC32_IN
+    PC15_OSC32_OUT.io ~ ic.PC15_OSC32_OUT
+
+    power.gnd ~ PC4.gnd
+    power.gnd ~ PC6.gnd
+    power.gnd ~ PC10.gnd
+    power.gnd ~ PC11.gnd
+    power.gnd ~ PC13.gnd
+    power.gnd ~ PC14_OSC32_IN.gnd
+    power.gnd ~ PC15_OSC32_OUT.gnd
+
+    # GPIO - Port F
+    PF0_OSC_IN = new Pair
+    PF1_OSC_OUT = new Pair
+
+    PF0_OSC_IN.io ~ ic.PF0_OSC_IN
+    PF1_OSC_OUT.io ~ ic.PF1_OSC_OUT
+
+    power.gnd ~ PF0_OSC_IN.gnd
+    power.gnd ~ PF1_OSC_OUT.gnd
+
+    # GPIO - Port G
+    PG10_NRST = new Pair
+
+    PG10_NRST.io ~ ic.PG10_NRST
+
+    power.gnd ~ PG10_NRST.gnd
+
+
+component R0402 from Resistor:
+    footprint = "R0402"
+    value = 1kohm +/- 10%
+
+component C0402 from Capacitor:
+    footprint = "C0402"
+    value = 100nF +/- 25%

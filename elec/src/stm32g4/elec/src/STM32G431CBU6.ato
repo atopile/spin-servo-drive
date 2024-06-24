@@ -1,0 +1,86 @@
+from "generics/interfaces.ato" import Power
+
+component _STM32G431CBU6:
+    # component STM32G431CBU6
+    footprint = "UFQFPN-48_L7.0-W7.0-P0.50-BL-EP"
+    lcsc_id = "C529356"
+    mpn = "C529356"
+
+    # Power interfaces
+    power_vbat = new Power
+    power_vdda = new Power
+    power_vdd = new Power
+    power_vref = new Power
+    power_adc_ref = new Power
+
+    # signal VREF_ ~ pin 20 # what dis?
+    signal gnd
+
+    # Power connections
+    power_vdda.vcc ~ pin 21
+    power_vdd.vcc ~ pin 48
+    power_vdd.vcc ~ pin 35
+    power_vref.vcc ~ pin 23
+    power_vbat.vcc ~ pin 1
+    power_adc_ref.vcc ~ pin 20
+
+    # Grounds together
+    gnd ~ power_vdd.gnd
+    gnd ~ power_vdda.gnd
+    gnd ~ power_vref.gnd
+    gnd ~ power_vbat.gnd
+    gnd ~ power_adc_ref.gnd
+    gnd ~ pin 49 # EP
+
+    # GPIO - Port A
+    signal PA0 ~ pin 8
+    signal PA1 ~ pin 9
+    signal PA2 ~ pin 10
+    signal PA3 ~ pin 11
+    signal PA4 ~ pin 12
+    signal PA5 ~ pin 13
+    signal PA6 ~ pin 14
+    signal PA7 ~ pin 15
+    signal PA8 ~ pin 30
+    signal PA9 ~ pin 31
+    signal PA10 ~ pin 32
+    signal PA11 ~ pin 33
+    signal PA12 ~ pin 34
+    signal PA13 ~ pin 36
+    signal PA14 ~ pin 37
+    signal PA15 ~ pin 38
+
+    # GPIO - Port B
+    signal PB0 ~ pin 17
+    signal PB1 ~ pin 18
+    signal PB2 ~ pin 19
+    signal PB3 ~ pin 41
+    signal PB4 ~ pin 42
+    signal PB5 ~ pin 43
+    signal PB6 ~ pin 44
+    signal PB7 ~ pin 45
+    signal PB8_BOOT0 ~ pin 46
+    signal PB9 ~ pin 47
+    signal PB10 ~ pin 22
+    signal PB11 ~ pin 24
+    signal PB12 ~ pin 25
+    signal PB13 ~ pin 26
+    signal PB14 ~ pin 27
+    signal PB15 ~ pin 28
+
+    # GPIO - Port C
+    signal PC4 ~ pin 16
+    signal PC6 ~ pin 29
+    signal PC10 ~ pin 39
+    signal PC11 ~ pin 40
+    signal PC13 ~ pin 2
+    signal PC14_OSC32_IN ~ pin 3
+    signal PC15_OSC32_OUT ~ pin 4
+
+    # GPIO - Port F
+    signal PF0_OSC_IN ~ pin 5
+    signal PF1_OSC_OUT ~ pin 6
+
+    # GPIO - Port G
+    signal PG10_NRST ~ pin 7
+

@@ -1,0 +1,31 @@
+import Capacitor from "capacitors.ato"
+import Pair from "interfaces.ato"
+
+component Crystal:
+    signal xin
+    signal xout
+    signal gnd
+
+module Oscillator:
+    xin = new Pair
+    xout = new Pair
+
+    signal gnd ~ xin.gnd
+    gnd ~ xout.gnd
+
+    crystal = new Crystal
+    load_cap_1 = new Capacitor
+    load_cap_2 = new Capacitor
+
+    load_cap_1.package = "0402"
+    load_cap_2.package = "0402"
+
+    xin.io ~ crystal.xin
+    xout.io ~ crystal.xout
+
+    xin.gnd ~ gnd
+    xout.gnd ~ gnd
+    crystal.gnd ~ gnd
+
+    crystal.xin ~ load_cap_1.1; load_cap_1.2 ~ gnd
+    crystal.xout ~ load_cap_2.1; load_cap_2.2 ~ gnd

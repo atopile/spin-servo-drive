@@ -1,0 +1,53 @@
+import CAN_TTL from "generics/interfaces.ato"
+import CAN from "generics/interfaces.ato"
+import Power from "generics/interfaces.ato"
+import Resistor from "generics/resistors.ato"
+import Capacitor from "generics/capacitors.ato"
+
+module SN65HVD230DR:
+    # External connections
+    power = new Power
+    can_ttl = new CAN_TTL
+    can = new CAN
+
+    # Components
+    ic = new _SN65HVD230DR
+    bypass_cap = new Capacitor
+
+    # Internal connections
+    power ~ ic.power
+    power ~ bypass_cap.power
+    can_ttl ~ ic.can_ttl
+    can ~ ic.can
+
+    # Bypass capacitors
+    bypass_cap.footprint = "C0402"
+    bypass_cap.value = 100nF +/- 25%
+
+
+component _SN65HVD230DR:
+    footprint = "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL"
+    mpn = "C12084"
+    # pins
+    signal D ~ pin 1
+    signal GND ~ pin 2
+    signal VCC ~ pin 3
+    signal R ~ pin 4
+    signal VREF ~ pin 5
+    signal CANL ~ pin 6
+    signal CANH ~ pin 7
+    signal RS ~ pin 8
+
+    power = new Power
+    can_ttl = new CAN_TTL
+    can = new CAN
+
+    power.vcc ~ VCC
+    power.gnd ~ GND
+    power.gnd ~ RS
+
+    can_ttl.rx ~ R
+    can_ttl.tx ~ D
+
+    can.CANH ~ CANH
+    can.CANL ~ CANL
