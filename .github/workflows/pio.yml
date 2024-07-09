@@ -33,7 +33,7 @@ jobs:
       - name: Zip 3D files and CSVs
         run: |
           mkdir -p artifacts
-          zip -r artifacts/firmware_build_artifacts.zip .pio/build/debug/firmware.*
+          zip -r artifacts/firmware_build_artifacts.zip .pio/build/servo-*
 
       - name: Configure AWS Credentials
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
