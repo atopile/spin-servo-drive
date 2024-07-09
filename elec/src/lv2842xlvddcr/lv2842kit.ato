@@ -51,6 +51,7 @@ module LV2842Kit from Buck:
     power_in ~ input_cap.power
     input_cap.value = 1uF to 10uF
     input_cap.voltage = 30V to 69V
+    input_cap.package = "0603"
 
     # Output Capacitors
     power_out ~ output_cap.power

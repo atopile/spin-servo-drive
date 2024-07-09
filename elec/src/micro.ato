@@ -38,14 +38,14 @@ module Micro:
     can ~ can_tranciever.can
 
     # CAN RX and Bootpin are shared, need to be multiplexed externally (backup for SW boot option)
-    button ~ mux.input_b1
-    can_tranciever.can_ttl.rx ~ mux.input_b2.io
+    button ~ mux.input_select_high
+    can_tranciever.can_ttl.rx ~ mux.input_select_low.io
     button ~ micro.PB5 # for enumeration or something while micro is running
     mux.output ~ micro.PB8_BOOT0
     mux.select ~ micro.PA6
     can_tranciever.can_ttl.tx ~ micro.PB9.io
 
-    # Pullup reistor to default to boot selction - assert low with PA6 to enable CAN
+    # Pullup reistor to default to boot selction - drive low with PA6 to enable CAN
     select_resistor.1 ~ mux.select.io
     select_resistor.2 ~ power.vcc
 
@@ -90,8 +90,8 @@ module Micro:
 component SN74LVC1G3157DBVR:
     """
     Analog multiplexer with two inputs and one output.
-    control L = input_b1 enabled
-    control H = input_b2 enabled
+    select L = input_select_low enabled
+    select H = input_select_high enabled
     """
     footprint = "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR"
     lcsc_id = "C10426"
@@ -102,13 +102,13 @@ component SN74LVC1G3157DBVR:
     power.vcc ~ pin 5
     power.gnd ~ pin 2
 
-    input_b1 = new Pair
-    input_b1.io ~ pin 1
-    input_b1.gnd ~ power.gnd
+    input_select_low = new Pair
+    input_select_low.io ~ pin 3
+    input_select_low.gnd ~ power.gnd
 
-    input_b2 = new Pair
-    input_b2.io ~ pin 3
-    input_b2.gnd ~ power.gnd
+    input_select_high = new Pair
+    input_select_high.io ~ pin 1
+    input_select_high.gnd ~ power.gnd
 
     output = new Pair
     output.io ~ pin 4
