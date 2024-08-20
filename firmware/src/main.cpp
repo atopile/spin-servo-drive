@@ -9,9 +9,11 @@
 #include <comms/telemetry/SimpleTelemetry.h>
 #include <comms/telemetry/TeleplotTelemetry.h>
 #include <utilities/stm32math/STM32G4CORDICTrigFunctions.h>
+#include <math.h>
 
 
 #define SERIAL_SPEED 115200
+#define DEFAULT_CURRENT_LIMIT 2.0f
 
 #define MUX_SELECT PA6
 #define BUTTON PB5
@@ -22,6 +24,70 @@
 // Define CAN bus pins
 #define CAN_TX_PIN PB9
 #define CAN_RX_PIN PB8
+
+
+// Function to read temperature from the temperature sensor
+float readTemperature() {
+    // Read the analog value from the temperature sensor
+    int rawValue = analogRead(TEMP_SENSE);
+
+    // Convert the analog value to voltage
+    float voltage = (rawValue * 3.3f) / 4095.0f; // Assuming 12-bit ADC resolution
+
+    // Constants for temperature calculation
+    const float R0 = 10000.0f;  // Resistance at 25°C (10k ohm)
+    const float T0 = 25.0f + 273.15f;  // 25°C in Kelvin
+    const float BETA = 3380.0f;  // Beta value of the thermistor
+    const float R_TOP = 10000.0f;  // Top resistor value (10k ohm)
+    const float V_IN = 3.3f;  // Input voltage
+
+    // Calculate NTC resistance
+    float r_ntc = R_TOP * (V_IN / voltage - 1.0f);
+
+    // Calculate temperature using the Beta equation
+    float inv_t = 1.0f / T0 + (1.0f / BETA) * log(r_ntc / R0);
+    float temp_k = 1.0f / inv_t;
+    float temp_c = temp_k - 273.15f;
+
+    return rawValue;
+}
+
+// Function to limit output current based on temperature
+void limitCurrentByTemp(BLDCMotor& motor) {
+    float temperature = readTemperature();
+    const float TEMP_THRESHOLD = 80.0f; // Temperature threshold in Celsius
+    const float CURRENT_REDUCTION_FACTOR = 0.5f; // Reduce current by 50% when over temperature
+    const float SHUTDOWN_THRESHOLD = 100.0f; // Temperature threshold for complete shutdown
+
+    if (temperature > SHUTDOWN_THRESHOLD) {
+        // Shut down the motor entirely
+        motor.disable();
+        Serial.print("CRITICAL: Temperature exceeds ");
+        Serial.print(SHUTDOWN_THRESHOLD);
+        Serial.println("°C. Motor shut down for safety.");
+    } else if (temperature > TEMP_THRESHOLD) {
+        // Calculate the new current limit
+        float newCurrentLimit = motor.current_limit * CURRENT_REDUCTION_FACTOR;
+
+        // Set the new current limit
+        motor.current_limit = newCurrentLimit;
+
+        // Print a warning message
+        Serial.print("Warning: High temp (");
+        Serial.print(temperature);
+        Serial.print("°C). Current limit: ");
+        Serial.print(newCurrentLimit);
+        Serial.println(" A");
+    } else {
+        // If temperature is below threshold, reset to default current limit
+        // Note: Ensure motor.current_limit is properly initialized elsewhere
+        // as BLDCMotor class doesn't have a default_current_limit member
+        motor.current_limit = DEFAULT_CURRENT_LIMIT; // default current limit
+    }
+}
+
+
+
 
 
 // BLDC motor & driver instance
@@ -63,7 +129,7 @@ void doDownsample(char* cmd) { telemetry.downsample = atoi(cmd); };
 
 void setup() {
   Serial.begin(SERIAL_SPEED);
-  while (!Serial);
+  // while (!Serial);
   SimpleFOCDebug::enable(&Serial);
 
   Serial.print("spin servo - firmware version ");
@@ -107,7 +173,7 @@ void setup() {
 
   // aligning voltage
   motor.voltage_sensor_align = 2;
-  motor.current_limit = 3;
+  motor.current_limit = DEFAULT_CURRENT_LIMIT;
   motor.voltage_limit = driver.voltage_limit / 2.0f;
   motor.velocity_limit = 1000.0f; // 1000rad/s = aprox 9550rpm
 
@@ -124,7 +190,7 @@ void setup() {
   motor.LPF_angle.Tf = 0.005f;
 
   motor.torque_controller = TorqueControlType::foc_current;
-  motor.controller = MotionControlType::angle;
+  motor.controller = MotionControlType::velocity;
   motor.motion_downsample = 10;
 
   // load settings
@@ -160,9 +226,10 @@ void setup() {
 
   Serial.println(F("Motor ready."));
   Serial.println(F("Set the target using serial terminal:"));
+  motor.target = 30;
 }
 
-
+static unsigned long lastTempCheckTime = 0;
 void loop() {
   // Motion control function
   motor.move();
@@ -172,4 +239,19 @@ void loop() {
   command.run();
   // telemetry
   telemetry.run();
+
+  // // Timer for temperature check and current limiting
+  // unsigned long currentTime = millis();
+
+  // // Check temperature and limit current every second
+  // if (currentTime - lastTempCheckTime >= 1000) {
+  //   lastTempCheckTime = currentTime;
+
+  //   // Read temperature and limit current
+  //   limitCurrentByTemp(motor);
+
+  //   // Print temperature (moved inside the if statement)
+  //   Serial.print("Temperature: ");
+  //   Serial.println(readTemperature());
+  // }
 }
