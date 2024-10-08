@@ -66,15 +66,16 @@ module SPIN:
     power_supply.power3v3.vcc.override_net_name = "VCC_3V3"
     power_supply.power5v.vcc.override_net_name = "VCC_5V"
     power_supply.power_gate.vcc.override_net_name = "VCC_GATE"
-    power_stage.power_vref.vcc.override_net_name = "VCC_VREF"
+    power_stage.voltage_reference.output.vcc.override_net_name = "VCC_VREF"
     ios.power_batt.vcc.override_net_name = "VCC_BATT"
+    ios.power_usb.vcc.override_net_name = "VCC_USB"
     ios.power_batt.gnd.override_net_name = "GND"
 
 
     power_stage.phase_a.half_bridge.output.io.override_net_name = "OUT_A"
     power_stage.phase_b.half_bridge.output.io.override_net_name = "OUT_B"
     power_stage.phase_c.half_bridge.output.io.override_net_name = "OUT_C"
-    
+
     micro.i2c.scl.override_net_name = "SCL_I2C"
     micro.i2c.sda.override_net_name = "SDA_I2C"
     micro.spi.sck.override_net_name = "SCK_SPI"
@@ -86,6 +87,10 @@ module SPIN:
     micro.usb2.dm.override_net_name = "DM_USB"
     micro.can_tranciever.can_ttl.tx.override_net_name = "CAN_TX"
     micro.can_tranciever.can_ttl.rx.override_net_name = "CAN_RX"
+
+    ios.led.io.override_net_name = "LED_DATA"
+    micro.temp_sense.io.override_net_name = "TEMP_SENSE"
+    micro.batt_sense.io.override_net_name = "BATT_SENSE"
 
     # Designator relinking
 

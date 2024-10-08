@@ -74,7 +74,7 @@ module Micro:
     # temp_sense and batt_sense
     temp_sense ~ micro.PA4
     batt_sense ~ micro.PA5
-
+    
     # Peripherals
     led ~ micro.PC6
 
