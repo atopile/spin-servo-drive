@@ -4,6 +4,7 @@ from "lv2842xlvddcr/lv2842kit.ato" import LV2842Kit
 from "generics/diodes.ato" import Diode
 from "ldk220m-r/elec/src/ldk220m-r.ato" import LDK220M_R
 from "generics/diodes.ato" import SchottkyDiode
+from "generics/regulators.ato" import AdjustableLDO
 
 module PowerSupply:
     power_batt = new Power
