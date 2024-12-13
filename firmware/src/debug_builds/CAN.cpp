@@ -3,11 +3,9 @@
 
 #define CAN_MUX PA6
 
-
 static void handleCanMessage(FDCAN_RxHeaderTypeDef rxHeader, uint8_t *rxData);
 static void init_CAN(void);
 static void Button_Down(void);
-
 
 // pass in optional shutdown and terminator pins that disable transceiver and add 120ohm resistor respectively
 SimpleCan can1;
@@ -17,6 +15,10 @@ FDCAN_TxHeaderTypeDef TxHeader;
 uint8_t TxData[8];
 
 u_int32_t last_send = 0;
+
+// (PA8 SDA, PC4 SCL)
+#define QUIIK_SDA PA8
+#define QUIIK_SCL PC4
 
 void setup()
 {
@@ -30,6 +32,11 @@ void setup()
 	pinMode(LED_BUILTIN, OUTPUT);
 	// attachInterrupt(digitalPinToInterrupt(BUTTON), Button_Down, LOW);
 
+	pinMode(QUIIK_SDA, OUTPUT);
+	pinMode(QUIIK_SCL, OUTPUT);
+	digitalWrite(QUIIK_SDA, LOW);
+	digitalWrite(QUIIK_SCL, LOW);
+
 	delay(100);
 	init_CAN();
 }
@@ -41,15 +48,17 @@ void loop()
 		last_send = millis();
 		Button_Down();
 	}
+	digitalWrite(QUIIK_SDA, LOW);
+	digitalWrite(QUIIK_SCL, LOW);
 }
 
 static void init_CAN()
 {
 	Serial.println(can1.init(CanSpeed::Mbit1) == HAL_OK
-					   ? "CAN: initialized."
-					   : "CAN: error when initializing.");
+		? "CAN: initialized."
+		: "CAN: error when initializing.");
 
-	// FDCAN_FilterTypeDef sFilterConfig;
+	FDCAN_FilterTypeDef sFilterConfig;
 
 	// // Configure Rx filter
 	// sFilterConfig.IdType = FDCAN_STANDARD_ID;
@@ -61,11 +70,11 @@ static void init_CAN()
 
 	// can1.configFilter(&sFilterConfig);
 	// can1.configGlobalFilter(FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FILTER_REMOTE);
-	can1.activateNotification(&can1RxHandler);
+	// can1.activateNotification(&can1RxHandler);
 
 	Serial.println(can1.start() == HAL_OK
-					   ? "CAN: started."
-					   : "CAN: error when starting.");
+		? "CAN: started."
+		: "CAN: error when starting.");
 }
 
 int dlcToLength(uint32_t dlc)
@@ -88,6 +97,7 @@ int dlcToLength(uint32_t dlc)
 
 static void handleCanMessage(FDCAN_RxHeaderTypeDef rxHeader, uint8_t *rxData)
 {
+	digitalWrite(QUIIK_SDA, HIGH);
 	int byte_length = dlcToLength(rxHeader.DataLength);
 
 	Serial.print("Received packet, id=0x");
@@ -111,6 +121,7 @@ static void Button_Down()
 {
 
 	static uint8_t press_count = 0;
+	digitalWrite(QUIIK_SCL, HIGH);
 
 	press_count++;
 
@@ -129,6 +140,6 @@ static void Button_Down()
 
 	Serial.print("CAN: sending message ");
 	Serial.println(can1.addMessageToTxFifoQ(&TxHeader, TxData) == HAL_OK
-					   ? "was ok."
-					   : "failed.");
+		? "was ok."
+		: "failed.");
 }
