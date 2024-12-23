@@ -44,7 +44,7 @@ This project is fully open source and designed with [atopile](https://github.com
 
 ## Getting started
 
-This project was written in `ato`, a new electronics description language we are developing to help create and share electronic designs. Get started here: https://atopile.io/getting-started
+This project was written in `ato`, a new electronics description language we are developing to help create and share electronic designs. Get started here: https://atopile.io/
 
 ### Electronics
 
