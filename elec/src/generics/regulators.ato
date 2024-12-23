@@ -42,10 +42,6 @@ module FixedLDO from Regulator:
     # regulator parameters
     type = "FixedLDO"
 
-module AdjustableLDO from AdjustableRegulator:
-    # regulator parameters
-    type = "AdjustableLDO"
-
 module Flyback from AdjustableRegulator:
     # regulator parameters
     type = "Flyback"

@@ -122,7 +122,3 @@ component NCP15XH103F03RC from Resistor:
     lcsc = "C77131"
     beta = 3380K
     value = 10kohm +/- 1%
-
-
-
-
