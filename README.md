@@ -20,14 +20,6 @@ Introducing spin ✨ - the $30 servo for the masses (designed with atopile)
 
 This project is fully open source and designed with [atopile](https://github.com/atopile/atopile), a new language and compiler to design electronics with code.
 
-**Latest auto-generated artifacts**
-
-[Electronics: Gerbers, Bill of material, position files](https://atopile.s3.amazonaws.com/spin/electronics/electronics_build_artifacts.zip)
-
-[Firmware](https://atopile.s3.amazonaws.com/spin/firmware/firmware_build_artifacts.zip)
-
-[3D Files (PDFs, STEP files in the future)](https://atopile.s3.amazonaws.com/spin/mechanics/3D_files.zip)
-
 ## Goals + (default) Specs
 
 - Obviously better option than stepper motors for 3D printers, CNC machines and robotics
