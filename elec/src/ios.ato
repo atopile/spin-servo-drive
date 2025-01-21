@@ -73,7 +73,8 @@ module IOs:
     temperature_sense.v_in = 3.3V
     temperature_sense.v_out = 1.65V +/- 5%
     temperature_sense.r_top.value = 10kohm +/- 1%
-    temperature_sense.r_bottom -> NCP15XH103F03RC # NTC Thermistor
+    temperature_sense.r_bottom.value = 10kohm +/- 1%
+    # temperature_sense.r_bottom -> NCP15XH103F03RC # NTC Thermistor
 
     voltage_sense.i_q = 10uA to 1mA
     temperature_sense.i_q = 10uA to 1mA
@@ -117,8 +118,8 @@ component NCP15XH103F03RC from Resistor:
     Thermistor NTC
     """
     footprint = "R0402"
-    # mpn = "NCP15XH103F03RC"
-    mpn = "C77131"
+    mpn = "NCP15XH103F03RC"
+    # mpn = "C77131"
     lcsc = "C77131"
     beta = 3380K
     value = 10kohm +/- 1%

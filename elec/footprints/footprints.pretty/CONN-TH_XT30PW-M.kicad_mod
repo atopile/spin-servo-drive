@@ -48,7 +48,7 @@
 	(fp_circle (center -5.50 5.00) (end -5.31 5.00) (layer F.Fab) (width 0.38))
 	(fp_circle (center 5.50 5.00) (end 5.69 5.00) (layer F.Fab) (width 0.38))
 	(model "{build_dir}/CONN-TH_XT30PW-M.step"
-		(offset (xyz -0.000 -3.510000 mm 0.000))
+		(offset (xyz -0.000 -3.510000 0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))
 	)

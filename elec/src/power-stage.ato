@@ -224,8 +224,8 @@ module VoltageReference:
 
     # Configure packages
     bypass_cap.package = "0402"
-    bias_div.r_top.package = "0402"
-    bias_div.r_bottom.package = "0402"
+    # bias_div.r_top.package = "0402"
+    # bias_div.r_bottom.package = "0402"
     bias_div.cap.package = "0402"
 
     # Connect components
