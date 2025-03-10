@@ -1,8 +1,8 @@
 from "generics/interfaces.ato" import Power
 from "generics/regulators.ato" import LDO, Buck
-from "lv2842xlvddcr/lv2842kit.ato" import LV2842Kit
+from "lv2842xlvddcr.git/elec/src/lv284xx.ato" import LV2842XReferenceDesign
 from "generics/diodes.ato" import Diode
-from "ldk220m-r/elec/src/ldk220m-r.ato" import LDK220M_R
+from "ldk220m-r.git/elec/src/ldk220m-r.ato" import LDK220M_R
 from "generics/diodes.ato" import SchottkyDiode
 from "generics/regulators.ato" import AdjustableLDO
 
@@ -14,15 +14,12 @@ module PowerSupply:
     power3v3 = new Power
 
     # Components
-    buck = new Buck
-    ldo5V = new AdjustableLDO
-    ldo3V3 = new AdjustableLDO
+    buck = new LV2842XReferenceDesign
+    ldo5V = new LDK220M_R
+    ldo3V3 = new LDK220M_R
     diode = new PowerDiode
 
-    # Select componentsb
-    buck -> LV2842Kit
-    ldo5V -> LDK220M_R
-    ldo3V3 -> LDK220M_R
+    # Select components
     diode.diode -> Diode_1N5819WS
 
     # Configure components

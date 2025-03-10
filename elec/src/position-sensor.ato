@@ -1,29 +1,29 @@
-from "generics/interfaces.ato" import SPI, Power
-from "ma732/elec/src/ma732.ato" import MA732
-from "generics/capacitors.ato" import Capacitor
+import ElectricPower, ElectricSignal, SPI, Capacitor, ElectricLogic
 
 module PositionSensor:
-    power = new Power
+    power = new ElectricPower
     spi = new SPI
-
+    spi_cs = new ElectricLogic
     # Components
     sensor = new MT6835GT
 
     # Internal Connections
     power ~ sensor.power
     spi ~ sensor.spi
+    spi_cs ~ sensor.spi_cs
 
 module MT6835GT:
     ic = new _MT6835GT
-    power = new Power
+    power = new ElectricPower
     spi = new SPI
+    spi_cs = new ElectricLogic
 
     power ~ ic.power
     spi ~ ic.spi
-
+    spi_cs ~ ic.spi_cs
     cap = new Capacitor
-    cap.value = 100nF +/- 20%
-    cap.package = "0402"
+    cap.capacitance = 100nF +/- 20%
+    cap.package = "C0402"
     cap.power ~ power
 
 component _MT6835GT:
@@ -33,15 +33,16 @@ component _MT6835GT:
     mpn = "C2932578"
     # pins
 
-    power = new Power
+    power = new ElectricPower
     power.vcc ~ pin 9
     power.gnd ~ pin 12
 
     spi = new SPI
+    spi_cs = new ElectricLogic
     spi.miso ~ pin 5
     spi.mosi ~ pin 6
-    spi.sck ~ pin 7
-    spi.cs ~ pin 8
+    spi.sclk ~ pin 7
+    spi_cs ~ pin 8
 
     signal CAL_EN ~ pin 4
     signal TEST ~ pin 11

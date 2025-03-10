@@ -5,25 +5,25 @@ from "qwiic-connectors/elec/src/qwiic-connectors.ato" import QwiicConnector
 from "jst-gh/elec/src/jst-gh.ato" import JSTGH4Pin
 from "sk6805side/elec/src/sk6805side.ato" import SK6805SIDE
 from "generics/buttons.ato" import ButtonPulldown, ButtonSKTDLDE010
-from "generics/vdivs.ato" import VDiv, VDivLowPassFilter
-from "generics/resistors.ato" import Resistor
+import ResistorVoltageDivider, Resistor
+import ElectricPower, ElectricSignal, I2C, USB2_0, ElectricLogic
 
 
 module IOs:
-    power_batt = new Power
-    power_usb = new Power
-    power5v = new Power
-    power3v3 = new Power
+    power_batt = new ElectricPower
+    power_usb = new ElectricPower
+    power5v = new ElectricPower
+    power3v3 = new ElectricPower
     i2c = new I2C
     can = new CAN
-    button = new Pair
-    led = new Pair
-    usb2 = new USB2
-    out_a = new Pair
-    out_b = new Pair
-    out_c = new Pair
-    batt_sense = new Pair
-    temp_sense = new Pair
+    button = new ElectricLogic
+    led = new ElectricLogic
+    usb2 = new USB2_0
+    out_a = new ElectricSignal
+    out_b = new ElectricSignal
+    out_c = new ElectricSignal
+    batt_sense = new ElectricSignal
+    temp_sense = new ElectricSignal
 
     # Connectors
     usbc_connector = new USBCConn
@@ -34,8 +34,8 @@ module IOs:
     can_connector_2 = new JSTGH4Pin
 
     #Sensors
-    voltage_sense = new VDivLowPassFilter
-    temperature_sense = new VDivLowPassFilter
+    voltage_sense = new ResistorVoltageDivider
+    temperature_sense = new ResistorVoltageDivider
 
     # Phase outputs
     pad_out_a = new PowerPad
@@ -72,17 +72,17 @@ module IOs:
     # Manually selecting parts, but providing values for checks
     temperature_sense.v_in = 3.3V
     temperature_sense.v_out = 1.65V +/- 5%
-    temperature_sense.r_top.value = 10kohm +/- 1%
-    temperature_sense.r_bottom -> NCP15XH103F03RC # NTC Thermistor
+    temperature_sense.r_top.resistance = 10kohm +/- 1%
+    temperature_sense.r_bottom.lcsc_id = "C77131" # NTC Thermistor
 
     voltage_sense.i_q = 10uA to 1mA
     temperature_sense.i_q = 10uA to 1mA
 
-    # Filter out switching noise from phases + buck converter (both 10kHz +)
-    voltage_sense.cutoff_frequency = 50Hz to 200Hz
-    temperature_sense.cutoff_frequency = 100Hz to 200Hz
+    # # Filter out switching noise from phases + buck converter (both 10kHz +)
+    # voltage_sense.cutoff_frequency = 50Hz to 200Hz
+    # temperature_sense.cutoff_frequency = 100Hz to 200Hz
 
-    voltage_sense.cap.voltage = 30V to 100V
+    # voltage_sense.cap.voltage = 30V to 100V
 
     temp_sense ~ temperature_sense.output
     batt_sense ~ voltage_sense.output
@@ -107,8 +107,8 @@ module IOs:
 
 
 component PowerPad:
-    output = new Pair
-    output.io ~ pin 1
+    output = new ElectricSignal
+    output.line ~ pin 1
     footprint = "lib:OutputPad"
     mpn = "OutputPad"
 

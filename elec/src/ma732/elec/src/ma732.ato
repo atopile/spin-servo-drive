@@ -1,33 +1,30 @@
-import Power from "generics/interfaces.ato"
-import SPI from "generics/interfaces.ato"
-import Pair from "generics/interfaces.ato"
-
-import Capacitor from "generics/capacitors.ato"
+import ElectricPower, ElectricLogic, SPI, Capacitor
 
 module MA732:
-    power = new Power
+    power = new ElectricPower
     spi = new SPI
-    encoder_a = new Pair
-    encoder_b = new Pair
-    encoder_z = new Pair
-    mag_high = new Pair
+    spi_cs = new ElectricLogic
+    encoder_a = new ElectricLogic
+    encoder_b = new ElectricLogic
+    encoder_z = new ElectricLogic
+    mag_high = new ElectricLogic
 
     # # Components
     ic = new _MA732
     cap = new Capacitor
 
     # Configure components
-    cap.value = 1uF +/- 10%
-    cap.package = "0402"
+    cap.capacitance = 1uF +/- 10%
+    cap.package = "C0402"
 
     # Internal connections
     power ~ ic.power
     power ~ cap.power
     spi ~ ic.spi
-    encoder_a.io ~ ic.A
-    encoder_b.io ~ ic.B
-    encoder_z.io ~ ic.Z
-    mag_high.io ~ ic.MGH
+    encoder_a.line ~ ic.A
+    encoder_b.line ~ ic.B
+    encoder_z.line ~ ic.Z
+    mag_high.line ~ ic.MGH
 
     # Connect pair grounds
     power.gnd ~ encoder_a.gnd
@@ -64,10 +61,10 @@ component _MA732:
     spi = new SPI
     spi.miso ~ MISO
     spi.mosi ~ MOSI
-    spi.sck ~ SCLK
-    spi.cs ~ CS
+    spi.sclk ~ SCLK
+    spi_cs ~ CS
 
-    power = new Power
+    power = new ElectricPower
     power.vcc ~ VDD
     power.gnd ~ GND
     power.gnd ~ EPAD

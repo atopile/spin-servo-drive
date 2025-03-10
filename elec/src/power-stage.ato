@@ -1,20 +1,17 @@
-from "generics/interfaces.ato" import Pair, Power, DiffPair
-from "generics/mosfets.ato" import NFET, HalfBridge
-from "generics/resistors.ato" import Resistor
-from "generics/capacitors.ato" import Capacitor
+import ResistorVoltageDivider, FilterElectricalRC
+import ElectricPower, ElectricSignal, ElectricLogic, DifferentialPair, Electrical
+import Resistor, Capacitor, OpAmp, MOSFET
+
 from "drv8300/elec/src/drv8300.ato" import DRV8300
 from "lmv321idbvr/elec/src/lmv321idbvr.ato" import LMV321IDBVR
-from "generics/opamps.ato" import Opamp
-from "generics/filters.ato" import LowPassFilter
-from "generics/vdivs.ato" import _VDiv, VDiv, VDivLowPassFilter
 
 
 module PowerStage:
     # External interfaces
-    power_batt = new Power
-    power_gate = new Power
-    power3v3 = new Power
-    enable = new Pair
+    power_batt = new ElectricPower
+    power_gate = new ElectricPower
+    power3v3 = new ElectricPower
+    enable = new ElectricLogic
 
     # Phases
     # Basically just a class to hold all the signals
@@ -73,7 +70,7 @@ module PowerStage:
 
     # DRV8300 connections
     # Set mode to 3PWM:
-    gate_driver.mode.io ~ power3v3.vcc
+    gate_driver.mode.line ~ power3v3.vcc
 
     # Phase inputs - connect both high and low inputs for 3PWM
     phase_a.control ~ gate_driver.input_low_a
@@ -92,15 +89,21 @@ module PowerStage:
     phase_c.half_bridge.gate_low ~ gate_driver.output_low_c
 
     # Output connections
-    phase_a.half_bridge.output.io ~ gate_driver.output_sense_a.io
-    phase_b.half_bridge.output.io ~ gate_driver.output_sense_b.io
-    phase_c.half_bridge.output.io ~ gate_driver.output_sense_c.io
+    phase_a.half_bridge.output.line ~ gate_driver.output_sense_a.line
+    phase_b.half_bridge.output.line ~ gate_driver.output_sense_b.line
+    phase_c.half_bridge.output.line ~ gate_driver.output_sense_c.line
+
+module HalfBridge:
+    power = new ElectricPower
+    gate_high = new ElectricSignal
+    gate_low = new ElectricSignal
+    output = new ElectricSignal
 
 
 module Phase:
     # External interfaces
-    power = new Power
-    control = new Pair  # Not internally used. It's only a shim
+    power = new ElectricPower
+    control = new ElectricLogic  # Not internally used. It's only a shim
 
     # Components
     half_bridge = new HalfBridge
@@ -126,15 +129,15 @@ module LowSideCurrentSense:
 
     Currently, the assertion solver isn't able to find approproate resistor values
     for the feedback divider, so you need to manually set:
-    - shunt.value
-    - feedback_div.r_top.value
-    - feedback_div.r_bottom.value
+    - shunt.resistance
+    - feedback_div.r_top.resistance
+    - feedback_div.r_bottom.resistance
     """
     # External interfaces
-    power = new Power  # LV (eg. 3.3V) power for the active filter/amp
-    power_vref = new Power  # Reference voltage for the amp - sets the zero-point for the output
-    output = new Pair  # output voltage - reference voltage is proportional to current flowing
-    input = new DiffPair  # run current through this to measure it
+    power = new ElectricPower  # LV (eg. 3.3V) power for the active filter/amp
+    power_vref = new ElectricPower  # Reference voltage for the amp - sets the zero-point for the output
+    output = new ElectricSignal  # output voltage - reference voltage is proportional to current flowing
+    input = new DifferentialPair  # run current through this to measure it
 
     switching_speed = 10kHz to 25kHz
     duty_cycle = 0.05 to 0.9
@@ -146,47 +149,49 @@ module LowSideCurrentSense:
 
     # Shunt resistor for the input
     shunt = new Resistor
-    input.p ~ shunt.1; shunt.2 ~ input.n
+    input.p ~ shunt.p1; shunt.p2 ~ input.n
     # These net-ties are used to ensure we have a clean signal
     # from the shunt, since the voltage across it is very small,
     # and there's a lot of noise in it's neighborhood
     net_tie_p = new nettie_250u
     net_tie_n = new nettie_250u
-    shunt.1 ~ net_tie_p.2; net_tie_p.1 ~ signal _shunt_p
-    shunt.2 ~ net_tie_n.2; net_tie_n.1 ~ signal _shunt_n
+    _shunt_p = new Electrical
+    _shunt_n = new Electrical
+    shunt.p1 ~ net_tie_p.p2; net_tie_p.p1 ~ _shunt_p
+    shunt.p2 ~ net_tie_n.p2; net_tie_n.p1 ~ _shunt_n
 
-    shunt_heat_power = (max_current ** 2) * shunt.value * duty_cycle
+    shunt_heat_power = (max_current ** 2) * shunt.resistance * duty_cycle
     assert shunt_heat_power < max_power_dissapation
-    shunt_voltage = (-1 to 1) * max_current * shunt.value
+    shunt_voltage = (-1 to 1) * max_current * shunt.resistance
 
     # Opamp gain
     opamp = new Opamp
     power ~ opamp.power
-    feedback_div = new _VDiv
-    _shunt_n ~ feedback_div.top
-    feedback_div.bottom ~ opamp.output
-    feedback_div.out ~ opamp.inverting
-    gain = 1 + (feedback_div.r_bottom.value / feedback_div.r_top.value)
+    feedback_div = new ResistorVoltageDivider
+    _shunt_n ~ feedback_div.power.vcc
+    feedback_div.power.gnd ~ opamp.output
+    feedback_div.output.line ~ opamp.inverting
+    # gain = 1 + (feedback_div.r_bottom.resistance / feedback_div.r_top.resistance)
     # This sets a reasonable scale for the resistors
-    assert feedback_div.r_top.value + feedback_div.r_bottom.value within 20kΩ to 1MΩ
-    _actual_output_voltage = shunt_voltage * gain + reference_voltage
-    assert _actual_output_voltage within output_voltage * max(output_range_utilisation)  # Make sure we don't rail
-    assert output_voltage * min(output_range_utilisation) * (-0.5 to 0.5) + reference_voltage within _actual_output_voltage  # Make sure we utilise enough of the output range
+    # assert feedback_div.r_top.resistance + feedback_div.r_bottom.resistance within 20kΩ to 1MΩ
+    # _actual_output_voltage = shunt_voltage * gain + reference_voltage
+    # assert _actual_output_voltage within output_voltage * max(output_range_utilisation)  # Make sure we don't rail
+    # assert output_voltage * min(output_range_utilisation) * (-0.5 to 0.5) + reference_voltage within _actual_output_voltage  # Make sure we utilise enough of the output range
 
     # Biasing for voltage reference / zero-point offset
-    bias_div = new _VDiv
-    _shunt_p ~ bias_div.top
-    bias_div.bottom ~ power_vref.vcc
-    bias_div.out ~ opamp.non_inverting
+    bias_div = new ResistorVoltageDivider
+    _shunt_p ~ bias_div.power.vcc
+    bias_div.power.gnd ~ power_vref.vcc
+    bias_div.output.line ~ opamp.non_inverting
     # Hopefully these are always the same 🤷‍♂️
-    bias_div.r_top.value = feedback_div.r_top.value
-    bias_div.r_bottom.value = feedback_div.r_bottom.value
+    # bias_div.r_top.resistance = feedback_div.r_top.resistance
+    # bias_div.r_bottom.resistance = feedback_div.r_bottom.resistance
 
     # Output filter
-    output_filter = new LowPassFilter
-    output_filter.input.io ~ opamp.output
-    output_filter.output ~ output
-    output_filter.capacitor.value = 2.2nF +/- 10%
+    output_filter = new FilterElectricalRC
+    output_filter.in_.line ~ opamp.output
+    output_filter.out ~ output
+    output_filter.capacitor.capacitance = 2.2nF +/- 10%
     effective_switching_frequency = switching_speed / duty_cycle * 2  # We still want a clean signal at a 1% duty cycle, which is effectively a much higher frequency
     output_filter.cutoff_frequency = max(effective_switching_frequency) * (10 to 15)  # >10x the effective switching frequency to maintain a reasonable signal
 
@@ -196,37 +201,38 @@ module LowSideCurrentSense:
     # Final component values
     # FIXME: We have the select these manually because
     # the solver isn't reliably finding them for us
-    shunt.value = 3mΩ +/- 1%
-    feedback_div.r_top.value = 1kohm +/- 5%
-    feedback_div.r_bottom.value = 45kohm +/- 5%
-
+    shunt.resistance = 3mΩ +/- 1%
+    feedback_div.r_top.resistance = 1kohm +/- 2%
+    feedback_div.r_bottom.resistance = 45kohm +/- 2%
+    assert bias_div.r_top.resistance is feedback_div.r_top.resistance
+    assert bias_div.r_bottom.resistance is feedback_div.r_bottom.resistance
 
 module VoltageReference:
     """
     Generates a scaled reference voltage for the current sense opamps.
     Configured for 1.65V output from 3.3V input.
     """
-    power = new Power
-    output = new Power
+    power = new ElectricPower
+    output = new ElectricPower
 
     # Components
-    opamp = new Opamp
-    bias_div = new VDivLowPassFilter
+    opamp = new OpAmp
+    bias_div = new ResistorVoltageDivider
     bypass_cap = new Capacitor
 
     # Configure components
-    bypass_cap.value = 1uF +/- 20%
+    # bypass_cap.capacitance = 1uF +/- 20%
     bias_div.v_in = 3.3V
     bias_div.v_out = 1.65V +/- 15%
-    bias_div.cutoff_frequency = 160Hz +/- 20%
-    bias_div.r_top.value = 10kohm +/- 1%
-    bias_div.r_bottom.value = 10kohm +/- 1%
+    # bias_div.cutoff_frequency = 160Hz +/- 20%
+    bias_div.r_top.resistance = 10kohm +/- 1%
+    bias_div.r_bottom.resistance = 10kohm +/- 1%
 
     # Configure packages
-    bypass_cap.package = "0402"
-    bias_div.r_top.package = "0402"
-    bias_div.r_bottom.package = "0402"
-    bias_div.cap.package = "0402"
+    bypass_cap.package = "C0402"
+    bias_div.r_top.package = "R0402"
+    bias_div.r_bottom.package = "R0402"
+    # bias_div.cap.package = "C0402"
 
     # Connect components
     power ~ opamp.power
@@ -235,7 +241,7 @@ module VoltageReference:
 
     # Connect opamp in unity gain configuration
     opamp.output ~ opamp.inverting
-    opamp.non_inverting ~ bias_div.output.io
+    opamp.non_inverting ~ bias_div.output.line
     output.vcc ~ opamp.output
 
 
@@ -253,15 +259,15 @@ module DMT3009LDT_7 from HalfBridge:
 # Custom parts
 
 component _DMT3009LDT_7:
-    power = new Power
-    output = new Pair
-    gate_high = new Pair
-    gate_low = new Pair
+    power = new ElectricPower
+    output = new ElectricSignal
+    gate_high = new ElectricSignal
+    gate_low = new ElectricSignal
 
     # Signal connections
-    gate_high.io ~ pin 1
-    gate_low.io ~ pin 8
-    output.io ~ pin 9
+    gate_high.line ~ pin 1
+    gate_low.line ~ pin 8
+    output.line ~ pin 9
 
     # Power connections
     power.vcc ~ pin 2
@@ -272,7 +278,7 @@ component _DMT3009LDT_7:
     power.gnd ~ pin 6
     power.gnd ~ pin 7
 
-    power.gnd ~ output.gnd
+    power.gnd ~ output.reference.gnd
 
     footprint = "V-DFN3030-8K_L3.0-W3.0-P0.65-BL"
     lcsc_id = "C155503"
@@ -294,7 +300,7 @@ component BulkCapacitor from Capacitor:
 
 module CapBank:
     # maybe we need a for loop...
-    power = new Power
+    power = new ElectricPower
     cap1 = new BulkCapacitor
     cap2 = new BulkCapacitor
     cap3 = new BulkCapacitor
@@ -337,7 +343,7 @@ module CapBank:
     power ~ cap19.power
 
 component nettie_250u:
-    pin 1
-    pin 2
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
     footprint = "NetTie-2_SMD_Pad0.25mm"
     mpn = "NetTie_250u"

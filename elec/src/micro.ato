@@ -1,28 +1,30 @@
-from "generics/interfaces.ato" import Power, CAN, I2C, Pair, USB2, SPI, Pair
 from "stm32g4/STM32G4.ato" import STM32G431CBU6_USB2
 from "sn65hvd230dr/elec/src/sn65hvd230dr.ato" import SN65HVD230DR
-from "generics/resistors.ato" import Resistor
 from "programming-headers/elec/src/programming-headers.ato" import TC2050
+import ElectricPower, ElectricSignal, I2C, USB2_0, SPI, ElectricLogic
+import Resistor
+from "generics/interfaces.ato" import CAN # TODO: Add CAN interface to StdLib
 
 module Micro:
-    power = new Power
+    power = new ElectricPower
     i2c = new I2C
-    led = new Pair
-    usb2 = new USB2
+    led = new ElectricLogic
+    usb2 = new USB2_0
     can = new CAN
-    button = new Pair
+    button = new ElectricLogic
     spi = new SPI
-    temp_sense = new Pair
-    batt_sense = new Pair
+    spi_cs = new ElectricLogic
+    temp_sense = new ElectricSignal
+    batt_sense = new ElectricSignal
 
     # Motor control
-    phase_a_control = new Pair
-    phase_b_control = new Pair
-    phase_c_control = new Pair
-    phase_a_current = new Pair
-    phase_b_current = new Pair
-    phase_c_current = new Pair
-    driver_enable = new Pair
+    phase_a_control = new ElectricSignal
+    phase_b_control = new ElectricSignal
+    phase_c_control = new ElectricSignal
+    phase_a_current = new ElectricSignal
+    phase_b_current = new ElectricSignal
+    phase_c_current = new ElectricSignal
+    driver_enable = new ElectricLogic
 
     # Components
     micro = new STM32G431CBU6_USB2
@@ -35,23 +37,24 @@ module Micro:
     i2c ~ micro.i2c2 # (PA8 SDA, PC4 SCL)
     usb2 ~ micro.usb2 # (PA11 DM, PA12 DP)
     spi ~ micro.spi2 # (PB15 mosi, PB14 miso, PB13 sck, PB12 cs)
+    spi_cs ~ micro.spi2_cs
     can ~ can_tranciever.can
 
     # CAN RX and Bootpin are shared, need to be multiplexed externally (backup for SW boot option)
     button ~ mux.input_select_high
-    can_tranciever.can_ttl.rx ~ mux.input_select_low.io
+    can_tranciever.can_ttl.rx ~ mux.input_select_low.line
     button ~ micro.PB5 # for enumeration or something while micro is running
     mux.output ~ micro.PB8_BOOT0
     mux.select ~ micro.PA6
-    can_tranciever.can_ttl.tx ~ micro.PB9.io
+    can_tranciever.can_ttl.tx ~ micro.PB9.line
 
     # Pullup reistor to default to boot selction - drive low with PA6 to enable CAN
-    select_resistor.1 ~ mux.select.io
-    select_resistor.2 ~ power.vcc
+    select_resistor.p1 ~ mux.select.line
+    select_resistor.p2 ~ power.vcc
 
     # configure resistor
-    select_resistor.value = 80kohm to 120kohm # something big
-    select_resistor.package = "0402"
+    select_resistor.resistance = 80kohm to 120kohm # something big
+    select_resistor.package = "R0402"
 
     # Motor control
     phase_a_control ~ micro.PA0
@@ -98,22 +101,22 @@ component SN74LVC1G3157DBVR:
     description = "15Ω 1 SPDT(SPDT) SOT-23-6 Analog Switches / Multiplexers ROHS"
     mpn = "C10426"
 
-    power = new Power
+    power = new ElectricPower
     power.vcc ~ pin 5
     power.gnd ~ pin 2
 
-    input_select_low = new Pair
-    input_select_low.io ~ pin 3
-    input_select_low.gnd ~ power.gnd
+    input_select_low = new ElectricSignal
+    input_select_low.line ~ pin 3
+    input_select_low.reference.gnd ~ power.gnd
 
-    input_select_high = new Pair
-    input_select_high.io ~ pin 1
-    input_select_high.gnd ~ power.gnd
+    input_select_high = new ElectricSignal
+    input_select_high.line ~ pin 1
+    input_select_high.reference.gnd ~ power.gnd
 
-    output = new Pair
-    output.io ~ pin 4
-    output.gnd ~ power.gnd
+    output = new ElectricSignal
+    output.line ~ pin 4
+    output.reference.gnd ~ power.gnd
 
-    select = new Pair
-    select.io ~ pin 6
-    select.gnd ~ power.gnd
+    select = new ElectricSignal
+    select.line ~ pin 6
+    select.reference ~ power.gnd

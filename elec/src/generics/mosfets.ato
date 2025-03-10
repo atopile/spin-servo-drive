@@ -1,9 +1,5 @@
-import Power from "interfaces.ato"
-import Pair from "interfaces.ato"
-import DiffPair from "interfaces.ato"
-import Load from "interfaces.ato"
-import Resistor from "interfaces.ato"
-import Diode from "diodes.ato"
+import ElectricPower, ElectricSignal, ElectricLogic, DifferentialPair
+import Resistor, Diode
 
 component NFET:
     signal gate
@@ -24,10 +20,10 @@ component PFET:
     polarity = "P Channel"
 
 module HalfBridge:
-    power = new Power
-    gate_high = new Pair
-    gate_low = new Pair
-    output = new Pair
+    power = new ElectricPower
+    gate_high = new ElectricSignal
+    gate_low = new ElectricSignal
+    output = new ElectricSignal
 
     # this doesnt work until we have replace with instance.
     # # Components
@@ -50,28 +46,28 @@ module HalfBridge:
     # gate_high.gnd ~ power.gnd
     # gate_low.gnd ~ power.gnd
 
-module LowSideSwitch:
-    fet = new Mosfet_nchannel
-    gate_resistor = new Resistor
-    pulldown_resistor = new Resistor
-    freewheel_diode = new Diode
+# module LowSideSwitch:
+#     fet = new Mosfet_nchannel
+#     gate_resistor = new Resistor
+#     pulldown_resistor = new Resistor
+#     freewheel_diode = new Diode
 
-    power = new Power
-    load = new Load
+#     power = new Power
+#     load = new Load
 
-    input = new Pair
+#     input = new Pair
 
-    # connect up circuit
-    input.io ~ gate_resistor.p1; gate_resistor.p2 ~ fet.gate
-    input.gnd ~ power.gnd
+#     # connect up circuit
+#     input.io ~ gate_resistor.p1; gate_resistor.p2 ~ fet.gate
+#     input.gnd ~ power.gnd
 
-    # load and diode between power and fet
-    power.vcc ~ freewheel_diode.cathode; freewheel_diode.anode ~ fet.drain
-    power.vcc ~ load.p; load.n ~ fet.drain
+#     # load and diode between power and fet
+#     power.vcc ~ freewheel_diode.cathode; freewheel_diode.anode ~ fet.drain
+#     power.vcc ~ load.p; load.n ~ fet.drain
 
-    # source to ground
-    fet.source ~ power.gnd
+#     # source to ground
+#     fet.source ~ power.gnd
 
-import NTTFS4C25NTWG from "elec/src/NTTFS4C25NTWG.ato"
-module LowSideSwitch30V5A from LowSideSwitch:
-    fet -> NTTFS4C25NTWG
+# import NTTFS4C25NTWG from "elec/src/NTTFS4C25NTWG.ato"
+# module LowSideSwitch30V5A from LowSideSwitch:
+#     fet -> NTTFS4C25NTWG
