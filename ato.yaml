@@ -7,55 +7,79 @@ dependencies:
   version_spec:
   link_broken: true
   path: elec/src/drv8300
+  source:
 - name: generics
   version_spec: '@09ad6baeaab93d53b9b6c90069ac750f4161d76f'
   link_broken: true
   path: elec/src/generics
+  source:
 - name: jst-gh
   version_spec:
   link_broken: true
   path: elec/src/jst-gh
+  source:
 - name: ldk220m-r
   version_spec: '@8dd936e3fa3773448ae44bc17e7412daf7bff4d7'
   link_broken: true
   path: elec/src/ldk220m-r
+  source:
 - name: lmv321idbvr
   version_spec:
   link_broken: true
   path: elec/src/lmv321idbvr
+  source:
 - name: ma732
   version_spec:
   link_broken: true
   path: elec/src/ma732
+  source:
 - name: programming-headers
   version_spec: '@e3a6ca6b5b93e3c2db899aa7cc5a8fde17920abc'
   link_broken: true
   path: elec/src/programming-headers
+  source:
 - name: qwiic-connectors
   version_spec:
   link_broken: true
   path: elec/src/qwiic-connectors
+  source:
 - name: saleae-header
   version_spec: '@c2893ddaad84cd03553cd29747d3bb9e0655ef20'
   link_broken: true
   path: elec/src/saleae-header
+  source:
 - name: sk6805side
   version_spec:
   link_broken: true
   path: elec/src/sk6805side
+  source:
 - name: sn65hvd230dr
   version_spec:
   link_broken: true
   path: elec/src/sn65hvd230dr
+  source:
 - name: stm32g4
   version_spec: '@a9bc204ed48c5f18448060b41e8aebfd3b614efb'
   link_broken: true
   path: elec/src/stm32g4
+  source:
 - name: usb-connectors
   version_spec: '@53496dede5b600bd799a0afe199eaa514ebdc5f6'
   link_broken: true
   path: elec/src/usb-connectors
+  source:
 - name: xt-connectors
   version_spec: '@3719ec970da96df05b6763671993ca2276df968b'
   link_broken: true
   path: elec/src/xt-connectors
+  source:
+- name: https://github.com/atopile/ldk220m-r.git
+  version_spec: '@33ffee4f8187d12bacd3ed9bf776e6afbd9984ec'
+  link_broken: false
+  path: .ato/modules/ldk220m-r.git
+  source:
+- name: https://github.com/atopile/lv2842xlvddcr.git
+  version_spec: '@ac20c5b8415de66fa9af8c74218dd52d0c579ad6'
+  link_broken: false
+  path: .ato/modules/lv2842xlvddcr.git
+  source:

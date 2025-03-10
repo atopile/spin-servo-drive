@@ -1,0 +1,25 @@
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build
+        uses: docker://ghcr.io/atopile/atopile-kicad:main
+        id: build
+        continue-on-error: true
+
+      - name: Upload Combined Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build
+
+      - name: Check build status
+        if: steps.build.outcome == 'failure'
+        run: exit 1
