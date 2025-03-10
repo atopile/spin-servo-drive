@@ -1,11 +1,10 @@
 import KH_TYPE_C_16P from "elec/src/KH-TYPE-C-16P.ato"
-import Power from "generics/interfaces.ato"
-import USB2 from "generics/interfaces.ato"
-import Resistor from "generics/resistors.ato"
+import ElectricPower, ElectricSignal, USB2_0
+import Resistor
 
 module GenericUSBConn:
-    power = new Power
-    usb2 = new USB2
+    power = new ElectricPower
+    usb2 = new USB2_0
 
 module USBCConn from GenericUSBConn:
     signal gnd
@@ -17,18 +16,18 @@ module USBCConn from GenericUSBConn:
     conn.EP ~ power.gnd
 
     # Connect USB
-    conn.DN1 ~ usb2.dm
-    conn.DN2 ~ usb2.dm
-    conn.DP1 ~ usb2.dp
-    conn.DP2 ~ usb2.dp
+    conn.DN1 ~ usb2.usb_if.d.n
+    conn.DN2 ~ usb2.usb_if.d.n
+    conn.DP1 ~ usb2.usb_if.d.p
+    conn.DP2 ~ usb2.usb_if.d.p
 
     # Add CC resistors
     cc1_res = new Resistor
     cc2_res = new Resistor
-    cc1_res.value = 5.1kohms +/- 5%
-    cc2_res.value = 5.1kohms +/- 5%
-    cc1_res.package = "0402"
-    cc2_res.package = "0402"
+    cc1_res.resistance = 5.1kohms +/- 5%
+    cc2_res.resistance = 5.1kohms +/- 5%
+    cc1_res.package = "R0402"
+    cc2_res.package = "R0402"
 
     conn.CC1 ~ cc1_res.p1; cc1_res.p2 ~ power.gnd
     conn.CC2 ~ cc2_res.p1; cc2_res.p2 ~ power.gnd

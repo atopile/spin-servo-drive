@@ -99,7 +99,6 @@ component SN74LVC1G3157DBVR:
     footprint = "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR"
     lcsc_id = "C10426"
     description = "15Ω 1 SPDT(SPDT) SOT-23-6 Analog Switches / Multiplexers ROHS"
-    mpn = "C10426"
 
     power = new ElectricPower
     power.vcc ~ pin 5
@@ -119,4 +118,4 @@ component SN74LVC1G3157DBVR:
 
     select = new ElectricSignal
     select.line ~ pin 6
-    select.reference ~ power.gnd
+    select.reference.gnd ~ power.gnd

@@ -1,18 +1,25 @@
-from "generics/opamps.ato" import Opamp
+import OpAmp
 
-component LMV321IDBVR from Opamp:
+component LMV321IDBVR from OpAmp:
     # component LMV321IDBVR
     footprint = "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR"
     lcsc_id = "C7972"
-    mpn = "C7972"
+    # mpn = "C7972"                                                                                                                          
+    # input_offset_voltage = 1e-3
+    # gain_bandwidth_product = 1e6
+    # bandwidth = 1e6
+    # input_bias_current = 1e-6
+    # common_mode_rejection_ratio = 90
+    # output_current = 100e-6
+    # slew_rate = 13e6
 
     # Connect power
     power.vcc ~ pin 5
     power.gnd ~ pin 2
 
     # Connect signals
-    inverting ~ pin 3
-    non_inverting ~ pin 1
+    inverting_input ~ pin 3
+    non_inverting_input ~ pin 1
     output ~ pin 4
 
 module Test:

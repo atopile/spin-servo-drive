@@ -1,9 +1,8 @@
-from "generics/interfaces.ato" import Power, Pair, SWD, SPI, I2C, USB_PD, USB2, CAN_TTL, JTAG
-from "generics/resistors.ato" import Resistor
-from "generics/capacitors.ato" import Capacitor
+from "generics/interfaces.ato" import SWD, CAN_TTL, JTAG
 from "elec/src/STM32G431CBU6.ato" import _STM32G431CBU6
 from "elec/src/TAXM8M4RDBCCT2T.ato" import TAXM8M4RDBCCT2T
 import ElectricPower, ElectricSignal, ElectricLogic, SPI, I2C, USB2_0
+import Resistor, Capacitor
 
 # module STM32G431CBU6_USBPD from STM32G431CBU6_BASE:
 #     usb_pd = new USB_PD
@@ -23,7 +22,7 @@ module STM32G431CBU6_USB2 from STM32G431CBU6_BASE:
 
 module STM32G431CBU6_BASE:
     # Power
-    power = new Power
+    power = new ElectricPower
 
     # Interfaces
     can_ttl = new CAN_TTL

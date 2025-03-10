@@ -165,7 +165,7 @@ module LowSideCurrentSense:
     shunt_voltage = (-1 to 1) * max_current * shunt.resistance
 
     # Opamp gain
-    opamp = new Opamp
+    opamp = new OpAmp
     power ~ opamp.power
     feedback_div = new ResistorVoltageDivider
     _shunt_n ~ feedback_div.power.vcc

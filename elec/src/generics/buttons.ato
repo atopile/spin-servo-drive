@@ -1,5 +1,5 @@
-from "interfaces.ato" import Pair, Power
-from "resistors.ato" import Resistor
+import ElectricPower, ElectricLogic, ElectricSignal
+import Resistor
 
 module NoButton:
     """
@@ -57,37 +57,37 @@ module ButtonSKTDLDE010 from NoButton:
 module ButtonPullup:
     btn = new NoButton
     signal out
-    output = new Pair
-    power = new Power
+    output = new ElectricSignal
+    power = new ElectricPower
     pullup = new Resistor
 
     signal out # depricated
 
     output.io ~ out
-    output.gnd ~ power.gnd
+    output.reference.gnd ~ power.gnd
     pullup.value = 10kohms +/- 20%
-    pullup.package = "0402"
+    pullup.package = "R0402"
 
     power.vcc ~ pullup.p1; pullup.p2 ~ btn.in; btn.out ~ power.gnd
     out ~ btn.in
 
-    output.io ~ out
-    output.gnd ~ power.gnd
+    output.line ~ out
+    output.reference.gnd ~ power.gnd
 
 module ButtonPulldown:
     btn = new NoButton
     signal out
-    output = new Pair
-    power = new Power
+    output = new ElectricSignal
+    power = new ElectricPower
     pulldown = new Resistor
-    pulldown.value = 10kohms +/- 20%
-    pulldown.package = "0402"
+    pulldown.resistance = 10kohms +/- 20%
+    pulldown.package = "R0402"
 
     power.gnd ~ pulldown.p1; pulldown.p2 ~ btn.in; btn.out ~ power.vcc
     out ~ btn.in
 
-    output.io ~ out
-    output.gnd ~ power.gnd
+    output.line ~ out
+    output.reference.gnd ~ power.gnd
 
 module ButtonPullup90Degree from ButtonPullup:
     btn -> _1TS003B_1400_3500A
