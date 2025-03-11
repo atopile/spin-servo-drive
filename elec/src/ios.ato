@@ -1,4 +1,4 @@
-from "generics/interfaces.ato" import Power, CAN, I2C, Pair, USB2
+from "interfaces.ato" import Power, CAN, I2C, Pair, USB2
 from "xt-connectors/xt-connectors.ato" import XT30_Male_Right_Angle
 from "usb-connectors/usb-connectors.ato" import USBCConn
 from "qwiic-connectors/elec/src/qwiic-connectors.ato" import QwiicConnector
@@ -7,6 +7,7 @@ from "sk6805side/elec/src/sk6805side.ato" import SK6805SIDE
 from "generics/buttons.ato" import ButtonPulldown, ButtonSKTDLDE010
 import ResistorVoltageDivider, Resistor
 import ElectricPower, ElectricSignal, I2C, USB2_0, ElectricLogic
+from "vdivs.ato" import VDiv
 
 
 module IOs:
@@ -35,7 +36,7 @@ module IOs:
 
     #Sensors
     voltage_sense = new ResistorVoltageDivider
-    temperature_sense = new ResistorVoltageDivider
+    temperature_sense = new VDiv
 
     # Phase outputs
     pad_out_a = new PowerPad
@@ -66,17 +67,17 @@ module IOs:
     power_usb.gnd ~ power3v3.gnd
 
     # Sensor config
-    voltage_sense.v_in = 30V
+    voltage_sense.v_in = 30V +/- 1%
     voltage_sense.v_out = 3V +/- 5%
 
-    # Manually selecting parts, but providing values for checks
-    temperature_sense.v_in = 3.3V
+    # Temperature sense
+    temperature_sense.v_in = 3.3V +/- 1%
     temperature_sense.v_out = 1.65V +/- 5%
     temperature_sense.r_top.resistance = 10kohm +/- 1%
-    temperature_sense.r_bottom.lcsc_id = "C77131" # NTC Thermistor
+    temperature_sense.r_bottom.resistance = 10kohm +/- 1%
+    # temperature_sense.r_bottom -> NCP15XH103F03RC #TODO: requires replace with instance to work
 
     voltage_sense.i_q = 10uA to 1mA
-    temperature_sense.i_q = 10uA to 1mA
 
     # # Filter out switching noise from phases + buck converter (both 10kHz +)
     # voltage_sense.cutoff_frequency = 50Hz to 200Hz
@@ -117,8 +118,14 @@ component NCP15XH103F03RC from Resistor:
     Thermistor NTC
     """
     footprint = "R0402"
-    # mpn = "NCP15XH103F03RC"
-    mpn = "C77131"
-    lcsc = "C77131"
-    beta = 3380K
-    value = 10kohm +/- 1%
+    lcsc_id = "C77131"
+    resistance = 10kohm +/- 1%
+
+# module TemperatureSense from VDiv:
+#     v_in = 3.3V +/- 1%p
+#     v_out = 1.65V +/- 5%
+#     r_top.resistance = 10kohm +/- 1%
+#     # r_bottom.lcsc_id = "C77131"
+#     # assert r_bottom.resistance is 10kohm +/- 1%
+#     r_bottom -> NCP15XH103F03RC
+    

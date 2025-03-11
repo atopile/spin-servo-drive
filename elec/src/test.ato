@@ -1,0 +1,21 @@
+from "lv2842xlvddcr.git/elec/src/lv284xx.ato" import LV2842XReferenceDesign
+import ElectricPower
+
+module Test:
+    reg = new LV2842XReferenceDesign
+    
+    # Define power nets
+    power_in = new ElectricPower
+    power_out = new ElectricPower
+    
+    # Set parameters
+    assert reg.v_in is 12V to 24V
+    assert reg.v_out within 8V +/- 5%
+    # assert power_in.voltage is 12V to 24V
+    # power_out.voltage = 8V +/- 5%
+    
+    # Connect power
+    power_in ~ reg.power_in
+    power_out ~ reg.power_out
+
+    

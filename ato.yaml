@@ -2,6 +2,8 @@ ato-version: ^0.3.0
 builds:
   default:
     entry: elec/src/spin.ato:SPIN
+  test:
+    entry: /Users/narayanpowderly/projects/spin-servo-drive/elec/src/test.ato:Test
 dependencies:
 - name: drv8300
   version_spec:
@@ -17,11 +19,6 @@ dependencies:
   version_spec:
   link_broken: true
   path: elec/src/jst-gh
-  source:
-- name: ldk220m-r
-  version_spec: '@8dd936e3fa3773448ae44bc17e7412daf7bff4d7'
-  link_broken: true
-  path: elec/src/ldk220m-r
   source:
 - name: lmv321idbvr
   version_spec:

@@ -1,20 +1,18 @@
-from "generics/interfaces.ato" import Power
-from "generics/regulators.ato" import LDO, Buck
-from "lv2842xlvddcr.git/elec/src/lv284xx.ato" import LV2842XReferenceDesign
+import ElectricPower
 from "generics/diodes.ato" import Diode
-from "ldk220m-r.git/elec/src/ldk220m-r.ato" import LDK220M_R
 from "generics/diodes.ato" import SchottkyDiode
-from "generics/regulators.ato" import AdjustableLDO
+from "lv2842xlvddcr.git/elec/src/lv284xx.ato" import LV2842XReferenceDesign
+from "ldk220m-r.git/elec/src/ldk220m-r.ato" import LDK220M_R
 
 module PowerSupply:
-    power_batt = new Power
-    power_usb = new Power
-    power_gate = new Power
-    power5v = new Power
-    power3v3 = new Power
+    power_batt = new ElectricPower
+    power_usb = new ElectricPower
+    power_gate = new ElectricPower
+    power5v = new ElectricPower
+    power3v3 = new ElectricPower
 
     # Components
-    buck = new LV2842XReferenceDesign
+    buck = new LV2842XReferenceDesign  # Using the original reference design
     ldo5V = new LDK220M_R
     ldo3V3 = new LDK220M_R
     diode = new PowerDiode
@@ -24,22 +22,19 @@ module PowerSupply:
 
     # Configure components
     buck.v_in = 12V to 24V
-    buck.v_out = 8V +/- 10%
-    ldo5V.v_in = 8V +/- 10%
+    buck.v_out = 8V +/- 5%
+    ldo5V.v_in = 8V +/- 5%
     ldo5V.v_out = 5V +/- 5%
     ldo3V3.v_in = 5V +/- 5%
     ldo3V3.v_out = 3.3V +/- 5%
-
 
     # Buck converter
     power_batt ~ buck.power_in
     power_gate ~ buck.power_out
 
-
     # Diode OR (USB or battery)
     power_usb ~ diode.power_in
     diode.power_out ~ power5v
-
 
     # LDOs
     power_gate ~ ldo5V.power_in
@@ -52,13 +47,12 @@ module PowerDiode:
     """
     Wraps diode in with power interfaces
     """
-    power_in = new Power
-    power_out = new Power
+    power_in = new ElectricPower
+    power_out = new ElectricPower
 
     diode = new Diode
 
     power_in.vcc ~ diode.anode; diode.cathode ~ power_out.vcc
-
 
 
 component Diode_1N5819WS from SchottkyDiode:
