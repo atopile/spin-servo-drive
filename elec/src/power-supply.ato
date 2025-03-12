@@ -12,7 +12,7 @@ module PowerSupply:
     power3v3 = new ElectricPower
 
     # Components
-    buck = new LV2842XReferenceDesign  # Using the original reference design
+    buck = new LV2842XReferenceDesign
     ldo5V = new LDK220M_R
     ldo3V3 = new LDK220M_R
     diode = new PowerDiode
@@ -21,12 +21,12 @@ module PowerSupply:
     diode.diode -> Diode_1N5819WS
 
     # Configure components
-    buck.v_in = 12V to 24V
-    buck.v_out = 8V +/- 5%
-    ldo5V.v_in = 8V +/- 5%
-    ldo5V.v_out = 5V +/- 5%
-    ldo3V3.v_in = 5V +/- 5%
-    ldo3V3.v_out = 3.3V +/- 5%
+    assert buck.v_in is 12V to 24V
+    assert buck.v_out within 8V +/- 5%
+    assert ldo5V.v_in is 8V +/- 5%
+    assert ldo5V.v_out within 5V +/- 5%
+    assert ldo3V3.v_in is 5V +/- 5%
+    assert ldo3V3.v_out within 3.3V +/- 5%
 
     # Buck converter
     power_batt ~ buck.power_in

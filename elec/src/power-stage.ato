@@ -201,11 +201,14 @@ module LowSideCurrentSense:
     # Final component values
     # FIXME: We have the select these manually because
     # the solver isn't reliably finding them for us
-    shunt.resistance = 3mΩ +/- 1%
-    feedback_div.r_top.resistance = 1kohm +/- 2%
-    feedback_div.r_bottom.resistance = 45kohm +/- 2%
-    bias_div.r_top.resistance = 1kohm +/- 1%
-    bias_div.r_bottom.resistance = 45kohm +/- 1%
+    # assert shunt.resistance within 3mΩ +/- 1%
+    # assert feedback_div.r_top.resistance within 1kohm +/- 2%
+    # assert feedback_div.r_bottom.resistance within 45kohm +/- 2%
+    # assert bias_div.r_top.resistance within 1kohm +/- 1%
+    # assert bias_div.r_bottom.resistance within 45kohm +/- 1%
+    assert feedback_div.ratio within 1/45 +/- 5%
+    assert bias_div.ratio within 1/45 +/- 5%
+
 
 module VoltageReference:
     """
@@ -221,12 +224,8 @@ module VoltageReference:
     bypass_cap = new Capacitor
 
     # Configure components
-    # bypass_cap.capacitance = 1uF +/- 20%
-    bias_div.v_in = 3.3V
-    bias_div.v_out = 1.65V +/- 15%
-    # bias_div.cutoff_frequency = 160Hz +/- 20%
-    bias_div.r_top.resistance = 10kohm +/- 1%
-    bias_div.r_bottom.resistance = 10kohm +/- 1%
+    assert bias_div.v_in is 3.3V +/- 1%
+    assert bias_div.v_out within 1.65V +/- 5%
 
     # Configure packages
     bypass_cap.package = "C0402"

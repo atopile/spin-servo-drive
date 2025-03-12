@@ -67,23 +67,15 @@ module IOs:
     power_usb.gnd ~ power3v3.gnd
 
     # Sensor config
-    voltage_sense.v_in = 30V +/- 1%
-    voltage_sense.v_out = 3V +/- 5%
+    assert voltage_sense.v_in is 30V +/- 1%
+    assert voltage_sense.v_out within 3V +/- 5%
 
     # Temperature sense
-    temperature_sense.v_in = 3.3V +/- 1%
-    temperature_sense.v_out = 1.65V +/- 5%
-    temperature_sense.r_top.resistance = 10kohm +/- 1%
-    temperature_sense.r_bottom.resistance = 10kohm +/- 1%
+    assert temperature_sense.v_in is 3.3V +/- 1%
+    assert temperature_sense.v_out within 1.65V +/- 5%
     # temperature_sense.r_bottom -> NCP15XH103F03RC #TODO: requires replace with instance to work
 
-    voltage_sense.i_q = 10uA to 1mA
-
-    # # Filter out switching noise from phases + buck converter (both 10kHz +)
-    # voltage_sense.cutoff_frequency = 50Hz to 200Hz
-    # temperature_sense.cutoff_frequency = 100Hz to 200Hz
-
-    # voltage_sense.cap.voltage = 30V to 100V
+    voltage_sense.max_current = 10uA to 1mA
 
     temp_sense ~ temperature_sense.output
     batt_sense ~ voltage_sense.output
@@ -121,11 +113,4 @@ component NCP15XH103F03RC from Resistor:
     lcsc_id = "C77131"
     resistance = 10kohm +/- 1%
 
-# module TemperatureSense from VDiv:
-#     v_in = 3.3V +/- 1%p
-#     v_out = 1.65V +/- 5%
-#     r_top.resistance = 10kohm +/- 1%
-#     # r_bottom.lcsc_id = "C77131"
-#     # assert r_bottom.resistance is 10kohm +/- 1%
-#     r_bottom -> NCP15XH103F03RC
     
