@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: atopile/publish-package@v1
+      - uses: atopile/publish-package@main
