@@ -6,6 +6,9 @@ jobs:
   release:
     if: github.event.release.draft != true && github.event.release.prerelease != true
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: atopile/publish-package@main
