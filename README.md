@@ -10,11 +10,11 @@ The only downside is that they're expensive, like hundreds of dollars.
 
 Introducing spin ✨ - the $30 servo for the masses (designed with atopile)
 
-![spin](docs/showing-off-the-very-goods.jpg)
+![spin](https://github.com/atopile/spin-servo-drive/raw/main/docs/showing-off-the-very-goods.jpg)
 
 ## Wiggle wiggle wiggle
 
-![wiggle-wiggle-wiggle](docs/wiggle-wiggle-wiggle.gif)
+![wiggle-wiggle-wiggle](https://github.com/atopile/spin-servo-drive/raw/main/docs/wiggle-wiggle-wiggle.gif)
 
 ## Build your own Spin Servo Motor Drive
 
@@ -57,8 +57,8 @@ To run a build either use the sidebar (easiest IMO) or PlatformIO CLI (`pio run 
 
 #### Side-bar
 
-![platformio](docs/platoformio-build-and-upload.png)
+![platformio](https://github.com/atopile/spin-servo-drive/raw/main/docs/platoformio-build-and-upload.png)
 
 #### CLI
 
-![platformio-cli](docs/pio-cli-env.png)
+![platformio-cli](https://github.com/atopile/spin-servo-drive/raw/main/docs/pio-cli-env.png)
