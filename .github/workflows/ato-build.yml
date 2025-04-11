@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - "elec/**"
+      - "ato.yaml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: atopile/setup-atopile@main
+        with:
+          version: main
+
+      - run: ato sync
+      - run: ato build
+
+      - name: Upload Combined Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build
